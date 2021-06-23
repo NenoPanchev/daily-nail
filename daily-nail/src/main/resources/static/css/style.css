@@ -1,0 +1,97 @@
+.bg-nav {
+    background-color: black;
+}
+.bg-nav2 {
+    background-color: #1e7e34;
+}
+
+.my-index-div {
+    min-height: 56.6vh;
+    max-height: 100%;
+}
+
+.my-register-div {
+    min-height: 85.5vh;
+    max-height: 100%;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+}
+
+.bg-blur {
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/opacity/see-through */
+    color: black;
+    font-weight: bold;
+    z-index: 2;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    min-width: 320px;
+    font-family: akrobat, sans-serif;
+    font-feature-settings: unset;
+    font-variant: normal
+
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+.header-scrolled.header {
+    position: fixed;
+    top: 0
+}
+
+.header-scrolled.header .header-top {
+    display: none
+}
+
+.header-scrolled.header .logo img {
+    width: 130px
+}
+
+.carouselExampleIndicators {
+    height: 500px;
+}
+
+.carousel-item img {
+    height: 500px;
+}
+
+html body header nav.navbar.navbar-expand-lg.bg-nav.rounded div#navbarNav.collapse.navbar-collapse.d-flex.justify-content-end ul.navbar-nav.row li.nav-item form button.btn-link.text-white.active.h5 {
+    border: none;
+    text-decoration: none;
+    padding-top: 8px;
+}
+
+html body header nav.navbar.navbar-expand-lg.bg-nav.rounded div#navbarNav.collapse.navbar-collapse.d-flex.justify-content-end ul.navbar-nav.row li.nav-item form button.btn-link.text-white.active.h5:hover {
+    cursor: pointer;
+}
+
+input:valid {
+    border: lawngreen solid 2px;
+}
+
+input:invalid {
+    border: red solid 2px;
+}
+
+.social-follow {
+    display: inline;
+}
+
+.social-follow-link {
+    display: inline-block;
+    padding-top: 5px;
+}
+
+.social-follow-link i {
+    padding: 5px;
+}

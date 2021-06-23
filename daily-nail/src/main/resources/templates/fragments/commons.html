@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Daily Nail</title>
+
+    <link rel="icon" href="/img/favicon.png" type="image/icon type">
+
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/8278a6ad3c.js" crossorigin="anonymous"></script>
+
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-KT226MK"></script>
+</head>
+
+<script type="text/javascript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KT226MK');</script>
+
+
+
+<body>
+<header th:fragment="navigation">
+
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KT226MK"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    <div class="header-top bg-nav w-100">
+        <div class="container text-white mw-1280px">
+            <div class="row">
+                <div class="col-md-6">
+                    <i class="icon mdi mdi-clock-outline"></i>
+                    <span class="time-date">14:35, 21.06.2021</span>
+                </div>
+                <div class="col-md-6 text-right">
+                    <span >СЛЕДВАЙТЕ НИ:</span>
+                    <ul class="social-follow" >
+                        <li class="social-follow-link">
+                            <a style="color: #3b5998;" href="#!" role="button">
+                                <i class="fab fa-facebook-f fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a  style="color: #55acee;" href="#!" role="button" >
+                                <i class="fab fa-twitter fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a  style="color: #0077b5;" href="#!" role="button">
+                                <i class="fab fa-linkedin-in fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a  style="color: #ac2bac;" href="#!" role="button">
+                                <i class="fab fa-instagram fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a  style="color: #ff0000;" href="#!" role="button">
+                                <i class="fab fa-youtube fa-lg"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-main w-100 header-scrolled" id="myHeader">
+        <div class="container mw-1280px">
+            <div class="row">
+                <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                    <a class="logo" href="/">
+                        <img src="/img/logo.jpg" alt="logo" width="200">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <nav class="header-nav navbar-expand-lg ">
+<!--        <a class="nav-link" sec:authorize="isAuthenticated()" href="/home">-->
+<!--            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">-->
+<!--        </a>-->
+<!--        <a class="nav-link" sec:authorize="isAnonymous()" href="/">-->
+<!--            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">-->
+<!--        </a>-->
+
+        <div sec:authorize="hasRole('ADMIN')" class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Admin Panel
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/statistics">Statistics</a>
+                <a class="dropdown-item" href="/articles/add">Add article</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+
+
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+
+                <li sec:authorize="!isAuthenticated()" class="nav-item col-md-4">
+                    <a class="nav-link text-white active h5" href="/users/login">Login</a>
+                </li>
+                <li sec:authorize="isAnonymous()" class="nav-item col-md-4">
+                    <a class="nav-link text-white active h5" href="/users/register">Register</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item ">
+                    <a class="nav-link text-white active h5" href="/albums/add">Add Album</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item ">
+                    <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item ">
+                    <form th:action="@{/logout}" method="POST">
+                        <button type="submit" class="btn-link text-white active h5">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+
+            </ul>
+        </div>
+
+        <a class="dropdown-item" href="#">Something else here</a>
+    </nav>
+</header>
+
+<script>
+    window.onscroll = function() {myFunction()};
+
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+    }
+</script>
+</body>
+
+<footer th:fragment="footer">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;SoftUni Spring Team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</html>
