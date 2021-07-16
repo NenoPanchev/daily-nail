@@ -44,26 +44,6 @@ body {
     width: 100%
 }
 
-.header-scrolled.header {
-    position: fixed;
-    top: 0
-}
-
-.header-scrolled.header .header-top {
-    display: none
-}
-
-.header-scrolled.header .logo img {
-    width: 130px
-}
-
-.carouselExampleIndicators {
-    height: 500px;
-}
-
-.carousel-item img {
-    height: 500px;
-}
 
 html body header nav.navbar.navbar-expand-lg.bg-nav.rounded div#navbarNav.collapse.navbar-collapse.d-flex.justify-content-end ul.navbar-nav.row li.nav-item form button.btn-link.text-white.active.h5 {
     border: none;

@@ -38,7 +38,7 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
-    <div class="header-top bg-nav w-100">
+    <div class="header-top bg-nav w-100" id="topHeader">
         <div class="container text-white mw-1280px">
             <div class="row">
                 <div class="col-md-6">
@@ -146,7 +146,7 @@
 <script>
     window.onscroll = function() {myFunction()};
 
-    var header = document.getElementById("myHeader");
+    var header = document.getElementById("topHeader");
     var sticky = header.offsetTop;
 
     function myFunction() {
