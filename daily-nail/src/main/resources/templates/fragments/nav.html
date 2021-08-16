@@ -1,0 +1,116 @@
+<block>
+  <div class="header-top bg-nav w-100" id="topHeader">
+    <div class="container text-white mw-1280px">
+      <div class="row">
+        <div class="col-md-6">
+          <i class="icon mdi mdi-clock-outline"></i>
+          <span class="time-date">14:35, 21.06.2021</span>
+        </div>
+        <div class="col-md-6 text-right">
+          <span >СЛЕДВАЙТЕ НИ:</span>
+          <ul class="social-follow" >
+            <li class="social-follow-link">
+              <a style="color: #3b5998;" href="#!" role="button">
+                <i class="fab fa-facebook-f fa-lg"></i>
+              </a>
+            </li>
+            <li class="social-follow-link">
+              <a  style="color: #55acee;" href="#!" role="button" >
+                <i class="fab fa-twitter fa-lg"></i>
+              </a>
+            </li>
+            <li class="social-follow-link">
+              <a  style="color: #0077b5;" href="#!" role="button">
+                <i class="fab fa-linkedin-in fa-lg"></i>
+              </a>
+            </li>
+            <li class="social-follow-link">
+              <a  style="color: #ac2bac;" href="#!" role="button">
+                <i class="fab fa-instagram fa-lg"></i>
+              </a>
+            </li>
+            <li class="social-follow-link">
+              <a  style="color: #ff0000;" href="#!" role="button">
+                <i class="fab fa-youtube fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-main w-100 sticky" id="myHeader">
+    <div class="container mw-1280px">
+      <div class="row">
+        <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+          <a class="logo" href="/">
+            <img src="/img/logo.jpg" alt="logo" width="200">
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="header-nav navbar-expand-lg sticky" id="myNav">
+
+    <!--        <a class="nav-link" sec:authorize="isAuthenticated()" href="/home">-->
+    <!--            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">-->
+    <!--        </a>-->
+    <!--        <a class="nav-link" sec:authorize="isAnonymous()" href="/">-->
+    <!--            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">-->
+    <!--        </a>-->
+
+    <div sec:authorize="hasRole('ADMIN')" class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Admin Panel
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/statistics">Statistics</a>
+        <a class="dropdown-item" href="/articles/add">Add article</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+
+
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+      <ul class="navbar-nav row">
+
+        <li sec:authorize="!isAuthenticated()" class="nav-item col-md-4">
+          <a class="nav-link text-white active h5" href="/users/login">Login</a>
+        </li>
+        <li sec:authorize="isAnonymous()" class="nav-item col-md-4">
+          <a class="nav-link text-white active h5" href="/users/register">Register</a>
+        </li>
+
+        <li sec:authorize="isAuthenticated()" class="nav-item ">
+          <a class="nav-link text-white active h5" href="/albums/add">Add Album</a>
+        </li>
+        <li sec:authorize="isAuthenticated()" class="nav-item ">
+          <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
+        </li>
+        <li sec:authorize="isAuthenticated()" class="nav-item ">
+          <form th:action="@{/logout}" method="POST">
+            <button type="submit" class="btn-link text-white active h5">
+              Logout
+            </button>
+          </form>
+        </li>
+
+      </ul>
+    </div>
+
+    <a class="dropdown-item" href="#">Something else here</a>
+  </nav>
+  <div class="content">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at rutrum turpis, eget rutrum felis. Nullam eu scelerisque risus, in volutpat velit. Ut quis dui porta, faucibus metus quis, pulvinar neque. Suspendisse potenti. Sed vel magna sed urna sodales varius sed eget ipsum. Nullam urna sem, semper id faucibus non, eleifend eu velit. Sed ac nisl sit amet velit vehicula tempus non eget magna. Nulla massa eros, sollicitudin a blandit ut, lobortis nec erat. Curabitur in tortor sed dui sagittis suscipit. Sed semper magna tellus, quis tincidunt arcu feugiat aliquet. Nunc ut nulla sollicitudin, ullamcorper quam quis, porta felis.
+
+    Aliquam erat volutpat. Aliquam sed ipsum sapien. Donec neque leo, luctus id mattis a, dictum tempor nisl. Mauris lectus massa, fermentum nec velit sed, vulputate luctus felis. Mauris suscipit est ipsum, sed pretium ligula feugiat sed. Donec auctor a quam et condimentum. Donec imperdiet eu enim eget dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae quam id ipsum pretium lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc varius ullamcorper orci, eget congue lectus. Ut lacinia malesuada dictum.
+
+    Nam fringilla turpis a dui facilisis, et accumsan augue sagittis. Aliquam erat volutpat. Nam suscipit sem eget magna dictum suscipit. Sed sodales libero et massa volutpat, eu ullamcorper leo tincidunt. Nam at velit vel lacus dictum dictum. Mauris ornare dui quis nibh commodo mattis. Duis sit amet metus adipiscing, ultricies orci in, auctor risus.
+
+    Duis ultrices ipsum velit, et tincidunt ligula dictum non. Ut laoreet at purus vitae consequat. Fusce ac massa aliquam, ullamcorper leo vitae, fermentum dolor. Suspendisse accumsan metus eu leo scelerisque, et ullamcorper neque consequat. Morbi dolor augue, fringilla non dui nec, posuere sollicitudin dui. Aenean eu tincidunt libero. Morbi ipsum tellus, porttitor et ante sed, elementum blandit velit.
+
+    Vestibulum id nulla est. Maecenas tristique dolor non tellus sodales volutpat. Maecenas consequat convallis tellus. Praesent hendrerit lectus vel lorem euismod pulvinar. Curabitur volutpat justo mi, quis consectetur diam mattis placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget hendrerit nibh. Fusce gravida blandit sagittis. Donec a aliquet nisl. Etiam aliquet justo iaculis, commodo lectus vel, aliquam enim. Vestibulum eu dolor ac dolor elementum porttitor. Morbi facilisis et risus sed pretium. Pellentesque nulla nisi, vehicula accumsan augue sed, eleifend scelerisque nulla. Maecenas vestibulum libero rutrum lorem egestas, euismod tincidunt dolor feugiat.
+  </div>
+</block>

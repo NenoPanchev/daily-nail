@@ -39,7 +39,8 @@ body {
 }
 
 .sticky {
-    position: fixed;
+    position: -webkit-sticky;
+    position: sticky;
     top: 0;
     width: 100%
 }
@@ -74,4 +75,294 @@ input:invalid {
 
 .social-follow-link i {
     padding: 5px;
+}
+
+#myNav {
+    top: 6.1em;
+}
+
+#Logo{
+    transition: all 0.3s;
+}
+.largeLogo{width: 200px;}
+.miniLogo{
+    width: 130px;
+    padding-bottom: 74px;
+}
+
+.header-nav {
+    height: 47px;
+    background-color: #c50e12
+}
+
+.header-nav .nav-container {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms
+}
+
+.header-nav .header-nav-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item {
+    float: left
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item .header-nav-menu-link {
+    display: block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item .header-nav-menu-link a {
+    display: inline-block
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item .header-nav-menu-link:hover {
+    background-color: rgba(0, 0, 0, .1)
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item .header-nav-menu-link:hover a {
+    text-decoration: none
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item a {
+    padding: 10px 12px;
+    color: #fff;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item a:hover .icon {
+    opacity: 1
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item .icon {
+    font-size: 17px;
+    opacity: .7;
+    color: #fff
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.current {
+    background-color: rgba(0, 0, 0, .3)
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown .header-nav-menu-link {
+    padding-right: 10px;
+    display: block
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown .header-nav-menu-link > a {
+    padding-right: 0
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown .menu-chevron {
+    padding: 13px 0;
+    margin-left: 1px;
+    cursor: pointer
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown .menu-chevron:hover {
+    opacity: 1
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown.more {
+    position: relative
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown.more .dropdown-menu {
+    right: 0
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown.more .dropdown-menu .header-nav-menu-link {
+    padding-right: 0
+}
+
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown.more:hover .menu-chevron {
+    opacity: 1
+}
+
+.header-nav .icon-btn {
+    width: auto;
+    padding: 0 10px;
+    height: 47px;
+    line-height: 45px;
+    color: #fff;
+    text-align: center;
+    transition: height 200ms, line-height 200ms
+}
+
+.header-nav .icon-btn .icon {
+    color: #fff
+}
+
+.header-nav .icon-btn:hover {
+    background-color: rgba(0, 0, 0, .2)
+}
+
+.header-nav .send-signal {
+    padding: 0 10px;
+    height: 36px;
+    line-height: 38px;
+    font-size: 14px;
+    margin-top: 5px;
+    float: right;
+    background-color: rgba(0, 0, 0, .4)
+}
+
+.header-nav .send-signal .icon {
+    top: 1px;
+    line-height: 34px
+}
+
+.header-nav .send-signal:hover {
+    color: #fff
+}
+
+.header-nav.sport-nav {
+    background-color: #0d82a6
+}
+
+.header-buttons {
+    text-align: right;
+    transition: padding 200ms
+}
+
+.header-buttons span {
+    display: none
+}
+
+.dropdown .dropdown-menu {
+    padding: 10px;
+    min-width: 170px;
+    color: #010101;
+    background-color: #fff;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, .2);
+    position: absolute;
+    display: none;
+    z-index: 9
+}
+
+.dropdown .dropdown-menu a {
+    padding: 8px 12px !important;
+    display: block !important;
+    text-transform: none !important;
+    color: #010101 !important;
+    font-size: 18px
+}
+
+.dropdown .dropdown-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.dropdown .dropdown-menu ul .dropdown-menu-item a {
+    text-transform: none
+}
+
+.dropdown .dropdown-menu ul .dropdown-menu-item:hover > .dropdown-menu {
+    display: block
+}
+
+.dropdown .dropdown-menu ul .dropdown-menu-item:hover a {
+    background-color: #f7f8f8;
+    text-decoration: none
+}
+
+.dropdown .dropdown-menu .icon {
+    color: #c50e12
+}
+
+.dropdown .dropdown-menu.dropdown-full {
+    right: 10px;
+    left: 10px
+}
+
+.dropdown .dropdown-menu.dropdown-full a {
+    color: #010101;
+    text-transform: none
+}
+
+.dropdown .dropdown-menu.dropdown-full a:hover {
+    background-color: #f7f8f8
+}
+
+.dropdown .dropdown-menu .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%
+}
+
+.dropdown.dropdown-left {
+    position: relative
+}
+
+.dropdown.dropdown-left .dropdown-menu {
+    left: 0
+}
+
+.dropdown.dropdown-right {
+    position: relative
+}
+
+.dropdown.dropdown-right .dropdown-menu {
+    right: 0
+}
+
+.nav__dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 12px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    transition: padding 200ms
+}
+
+.nav__dropdown-toggle .icon {
+    font-size: 17px;
+    opacity: .7;
+    pointer-events: none
+}
+
+.nav__dropdown-toggle:focus {
+    outline: none
+}
+
+.nav__dropdown-toggle:active {
+    background-color: rgba(0, 0, 0, .1)
+}
+
+.nav__dropdown-toggle:active .icon {
+    opacity: 1
+}
+.header-nav-menu-item:hover .dropdown-menu{
+    display: block;
+}
+.header-nav .header-nav-menu .header-nav-menu-item.dropdown .menu-chevron{
+    margin-left: 2px !important;
+}
+
+.form-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("/img/chevron-down.png") 96%/14% no-repeat;
+    background-size: 20px;
+    border: 2px solid #e6e6e6;
+    border-radius: 2px
 }

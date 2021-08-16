@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
             User reporter = new User()
                     .setEmail("reporter@reporter.bg")
                     .setPassword(passwordEncoder.encode("1234"))
-                    .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.EDITOR), UserRole.class),
+                    .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.REPORTER), UserRole.class),
                             modelMapper.map(userRoleService.findByRole(Role.USER), UserRole.class)));
 
             User user = new User()

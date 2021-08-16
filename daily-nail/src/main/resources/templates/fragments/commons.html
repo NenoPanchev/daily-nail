@@ -20,143 +20,179 @@
     <link rel="stylesheet" href="~/lib/Font-Awesome/css/fontawesome.min.css">
 
     <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-KT226MK"></script>
+
 </head>
 
-<script type="text/javascript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KT226MK');</script>
-
+<script type="text/javascript">(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-KT226MK');</script>
 
 
 <body>
-<header th:fragment="navigation">
+<header >
+    <block th:fragment="navigation">
+
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KT226MK"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
 
 
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KT226MK"
-                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-
-    <div class="header-top bg-nav w-100" id="topHeader">
-        <div class="container text-white mw-1280px">
-            <div class="row">
-                <div class="col-md-6">
-                    <i class="icon mdi mdi-clock-outline"></i>
-                    <span class="time-date">14:35, 21.06.2021</span>
-                </div>
-                <div class="col-md-6 text-right">
-                    <span >СЛЕДВАЙТЕ НИ:</span>
-                    <ul class="social-follow" >
-                        <li class="social-follow-link">
-                            <a style="color: #3b5998;" href="#!" role="button">
-                                <i class="fab fa-facebook-f fa-lg"></i>
-                            </a>
-                        </li>
-                        <li class="social-follow-link">
-                            <a  style="color: #55acee;" href="#!" role="button" >
-                                <i class="fab fa-twitter fa-lg"></i>
-                            </a>
-                        </li>
-                        <li class="social-follow-link">
-                            <a  style="color: #0077b5;" href="#!" role="button">
-                                <i class="fab fa-linkedin-in fa-lg"></i>
-                            </a>
-                        </li>
-                        <li class="social-follow-link">
-                            <a  style="color: #ac2bac;" href="#!" role="button">
-                                <i class="fab fa-instagram fa-lg"></i>
-                            </a>
-                        </li>
-                        <li class="social-follow-link">
-                            <a  style="color: #ff0000;" href="#!" role="button">
-                                <i class="fab fa-youtube fa-lg"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="header-main w-100 header-scrolled" id="myHeader">
-        <div class="container mw-1280px">
-            <div class="row">
-                <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-                    <a class="logo" href="/">
-                        <img src="/img/logo.jpg" alt="logo" width="200">
-                    </a>
+        <div class="header-top bg-nav w-100" id="topHeader">
+            <div class="container text-white mw-1280px">
+                <div class="row">
+                    <div class="col-md-6">
+                        <i class="icon mdi mdi-clock-outline"></i>
+                        <span class="time-date">14:35, 21.06.2021</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <span>СЛЕДВАЙТЕ НИ:</span>
+                        <ul class="social-follow">
+                            <li class="social-follow-link">
+                                <a style="color: #3b5998;" href="#!" role="button">
+                                    <i class="fab fa-facebook-f fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="social-follow-link">
+                                <a style="color: #55acee;" href="#!" role="button">
+                                    <i class="fab fa-twitter fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="social-follow-link">
+                                <a style="color: #0077b5;" href="#!" role="button">
+                                    <i class="fab fa-linkedin-in fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="social-follow-link">
+                                <a style="color: #ac2bac;" href="#!" role="button">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="social-follow-link">
+                                <a style="color: #ff0000;" href="#!" role="button">
+                                    <i class="fab fa-youtube fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-    <nav class="header-nav navbar-expand-lg ">
-<!--        <a class="nav-link" sec:authorize="isAuthenticated()" href="/home">-->
-<!--            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">-->
-<!--        </a>-->
-<!--        <a class="nav-link" sec:authorize="isAnonymous()" href="/">-->
-<!--            <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">-->
-<!--        </a>-->
-
-        <div sec:authorize="hasRole('ADMIN')" class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Admin Panel
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/statistics">Statistics</a>
-                <a class="dropdown-item" href="/articles/add">Add article</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+        <div class="header-main w-100 sticky" id="myHeader">
+            <div class="container mw-1280px">
+                <div class="row">
+                    <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                        <a class="logo" href="/">
+                            <img src="/img/logo.jpg" alt="logo" class="largeLogo" id="Logo">
+                        </a>
+                    </div>
+                </div>
             </div>
+
         </div>
 
+        <nav class="header-nav sticky" id="myNav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 nav-container" style="opacity: 1; visibility: visible;">
+                        <ul class="header-nav-menu clearfix">
+                            <li class="header-nav-menu-item  current ">
+<span class="header-nav-menu-link">
+<a href="/">Начало</a>
+</span>
+                            </li>
+                            <li class="header-nav-menu-item  dropdown  ">
+<span class="header-nav-menu-link">
+<a href="/">Спорт</a>
+<i class="menu-chevron icon mdi mdi-chevron-down"></i>
+</span>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/sport/futbol">Футбол</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/sport/evro-2020">Евро 2020</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/sport/volejbol">Волейбол</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/sport/basketbol">Баскетбол</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/sport/tenis">Тенис</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/sport/talanti">Таланти</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/sport/drugi">Други</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at rutrum turpis, eget rutrum felis. Nullam eu
+            scelerisque risus, in volutpat velit. Ut quis dui porta, faucibus metus quis, pulvinar neque. Suspendisse
+            potenti. Sed vel magna sed urna sodales varius sed eget ipsum. Nullam urna sem, semper id faucibus non,
+            eleifend eu velit. Sed ac nisl sit amet velit vehicula tempus non eget magna. Nulla massa eros, sollicitudin
+            a blandit ut, lobortis nec erat. Curabitur in tortor sed dui sagittis suscipit. Sed semper magna tellus,
+            quis tincidunt arcu feugiat aliquet. Nunc ut nulla sollicitudin, ullamcorper quam quis, porta felis.
 
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-            <ul class="navbar-nav row">
+            Aliquam erat volutpat. Aliquam sed ipsum sapien. Donec neque leo, luctus id mattis a, dictum tempor nisl.
+            Mauris lectus massa, fermentum nec velit sed, vulputate luctus felis. Mauris suscipit est ipsum, sed pretium
+            ligula feugiat sed. Donec auctor a quam et condimentum. Donec imperdiet eu enim eget dictum. Class aptent
+            taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae quam id ipsum
+            pretium lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc varius ullamcorper orci,
+            eget congue lectus. Ut lacinia malesuada dictum.
 
-                <li sec:authorize="!isAuthenticated()" class="nav-item col-md-4">
-                    <a class="nav-link text-white active h5" href="/users/login">Login</a>
-                </li>
-                <li sec:authorize="isAnonymous()" class="nav-item col-md-4">
-                    <a class="nav-link text-white active h5" href="/users/register">Register</a>
-                </li>
+            Nam fringilla turpis a dui facilisis, et accumsan augue sagittis. Aliquam erat volutpat. Nam suscipit sem
+            eget magna dictum suscipit. Sed sodales libero et massa volutpat, eu ullamcorper leo tincidunt. Nam at velit
+            vel lacus dictum dictum. Mauris ornare dui quis nibh commodo mattis. Duis sit amet metus adipiscing,
+            ultricies orci in, auctor risus.
 
-                <li sec:authorize="isAuthenticated()" class="nav-item ">
-                    <a class="nav-link text-white active h5" href="/albums/add">Add Album</a>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item ">
-                    <a class="nav-link text-white active h5" href="/articles/all">All articles</a>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item ">
-                    <form th:action="@{/logout}" method="POST">
-                        <button type="submit" class="btn-link text-white active h5">
-                            Logout
-                        </button>
-                    </form>
-                </li>
+            Duis ultrices ipsum velit, et tincidunt ligula dictum non. Ut laoreet at purus vitae consequat. Fusce ac
+            massa aliquam, ullamcorper leo vitae, fermentum dolor. Suspendisse accumsan metus eu leo scelerisque, et
+            ullamcorper neque consequat. Morbi dolor augue, fringilla non dui nec, posuere sollicitudin dui. Aenean eu
+            tincidunt libero. Morbi ipsum tellus, porttitor et ante sed, elementum blandit velit.
 
-            </ul>
+            Vestibulum id nulla est. Maecenas tristique dolor non tellus sodales volutpat. Maecenas consequat convallis
+            tellus. Praesent hendrerit lectus vel lorem euismod pulvinar. Curabitur volutpat justo mi, quis consectetur
+            diam mattis placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget hendrerit nibh. Fusce
+            gravida blandit sagittis. Donec a aliquet nisl. Etiam aliquet justo iaculis, commodo lectus vel, aliquam
+            enim. Vestibulum eu dolor ac dolor elementum porttitor. Morbi facilisis et risus sed pretium. Pellentesque
+            nulla nisi, vehicula accumsan augue sed, eleifend scelerisque nulla. Maecenas vestibulum libero rutrum lorem
+            egestas, euismod tincidunt dolor feugiat.
         </div>
-
-        <a class="dropdown-item" href="#">Something else here</a>
-    </nav>
+        <script>
+            $(window).scroll(function () {
+                if ($(document).scrollTop() < 5) {
+                    $('#Logo').removeClass('miniLogo');
+                } else {
+                    $('#Logo').addClass('miniLogo');
+                }
+            });
+        </script>
+    </block>
 </header>
 
-<script>
-    window.onscroll = function() {myFunction()};
 
-    var header = document.getElementById("topHeader");
-    var sticky = header.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
-        } else {
-            header.classList.remove("sticky");
-        }
-    }
-</script>
 </body>
 
 <footer th:fragment="footer">
