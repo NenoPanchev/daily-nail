@@ -3,6 +3,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
+    <link href="http://fonts.cdnfonts.com/css/akrobat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Daily Nail</title>
@@ -18,25 +21,20 @@
 
     <script src="https://kit.fontawesome.com/8278a6ad3c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/lib/Font-Awesome/css/fontawesome.min.css">
+<!--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css">-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.marica.bg/css/marica.bg/materialdesignicons/3.8.95/css/materialdesignicons.min.css">
 
     <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-KT226MK"></script>
+    <style>
+        .header-nav-menu-item:hover .dropdown-menu{
+            display: block;
+        }
+        .header-nav .header-nav-menu .header-nav-menu-item.dropdown .menu-chevron{
+            margin-left: 2px !important;
+        }
+    </style>
 
 </head>
-
-<script type="text/javascript">(function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
-        'gtm.start':
-            new Date().getTime(), event: 'gtm.js'
-    });
-    var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'dataLayer', 'GTM-KT226MK');</script>
-
 
 <body>
 <header >
@@ -53,34 +51,34 @@
                 <div class="row">
                     <div class="col-md-6">
                         <i class="icon mdi mdi-clock-outline"></i>
-                        <span class="time-date">14:35, 21.06.2021</span>
+                        <span class="time-date">17 Август, Вторник</span>
                     </div>
-                    <div class="col-md-6 text-right">
+                    <div class="col-md-6 text-end">
                         <span>СЛЕДВАЙТЕ НИ:</span>
                         <ul class="social-follow">
                             <li class="social-follow-link">
                                 <a style="color: #3b5998;" href="#!" role="button">
-                                    <i class="fab fa-facebook-f fa-lg"></i>
+                                    <i class="icon mdi mdi-facebook"></i>
                                 </a>
                             </li>
                             <li class="social-follow-link">
                                 <a style="color: #55acee;" href="#!" role="button">
-                                    <i class="fab fa-twitter fa-lg"></i>
+                                    <i class="icon mdi mdi-twitter"></i>
                                 </a>
                             </li>
                             <li class="social-follow-link">
                                 <a style="color: #0077b5;" href="#!" role="button">
-                                    <i class="fab fa-linkedin-in fa-lg"></i>
+                                    <i class="icon mdi mdi-linkedin"></i>
                                 </a>
                             </li>
                             <li class="social-follow-link">
                                 <a style="color: #ac2bac;" href="#!" role="button">
-                                    <i class="fab fa-instagram fa-lg"></i>
+                                    <i class="icon mdi mdi-instagram"></i>
                                 </a>
                             </li>
                             <li class="social-follow-link">
                                 <a style="color: #ff0000;" href="#!" role="button">
-                                    <i class="fab fa-youtube fa-lg"></i>
+                                    <i class="icon mdi mdi-youtube"></i>
                                 </a>
                             </li>
                         </ul>
@@ -88,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="header-main w-100 sticky" id="myHeader">
+        <div class="header-main w-100 bg-white sticky" id="myHeader">
             <div class="container mw-1280px">
                 <div class="row">
                     <div class="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
@@ -102,13 +100,23 @@
         </div>
 
         <nav class="header-nav sticky" id="myNav">
-            <div class="container">
+            <div class="container mw-1280px">
                 <div class="row">
                     <div class="col-md-12 nav-container" style="opacity: 1; visibility: visible;">
                         <ul class="header-nav-menu clearfix">
                             <li class="header-nav-menu-item  current ">
 <span class="header-nav-menu-link">
 <a href="/">Начало</a>
+</span>
+                            </li>
+                            <li class="header-nav-menu-item  ">
+<span class="header-nav-menu-link">
+<a href="https://www.marica.bg/balgariq">България</a>
+ </span>
+                            </li>
+                            <li class="header-nav-menu-item  ">
+<span class="header-nav-menu-link">
+<a href="https://www.marica.bg/svqt">Свят</a>
 </span>
                             </li>
                             <li class="header-nav-menu-item  dropdown  ">
@@ -119,7 +127,7 @@
                                 <div class="dropdown-menu">
                                     <ul>
                                         <li class="dropdown-menu-item">
-                                            <a href="https://www.marica.bg/sport/futbol">Футбол</a>
+                                            <a href="/">Футбол</a>
                                         </li>
                                         <li class="dropdown-menu-item">
                                             <a href="https://www.marica.bg/sport/evro-2020">Евро 2020</a>
@@ -147,39 +155,7 @@
                 </div>
             </div>
         </nav>
-        <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at rutrum turpis, eget rutrum felis. Nullam eu
-            scelerisque risus, in volutpat velit. Ut quis dui porta, faucibus metus quis, pulvinar neque. Suspendisse
-            potenti. Sed vel magna sed urna sodales varius sed eget ipsum. Nullam urna sem, semper id faucibus non,
-            eleifend eu velit. Sed ac nisl sit amet velit vehicula tempus non eget magna. Nulla massa eros, sollicitudin
-            a blandit ut, lobortis nec erat. Curabitur in tortor sed dui sagittis suscipit. Sed semper magna tellus,
-            quis tincidunt arcu feugiat aliquet. Nunc ut nulla sollicitudin, ullamcorper quam quis, porta felis.
 
-            Aliquam erat volutpat. Aliquam sed ipsum sapien. Donec neque leo, luctus id mattis a, dictum tempor nisl.
-            Mauris lectus massa, fermentum nec velit sed, vulputate luctus felis. Mauris suscipit est ipsum, sed pretium
-            ligula feugiat sed. Donec auctor a quam et condimentum. Donec imperdiet eu enim eget dictum. Class aptent
-            taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae quam id ipsum
-            pretium lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc varius ullamcorper orci,
-            eget congue lectus. Ut lacinia malesuada dictum.
-
-            Nam fringilla turpis a dui facilisis, et accumsan augue sagittis. Aliquam erat volutpat. Nam suscipit sem
-            eget magna dictum suscipit. Sed sodales libero et massa volutpat, eu ullamcorper leo tincidunt. Nam at velit
-            vel lacus dictum dictum. Mauris ornare dui quis nibh commodo mattis. Duis sit amet metus adipiscing,
-            ultricies orci in, auctor risus.
-
-            Duis ultrices ipsum velit, et tincidunt ligula dictum non. Ut laoreet at purus vitae consequat. Fusce ac
-            massa aliquam, ullamcorper leo vitae, fermentum dolor. Suspendisse accumsan metus eu leo scelerisque, et
-            ullamcorper neque consequat. Morbi dolor augue, fringilla non dui nec, posuere sollicitudin dui. Aenean eu
-            tincidunt libero. Morbi ipsum tellus, porttitor et ante sed, elementum blandit velit.
-
-            Vestibulum id nulla est. Maecenas tristique dolor non tellus sodales volutpat. Maecenas consequat convallis
-            tellus. Praesent hendrerit lectus vel lorem euismod pulvinar. Curabitur volutpat justo mi, quis consectetur
-            diam mattis placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget hendrerit nibh. Fusce
-            gravida blandit sagittis. Donec a aliquet nisl. Etiam aliquet justo iaculis, commodo lectus vel, aliquam
-            enim. Vestibulum eu dolor ac dolor elementum porttitor. Morbi facilisis et risus sed pretium. Pellentesque
-            nulla nisi, vehicula accumsan augue sed, eleifend scelerisque nulla. Maecenas vestibulum libero rutrum lorem
-            egestas, euismod tincidunt dolor feugiat.
-        </div>
         <script>
             $(window).scroll(function () {
                 if ($(document).scrollTop() < 5) {
@@ -191,7 +167,41 @@
         </script>
     </block>
 </header>
+<main>
+    <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at rutrum turpis, eget rutrum felis. Nullam eu
+        scelerisque risus, in volutpat velit. Ut quis dui porta, faucibus metus quis, pulvinar neque. Suspendisse
+        potenti. Sed vel magna sed urna sodales varius sed eget ipsum. Nullam urna sem, semper id faucibus non,
+        eleifend eu velit. Sed ac nisl sit amet velit vehicula tempus non eget magna. Nulla massa eros, sollicitudin
+        a blandit ut, lobortis nec erat. Curabitur in tortor sed dui sagittis suscipit. Sed semper magna tellus,
+        quis tincidunt arcu feugiat aliquet. Nunc ut nulla sollicitudin, ullamcorper quam quis, porta felis.
 
+        Aliquam erat volutpat. Aliquam sed ipsum sapien. Donec neque leo, luctus id mattis a, dictum tempor nisl.
+        Mauris lectus massa, fermentum nec velit sed, vulputate luctus felis. Mauris suscipit est ipsum, sed pretium
+        ligula feugiat sed. Donec auctor a quam et condimentum. Donec imperdiet eu enim eget dictum. Class aptent
+        taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vitae quam id ipsum
+        pretium lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc varius ullamcorper orci,
+        eget congue lectus. Ut lacinia malesuada dictum.
+
+        Nam fringilla turpis a dui facilisis, et accumsan augue sagittis. Aliquam erat volutpat. Nam suscipit sem
+        eget magna dictum suscipit. Sed sodales libero et massa volutpat, eu ullamcorper leo tincidunt. Nam at velit
+        vel lacus dictum dictum. Mauris ornare dui quis nibh commodo mattis. Duis sit amet metus adipiscing,
+        ultricies orci in, auctor risus.
+
+        Duis ultrices ipsum velit, et tincidunt ligula dictum non. Ut laoreet at purus vitae consequat. Fusce ac
+        massa aliquam, ullamcorper leo vitae, fermentum dolor. Suspendisse accumsan metus eu leo scelerisque, et
+        ullamcorper neque consequat. Morbi dolor augue, fringilla non dui nec, posuere sollicitudin dui. Aenean eu
+        tincidunt libero. Morbi ipsum tellus, porttitor et ante sed, elementum blandit velit.
+
+        Vestibulum id nulla est. Maecenas tristique dolor non tellus sodales volutpat. Maecenas consequat convallis
+        tellus. Praesent hendrerit lectus vel lorem euismod pulvinar. Curabitur volutpat justo mi, quis consectetur
+        diam mattis placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget hendrerit nibh. Fusce
+        gravida blandit sagittis. Donec a aliquet nisl. Etiam aliquet justo iaculis, commodo lectus vel, aliquam
+        enim. Vestibulum eu dolor ac dolor elementum porttitor. Morbi facilisis et risus sed pretium. Pellentesque
+        nulla nisi, vehicula accumsan augue sed, eleifend scelerisque nulla. Maecenas vestibulum libero rutrum lorem
+        egestas, euismod tincidunt dolor feugiat.
+    </div>
+</main>
 
 </body>
 

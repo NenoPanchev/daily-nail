@@ -34,7 +34,8 @@ body {
     min-width: 320px;
     font-family: akrobat, sans-serif;
     font-feature-settings: unset;
-    font-variant: normal;
+    font-variant: normal
+
 }
 
 .sticky {
@@ -69,14 +70,12 @@ input:invalid {
 
 .social-follow-link {
     display: inline-block;
+    padding-top: 5px;
 }
 
 .social-follow-link i {
     padding: 5px;
-    font-size: 18px;
 }
-
-
 
 #myNav {
     top: 6.1em;
@@ -162,9 +161,6 @@ input:invalid {
     text-align: center
 }
 
-.header-top {
-    vertical-align: middle;
-}
 
 .header-nav {
     height: 47px;
@@ -403,6 +399,4 @@ input:invalid {
     border: none;
 }
 
-.text-right {
-    text-align: right;
-}
+
