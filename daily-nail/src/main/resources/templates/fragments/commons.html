@@ -4,8 +4,6 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <link href="http://fonts.cdnfonts.com/css/akrobat" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Daily Nail</title>
@@ -19,9 +17,6 @@
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 
-    <script src="https://kit.fontawesome.com/8278a6ad3c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="~/lib/Font-Awesome/css/fontawesome.min.css">
-<!--    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css">-->
     <link rel="stylesheet" type="text/css" href="https://cdn.marica.bg/css/marica.bg/materialdesignicons/3.8.95/css/materialdesignicons.min.css">
 
     <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-KT226MK"></script>
@@ -33,7 +28,11 @@
             margin-left: 2px !important;
         }
     </style>
-
+    <style>
+        body {
+            font-feature-settings: "locl" 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -165,6 +164,16 @@
                 }
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                $('.mdi-chevron-down').click(function () {
+                    let dropdown = $(this).parents('.dropdown').children('.dropdown-menu');
+                    if (!dropdown.is(':visible'))
+                        $('.dropdown-menu:visible').hide()
+                    dropdown.toggle()
+                });
+            });
+        </script>
     </block>
 </header>
 <main>
@@ -205,10 +214,151 @@
 
 </body>
 
-<footer th:fragment="footer">
-    <div class="container-fluid text-center">
-        <div class="h5 text-white">
-            &copy;SoftUni Spring Team 2021. All rights reserved.
+<footer th:fragment="footer" class="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="h-nav">
+                        <li><a href="/">Новини</a></li>
+                        <li><a href="https://obqvi.marica.bg/" target="_blank" rel="noopener">Обяви</a></li>
+                        <li><a href="https://www.marica.bg/spravochnik">Справочник</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-end">
+                    <ul class="social-follow">
+                        <li class="social-follow-link">
+                            <a href="#!" target="_blank" rel="noreferrer">
+                                <i class="icon mdi mdi-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a href="#!" target="_blank" rel="noreferrer">
+                                <i class="icon mdi mdi-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a href="#!" target="_blank" rel="noreferrer">
+                                <i class="icon mdi mdi-linkedin"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a href="#!" target="_blank" rel="noreferrer">
+                                <i class="icon mdi mdi-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="social-follow-link">
+                            <a href="#!" target="_blank" rel="noreferrer">
+                                <i class="icon mdi mdi-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xl-3">
+                    <a class="logo" href="/" rel="home">
+                        <img src="/img/3 list small.jpg" alt="3 small lists" width="250">
+                    </a>
+                </div>
+                <div class="col-md-6 col-xl-4">
+                    <h3 class="title">Новини</h3>
+                    <div class="row">
+                        <div class="col-6 col-md-6">
+                            <nav>
+                                <ul class="footer-links">
+                                    <li>
+                                        <a href="https://www.marica.bg/samo-v-marica">Само в марица</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/plovdiv">Пловдив</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/region">Регион</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/sport">Спорт</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/lajfstajl">Лайфстайл</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/balgariq">България</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <nav>
+                                <ul class="footer-links">
+                                    <li>
+                                        <a href="https://www.marica.bg/svqt">Свят</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/agro">Агро</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/biznes-zona">Бизнес зона</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/imoti">Имоти</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/kultura">Култура</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.marica.bg/zdrave">Здраве</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4 class="title">Информация</h4>
+                    <nav>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="https://www.marica.bg/za-nas">За нас</a>
+                            </li>
+                            <li>
+                                <a href="https://www.marica.bg/ekip">Екип</a>
+                            </li>
+                            <li>
+                                <a href="https://www.marica.bg/reklama">Реклама</a>
+                            </li>
+                            <li>
+                                <a href="https://www.marica.bg/kontakti">Контакти</a>
+                            </li>
+                            <li>
+                                <a href="https://www.marica.bg/usloviya-za-polzvane">Условия за ползване</a>
+                            </li>
+                            <li>
+                                <a href="https://www.marica.bg/politika-za-biskvitkite">Политика за бисквитките</a>
+                            </li>
+                            <li>
+                                <a href="https://www.marica.bg/politika-za-poveritelnost">Политика за поверителност</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-3">
+                    <img src="/img/scattered paper.jpg" alt="scattered paper" class="w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>Всички права запазени © 2021 - Всички статии, репортажи, интервюта и други текстови и графични материали, публикувани в сайта, са собственост на localhost:8080, освен ако изрично е посочено друго. Допуска се публикуване на текстови материали само с посочване на източника и добавяне на линк към localhost:8080. :)</p>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
