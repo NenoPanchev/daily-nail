@@ -33,6 +33,7 @@
             font-feature-settings: "locl" 0;
         }
     </style>
+
 </head>
 
 <body>
@@ -49,8 +50,7 @@
             <div class="container text-white mw-1280px">
                 <div class="row">
                     <div class="col-md-6">
-                        <i class="icon mdi mdi-clock-outline"></i>
-                        <span class="time-date">17 Август, Вторник</span>
+                        <span class="time-date" id="dt"></span>
                     </div>
                     <div class="col-md-6 text-end">
                         <span>СЛЕДВАЙТЕ НИ:</span>
@@ -93,6 +93,82 @@
                             <img src="/img/logo.jpg" alt="logo" class="largeLogo" id="Logo">
                         </a>
                     </div>
+                    <div class="col-6 col-sm-4 col-md-7 col-lg-6 col-xl-5 ">
+                        <ul class="header-menu" id="header-menu">
+                            <li class="header-menu-item daily-news current">
+                                <a href="https://www.marica.bg">
+<span class="special-icon">
+ <i class="icon mdi mdi-newspaper"></i>
+</span>
+                                    <span class="header-menu-item-label">Новини</span>
+                                </a>
+                            </li>
+                            <li class="header-menu-item daily-ads">
+                                <a href="https://obqvi.marica.bg/" target="_blank" rel="noopener">
+<span class="special-icon">
+<i class="icon mdi mdi-bullhorn-outline"></i>
+</span>
+                                    <span class="header-menu-item-label">Обяви</span>
+                                </a>
+                            </li>
+                            <li class="header-menu-item daily-dir">
+                                <a href="https://www.marica.bg/spravochnik">
+<span class="special-icon">
+<i class="icon mdi mdi-notebook-outline"></i>
+</span>
+                                    <span class="header-menu-item-label">Справочник</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-2 col-sm-4 col-md-2 col-lg-4 col-xl-5">
+                        <div class="header-buttons" id="header-buttons">
+                            <a href="https://www.marica.bg/podai-signal" class="btn btn-blue icon-right send-signal">
+                                <span>Подай сигнал</span>
+                                <i class="icon mdi mdi-email-edit-outline"></i>
+                            </a>
+
+                            <a sec:authorize="isAnonymous()" href="https://www.marica.bg/login" class="btn icon-right">
+                                <i class="icon mdi mdi-account-outline"></i>
+                                <span>Профил</span>
+                            </a>
+
+                            <div sec:authorize="isAuthenticated()" class="user-dropdown header-nav-menu-item dropdown dropdown-right right">
+                                <button class="header-nav-menu-link btn">
+                                    <i class="icon mdi mdi-account-outline"></i>
+                                    <span>Профил</span>
+                                    <i class="menu-chevron icon mdi mdi-chevron-down"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <ul>
+                                        <li class="dropdown-menu-item" sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')">
+                                            <a href="https://www.marica.bg/profile/settings">Админ панел</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/profile/settings">Настройки</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/profile/password">Смяна на парола</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/profile/ads">Моите обяви</a>
+                                        </li>
+                                        <li class="dropdown-menu-item">
+                                            <a href="https://www.marica.bg/logout" onclick="if (!window.__cfRLUnblockHandlers) return false; event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                Изход
+                                            </a>
+                                            <form id="logout-form" action="https://www.marica.bg/logout" method="POST" style="display: none;">
+                                                <input type="hidden" name="_token" value="RTCxlkb0h2BeQJ7q15qxmKxtKtubbMRWG8vrK6Zz"> </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
                 </div>
             </div>
 
@@ -149,7 +225,16 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li class="header-nav-menu-item  ">
+<span class="header-nav-menu-link">
+<a href="https://www.marica.bg/krimi">Крими</a>
+</span>
+                            </li>
                         </ul>
+                        <div class="text-end text-white">
+                            <i class="icon mdi mdi-clock-outline"></i>
+                            <span class="time-date " id="ct"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -159,8 +244,12 @@
             $(window).scroll(function () {
                 if ($(document).scrollTop() < 5) {
                     $('#Logo').removeClass('miniLogo');
+                    $('#header-buttons').removeClass('shrink-padding');
+                    $('#header-menu').removeClass('shrink-padding');
                 } else {
                     $('#Logo').addClass('miniLogo');
+                    $('#header-buttons').addClass('shrink-padding');
+                    $('#header-menu').addClass('shrink-padding');
                 }
             });
         </script>
@@ -173,6 +262,58 @@
                     dropdown.toggle()
                 });
             });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('.user-dropdown').hover(function () {
+                  $('#myHeader').addClass('my-header-z-index')
+                });
+                $('.user-dropdown').mouseleave(function () {
+                    $('#myHeader').removeClass('my-header-z-index')
+                })
+            });
+        </script>
+        <script type="text/javascript">
+            $('.body').addEventListener("load", display_c());
+
+            function display_c(){
+                var refresh=0; // Refresh rate in milli seconds
+                mytime=setTimeout('display_ct()',refresh)
+            }
+
+            function display_clock(){
+                var refresh=1000; // Refresh rate in milli seconds
+                mytime=setTimeout('display_ct()',refresh)
+            }
+
+            function display_ct() {
+                var strcount
+                var x = new Date()
+                var timeString = x.toLocaleTimeString().substring(0, 8);
+                var dateString = x.toLocaleDateString().substring(0, 10);
+                document.getElementById('ct').innerHTML = timeString + ", " + dateString;
+                tt=display_clock();
+            }
+        </script>
+        <script type="text/javascript">
+            $('.body').addEventListener("load", display_d());
+
+            function display_d(){
+                var refresh=0; // Refresh rate in milli seconds
+                mytime=setTimeout('display_dt()',refresh)
+            }
+
+            function display_dt() {
+                var strcount
+                var x = new Date()
+                var date = x.getDate()
+                var month = x.getMonth()
+                let months = ['Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни', 'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември']
+                var dayOfWeek = x.getDay()
+                let days = ['Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота', 'Неделя']
+                var string = date + " " + months[month] + ", " + days[dayOfWeek - 1];
+                document.getElementById('dt').innerHTML = string;
+            }
         </script>
     </block>
 </header>

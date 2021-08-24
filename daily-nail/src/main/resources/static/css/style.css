@@ -13,7 +13,6 @@
 }
 
 footer {
-    position: absolute;
     width: 100%;
 }
 
@@ -68,7 +67,7 @@ input:invalid {
 
 
 #myNav {
-    top: 6.1em;
+    top: 6.2em;
 }
 
 #Logo{
@@ -151,8 +150,147 @@ input:invalid {
     text-align: center
 }
 
+.primary-btn, .btn-blue, .send-signal {
+    color: #fff
+}
+
+.primary-btn .icon, .btn-blue .icon, .send-signal .icon {
+    color: #fff
+}
+
+.primary-btn {
+    background-color: #c50e12
+}
+
+.primary-btn:hover {
+    color: #fff;
+    background-color: #ad0c10;
+    box-shadow: 0 1px 5px rgba(197, 14, 18, .4)
+}
+
+.btn-blue {
+    background-color: #1c75bd
+}
+
+.btn-blue:hover {
+    color: #fff;
+    background-color: #1967a7
+}
+
+.special-icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    background-color: rgba(230, 231, 233, .5);
+    border-radius: 20px
+}
+
+.special-icon .icon {
+    position: relative;
+    z-index: 2;
+    transition: color 100ms
+}
+
+.special-icon:after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    display: block;
+    border-radius: 20px;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    transition: transform 100ms
+}
+
+.daily-news .special-icon:after {
+    background-color: #c50e12
+}
+
+.daily-ads .special-icon:after {
+    background-color: #4c959c
+}
+
+.daily-dir .special-icon:after {
+    background-color: #0e75c5
+}
+
 .header-top {
     vertical-align: middle;
+}
+
+
+.header-main .header-menu {
+    margin: 0;
+    padding: 13px 0;
+    padding-top: 56px;
+    list-style: none;
+    transition: padding 200ms
+}
+
+
+.header-main .header-buttons {
+    padding-top: 56px;
+}
+
+html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-1280px div.row div.col-6.col-sm-4.col-md-7.col-lg-6.col-xl-5 ul#header-menu.header-menu.shrink-padding {
+    padding-top: 29px;
+}
+
+html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-1280px div.row div.col-2.col-sm-4.col-md-2.col-lg-4.col-xl-5 div#header-buttons.header-buttons.shrink-padding {
+    padding-top: 29px;
+}
+
+.header-main .header-menu .header-menu-item {
+    margin-right: 20px;
+    float: left
+}
+
+.header-main .header-menu .header-menu-item a {
+    color: #737373;
+    font-size: 24px;
+    text-decoration: none
+}
+
+.header-main .header-menu .header-menu-item a:hover {
+    color: #010101
+}
+
+.header-main .header-menu .header-menu-item.current a {
+    color: #010101
+}
+
+.header-main .header-menu .header-menu-item.current a .special-icon .icon {
+    color: #fff
+}
+
+.header-main .header-menu .header-menu-item.current a .special-icon:after {
+    transform: scale(1)
+}
+
+.header-main .header-menu .header-menu-item:hover .special-icon .icon {
+    color: #fff
+}
+
+.header-main .header-menu .header-menu-item:hover .special-icon:after {
+    transform: scale(1)
+}
+
+.header-main .header-menu .header-menu-item:last-child {
+    margin-right: 0
+}
+
+.my-header-z-index {
+    z-index: 1;
+}
+
+.header-main .dropdown ul li a {
+    text-decoration: none;
 }
 
 .header-nav {
@@ -300,12 +438,10 @@ input:invalid {
 
 .header-buttons {
     text-align: right;
-    transition: padding 200ms
+    transition: padding 200ms;
+    display: block ruby;
 }
 
-.header-buttons span {
-    display: none
-}
 
 .dropdown .dropdown-menu {
     padding: 10px;
@@ -519,4 +655,12 @@ input:invalid {
     font-size: 13px;
     opacity: .6;
     letter-spacing: .5px
+}
+
+.time-date {
+    font-size: 17px;
+}
+
+.header-nav .time-date {
+    vertical-align: bottom;
 }
