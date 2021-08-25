@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/img/**").permitAll()
                 // allow access to index, user login and reg to anyone
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/terms-and-conditions").permitAll()
                 .antMatchers("/users/login", "/users/register").anonymous()
                 // protect all other pages
                 .antMatchers("/**").authenticated()

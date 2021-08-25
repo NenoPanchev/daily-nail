@@ -549,6 +549,7 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 1px 10px rgba(0,0,0,.2);
+    font-size: 17px;
 }
 
 .form-card .card-header {
@@ -589,7 +590,14 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
     background-color: #f7f8f8;
 }
 
-.form-card .card-footer .reg {
+.form-card .card-footer a {
+    margin-left: 3px;
+    color: inherit;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.form-card .form-check-label a {
     margin-left: 3px;
     color: inherit;
     text-decoration: underline;
@@ -754,4 +762,13 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
 
 .header-nav .time-date {
     vertical-align: bottom;
+}
+
+.bg-image {
+    min-height: 100%;
+    background-image: url("/img/logo2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-clip: content-box;
 }

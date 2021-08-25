@@ -40,4 +40,9 @@ public class UserController {
     public String register() {
         return "register";
     }
+
+    @GetMapping("/terms-and-conditions")
+    public String terms() {
+        return "terms-and-conditions";
+    }
 }
