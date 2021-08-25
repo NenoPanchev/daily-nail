@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::navigation"></header>
+
+<div class="main ">
+  <link rel="stylesheet" type="text/css" href="/css/registration.css">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="form-card" style="margin-bottom: 50px;">
+          <div class="card-cont">
+            <div class="card-header">
+              <span>Регистрация</span>
+            </div>
+            <form method="POST" action="https://www.marica.bg/register">
+              <input type="hidden" name="_token" value="aLKSsYgKkqce3w0kXU7jHxjI5QR2L97qDH1yktlL"> <div class="card-body">
+              <div class="form-group label">
+                <label for="email">Потребителско име</label>
+                <input id="name" type="text" class="form-control " name="name" value="" placeholder="Име" required="" autocomplete="name" autofocus="">
+              </div>
+              <div class="form-group label">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" class="form-control " name="email" value="" placeholder="Имейл" required="" autocomplete="email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFESURBVHgBrVXBTcNAEByHBlyCO4A/Qjo6cAfkw4MXoQKHCuCH5DzsDqxUcEgh4pkSDBUYCiDHLT47G7M+O0pGGlu62529Xe+tgX4oy8yytDSOleXG8tkywkiojoiP2ZBwMlKIk4JfnEqMlyLiYtMB48Klpz12Gy5Y9gjNhEwiy1ywL4ZOF7cSOgvx/hJ1hOcscMw3Cshfr8Y6vccqrfCWGvsusV4kzPdf+wQuQtiJThGXWC0UAqPRhfm5xtXdKwRMBDHCp/OMIXqd3aAHk571r1rPhOLuFt/wCH4I6+d/z2Cby16BxoGCdapUJ2Me21VDJzcPuLxduhXxTs8gt41qLZq2ofcOCXZXb6+mZFRBbmyp+GT/BLnVQp6i7/Lzq1d57PYwxwmHwzGidDJxfDWYYvyA1ThgclNdc9RjiafW/AKU5PQLXqva3UUaKU0AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 16px; background-position: right 5px center;">
+              </div>
+              <div class="form-group label">
+                <label for="password">Парола</label>
+                <input id="password" type="password" class="form-control " name="password" placeholder="Парола ..." required="" autocomplete="new-password">
+              </div>
+              <div class="form-group label">
+                <label for="password">Повтори парола</label>
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password" placeholder="Повтори паролата ...">
+              </div>
+              <div class="form-group row">
+                <div class="col-md-5" width="100%">
+                  <button type="submit" class="btn primary-btn btn-login">
+                    Регистрирай ме
+                  </button>
+                </div>
+              </div>
+            </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <span class="label">Вече сте регистриран?</span>
+            <a href="/login" class="link">Вход в профила</a>
+            <i class="icon mdi mdi-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

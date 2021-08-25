@@ -246,6 +246,16 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
     padding-top: 29px;
 }
 
+html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-1280px div.row div.col-2.col-sm-4.col-md-2.col-lg-4.col-xl-5 div#header-buttons.header-buttons div.user-dropdown.header-nav-menu-item.dropdown.dropdown-right.right div.dropdown-menu ul li.dropdown-menu-item a:hover {
+    cursor: pointer;
+}
+.alert-danger {
+    margin: 1rem 1rem 0 1rem;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 17px;
+}
+
 .header-main .header-menu .header-menu-item {
     margin-right: 20px;
     float: left
@@ -527,6 +537,87 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
     margin-top: 0;
     padding-top: 4px;
     border: none;
+}
+
+.main {
+    padding-top: 40px
+}
+
+.form-card {
+    margin-bottom: 40px;
+    border-top: 3px solid #c50e12;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 10px rgba(0,0,0,.2);
+}
+
+.form-card .card-header {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.form-card .card-body {
+    margin-top: 30px;
+}
+
+.label {
+    color: #737373;
+    margin-bottom: 15px;
+}
+
+.form-card .card-body .remember {
+    color: #212529;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+
+.form-card .card-body .row {
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.form-card .btn-login {
+    width: 100%;
+    text-transform: none;
+    font-size: 15px;
+}
+
+.form-card .card-footer {
+    margin-top: 30px;
+    padding: 20px 30px;
+    text-align: center;
+    background-color: #f7f8f8;
+}
+
+.form-card .card-footer .reg {
+    margin-left: 3px;
+    color: inherit;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.form-card .card-footer .icon {
+    color: #c50e12;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.form-control {
+    width: 100%;
+    padding: .375rem .75rem;
+    display: block;
+    border: 2px solid #e6e6e6;
+    background-color: #f7f8f8;
+    border-radius: 2px
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #d9d9d9
+}
+
+.form-control:hover {
+    border-color: #d9d9d9
 }
 
 .h-nav:after, .header-menu:after, .news-slider:after, .article-footer:after, .popular-article:after, .breadcrumbs-nav:after, .article-links:after, .author-info:after, .articles-list:after, .clearfix:after {

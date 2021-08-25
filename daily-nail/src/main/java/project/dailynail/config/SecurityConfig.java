@@ -29,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/img/**").permitAll()
                 // allow access to index, user login and reg to anyone
-                .antMatchers("/", "/users/login", "/users/register").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/users/login", "/users/register").anonymous()
                 // protect all other pages
                 .antMatchers("/**").authenticated()
 //                .anyRequest().authenticated()

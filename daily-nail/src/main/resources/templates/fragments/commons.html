@@ -96,7 +96,7 @@
                     <div class="col-6 col-sm-4 col-md-7 col-lg-6 col-xl-5 ">
                         <ul class="header-menu" id="header-menu">
                             <li class="header-menu-item daily-news current">
-                                <a href="https://www.marica.bg">
+                                <a href="/">
 <span class="special-icon">
  <i class="icon mdi mdi-newspaper"></i>
 </span>
@@ -128,12 +128,12 @@
                                 <i class="icon mdi mdi-email-edit-outline"></i>
                             </a>
 
-                            <a sec:authorize="isAnonymous()" href="https://www.marica.bg/login" class="btn icon-right">
+                            <a class="btn icon-right" sec:authorize="isAnonymous()" href="/users/login">
                                 <i class="icon mdi mdi-account-outline"></i>
                                 <span>Профил</span>
                             </a>
 
-                            <div sec:authorize="isAuthenticated()" class="user-dropdown header-nav-menu-item dropdown dropdown-right right">
+                            <div class="user-dropdown header-nav-menu-item dropdown dropdown-right right" sec:authorize="isAuthenticated()">
                                 <button class="header-nav-menu-link btn">
                                     <i class="icon mdi mdi-account-outline"></i>
                                     <span>Профил</span>
@@ -154,17 +154,16 @@
                                             <a href="https://www.marica.bg/profile/ads">Моите обяви</a>
                                         </li>
                                         <li class="dropdown-menu-item">
-                                            <a href="https://www.marica.bg/logout" onclick="if (!window.__cfRLUnblockHandlers) return false; event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                            <a onclick="document.getElementById('logout-form').submit();">
                                                 Изход
                                             </a>
-                                            <form id="logout-form" action="https://www.marica.bg/logout" method="POST" style="display: none;">
-                                                <input type="hidden" name="_token" value="RTCxlkb0h2BeQJ7q15qxmKxtKtubbMRWG8vrK6Zz"> </form>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-
+                            <form id="logout-form" th:action="@{/logout}" method="POST" style="display: none">
+<!--                                If the form is in the dropdown hidden for unauthenticated users, throws TemplateInputEx -->
+                            </form>
                         </div>
                     </div>
                 </div>
