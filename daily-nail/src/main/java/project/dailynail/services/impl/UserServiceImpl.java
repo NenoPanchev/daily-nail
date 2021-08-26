@@ -73,4 +73,10 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(ObjectNotFoundException::new);
     }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepository
+                .existsByEmail(email);
+    }
+
 }

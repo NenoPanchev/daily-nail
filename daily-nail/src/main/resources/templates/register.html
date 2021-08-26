@@ -17,27 +17,47 @@
             <div class="card-header">
               <span>Регистрация</span>
             </div>
-            <form method="POST" action="https://www.marica.bg/register">
-              <input type="hidden" name="_token" value="aLKSsYgKkqce3w0kXU7jHxjI5QR2L97qDH1yktlL"> <div class="card-body">
-              <div class="form-group label">
-                <label for="email">Потребителско име</label>
-                <input id="name" type="text" class="form-control " name="name" value="" placeholder="Име" required="" autocomplete="name" autofocus="">
-              </div>
+            <form method="POST"
+                  th:action="@{/users/register}"
+            th:object="${userRegistrationBindingModel}">
+              <div class="card-body">
               <div class="form-group label">
                 <label for="email">E-mail</label>
-                <input id="email" type="email" class="form-control " name="email" value="" placeholder="Имейл" required="" autocomplete="email">
+                <input id="email" type="email" class="form-control " name="email"
+                       th:value="*{email}"
+                       th:errorclass="is-invalid"
+                       placeholder="Имейл"  autocomplete="email" autofocus="">
+                <small th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
+                       class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
+                <small th:if="${userExistsError}" id="usernameUniqueError"
+                       class="text-light form-text bg-danger rounded">Акаунт с посочения имейл вече съществува</small>
               </div>
+                <div class="form-group label">
+                  <label for="fullName">Име</label>
+                  <input id="fullName" type="text" class="form-control " name="fullName"
+                         th:value="*{fullName}"
+                         th:errorclass="is-invalid"
+                         placeholder="Анонимен" autocomplete="fullName" >
+                </div>
               <div class="form-group label">
                 <label for="password">Парола</label>
-                <input id="password" type="password" class="form-control " name="password" placeholder="Парола ..." required="" autocomplete="new-password">
+                <input id="password" type="password" class="form-control" name="password"
+                       th:errorclass="is-invalid"
+                       placeholder="Парола ..."  autocomplete="new-password">
+                <small th:each="e : ${#fields.errors('password')}" th:text="${e}" id="passwordError"
+                       class="invalid-feedback text-light form-text bg-danger rounded">
+                  Password length must be between 5 and 20 characters and passwords should match.
+                </small>
               </div>
               <div class="form-group label">
                 <label for="password">Повтори парола</label>
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password" placeholder="Повтори паролата ...">
+                <input id="confirmPassword" type="password" class="form-control" name="confirmPassword"
+                       th:errorclass="is-invalid"
+                       autocomplete="confirmPassword" placeholder="Повтори паролата ...">
               </div>
               <div class="form-group remember_me">
                 <div class="form-check">
-                  <input type="checkbox" name="terms" required>
+                  <input type="checkbox" name="terms" required id="terms" th:checked="${acceptedTerms}">
                   <label class="form-check-label remember" for="terms">Съгласен съм с <a href="/users/terms-and-conditions" class="link">Общите условия</a></label>
                 </div>
               </div>
