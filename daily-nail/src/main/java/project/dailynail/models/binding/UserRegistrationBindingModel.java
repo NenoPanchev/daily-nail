@@ -31,6 +31,7 @@ public class UserRegistrationBindingModel {
         return this;
     }
 
+    @Length(max = 30, message = "Името трябва да бъде не повече от 30 символа")
     public String getFullName() {
         return fullName;
     }

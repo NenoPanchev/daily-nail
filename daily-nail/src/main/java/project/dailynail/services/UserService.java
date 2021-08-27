@@ -7,4 +7,6 @@ public interface UserService {
     void seedUsers();
     UserServiceModel findByEmail(String email);
     boolean existsByEmail(String email);
+
+    void registerAndLoginUser(UserServiceModel userServiceModel);
 }

@@ -26,7 +26,7 @@ public class User extends BaseEntity{
         return this;
     }
 
-    @Column(name = "full_name")
+    @Column(name = "full_name", nullable = false)
     public String getFullName() {
         return fullName;
     }

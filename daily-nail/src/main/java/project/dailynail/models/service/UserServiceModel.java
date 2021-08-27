@@ -1,7 +1,11 @@
 package project.dailynail.models.service;
 
+import org.hibernate.validator.constraints.Length;
 import project.dailynail.models.entities.UserRole;
+import project.dailynail.models.validators.FieldMatch;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class UserServiceModel extends BaseServiceModel{
@@ -13,6 +17,8 @@ public class UserServiceModel extends BaseServiceModel{
     public UserServiceModel() {
     }
 
+    @NotEmpty(message = "Полето не може да е празно")
+    @Email(message = "Въведете валиден имейл адрес")
     public String getEmail() {
         return email;
     }
@@ -22,6 +28,7 @@ public class UserServiceModel extends BaseServiceModel{
         return this;
     }
 
+    @Length(max = 30, message = "Името трябва да бъде не повече от 30 символа")
     public String getFullName() {
         return fullName;
     }
@@ -31,6 +38,7 @@ public class UserServiceModel extends BaseServiceModel{
         return this;
     }
 
+    @Length(min = 4, max = 20, message = "Паролата трябва да бъде между 4 и 20 символа.")
     public String getPassword() {
         return password;
     }

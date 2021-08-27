@@ -26,7 +26,7 @@
                 <input id="email" type="email" class="form-control " name="email"
                        th:value="*{email}"
                        th:errorclass="is-invalid"
-                       placeholder="Имейл"  autocomplete="email" autofocus="">
+                       placeholder="Имейл" required autocomplete="email" autofocus="">
                 <small th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
                        class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
                 <small th:if="${userExistsError}" id="usernameUniqueError"
@@ -37,23 +37,28 @@
                   <input id="fullName" type="text" class="form-control " name="fullName"
                          th:value="*{fullName}"
                          th:errorclass="is-invalid"
-                         placeholder="Анонимен" autocomplete="fullName" >
+                         placeholder="Анонимен" maxlength="30" autocomplete="fullName" >
+                  <small th:each="e : ${#fields.errors('fullName')}" th:text="${e}" id="fullNameError"
+                         class="invalid-feedback text-light form-text bg-danger rounded">
+                    Password length must be between 5 and 20 characters and passwords should match.
+                  </small>
                 </div>
               <div class="form-group label">
                 <label for="password">Парола</label>
                 <input id="password" type="password" class="form-control" name="password"
                        th:errorclass="is-invalid"
-                       placeholder="Парола ..."  autocomplete="new-password">
+                       placeholder="Парола ..." autocomplete="off"
+                       required minlength="4" maxlength="20">
                 <small th:each="e : ${#fields.errors('password')}" th:text="${e}" id="passwordError"
                        class="invalid-feedback text-light form-text bg-danger rounded">
-                  Password length must be between 5 and 20 characters and passwords should match.
+                  Password length must be between 4 and 20 characters and passwords should match.
                 </small>
               </div>
               <div class="form-group label">
                 <label for="password">Повтори парола</label>
-                <input id="confirmPassword" type="password" class="form-control" name="confirmPassword"
+                <input id="confirmPassword" required minlength="4" maxlength="20" type="password" class="form-control" name="confirmPassword"
                        th:errorclass="is-invalid"
-                       autocomplete="confirmPassword" placeholder="Повтори паролата ...">
+                       autocomplete="off"  placeholder="Повтори паролата ...">
               </div>
               <div class="form-group remember_me">
                 <div class="form-check">

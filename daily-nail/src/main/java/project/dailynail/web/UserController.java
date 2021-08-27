@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.dailynail.models.binding.UserRegistrationBindingModel;
+import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.services.UserService;
 
 import javax.validation.Valid;
@@ -69,10 +70,10 @@ public class UserController {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
             return "redirect:register";
         }
-//
-//        UserRegistrationServiceModel userServiceModel = modelMapper
-//                .map(userRegistrationBindingModel, UserRegistrationServiceModel.class);
-//        userService.registerAndLoginUser(userServiceModel);
+
+        UserServiceModel userServiceModel = modelMapper
+                .map(userRegistrationBindingModel, UserServiceModel.class);
+        userService.registerAndLoginUser(userServiceModel);
         return "redirect:/";
     }
 
