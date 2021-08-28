@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::navigation"></header>
+
+<div class="main ">
+  <link rel="stylesheet" type="text/css" href="/css/profile.css">
+  <div class="container">
+    <div class="page-header p-top-0">
+      <h1 class="page-title">Моят профил</h1>
+    </div>
+    <div class="row section profile-cont">
+      <div class="col-md-3">
+        <div class="left-sidebar">
+          <div class="left-sidebar-header">
+            <div class="sidebar-avatar">
+              <i class="icon mdi mdi-account"></i>
+            </div>
+            <div class="sidebar-avatar-info">
+              <h3 th:text="${principalName}">name</h3>
+              <h3 class="avatar-subtitle"><span th:text="${principalEmail}">email</span></h3>
+            </div>
+          </div>
+
+          <div class="left-sidebar-body">
+            <div class="account-options">
+              <a href="/users/profile/settings">
+<span class="special-icon">
+<i class="icon mdi mdi-account-settings"></i>
+</span>
+                <span class="icon-text"> Настройки</span>
+              </a>
+            </div>
+            <div class="account-options">
+              <a href="https://www.marica.bg/profile/password">
+<span class="special-icon">
+<i class="icon mdi mdi-lock-outline"></i>
+</span>
+                <span class="icon-text"> Смяна на парола</span>
+              </a>
+            </div>
+            <div class="account-options">
+              <a href="https://www.marica.bg/profile/ads">
+<span class="special-icon">
+<i class="icon mdi mdi-bullhorn-outline"></i>
+</span>
+                <span class="icon-text"> Моите обяви</span>
+              </a>
+            </div>
+            <div class="account-options">
+                <a onclick="document.getElementById('logout-form').submit();">
+<span class="special-icon">
+<i class="icon mdi mdi-exit-to-app"></i>
+</span>
+                <span class="icon-text"> Изход</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <form th:action="@{/users/profile/settings}"
+              th:object="${userRegistrationBindingModel}"
+              method="POST">
+          <div class="profile-form">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="profile-header">
+                <div class="profile-header-title">
+                  <h3>Настройки</h3>
+                </div>
+                <div class="profile-avatar">
+                  <i class="icon mdi mdi-account"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group label">
+                  <label>Име</label>
+                  <input type="text" class="form-control" name="fullName" th:value="${principalName}"
+                         th:errorclass="is-invalid" placeholder="Име">
+                    <small th:each="e : ${#fields.errors('fullName')}" th:text="${e}" id="fullNameError"
+                           class="invalid-feedback text-light form-text bg-danger rounded">
+                        Password length must be between 5 and 20 characters and passwords should match.
+                    </small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group label">
+                  <label >E-mail</label>
+                  <input type="email" class="form-control" name="email" th:value="${principalEmail}"
+                         th:errorclass="is-invalid" placeholder="Имейл">
+                    <small th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
+                           class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
+                    <small th:if="${userExistsError}" id="usernameUniqueError"
+                           class="text-light form-text bg-danger rounded">Акаунт с посочения имейл вече съществува</small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <button type="submit" class="btn primary-btn btn-save">
+                  Запази
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<footer th:replace="fragments/commons::footer"></footer>
+</body>
+</html>

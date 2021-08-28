@@ -1,0 +1,174 @@
+/* Sidebar */
+.left-sidebar {
+    /* height: 500px; */
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+.left-sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid #e6e6e6;
+}
+.left-sidebar-body {
+    padding: 20px;
+    margin-top: 10px;
+}
+
+/* Sidebar header */
+.sidebar-avatar {
+    background-color: #e8e8e8;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    text-align: center;
+    float: left;
+}
+.sidebar-avatar .icon {
+    font-size: 40px;
+    color: #737373;
+}
+.avatar-subtitle {
+    margin-bottom: 0;
+    font-size: 17px;
+    color: #919191;
+    font-weight: normal;
+}
+
+.horizontal-line {
+    outline: 1px solid #e8e8e8;
+}
+
+/* Sidebar body */
+.account-options {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.account-options a {
+    color: #737373;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* .account-options .icon {
+    background-color: #e8e8e8;
+    border-radius: 50%;
+    padding: 3px 5px;
+    margin-right: 5px;
+} */
+/* Sidebar body on hover */
+.account-options a:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.account-options a:hover .special-icon {
+    background-color: #c50e12;
+}
+.account-options a:hover .icon {
+    color: #fff;
+}
+.account-options .icon-text {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+html body div.main div.container div.row.section.profile-cont div.col-md-3 div.left-sidebar div.left-sidebar-body div.account-options a span.icon-text {
+    color: #737373;
+}
+
+html body div.main div.container div.row.section.profile-cont div.col-md-3 div.left-sidebar div.left-sidebar-body div.account-options a:hover span.icon-text{
+    color: #000000;
+}
+
+/* Profile container */
+.profile-cont {
+    margin-top: 20px;
+}
+.profile-form {
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: 20px;
+}
+.profile-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(/img/chevron-down.png) 96% / 14% no-repeat;
+    background-color: #f7f8f8;
+    background-size: 20px;
+}
+
+/* Profile header */
+.profile-header-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.profile-avatar {
+    background-color: #e8e8e8;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    text-align: center;
+    float: left;
+}
+.profile-avatar .icon {
+    font-size: 65px;
+    color: #737373;
+}
+.avatar-file {
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer;
+}
+.inputfile-box label {
+    display: inline-block;
+    margin-top: 10px;
+}
+/* Profile body */
+.profile-body {
+    margin-top: 40px;
+}
+
+.birth-date {
+    border: none;
+}
+.birth-date:hover {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button */
+.btn-save {
+    width: 50%;
+    text-transform: none;
+    font-size: 15px;
+    margin-top: 15px;
+}
+.btn-save:focus {
+    outline: 1px solid #c50e12;
+}
+
+/* ---------------------------- RESPONSIVE ---------------------------- */
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .profile-form {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+
+    .birth-date {
+        margin-bottom: 10px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 989px) {
+    .btn-save {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+    .col-sm-12 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+}

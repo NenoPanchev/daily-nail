@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.dailynail.exceptions.ObjectNotFoundException;
+import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.entities.User;
 import project.dailynail.models.entities.UserRole;
 import project.dailynail.models.entities.enums.Role;
@@ -123,6 +124,18 @@ public class UserServiceImpl implements UserService {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
+
+    @Override
+    public String getUserNameByEmail(String email) {
+        return userRepository.getFullNameByEmail(email)
+                .orElseThrow(ObjectNotFoundException::new);
+    }
+
+    @Override
+    public void checkIfInputIsDifferentAndUpdateUserNameAndEmail(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
+        UserServiceModel principal = userRepository.findByEmail(principalEmail);
+        if (userFullNameAndEmailDto.getFullName().equals(principalEmail))
     }
 
 }

@@ -224,6 +224,9 @@ input:invalid {
     vertical-align: middle;
 }
 
+.header-main {
+    z-index: 3;
+}
 
 .header-main .header-menu {
     margin: 0;
@@ -296,7 +299,7 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
 }
 
 .my-header-z-index {
-    z-index: 1;
+    z-index: 4;
 }
 
 .header-main .dropdown ul li a {
@@ -305,7 +308,8 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
 
 .header-nav {
     height: 47px;
-    background-color: #c50e12
+    background-color: #c50e12;
+    z-index: 3;
 }
 
 .header-nav .nav-container {
