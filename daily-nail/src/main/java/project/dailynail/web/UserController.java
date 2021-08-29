@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.dailynail.models.binding.UserUpdateNameAndEmailBindingModel;
 import project.dailynail.models.binding.UserRegistrationBindingModel;
+import project.dailynail.models.binding.UserUpdatePasswordBindingModel;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.services.UserService;
@@ -31,6 +32,16 @@ public class UserController {
     @ModelAttribute("userRegistrationBindingModel")
     public UserRegistrationBindingModel createBindingModel() {
         return new UserRegistrationBindingModel();
+    }
+
+    @ModelAttribute("userUpdateNameAndEmailBindingModel")
+    public UserUpdateNameAndEmailBindingModel updateNameAndEmailBindingModel() {
+        return new UserUpdateNameAndEmailBindingModel();
+    }
+
+    @ModelAttribute("userUpdatePasswordBindingModel")
+    public UserUpdatePasswordBindingModel userUpdatePasswordBindingModel() {
+        return new UserUpdatePasswordBindingModel();
     }
 
     @GetMapping("/login")
@@ -92,7 +103,7 @@ public class UserController {
     }
 
     @PostMapping("/profile/settings")
-    public String updateNameAndEmail(@Valid @ModelAttribute("userUpdateNameAndEmailBindingModel") UserUpdateNameAndEmailBindingModel userUpdateNameAndEmailBindingModel,
+    public String updateNameAndEmail(@Valid UserUpdateNameAndEmailBindingModel userUpdateNameAndEmailBindingModel,
                                        BindingResult bindingResult,
                                        RedirectAttributes redirectAttributes, Principal principal) {
 
@@ -121,5 +132,44 @@ public class UserController {
         }
 
         return "redirect:settings";
+    }
+
+    @GetMapping("/profile/change-password")
+    public String profilePassword(Principal principal, Model model) {
+
+        model.addAttribute("principalName", userService.getUserNameByEmail(principal.getName()));
+        model.addAttribute("principalEmail", principal.getName());
+        return "change-password";
+    }
+
+    @PostMapping("/profile/change-password")
+    public String updatePassword(@Valid @ModelAttribute("userUpdatePasswordBindingModel") UserUpdatePasswordBindingModel userUpdatePasswordBindingModel,
+                                     BindingResult bindingResult,
+                                     RedirectAttributes redirectAttributes, Principal principal) {
+
+        if (!userService.passwordMatches(principal.getName(), userUpdatePasswordBindingModel.getOldPassword())) {
+            redirectAttributes.addFlashAttribute("incorrectPassword", true);
+            return "redirect:change-password";
+        }
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userUpdatePasswordBindingModel", userUpdatePasswordBindingModel);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.userUpdatePasswordBindingModel", bindingResult);
+
+            return "redirect:change-password";
+        }
+
+        if (userUpdatePasswordBindingModel.getOldPassword().equals(userUpdatePasswordBindingModel.getNewPassword())) {
+            redirectAttributes.addFlashAttribute("samePassword", true);
+
+            return "redirect:change-password";
+        }
+
+
+        userService.updatePassword(userUpdatePasswordBindingModel.getNewPassword(), principal.getName());
+        userService.loadPrincipal(principal.getName());
+
+        return "redirect:change-password";
     }
 }

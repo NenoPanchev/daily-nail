@@ -16,4 +16,8 @@ public interface UserService {
     boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail);
 
     void loadPrincipal(String email);
+
+    boolean passwordMatches(String principalEmail, String oldPassword);
+
+    void updatePassword(String newPassword, String principalEmail);
 }

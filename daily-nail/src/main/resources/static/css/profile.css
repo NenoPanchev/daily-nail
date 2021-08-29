@@ -149,6 +149,10 @@ html body div.main div.container div.row.section.profile-cont div.col-md-3 div.l
     outline: 1px solid #c50e12;
 }
 
+.section {
+    padding: 30px 0;
+}
+
 /* ---------------------------- RESPONSIVE ---------------------------- */
 /* Responsive */
 @media screen and (max-width: 768px) {

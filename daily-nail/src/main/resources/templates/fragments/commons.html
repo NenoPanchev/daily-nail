@@ -141,7 +141,7 @@
                                             <a th:href="@{/users/profile/settings}">Настройки</a>
                                         </li>
                                         <li class="dropdown-menu-item">
-                                            <a href="https://www.marica.bg/profile/password">Смяна на парола</a>
+                                            <a th:href="@{/users/profile/change-password}">Смяна на парола</a>
                                         </li>
                                         <li class="dropdown-menu-item">
                                             <a href="https://www.marica.bg/profile/ads">Моите обяви</a>
@@ -302,8 +302,8 @@
                 var month = x.getMonth()
                 let months = ['Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни', 'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември']
                 var dayOfWeek = x.getDay()
-                let days = ['Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота', 'Неделя']
-                var string = date + " " + months[month] + ", " + days[dayOfWeek - 1];
+                let days = ['Неделя', 'Понеделник', 'Вторник', 'Сряда', 'Четвъртък', 'Петък', 'Събота']
+                var string = date + " " + months[month] + ", " + days[dayOfWeek];
                 document.getElementById('dt').innerHTML = string;
             }
         </script>

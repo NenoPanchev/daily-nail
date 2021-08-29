@@ -143,6 +143,19 @@ public class UserServiceImpl implements UserService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
+    @Override
+    public boolean passwordMatches(String principalEmail, String oldPassword) {
+        return passwordEncoder.matches(
+                oldPassword,
+                userRepository.getPasswordByEmail(principalEmail).orElseThrow(ObjectNotFoundException::new));
+    }
+
+    @Override
+    @Transactional
+    public void updatePassword(String newPassword, String principalEmail) {
+        userRepository.updatePasswordByEmail(passwordEncoder.encode(newPassword), principalEmail);
+    }
+
     @Transactional
     public boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
         List<Map<String, String>> principalIdAndFullName = userRepository.getIdAndFullNameByEmail(principalEmail);
