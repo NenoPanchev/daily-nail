@@ -2,7 +2,6 @@ package project.dailynail.models.service;
 
 import org.hibernate.validator.constraints.Length;
 import project.dailynail.models.entities.UserRole;
-import project.dailynail.models.validators.FieldMatch;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

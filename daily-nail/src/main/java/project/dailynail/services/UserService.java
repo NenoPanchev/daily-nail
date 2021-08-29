@@ -13,5 +13,7 @@ public interface UserService {
 
     String getUserNameByEmail(String email);
 
-    void checkIfInputIsDifferentAndUpdateUserNameAndEmail(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail);
+    boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail);
+
+    void loadPrincipal(String email);
 }

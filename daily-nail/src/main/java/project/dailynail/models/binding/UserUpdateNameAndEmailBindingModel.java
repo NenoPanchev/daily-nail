@@ -5,11 +5,11 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-public class UserChangingNameAndEmailBindingModel {
+public class UserUpdateNameAndEmailBindingModel {
     private String fullName;
     private String email;
 
-    public UserChangingNameAndEmailBindingModel() {
+    public UserUpdateNameAndEmailBindingModel() {
     }
 
     @Length(max = 30, message = "Името трябва да бъде не повече от 30 символа")
@@ -17,7 +17,7 @@ public class UserChangingNameAndEmailBindingModel {
         return fullName;
     }
 
-    public UserChangingNameAndEmailBindingModel setFullName(String fullName) {
+    public UserUpdateNameAndEmailBindingModel setFullName(String fullName) {
         this.fullName = fullName;
         return this;
     }
@@ -28,7 +28,7 @@ public class UserChangingNameAndEmailBindingModel {
         return email;
     }
 
-    public UserChangingNameAndEmailBindingModel setEmail(String email) {
+    public UserUpdateNameAndEmailBindingModel setEmail(String email) {
         this.email = email;
         return this;
     }

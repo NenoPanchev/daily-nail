@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import project.dailynail.models.binding.UserChangingNameAndEmailBindingModel;
+import project.dailynail.models.binding.UserUpdateNameAndEmailBindingModel;
 import project.dailynail.models.binding.UserRegistrationBindingModel;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.service.UserServiceModel;
@@ -92,29 +92,34 @@ public class UserController {
     }
 
     @PostMapping("/profile/settings")
-    public String updateNameAndEmail(@Valid @ModelAttribute("userChangingNameAndEmailBindingModel") UserChangingNameAndEmailBindingModel userChangingNameAndEmailBindingModel,
+    public String updateNameAndEmail(@Valid @ModelAttribute("userUpdateNameAndEmailBindingModel") UserUpdateNameAndEmailBindingModel userUpdateNameAndEmailBindingModel,
                                        BindingResult bindingResult,
                                        RedirectAttributes redirectAttributes, Principal principal) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userChangingNameAndEmailBindingModel", userChangingNameAndEmailBindingModel);
+            redirectAttributes.addFlashAttribute("userUpdateNameAndEmailBindingModel", userUpdateNameAndEmailBindingModel);
             redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.userChangingNameAndEmailBindingModel", bindingResult);
+                    "org.springframework.validation.BindingResult.userUpdateNameAndEmailBindingModel", bindingResult);
 
             return "redirect:settings";
         }
 
-        if (this.userService.existsByEmail(userChangingNameAndEmailBindingModel.getEmail())
-        && !userChangingNameAndEmailBindingModel.getEmail().equals(principal.getName())) {
+        if (this.userService.existsByEmail(userUpdateNameAndEmailBindingModel.getEmail())
+        && !userUpdateNameAndEmailBindingModel.getEmail().equals(principal.getName())) {
             redirectAttributes.addFlashAttribute("userExistsError", true);
-            redirectAttributes.addFlashAttribute("userChangingNameAndEmailBindingModel", userChangingNameAndEmailBindingModel);
+            redirectAttributes.addFlashAttribute("userUpdateNameAndEmailBindingModel", userUpdateNameAndEmailBindingModel);
             return "redirect:settings";
         }
 
 
-        userService.checkIfInputIsDifferentAndUpdateUserNameAndEmail(
-                modelMapper.map(userChangingNameAndEmailBindingModel, UserFullNameAndEmailDto.class),
+        boolean changesMade = userService.updateFullNameAndEmailIfNeeded(
+                modelMapper.map(userUpdateNameAndEmailBindingModel, UserFullNameAndEmailDto.class),
                 principal.getName());
-        return "redirect:/";
+
+        if (changesMade) {
+            userService.loadPrincipal(userUpdateNameAndEmailBindingModel.getEmail());
+        }
+
+        return "redirect:settings";
     }
 }

@@ -17,10 +17,12 @@ import project.dailynail.repositories.UserRepository;
 import project.dailynail.services.UserRoleService;
 import project.dailynail.services.UserService;
 
+import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -31,6 +33,7 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final DailyNailUserService dailyNailUserService;
     private final Validator validator;
+    private final static String DEFAULT_FULL_NAME = "Анонимен";
 
     public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, DailyNailUserService dailyNailUserService, Validator validator) {
         this.userRepository = userRepository;
@@ -98,44 +101,68 @@ public class UserServiceImpl implements UserService {
 
         if (!violations.isEmpty()) {
             StringBuilder sb = new StringBuilder();
-
+            sb.append("Error occured: ");
             violations
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(sb::append);
 
-            throw new ConstraintViolationException("Error occured: " + sb.toString(), violations);
+            throw new ConstraintViolationException(sb.toString(), violations);
         }
 
 
         User newUser = modelMapper.map(userServiceModel, User.class)
-                .setFullName(userServiceModel.getFullName().isBlank() ? "Анонимен"
+                .setFullName(userServiceModel.getFullName().isBlank() ? DEFAULT_FULL_NAME
                         : userServiceModel.getFullName())
+                .setPassword(passwordEncoder.encode(userServiceModel.getPassword()))
                 .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRole.class)));
 
         userRepository.saveAndFlush(newUser);
 
-        UserDetails principal = dailyNailUserService.loadUserByUsername(newUser.getEmail());
+        loadPrincipal(newUser.getEmail());
+    }
+
+    @Override
+    public String getUserNameByEmail(String email) {
+        String s = userRepository.getFullNameByEmail(email)
+                .orElseThrow(ObjectNotFoundException::new);
+        return s;
+    }
+
+    @Override
+    public void loadPrincipal(String email) {
+
+        UserDetails newPrincipal = dailyNailUserService.loadUserByUsername(email);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(
-                principal,
-                newUser.getPassword(),
-                principal.getAuthorities()
+                newPrincipal,
+                newPrincipal.getPassword(),
+                newPrincipal.getAuthorities()
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
-    @Override
-    public String getUserNameByEmail(String email) {
-        return userRepository.getFullNameByEmail(email)
-                .orElseThrow(ObjectNotFoundException::new);
-    }
+    @Transactional
+    public boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
+        List<Map<String, String>> principalIdAndFullName = userRepository.getIdAndFullNameByEmail(principalEmail);
 
-    @Override
-    public void checkIfInputIsDifferentAndUpdateUserNameAndEmail(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
-        UserServiceModel principal = userRepository.findByEmail(principalEmail);
-        if (userFullNameAndEmailDto.getFullName().equals(principalEmail))
-    }
+        String principalId = principalIdAndFullName.get(0).get("id");
+        String principalFullName = principalIdAndFullName.get(0).get("fullName");
 
+        boolean updatedFullName = false;
+        boolean updatedEmail = false;
+
+        if (!userFullNameAndEmailDto.getFullName().equals(principalFullName)) {
+            userRepository.updateUserFullNameById(userFullNameAndEmailDto.getFullName(), principalId);
+            updatedFullName = true;
+        }
+
+        if (!userFullNameAndEmailDto.getEmail().equals(principalEmail)) {
+            userRepository.updateUserEmailById(userFullNameAndEmailDto.getEmail(), principalId);
+            updatedEmail = true;
+        }
+
+        return updatedFullName || updatedEmail;
+    }
 }
