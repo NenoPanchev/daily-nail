@@ -15,7 +15,7 @@
         <div class="form-card" style="margin-bottom: 50px;">
           <div class="card-cont">
             <div class="card-header">
-              <span>Регистрация</span>
+              <span>Registration</span>
             </div>
             <form method="POST"
                   th:action="@{/users/register}"
@@ -26,28 +26,28 @@
                 <input id="email" type="email" class="form-control " name="email"
                        th:value="*{email}"
                        th:errorclass="is-invalid"
-                       placeholder="Имейл" required autocomplete="email" autofocus="">
+                       placeholder="E-mail" required autocomplete="email" autofocus="">
                 <small th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
                        class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
                 <small th:if="${userExistsError}" id="usernameUniqueError"
-                       class="text-light form-text bg-danger rounded">Акаунт с посочения имейл вече съществува</small>
+                       class="text-light form-text bg-danger rounded">Account with that email already exists</small>
               </div>
                 <div class="form-group label">
-                  <label for="fullName">Име</label>
+                  <label for="fullName">Name</label>
                   <input id="fullName" type="text" class="form-control " name="fullName"
                          th:value="*{fullName}"
                          th:errorclass="is-invalid"
-                         placeholder="Анонимен" maxlength="30" autocomplete="fullName" >
+                         placeholder="Anonymous" maxlength="30" autocomplete="fullName" >
                   <small th:each="e : ${#fields.errors('fullName')}" th:text="${e}" id="fullNameError"
                          class="invalid-feedback text-light form-text bg-danger rounded">
                     Password length must be between 5 and 20 characters and passwords should match.
                   </small>
                 </div>
               <div class="form-group label">
-                <label for="password">Парола</label>
+                <label for="password">Password</label>
                 <input id="password" type="password" class="form-control" name="password"
                        th:errorclass="is-invalid"
-                       placeholder="Парола ..." autocomplete="off"
+                       placeholder="Password ..." autocomplete="off"
                        required minlength="4" maxlength="20">
                 <small th:each="e : ${#fields.errors('password')}" th:text="${e}" id="passwordError"
                        class="invalid-feedback text-light form-text bg-danger rounded">
@@ -55,21 +55,21 @@
                 </small>
               </div>
               <div class="form-group label">
-                <label for="password">Повтори парола</label>
+                <label for="password">Confirm password</label>
                 <input id="confirmPassword" required minlength="4" maxlength="20" type="password" class="form-control" name="confirmPassword"
                        th:errorclass="is-invalid"
-                       autocomplete="off"  placeholder="Повтори паролата ...">
+                       autocomplete="off"  placeholder="Confirm password ...">
               </div>
               <div class="form-group remember_me">
                 <div class="form-check">
                   <input type="checkbox" name="terms" required id="terms" th:checked="${acceptedTerms}">
-                  <label class="form-check-label remember" for="terms">Съгласен съм с <a href="/users/terms-and-conditions" class="link">Общите условия</a></label>
+                  <label class="form-check-label remember" for="terms">I agree with the <a href="/users/terms-and-conditions" class="link">Terms and conditions</a></label>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-5" width="100%">
                   <button type="submit" class="btn primary-btn btn-login">
-                    Регистрирай ме
+                    Register
                   </button>
                 </div>
               </div>
@@ -77,8 +77,8 @@
             </form>
           </div>
           <div class="card-footer">
-            <span class="label">Вече сте регистриран?</span>
-            <a href="/login" class="link">Вход в профила</a>
+            <span class="label">Already registered?</span>
+            <a href="/login" class="link">Login</a>
             <i class="icon mdi mdi-chevron-right"></i>
           </div>
         </div>
