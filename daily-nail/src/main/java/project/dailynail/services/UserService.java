@@ -1,6 +1,7 @@
 package project.dailynail.services;
 
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
+import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.service.UserServiceModel;
 
 public interface UserService {
@@ -19,5 +20,5 @@ public interface UserService {
 
     boolean passwordMatches(String principalEmail, String oldPassword);
 
-    void updatePassword(String newPassword, String principalEmail);
+    void updatePassword(UserNewPasswordDto userNewPasswordDto, String principalEmail);
 }

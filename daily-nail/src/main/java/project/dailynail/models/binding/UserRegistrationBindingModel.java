@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 @FieldMatch(
         first = "password",
         second = "confirmPassword",
-        message = "Паролите трябва да съвпадат"
+        message = "Passwords must match"
 )
 public class UserRegistrationBindingModel {
     private String email;
@@ -20,8 +20,8 @@ public class UserRegistrationBindingModel {
     public UserRegistrationBindingModel() {
     }
 
-    @NotEmpty(message = "Полето не може да е празно")
-    @Email(message = "Въведете валиден имейл адрес")
+    @NotEmpty(message = "Field cannot be empty")
+    @Email(message = "Enter valid email address")
     public String getEmail() {
         return email;
     }
@@ -31,7 +31,7 @@ public class UserRegistrationBindingModel {
         return this;
     }
 
-    @Length(max = 30, message = "Името трябва да бъде не повече от 30 символа")
+    @Length(max = 30, message = "Name cannot be more than 30 characters")
     public String getFullName() {
         return fullName;
     }
@@ -41,7 +41,7 @@ public class UserRegistrationBindingModel {
         return this;
     }
 
-    @Length(min = 4, max = 20, message = "Паролата трябва да бъде между 4 и 20 символа.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 characters")
     public String getPassword() {
         return password;
     }

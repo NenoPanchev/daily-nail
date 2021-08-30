@@ -12,7 +12,7 @@ public class UserUpdateNameAndEmailBindingModel {
     public UserUpdateNameAndEmailBindingModel() {
     }
 
-    @Length(max = 30, message = "Името трябва да бъде не повече от 30 символа")
+    @Length(max = 30, message = "Name cannot be more than 30 characters")
     public String getFullName() {
         return fullName;
     }
@@ -22,8 +22,8 @@ public class UserUpdateNameAndEmailBindingModel {
         return this;
     }
 
-    @NotEmpty(message = "Полето не може да е празно")
-    @Email(message = "Въведете валиден имейл адрес")
+    @NotEmpty(message = "Field cannot be empty")
+    @Email(message = "Enter valid email address")
     public String getEmail() {
         return email;
     }

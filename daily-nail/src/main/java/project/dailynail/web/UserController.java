@@ -11,6 +11,7 @@ import project.dailynail.models.binding.UserUpdateNameAndEmailBindingModel;
 import project.dailynail.models.binding.UserRegistrationBindingModel;
 import project.dailynail.models.binding.UserUpdatePasswordBindingModel;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
+import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.services.UserService;
 
@@ -168,7 +169,7 @@ public class UserController {
         }
 
 
-        userService.updatePassword(userUpdatePasswordBindingModel.getNewPassword(), principal.getName());
+        userService.updatePassword(modelMapper.map(userUpdatePasswordBindingModel, UserNewPasswordDto.class), principal.getName());
         userService.loadPrincipal(principal.getName());
         redirectAttributes.addFlashAttribute("successfullyUpdated", true);
 

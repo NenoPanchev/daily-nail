@@ -16,8 +16,8 @@ public class UserServiceModel extends BaseServiceModel{
     public UserServiceModel() {
     }
 
-    @NotEmpty(message = "Полето не може да е празно")
-    @Email(message = "Въведете валиден имейл адрес")
+    @NotEmpty(message = "Field cannot be empty")
+    @Email(message = "Enter valid email address")
     public String getEmail() {
         return email;
     }
@@ -27,7 +27,7 @@ public class UserServiceModel extends BaseServiceModel{
         return this;
     }
 
-    @Length(max = 30, message = "Името трябва да бъде не повече от 30 символа")
+    @Length(max = 30, message = "Name cannot be more than 30 characters")
     public String getFullName() {
         return fullName;
     }
@@ -37,7 +37,7 @@ public class UserServiceModel extends BaseServiceModel{
         return this;
     }
 
-    @Length(min = 4, max = 20, message = "Паролата трябва да бъде между 4 и 20 символа.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 characters")
     public String getPassword() {
         return password;
     }

@@ -6,7 +6,7 @@ import project.dailynail.models.validators.FieldMatch;
 @FieldMatch(
         first = "newPassword",
         second = "confirmNewPassword",
-        message = "Новата и повторената парола трябва да съвпадат"
+        message = "New password and password confirmation must match"
 )
 public class UserUpdatePasswordBindingModel {
     private String oldPassword;
@@ -25,7 +25,7 @@ public class UserUpdatePasswordBindingModel {
         return this;
     }
 
-    @Length(min = 4, max = 20, message = "Паролата трябва да бъде между 4 и 20 символа.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 characters")
     public String getNewPassword() {
         return newPassword;
     }

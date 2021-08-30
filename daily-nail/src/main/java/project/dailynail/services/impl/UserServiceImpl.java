@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.dailynail.exceptions.ObjectNotFoundException;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
+import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.entities.UserEntity;
 import project.dailynail.models.entities.UserRoleEntity;
 import project.dailynail.models.entities.enums.Role;
@@ -103,20 +104,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerAndLoginUser(UserServiceModel userServiceModel) {
-
-        Set<ConstraintViolation<UserServiceModel>> violations = validator.validate(userServiceModel);
-
-        if (!violations.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("Error occured: ");
-            violations
-                    .stream()
-                    .map(ConstraintViolation::getMessage)
-                    .forEach(sb::append);
-
-            throw new ConstraintViolationException(sb.toString(), violations);
-        }
-
+        validate(userServiceModel);
 
         UserEntity newUser = modelMapper.map(userServiceModel, UserEntity.class)
                 .setFullName(userServiceModel.getFullName().isBlank() ? DEFAULT_FULL_NAME
@@ -153,6 +141,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean passwordMatches(String principalEmail, String oldPassword) {
+
         return passwordEncoder.matches(
                 oldPassword,
                 userRepository.getPasswordByEmail(principalEmail).orElseThrow(ObjectNotFoundException::new));
@@ -160,12 +149,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void updatePassword(String newPassword, String principalEmail) {
+    public void updatePassword(UserNewPasswordDto userNewPasswordDto, String principalEmail) {
+        String newPassword = userNewPasswordDto.getNewPassword();
+        validate(newPassword);
         userRepository.updatePasswordByEmail(passwordEncoder.encode(newPassword), principalEmail);
     }
 
     @Transactional
     public boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
+        validate(userFullNameAndEmailDto);
+
         List<Map<String, String>> principalIdAndFullName = userRepository.getIdAndFullNameByEmail(principalEmail);
 
         String principalId = principalIdAndFullName.get(0).get("id");
@@ -185,5 +178,20 @@ public class UserServiceImpl implements UserService {
         }
 
         return updatedFullName || updatedEmail;
+    }
+
+    private <T> void validate(T entity) {
+       Set<ConstraintViolation<T>> violations = validator.validate(entity);
+
+        if (!violations.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Error occured: ");
+            violations
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(sb::append);
+
+            throw new ConstraintViolationException(sb.toString(), violations);
+        }
     }
 }
