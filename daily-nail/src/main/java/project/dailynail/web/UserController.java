@@ -129,9 +129,10 @@ public class UserController {
 
         if (changesMade) {
             userService.loadPrincipal(userUpdateNameAndEmailBindingModel.getEmail());
+            redirectAttributes.addFlashAttribute("successfullyUpdated", true);
         }
 
-        return "redirect:settings";
+        return "redirect:/";
     }
 
     @GetMapping("/profile/change-password")
@@ -143,7 +144,7 @@ public class UserController {
     }
 
     @PostMapping("/profile/change-password")
-    public String updatePassword(@Valid @ModelAttribute("userUpdatePasswordBindingModel") UserUpdatePasswordBindingModel userUpdatePasswordBindingModel,
+    public String updatePassword(@Valid UserUpdatePasswordBindingModel userUpdatePasswordBindingModel,
                                      BindingResult bindingResult,
                                      RedirectAttributes redirectAttributes, Principal principal) {
 
@@ -169,7 +170,8 @@ public class UserController {
 
         userService.updatePassword(userUpdatePasswordBindingModel.getNewPassword(), principal.getName());
         userService.loadPrincipal(principal.getName());
+        redirectAttributes.addFlashAttribute("successfullyUpdated", true);
 
-        return "redirect:change-password";
+        return "redirect:/";
     }
 }

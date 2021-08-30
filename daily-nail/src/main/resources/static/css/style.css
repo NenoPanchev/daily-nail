@@ -776,3 +776,7 @@ html body block div#myHeader.header-main.w-100.bg-white.sticky div.container.mw-
     background-position: center center;
     background-clip: content-box;
 }
+
+#successFadeOut {
+    transition: opacity 1s;
+}

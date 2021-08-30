@@ -7,13 +7,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity{
+public class UserEntity extends BaseEntity{
     private String email;
     private String fullName;
     private String password;
-    private List<UserRole> roles;
+    private List<UserRoleEntity> roles;
 
-    public User() {
+    public UserEntity() {
     }
 
     @Column(nullable = false, unique = true)
@@ -21,7 +21,7 @@ public class User extends BaseEntity{
         return email;
     }
 
-    public User setEmail(String email) {
+    public UserEntity setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -31,7 +31,7 @@ public class User extends BaseEntity{
         return fullName;
     }
 
-    public User setFullName(String fullName) {
+    public UserEntity setFullName(String fullName) {
         this.fullName = fullName;
         return this;
     }
@@ -42,17 +42,17 @@ public class User extends BaseEntity{
         return password;
     }
 
-    public User setPassword(String password) {
+    public UserEntity setPassword(String password) {
         this.password = password;
         return this;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    public List<UserRole> getRoles() {
+    public List<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public User setRoles(List<UserRole> roles) {
+    public UserEntity setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }

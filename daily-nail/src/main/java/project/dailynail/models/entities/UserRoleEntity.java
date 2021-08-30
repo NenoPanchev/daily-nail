@@ -9,10 +9,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_roles")
-public class UserRole extends BaseEntity {
+public class UserRoleEntity extends BaseEntity {
         private Role role;
 
-    public UserRole() {
+    public UserRoleEntity() {
     }
 
     @Enumerated(EnumType.STRING)
@@ -20,7 +20,7 @@ public class UserRole extends BaseEntity {
         return role;
     }
 
-    public UserRole setRole(Role role) {
+    public UserRoleEntity setRole(Role role) {
         this.role = role;
         return this;
     }

@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import project.dailynail.models.entities.User;
+import project.dailynail.models.entities.UserEntity;
 import project.dailynail.repositories.UserRepository;
 
 import java.util.List;
@@ -22,14 +22,14 @@ public class DailyNailUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User userEntity = userRepository
+        UserEntity userEntity = userRepository
                 .findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " was not found."));
 
         return mapToUserDetails(userEntity);
     }
 
-    private UserDetails mapToUserDetails(User userEntity) {
+    private UserDetails mapToUserDetails(UserEntity userEntity) {
         List<GrantedAuthority> authorities =
                 userEntity.getRoles()
                 .stream()

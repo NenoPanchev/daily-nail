@@ -9,8 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.dailynail.exceptions.ObjectNotFoundException;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
-import project.dailynail.models.entities.User;
-import project.dailynail.models.entities.UserRole;
+import project.dailynail.models.entities.UserEntity;
+import project.dailynail.models.entities.UserRoleEntity;
 import project.dailynail.models.entities.enums.Role;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.repositories.UserRepository;
@@ -24,6 +24,8 @@ import javax.validation.Validator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -48,34 +50,39 @@ public class UserServiceImpl implements UserService {
     public void seedUsers() {
         if (userRepository.count() == 0) {
 
-            User admin = new User()
+            UserEntity admin = new UserEntity()
                     .setEmail("admin@admin.bg")
                     .setFullName("Admin Admin")
                     .setPassword(passwordEncoder.encode("1234"))
-                    .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.ADMIN), UserRole.class),
-                            modelMapper.map(userRoleService.findByRole(Role.EDITOR), UserRole.class),
-                            modelMapper.map(userRoleService.findByRole(Role.REPORTER), UserRole.class),
-                            modelMapper.map(userRoleService.findByRole(Role.USER), UserRole.class)));
+                    .setRoles(userRoleService.findAllByRoleIn(Role.ADMIN, Role.EDITOR, Role.REPORTER, Role.USER)
+                        .stream()
+                        .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
+                        .collect(Collectors.toList()));
 
-            User editor = new User()
+            UserEntity editor = new UserEntity()
                     .setEmail("editor@editor.bg")
                     .setFullName("Editor Editor")
                     .setPassword(passwordEncoder.encode("1234"))
-                    .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.EDITOR), UserRole.class),
-                            modelMapper.map(userRoleService.findByRole(Role.USER), UserRole.class)));
+                    .setRoles(userRoleService.findAllByRoleIn(Role.EDITOR, Role.USER)
+                            .stream()
+                            .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
+                            .collect(Collectors.toList()));
 
-            User reporter = new User()
+            UserEntity reporter = new UserEntity()
                     .setEmail("reporter@reporter.bg")
                     .setFullName("Reporter Reporter")
                     .setPassword(passwordEncoder.encode("1234"))
-                    .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.REPORTER), UserRole.class),
-                            modelMapper.map(userRoleService.findByRole(Role.USER), UserRole.class)));
+                    .setRoles(userRoleService.findAllByRoleIn(Role.REPORTER, Role.USER)
+                            .stream()
+                            .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
+                            .collect(Collectors.toList()));
 
-            User user = new User()
+            UserEntity user = new UserEntity()
                     .setEmail("user@user.bg")
                     .setFullName("User User")
                     .setPassword(passwordEncoder.encode("1234"))
-                    .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRole.class)));
+                    .setRoles(Stream.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRoleEntity.class))
+                        .collect(Collectors.toList()));
 
             userRepository.saveAll(List.of(admin, editor, reporter, user));
         }
@@ -111,11 +118,12 @@ public class UserServiceImpl implements UserService {
         }
 
 
-        User newUser = modelMapper.map(userServiceModel, User.class)
+        UserEntity newUser = modelMapper.map(userServiceModel, UserEntity.class)
                 .setFullName(userServiceModel.getFullName().isBlank() ? DEFAULT_FULL_NAME
                         : userServiceModel.getFullName())
                 .setPassword(passwordEncoder.encode(userServiceModel.getPassword()))
-                .setRoles(List.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRole.class)));
+                .setRoles(Stream.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRoleEntity.class))
+                        .collect(Collectors.toList()));
 
         userRepository.saveAndFlush(newUser);
 

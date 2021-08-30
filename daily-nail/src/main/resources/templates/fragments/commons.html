@@ -33,6 +33,26 @@
             font-feature-settings: "locl" 0;
         }
     </style>
+    <script type="text/javascript">
+
+        window.onload=fadeout;
+
+        function fadeout() {
+            var fade = document.getElementById("successFadeOut");
+            var intervalID = setInterval(function () {
+                if (!fade.style.opacity) {
+                    fade.style.opacity = 1;
+                }
+                if (fade.style.opacity > 0) {
+                    fade.style.opacity -= 0.1;
+                }
+                else {
+                    clearInterval(intervalID);
+                }
+            }, 200);
+            fade.addEventListener('transitionend', () => fade.remove())
+        }
+    </script>
 
 </head>
 
