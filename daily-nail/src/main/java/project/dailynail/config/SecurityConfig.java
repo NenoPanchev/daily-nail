@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // allow access to static resources to anyone
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/img/**").permitAll()
+                .antMatchers("/img/**", "/fonts/**").permitAll()
                 // allow access to index, user login and reg to anyone
                 .antMatchers("/", "/users/terms-and-conditions", "/users/login", "/users/register").permitAll()
                 // protect all other pages

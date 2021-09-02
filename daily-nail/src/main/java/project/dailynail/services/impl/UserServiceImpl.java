@@ -30,13 +30,14 @@ import java.util.stream.Stream;
 
 @Service
 public class UserServiceImpl implements UserService {
+    private final static String DEFAULT_FULL_NAME = "Anonymous";
+
     private final UserRepository userRepository;
     private final UserRoleService userRoleService;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
     private final DailyNailUserService dailyNailUserService;
     private final Validator validator;
-    private final static String DEFAULT_FULL_NAME = "Анонимен";
 
     public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, DailyNailUserService dailyNailUserService, Validator validator) {
         this.userRepository = userRepository;
