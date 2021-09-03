@@ -57,7 +57,7 @@
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="/"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
           <li><a href="#">Technology</a></li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
+          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile<span class="fa fa-chevron-down"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">Android</a></li>
               <li><a href="#">Samsung</a></li>
@@ -69,8 +69,7 @@
           <li><a href="#">Laptops</a></li>
           <li><a href="#">Tablets</a></li>
           <li><a href="pages/contact.html">Contact Us</a></li>
-          <li><a href="pages/404.html">404 Page</a></li>
-          <li class="dropdown active"><a th:href="@{/users/login}"><span>Profile</span><span class="mobile-show">Profile</span></a>
+          <li class="dropdown active"><a th:href="@{/users/login}"><span>Profile</span><span sec:authorize="isAuthenticated()" class="fa fa-chevron-down"></span></a>
             <ul sec:authorize="isAuthenticated()" class="dropdown-menu" role="menu">
               <li><a th:href="@{/users/profile/settings}">Settings</a></li>
               <li><a th:href="@{/users/profile/change-password}">Change Password</a></li>

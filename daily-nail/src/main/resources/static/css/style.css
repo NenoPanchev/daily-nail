@@ -1184,7 +1184,8 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
     display: inline;
     float: left;
     width: 100%;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    border-bottom: 3px solid #cf0000;
 }
 
 .footer_top {
@@ -1699,6 +1700,36 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
 
 .logout {
     cursor: pointer;
+}
+
+.card-footer {
+    margin-top: 10px;
+    padding: 20px 30px;
+    text-align: center;
+    background-color: #f7f8f8;
+}
+
+.card-footer .label {
+    color: #999;
+    font-size: inherit;
+}
+
+.card-footer a {
+    font-weight: bold;
+    text-underline-position: under;
+    text-decoration: underline;
+}
+
+.card-footer .fa {
+    font-size: 10px;
+    color: #cf0000;
+}
+
+.dropdown .fa-chevron-down {
+    font-size: x-small;
+    padding-left: 5px;
+    margin-bottom: 5px;
+    vertical-align: middle;
 }
 
 @media (max-width: 1199px ) {
