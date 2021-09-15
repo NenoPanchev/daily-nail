@@ -153,6 +153,17 @@ html body div.main div.container div.row.section.profile-cont div.col-md-3 div.l
     padding: 30px 0;
 }
 
+.special-icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    background-color: rgba(230, 231, 233, .5);
+    border-radius: 20px
+}
+
 /* ---------------------------- RESPONSIVE ---------------------------- */
 /* Responsive */
 @media screen and (max-width: 768px) {

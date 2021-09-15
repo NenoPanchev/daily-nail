@@ -13,7 +13,7 @@
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="left_content">
           <div class="contact_area">
-            <div th:if="${bad_credentials}" class=" alert-danger" role="alert">
+            <div th:if="${bad_credentials}" class=" alert-danger text-center rounded" role="alert">
               The information you entered does not match our records
             </div>
             <form th:action="@{/users/login}" class="contact_form"

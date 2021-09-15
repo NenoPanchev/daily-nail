@@ -1670,7 +1670,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
     margin-bottom: 20px
 }
 
-.contact_form input[type="text"], .contact_form input[type="email"], .contact_form textarea {
+.contact_form input[type="text"], .contact_form input[type="email"], .contact_form input[type="password"], .contact_form textarea {
     border-radius: 0;
     margin-bottom: 30px
 }

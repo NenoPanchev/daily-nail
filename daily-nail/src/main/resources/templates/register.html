@@ -14,39 +14,44 @@
         <div class="left_content">
           <div class="contact_area">
             <h2>Registration</h2>
-            <div th:if="${bad_credentials}" class=" alert-danger" role="alert">
-              The information you entered does not match our records
-            </div>
+
             <form th:action="@{/users/register}" class="contact_form"
                   th:object="${userRegistrationBindingModel}"
                   method="POST">
+              <div th:if="${userExistsError}" id="usernameUniqueError"
+                   class="text-light form-text bg-danger rounded alert-danger text-center rounded">
+                Account with that email already exists
+              </div>
+              <div th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
+                   class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                Must be valid email
+              </div>
               <label for="email">E-mail</label>
               <input id="email" type="email" class="form-control " name="email"
                      th:value="*{email}"
                      th:errorclass="is-invalid"
                      placeholder="E-mail" required autocomplete="email" autofocus="">
-              <small th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
-                     class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
-              <small th:if="${userExistsError}" id="usernameUniqueError"
-                     class="text-light form-text bg-danger rounded">Account with that email already exists</small>
+
+              <div th:each="e : ${#fields.errors('fullName')}" th:text="${e}" id="fullNameError"
+                   class="invalid-feedback text-light text-center form-text bg-danger alert-danger rounded">
+                Name length must be between 5 and 20 characters and passwords should match.
+              </div>
               <label for="fullName">Name</label>
               <input id="fullName" type="text" class="form-control " name="fullName"
                      th:value="*{fullName}"
                      th:errorclass="is-invalid"
                      placeholder="Anonymous" maxlength="30" autocomplete="fullName" >
-              <small th:each="e : ${#fields.errors('fullName')}" th:text="${e}" id="fullNameError"
-                     class="invalid-feedback text-light form-text bg-danger rounded">
-                Password length must be between 5 and 20 characters and passwords should match.
-              </small>
+
+              <div th:each="e : ${#fields.errors('password')}" th:text="${e}" id="passwordError"
+                   class="invalid-feedback text-light text-center form-text bg-danger alert-danger rounded">
+                Password length must be between 4 and 20 characters and passwords should match.
+              </div>
               <label for="password">Password</label>
               <input id="password" type="password" class="form-control" name="password"
                      th:errorclass="is-invalid"
                      placeholder="Password ..." autocomplete="off"
                      required minlength="4" maxlength="20">
-              <small th:each="e : ${#fields.errors('password')}" th:text="${e}" id="passwordError"
-                     class="invalid-feedback text-light form-text bg-danger rounded">
-                Password length must be between 4 and 20 characters and passwords should match.
-              </small>
+
               <label for="password">Confirm password</label>
               <input id="confirmPassword" required minlength="4" maxlength="20" type="password" class="form-control" name="confirmPassword"
                      th:errorclass="is-invalid"
@@ -62,7 +67,7 @@
               </div>
               <div class="card-footer">
                 <span class="label">Already have an account?</span>
-                <a href="/users/register" class="reg">Log in</a>
+                <a href="/users/login" class="reg">Log in</a>
                 <i class="fa fa-home fa-chevron-right"></i>
               </div>
             </form>
