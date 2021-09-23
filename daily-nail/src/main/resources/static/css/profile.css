@@ -69,8 +69,9 @@
     color: #fff;
 }
 .account-options .icon-text {
-    margin-left: 10px;
+    margin-left: 5px;
     display: inline-block;
+    font-size: 18px;
 }
 
 html body div.main div.container div.row.section.profile-cont div.col-md-3 div.left-sidebar div.left-sidebar-body div.account-options a span.icon-text {
@@ -162,6 +163,39 @@ html body div.main div.container div.row.section.profile-cont div.col-md-3 div.l
     position: relative;
     background-color: rgba(230, 231, 233, .5);
     border-radius: 20px
+}
+
+.contact_area input[type="submit"] {
+    border: medium none;
+    color: #fff;
+    height: 35px;
+    padding: 5px 10px;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    width: 100%;
+    font-weight: bold;
+    background-color: #cf0000;
+    margin-top: 30px;
+}
+
+.contact_area input[type="submit"]:hover {
+    border: 1px solid #cf0000;
+    background-color: white;
+    color: #cf0000;
+}
+
+.form-group input {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: black;
+    font-size: 14px;
 }
 
 /* ---------------------------- RESPONSIVE ---------------------------- */

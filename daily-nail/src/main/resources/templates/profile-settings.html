@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-lg-9 col-md-9 col-sm-9">
                                 <form th:action="@{/users/profile/settings}"
                                       th:object="${userUpdateNameAndEmailBindingModel}"
                                       method="POST">
@@ -90,21 +90,17 @@
                                                         <label>Name</label>
                                                         <input type="text" class="form-control" name="fullName" th:value="${principalName}"
                                                                th:errorclass="is-invalid" placeholder="Name">
-                                                        <small th:each="e : ${#fields.errors('fullName')}" th:text="${e}" id="fullNameError"
-                                                               class="invalid-feedback text-light form-text bg-danger rounded">
-                                                            Password length must be between 5 and 20 characters and passwords should match.
-                                                        </small>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group label">
+                                                        <div th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
+                                                             class="invalid-feedback text-light text-center form-text bg-danger alert-danger rounded">Must be valid email</div>
+                                                        <div th:if="${userExistsError}" id="usernameUniqueError"
+                                                             class="text-light form-text text-center  alert-danger rounded">Account with that email already exists</div>
                                                         <label >E-mail</label>
                                                         <input type="email" class="form-control" name="email" th:value="${principalEmail}"
                                                                th:errorclass="is-invalid" placeholder="E-mail">
-                                                        <small th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
-                                                               class="invalid-feedback text-light form-text bg-danger rounded">Must be valid email</small>
-                                                        <small th:if="${userExistsError}" id="usernameUniqueError"
-                                                               class="text-light form-text bg-danger rounded">Account with that email already exists</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,9 +108,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <button type="submit" class="btn primary-btn btn-save">
-                                                        Save
-                                                    </button>
+                                                    <input type="submit" value="Save">
                                                 </div>
                                             </div>
                                         </div>
