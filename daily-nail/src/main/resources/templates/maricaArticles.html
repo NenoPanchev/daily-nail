@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+    <button class="navbar-toggler" type="button" id="menu-toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="#" class="d-md-none mr-auto ml-4"><i class="fa fa-external-link"></i></a>
+    <a class="navbar-brand ml-0 ml-sm-4" href="/admin">
+      <img src="https://www.marica.bg/assets/admin/images/marica-logo.png" alt="logo" height="40">
+    </a>
+    <a href="https://www.marica.bg" class="d-none d-md-block btn btn-light ml-2 text-dark rounded-0">Към сайта</a>
+    <div class="btn-group d-none d-md-flex ml-4" role="group">
+      <button id="new-actions" type="button" class="btn btn-primary dropdown-toggle rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        + Нова
+      </button>
+      <div class="dropdown-menu" aria-labelledby="new-actions">
+        <a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/create">Статия</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/jokes">Виц</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/horoscopes/create">Хороскоп</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/polls/create">Анкета</a>
+      </div>
+    </div>
+    <div class="dropdown d-md-flex flex-column ml-auto">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <strong class="d-none d-md-inline-block ">Мирослава Атмаджова</strong>
+
+        <span class="d-md-none"><i class="fa fa-user"></i></span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Настройки</a>
+        <a class="dropdown-item" href="https://www.marica.bg/logout" onclick="if (!window.__cfRLUnblockHandlers) return false; event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+          Изход
+        </a>
+        <form id="logout-form" action="https://www.marica.bg/logout" method="POST" style="display: none;">
+          <input type="hidden" name="_token" value="Q6N9CX5mIrDaTO3ZeVosaixLVgmqPDvlqCd48rrV"> </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="d-flex" id="wrapper">
+
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <ul class="list-unstyled list-group">
+      <li class="active">
+        <a href="https://www.marica.bg/admin">
+          <i class="material-icons">dashboard</i>
+          <span>Табло</span>
+        </a>
+      </li>
+      <li>
+        <a href="#newsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">library_books</i>
+          <span>Новини</span>
+        </a>
+        <ul class="collapse list-unstyled" id="newsMenu">
+          <li>
+            <a href="https://www.marica.bg/admin/news/articles">Статии</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/news/categories">Категории</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/news/signals">Сигнали</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/news/articles/comments">Коментари</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/pictures">
+              <span>Снимки</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#componentsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">widgets</i>
+          <span>Компоненти</span>
+        </a>
+        <ul class="collapse list-unstyled" id="componentsMenu">
+          <li>
+            <a href="https://www.marica.bg/admin/components/jokes">Вицове</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/components/horoscopes">Хороскопи</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/components/polls">Анкети</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/pages">Информационни страници</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#menuObqvi" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">library_books</i>
+          <span>Обяви</span>
+        </a>
+        <ul class="collapse list-unstyled" id="menuObqvi">
+          <li><a href="https://www.marica.bg/admin/announcements/ads">Обяви</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/categories">Категории</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/users">Потребители</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/reports">Съобщения за нередност</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/promotions">Промотиране</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/slides">Слайдър</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/pages">Страници</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/system-messages">Системни съобщения</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/banners">Банер позиции</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#menuDirectory" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">library_books</i>
+          <span>Справочник</span>
+        </a>
+        <ul class="collapse list-unstyled" id="menuDirectory">
+          <li><a href="https://www.marica.bg/admin/directory/events">Събития</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/objects">Обекти</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/persons">Личности</a></li>
+          <li><a href="/admin/directory/recommendeds">Препоръчани</a></li>
+          <li><a href="/admin/directory/recommendeds-events">Препоръчани събития</a></li>
+          <li><a href="/admin/directory/visits">Посети в Пловдив</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/categories">Категории</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/events/categories">Категории за събития</a></li>
+          <li><a href="/admin/directory/comments">Коментари</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/bans">Блокиране на IP</a></li>
+          <li><a href="/admin/directory/cities">Градове</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/pages">Страници</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/banners">Банер позиции</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#menuSettings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">settings_applications</i>
+          <span>Настройки</span>
+        </a>
+        <ul class="collapse list-unstyled" id="menuSettings">
+          <li>
+            <a href="https://www.marica.bg/admin/settings/topic">Тема в развитие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://www.marica.bg/admin/blacklist">
+          <i class="material-icons">remove_circle</i>
+          <span>Думи за коментари</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+  <div id="page-content-wrapper">
+    <div class="page-header container-fluid clearfix">
+      <h2 class="h5 d-inline-block mb-0">Статии</h2>
+      <a class="btn btn-primary rounded-0 float-right" style="margin-top: 6px;" href="https://www.marica.bg/admin/news/articles/create">Нова статия</a>
+    </div>
+    <div class="container-fluid">
+      <form id="form-filter" action="" method="get">
+        <div class="row py-2 bg-light">
+          <div class="col-lg-3 col-md-3 col-sm-12 mt-2 mt-md-0">
+            <input type="search" name="search" class="form-control ds-input" id="search-input" placeholder="Търсене..." autocomplete="off">
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+            <select class="form-control selectized" name="category_id" tabindex="-1" style="display: none;"><option value="0" selected="selected">Всички категории</option></select><div class="selectize-control form-control single"><div class="selectize-input items full has-options has-items"><div class="item" data-value="0">Всички категории</div><input type="select-one" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown single form-control" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+            <select class="form-control selectized" name="author_id" tabindex="-1" style="display: none;"><option value="0" selected="selected">Всички редактори</option></select><div class="selectize-control form-control single"><div class="selectize-input items full has-options has-items"><div class="item" data-value="0">Всички редактори</div><input type="select-one" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown single form-control" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+            <input type="text" class="form-control datepicker" name="date" value="" placeholder="Изберете период" autocomplete="off">
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+            <select class="form-control" name="status">
+              <option value="all">Всички статуси</option>
+              <option value="public">Публикувани</option>
+              <option value="draft">Чернови</option>
+              <option value="approval">За одобрение</option>
+            </select>
+          </div>
+          <div class="col-lg-1 col-md-2 col-sm-12 mt-2 mt-md-0">
+            <button type="submit" class="btn btn-secondary rounded-0 float-right">Търсене</button>
+          </div>
+        </div>
+      </form>
+      <div class="list-table article-list">
+        <div class="list-table-header">
+          <div>Снимка</div>
+          <div>Заглавие на статията</div>
+          <div>Статус</div>
+          <div>Категория</div>
+          <div>Публикувана от</div>
+          <div>Дата</div>
+          <div>Коментари</div>
+          <div>Видяна</div>
+          <div>Действия</div>
+        </div>
+
+        <div class="list-table-body">
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/940/350_policia-1-1.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340863/edit">11-годишно дете и мъж пострадаха при пътни инциденти</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Пазарджик</div>
+            <div>Екип Марица</div>
+            <div class="date">
+<span>
+12:11 25.11.2021
+</span>
+              <br>
+              <span>
+12:08 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340863/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/779/350_640_172521.jpeg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340861/edit">ОДМВР: Задържан е синът, убил снощи баща си с нож</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Пазарджик</div>
+            <div>Екип Марица</div>
+            <div class="date">
+<span>
+12:06 25.11.2021
+</span>
+              <br>
+              <span>
+12:00 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340861/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_11B13CA7D-70EF-461F-B91A-BBBA571E1100.jpeg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340858/edit">Стенопис на Христо Стефанов бе реставриран в Стамболийски</a>
+            </div>
+            <div>
+              <span class="text-warning">За одобрение</span>
+            </div>
+            <div>Стамболийски</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+12:06 25.11.2021
+</span>
+              <br>
+              <span>
+11:59 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340858/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340855/edit">Здравко Димитров: С копия не се върши работа, готов съм на компромиси</a>
+            </div>
+            <div>
+              <span class="text-dark">Чернова</span>
+            </div>
+            <div>Градът</div>
+            <div>Валентина Йеремиева</div>
+            <div class="date">
+<span>
+12:04 25.11.2021
+</span>
+              <br>
+              <span>
+11:45 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340855/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_fold3 (1).jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340852/edit">Сгъваемата революция на Samsung променя света на смартфоните</a>
+            </div>
+            <div>
+              <span class="text-warning">За одобрение</span>
+            </div>
+            <div>Бизнес зона</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+12:03 25.11.2021
+</span>
+              <br>
+              <span>
+11:50 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340852/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_MallPlovdiv_ChrismasSelfieShop_PR_Photos_02.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340851/edit">Да върнем коледния дух!</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Бизнес зона</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+11:48 25.11.2021
+</span>
+              <br>
+              <span>
+12:05 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340851/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_obrazovanie.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340848/edit">Промяна в образованието или революция с хартиено байраче?</a>
+            </div>
+            <div>
+              <span class="text-dark">Чернова</span>
+            </div>
+            <div>Образование</div>
+            <div>Елица Кандева</div>
+            <div class="date">
+<span>
+11:48 25.11.2021
+</span>
+              <br>
+              <span>
+11:41 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340848/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_oblasten-upravitel.JPG" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340845/edit">Английски компании ще помагат Пловдив да стане smart city</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Градът</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+11:47 25.11.2021
+</span>
+              <br>
+              <span>
+11:48 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>99</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340845/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_kameri_spirki.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340842/edit">Пазят район "Тракия" от вандали с нови 20 камери</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Градът</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+11:30 25.11.2021
+</span>
+              <br>
+              <span>
+12:45 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340842/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/784/350_istanbul-sniag-trafik_05 (1).jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340839/edit">Сняг, леден вятър и дъждове от понеделник! Зимата пристига</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>България</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+11:20 25.11.2021
+</span>
+              <br>
+              <span>
+11:23 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>2183</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340839/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_news_img-20211124-120625.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340836/edit">Кабинетът даде 645 171 лв. за почистване на дере във Винево</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Хасково</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+11:16 25.11.2021
+</span>
+              <br>
+              <span>
+11:14 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>132</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340836/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_propuratura-avtobus-tragediq.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340834/edit">Има ли осми оцелял след огнения ад на АМ "Струма"? Говори прокуратурата ВИДЕО</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>България</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+11:13 25.11.2021
+</span>
+              <br>
+              <span>
+11:13 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>1907</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340834/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/821/350_zodiq-ahilesova-peta.png" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340832/edit">Инатът им е в повече: 3 зодии, които обичат да им е трудно</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Лайфстайл</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+11:09 25.11.2021
+</span>
+              <br>
+              <span>
+11:11 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>684</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340832/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_makedonia-glaven-prokuror.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340831/edit">Главният прокурор на Македония: Видях пластмасови туби, не бяха изгорели</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>България</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+10:54 25.11.2021
+</span>
+              <br>
+              <span>
+11:30 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>410</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340831/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_Krachanov1.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340828/edit">Треньорът на "Марица" след загубата във Франция: Не издържахме</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Волейбол</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+10:52 25.11.2021
+</span>
+              <br>
+              <span>
+10:46 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>186</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340828/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_sportno-orientirane-turnir-haskovo.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340825/edit">70 състезатели по спортно ориентиране идват за приз „Хасково“</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Хасково</div>
+            <div>Делян Аврамов</div>
+            <div class="date">
+<span>
+10:51 25.11.2021
+</span>
+              <br>
+              <span>
+10:43 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>148</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340825/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/778/350_nosene-na-maski-700x430.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340824/edit">Доц. Околийски, СЗО: Пета вълна предстои в България</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>COVID-19</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+10:50 25.11.2021
+</span>
+              <br>
+              <span>
+11:28 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>7</span>
+            </div>
+            <div>
+              <span>422</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340824/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_640_vino-i-gurme-5.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340823/edit">Чакаме двама министри на "Дефиле на младото вино"</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Култура</div>
+            <div>Росен Саръмов</div>
+            <div class="date">
+<span>
+10:46 25.11.2021
+</span>
+              <br>
+              <span>
+11:00 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>186</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340823/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/941/350_avtobus-tragediq-struma.jpg" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340821/edit">Експерт, работил по случая "Хитрино", потвърди скандална версия за взрива в автобуса</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>България</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+10:36 25.11.2021
+</span>
+              <br>
+              <span>
+11:05 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>0</span>
+            </div>
+            <div>
+              <span>806</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340821/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="list-table-row">
+            <div>
+              <img src="https://cdn.marica.bg/images/marica.bg/891/350_simona-zagorova-231.png" alt="" width="100%">
+            </div>
+            <div>
+              <a href="https://www.marica.bg/admin/news/articles/1340819/edit">Накъде без Дани? Нещо неочаквано се случва със Симона Загорова СНИМКА</a>
+            </div>
+            <div>
+              <span class="text-success">Публикувана</span>
+            </div>
+            <div>Лайфстайл</div>
+            <div>Marica.bg</div>
+            <div class="date">
+<span>
+10:22 25.11.2021
+</span>
+              <br>
+              <span>
+10:30 25.11.2021
+</span>
+            </div>
+            <div>
+              <span>2</span>
+            </div>
+            <div>
+              <span>1961</span>
+            </div>
+            <div>
+              <div class="float-right mr-3">
+                <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                  Действия
+                </a>
+                <img class="actions-popup d-inline-block" src="http://mediapoint.bg/img/icons/dots.png" alt="actions popup" data-toggle="dropdown" role="button" aria-expanded="false">
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/1340819/edit">Редактиране</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="pagination" role="navigation">
+        <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
+          <span class="page-link" aria-hidden="true">‹</span>
+        </li>
+        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+        <li class="page-item"><a class="page-link" href="http://www.marica.bg/admin/news/articles?page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="http://www.marica.bg/admin/news/articles?page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="http://www.marica.bg/admin/news/articles?page=4">4</a></li>
+        <li class="page-item"><a class="page-link" href="http://www.marica.bg/admin/news/articles?page=5">5</a></li>
+        <li class="page-item">
+          <a class="page-link" href="http://www.marica.bg/admin/news/articles?page=2" rel="next" aria-label="Next »">›</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="d-md-none btn-group dropup" style="position: fixed; width:100%; bottom: 0;">
+      <button type="button" class="btn btn-secondary text-right rounded-0">
+        + Нова
+      </button>
+      <button type="button" class="btn btn-primary text-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+        <i class="fa fa-plus"></i>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/create">Статия</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/jokes">Виц</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/horoscopes/create">Хороскоп</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/polls/create">Анкета</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" type="text/javascript"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" type="text/javascript"></script>
+<script src="https://www.marica.bg/js/slug.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+<script type="text/javascript">
+  $('#form-filter select').on('change', function () {
+    vall = $(this).children("option:selected").val();
+    if(vall)
+      $('#form-filter').submit()
+  })
+  $("#form-filter #search-input").on('keyup', function (e) {
+    event.preventDefault();
+    if (e.keyCode == 13 && $(this).val().trim())
+      $('#form-filter').submit()
+  })
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous">
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('[name="author_id"],[name="category_id"]').selectize();
+  });
+
+  $(function () {
+    current_time = moment();
+    $('.datepicker').daterangepicker({
+      // timePicker: true,
+      // timePicker24Hour: true,
+      startDate: current_time,
+      locale: {
+        format: "HH:mm DD.MM.YYYY"
+      },
+    }, function(start, end, label) {
+      // $('.datepicker').val(start+' - '+end);
+      // $('#form-filter').submit()
+    });
+    $('.datepicker').val('');
+  });
+</script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v64f9daad31f64f81be21cbef6184a5e31634941392597" integrity="sha512-gV/bogrUTVP2N3IzTDKzgP0Js1gg4fbwtYB6ftgLbKQu/V8yH2+lrKCfKHelh4SO3DPzKj4/glTO+tNJGDnb0A==" data-cf-beacon="{&quot;rayId&quot;:&quot;6b3a19366ae34e43&quot;,&quot;token&quot;:&quot;bf0ad6c6fe6e4bd982330e8bce8464fa&quot;,&quot;version&quot;:&quot;2021.11.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+
+<div class="daterangepicker ltr show-calendar opensright" style="top: 135.05px; left: 1188.17px; right: auto; display: none;"><div class="ranges"></div><div class="drp-calendar left"><div class="calendar-table"><table class="table-condensed"><thead><tr><th class="prev available"><span></span></th><th colspan="5" class="month">Nov 2021</th><th></th></tr><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tbody><tr><td class="weekend off ends available" data-title="r0c0">31</td><td class="available" data-title="r0c1">1</td><td class="available" data-title="r0c2">2</td><td class="available" data-title="r0c3">3</td><td class="available" data-title="r0c4">4</td><td class="available" data-title="r0c5">5</td><td class="weekend available" data-title="r0c6">6</td></tr><tr><td class="weekend available" data-title="r1c0">7</td><td class="available" data-title="r1c1">8</td><td class="available" data-title="r1c2">9</td><td class="available" data-title="r1c3">10</td><td class="available" data-title="r1c4">11</td><td class="available" data-title="r1c5">12</td><td class="weekend available" data-title="r1c6">13</td></tr><tr><td class="weekend available" data-title="r2c0">14</td><td class="available" data-title="r2c1">15</td><td class="available" data-title="r2c2">16</td><td class="available" data-title="r2c3">17</td><td class="available" data-title="r2c4">18</td><td class="available" data-title="r2c5">19</td><td class="weekend available" data-title="r2c6">20</td></tr><tr><td class="weekend available" data-title="r3c0">21</td><td class="available" data-title="r3c1">22</td><td class="available" data-title="r3c2">23</td><td class="available" data-title="r3c3">24</td><td class="today active start-date active end-date available" data-title="r3c4">25</td><td class="available" data-title="r3c5">26</td><td class="weekend available" data-title="r3c6">27</td></tr><tr><td class="weekend available" data-title="r4c0">28</td><td class="available" data-title="r4c1">29</td><td class="available" data-title="r4c2">30</td><td class="off ends available" data-title="r4c3">1</td><td class="off ends available" data-title="r4c4">2</td><td class="off ends available" data-title="r4c5">3</td><td class="weekend off ends available" data-title="r4c6">4</td></tr><tr><td class="weekend off ends available" data-title="r5c0">5</td><td class="off ends available" data-title="r5c1">6</td><td class="off ends available" data-title="r5c2">7</td><td class="off ends available" data-title="r5c3">8</td><td class="off ends available" data-title="r5c4">9</td><td class="off ends available" data-title="r5c5">10</td><td class="weekend off ends available" data-title="r5c6">11</td></tr></tbody></table></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-calendar right"><div class="calendar-table"><table class="table-condensed"><thead><tr><th></th><th colspan="5" class="month">Dec 2021</th><th class="next available"><span></span></th></tr><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead><tbody><tr><td class="weekend off ends available" data-title="r0c0">28</td><td class="off ends available" data-title="r0c1">29</td><td class="off ends available" data-title="r0c2">30</td><td class="available" data-title="r0c3">1</td><td class="available" data-title="r0c4">2</td><td class="available" data-title="r0c5">3</td><td class="weekend available" data-title="r0c6">4</td></tr><tr><td class="weekend available" data-title="r1c0">5</td><td class="available" data-title="r1c1">6</td><td class="available" data-title="r1c2">7</td><td class="available" data-title="r1c3">8</td><td class="available" data-title="r1c4">9</td><td class="available" data-title="r1c5">10</td><td class="weekend available" data-title="r1c6">11</td></tr><tr><td class="weekend available" data-title="r2c0">12</td><td class="available" data-title="r2c1">13</td><td class="available" data-title="r2c2">14</td><td class="available" data-title="r2c3">15</td><td class="available" data-title="r2c4">16</td><td class="available" data-title="r2c5">17</td><td class="weekend available" data-title="r2c6">18</td></tr><tr><td class="weekend available" data-title="r3c0">19</td><td class="available" data-title="r3c1">20</td><td class="available" data-title="r3c2">21</td><td class="available" data-title="r3c3">22</td><td class="available" data-title="r3c4">23</td><td class="available" data-title="r3c5">24</td><td class="weekend available" data-title="r3c6">25</td></tr><tr><td class="weekend available" data-title="r4c0">26</td><td class="available" data-title="r4c1">27</td><td class="available" data-title="r4c2">28</td><td class="available" data-title="r4c3">29</td><td class="available" data-title="r4c4">30</td><td class="available" data-title="r4c5">31</td><td class="weekend off ends available" data-title="r4c6">1</td></tr><tr><td class="weekend off ends available" data-title="r5c0">2</td><td class="off ends available" data-title="r5c1">3</td><td class="off ends available" data-title="r5c2">4</td><td class="off ends available" data-title="r5c3">5</td><td class="off ends available" data-title="r5c4">6</td><td class="off ends available" data-title="r5c5">7</td><td class="weekend off ends available" data-title="r5c6">8</td></tr></tbody></table></div><div class="calendar-time" style="display: none;"></div></div><div class="drp-buttons"><span class="drp-selected">00:00 25.11.2021 - 23:59 25.11.2021</span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" type="button">Apply</button> </div></div>
+</body>
+</html>

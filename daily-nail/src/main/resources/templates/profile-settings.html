@@ -96,8 +96,7 @@
                                                     <div class="form-group label">
                                                         <div th:each="e : ${#fields.errors('email')}" th:text="${e}" id="emailError"
                                                              class="invalid-feedback text-light text-center form-text bg-danger alert-danger rounded">Must be valid email</div>
-                                                        <div th:if="${userExistsError}" id="usernameUniqueError"
-                                                             class="text-light form-text text-center  alert-danger rounded">Account with that email already exists</div>
+
                                                         <label >E-mail</label>
                                                         <input type="email" class="form-control" name="email" th:value="${principalEmail}"
                                                                th:errorclass="is-invalid" placeholder="E-mail">
@@ -105,6 +104,8 @@
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div th:if="${userExistsError}" id="usernameUniqueError"
+                                                     class="text-center  alert-danger rounded">Account with that email address already exists</div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">

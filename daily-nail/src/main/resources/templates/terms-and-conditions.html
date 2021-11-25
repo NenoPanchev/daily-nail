@@ -1,24 +1,39 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="fragments/commons::head"></head>
-
 <body>
-<header th:replace="fragments/commons::navigation"></header>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+    <block th:replace="fragments/commons::completeHeader"></block>
 
-<div class="main ">
-    <div class="container bg-image text-center">
-        <div class="page-header p-5">
-            <h1 class="page-title">Terms and conditions</h1>
-        </div>
-        <div class="page-content section">
-            <p><strong>A very long text.</strong></p>
-            <br><br><br><br><br><br><br><br><br><br>
+    <section id="contentSection">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="left_content">
+                    <div class="contact_area">
+                        <h2>Terms And Conditions</h2>
 
+                        <div class="page-content section">
+                            <p><strong>A very long text.</strong></p>
+                            <br><br><br><br><br><br><br><br><br><br>
+
+                        </div>
+                        <div class="card-footer">
+                            <span class="label">No registration?</span>
+                            <a href="/users/register" class="reg">Register</a>
+                            <i class="fa fa-home fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:replace="fragments/commons::popular"></div>
         </div>
-    </div>
+    </section>
+
+    <footer th:replace="fragments/commons::footer" ></footer>
 </div>
-<footer th:replace="fragments/commons::footer"></footer>
+<block th:replace="fragments/commons::scripts"></block>
 </body>
 </html>
