@@ -1,13 +1,13 @@
 package project.dailynail.models.service;
 
-import project.dailynail.models.entities.SubcategoryEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
+import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 
 import java.util.Set;
 
-public class CategoryServiceModel extends BaseServiceModel {
+public class CategoryServiceModel extends BaseServiceModel{
     private CategoryNameEnum categoryName;
-    private Set<SubcategoryEntity> subcategories;
+    private Set<SubcategoryNameEnum> subcategoryNames;
 
     public CategoryServiceModel() {
     }
@@ -21,12 +21,12 @@ public class CategoryServiceModel extends BaseServiceModel {
         return this;
     }
 
-    public Set<SubcategoryEntity> getSubcategories() {
-        return subcategories;
+    public Set<SubcategoryNameEnum> getSubcategoryNames() {
+        return subcategoryNames;
     }
 
-    public CategoryServiceModel setSubcategories(Set<SubcategoryEntity> subcategories) {
-        this.subcategories = subcategories;
+    public CategoryServiceModel setSubcategoryNames(Set<SubcategoryNameEnum> subcategoryNames) {
+        this.subcategoryNames = subcategoryNames;
         return this;
     }
 }

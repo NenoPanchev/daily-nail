@@ -7,7 +7,7 @@ import project.dailynail.models.entities.CategoryEntity;
 import project.dailynail.models.entities.SubcategoryEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
-import project.dailynail.models.service.CategoryServiceModel;
+import project.dailynail.models.service.CategoryServiceSeedModel;
 import project.dailynail.models.service.SubcategoryServiceModel;
 import project.dailynail.repositories.SubcategoryRepository;
 import project.dailynail.services.CategoryService;
@@ -48,11 +48,11 @@ public class SubcategoryServiceImpl implements SubcategoryService {
                         SubcategoryNameEnum.OTHER));
     }
 
-    private void attachCategoryToSubcategories(CategoryServiceModel categoryServiceModel, List<SubcategoryEntity> subcategoryEntities) {
+    private void attachCategoryToSubcategories(CategoryServiceSeedModel categoryServiceSeedModel, List<SubcategoryEntity> subcategoryEntities) {
         subcategoryEntities
                 .forEach(subcategoryEntity -> {
                     subcategoryEntity
-                            .setCategory(modelMapper.map(categoryServiceModel, CategoryEntity.class));
+                            .setCategory(modelMapper.map(categoryServiceSeedModel, CategoryEntity.class));
                     subcategoryRepository.save(subcategoryEntity);
                 });
     }
@@ -68,6 +68,15 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     public List<SubcategoryServiceModel> findAllBySubcategoryNameIn(SubcategoryNameEnum... subcategoryNameEnums) {
         return subcategoryRepository
                 .findAllBySubcategoryNameIn(subcategoryNameEnums)
+                .stream()
+                .map(entity -> modelMapper.map(entity, SubcategoryServiceModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SubcategoryServiceModel> findAllByCategoryName(CategoryNameEnum categoryNameEnum) {
+        return subcategoryRepository
+                .findAllByCategory_CategoryName(categoryNameEnum)
                 .stream()
                 .map(entity -> modelMapper.map(entity, SubcategoryServiceModel.class))
                 .collect(Collectors.toList());

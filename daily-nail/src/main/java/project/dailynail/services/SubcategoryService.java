@@ -1,5 +1,6 @@
 package project.dailynail.services;
 
+import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 import project.dailynail.models.service.SubcategoryServiceModel;
 
@@ -10,5 +11,5 @@ public interface SubcategoryService {
     void seedSubcategories();
     SubcategoryServiceModel findBySubcategoryNameEnum(SubcategoryNameEnum subcategoryNameEnum);
     List<SubcategoryServiceModel> findAllBySubcategoryNameIn(SubcategoryNameEnum... subcategoryNameEnums);
-
+    List<SubcategoryServiceModel> findAllByCategoryName(CategoryNameEnum categoryNameEnum);
 }

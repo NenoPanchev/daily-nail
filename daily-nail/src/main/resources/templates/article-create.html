@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head"></head>
+<body>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+    <block th:replace="fragments/commons::adminNav"></block>
+
+    <section id="contentSection">
+        <div class="row">
+            <div class="contact_area" style="padding-left: 15px; margin-bottom: 10px">
+                <h2>New Article</h2>
+            </div>
+            <form th:action="@{/articles/create}" class="contact_form"
+                  th:object="${articleCreateBindingModel}"
+                  method="POST">
+
+
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <div class="left_content">
+                        <div class="contact_area">
+                            <div id="titleInput">
+                                <div th:each="e : ${#fields.errors('title')}" th:text="${e}" id="titleError"
+                                     class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                </div>
+                                <label for="title">Title</label>
+                                <input id="title" type="text" class="form-control " name="title"
+                                       th:value="*{title}" th:errorclass="is-invalid"
+                                       placeholder="Title" minlength="12" maxlength="150">
+                            </div>
+
+                            <div id="textInput">
+                                <div th:each="e : ${#fields.errors('text')}" th:text="${e}" id="textError"
+                                     class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                </div>
+                                <label>Text</label>
+                                <textarea class="form-control" cols="30" rows="22" placeholder="Text*"
+                                th:value="*{text}"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <aside class="right_content">
+                        <div class="single_sidebar" id="Main image">
+                            <h2><span>Main Image</span></h2>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#category" aria-controls="home"
+                                                                          role="tab" data-toggle="tab">Url</a></li>
+                                <li role="presentation"><a href="#video" aria-controls="profile" role="tab"
+                                                           data-toggle="tab">File</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="category">
+                                    <div id="urlInput">
+                                        <label for="url">Url</label>
+                                        <input id="url" type="text" class="form-control " name="url"
+                                               th:value="*{imageUrl}"
+                                               placeholder="Url" maxlength="150">
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="video">
+                                    <div id="imageInput">
+                                        <label>Image</label>
+                                        <div class="inputfile-box" style="position: relative">
+                                            <label for="file-upload" style="display: block">
+                                            <span class="file-box">
+                                              <p class="file-name"></p>
+                                            </span>
+                                                <span class="file-button">
+                                                  Choose an image
+                                                </span>
+                                            </label>
+                                            <input type="file" id="file-upload" name="images[]" class="inputfile"
+                                                   th:value="*{imageFile}"
+                                                   accept="image/*" style="display: none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single_sidebar wow fadeInDown"
+                                th:object="${categories}">
+                                    <h2><span>Category Archive</span></h2>
+                                    <select th:field="${articleCreateBindingModel.categoryName}" th:errorclass="is-invalid" class="catgArchive">
+                                        <option value="">Select Category</option>
+                                        <option th:each="c : ${categories}"
+                                        th:value="${c}" th:text="${c}">Life styles</option>
+                                    </select>
+                                </div>
+                                <div sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" class="single_sidebar wow fadeInDown">
+                                    <h2><span>Editor</span></h2>
+                                    <div class="form-group">
+                                        <label>Publish on</label>
+                                        <input th:field="${articleCreateBindingModel.posted}"
+                                               type="datetime-local" class="form-control datetimepicker" name="date" value="">
+                                    </div>
+                                    <div id="Radio buttons">
+                                        <label>Activate</label>
+                                        <div  class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
+                                            <label class="btn btn-secondary active">
+                                                <input th:field="*{activated}" type="radio" name="comments" value="No" id="" autocomplete="off" checked="">
+                                                No
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input th:field="*{activated}" type="radio" name="comments" value="Yes" id="" autocomplete="off">
+                                                Yes
+                                            </label>
+                                        </div>
+
+                                        <label>Disable comments</label>
+                                        <div  class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
+                                            <label class="btn btn-secondary active">
+                                                <input th:field="*{disabledComments}" type="radio" name="comments" value="No" id="" autocomplete="off" checked="">
+                                                No
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input th:field="*{disabledComments}" type="radio" name="comments" value="Yes" id="" autocomplete="off">
+                                                Yes
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+        </div>
+        <div class="row contact_form">
+            <div class="form-group row text-center submit">
+                <div class="col-md-4">
+                    <input type="submit" value="Create">
+                </div>
+            </div>
+        </div>
+        </form>
+    </section>
+
+    <footer th:replace="fragments/commons::footer"></footer>
+</div>
+<block th:replace="fragments/commons::scripts"></block>
+</body>
+</html>

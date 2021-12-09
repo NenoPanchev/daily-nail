@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
             UserEntity admin = new UserEntity()
                     .setEmail("admin@admin.bg")
-                    .setFullName("Admin Admin")
+                    .setFullName("Daily Nail")
                     .setPassword(passwordEncoder.encode("1234"))
                     .setRoles(userRoleService.findAllByRoleIn(Role.ADMIN, Role.EDITOR, Role.REPORTER, Role.USER)
                         .stream()

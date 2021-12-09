@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+    <button class="navbar-toggler" type="button" id="menu-toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="#" class="d-md-none mr-auto ml-4"><i class="fa fa-external-link"></i></a>
+    <a class="navbar-brand ml-0 ml-sm-4" href="/admin">
+      <img src="https://www.marica.bg/assets/admin/images/marica-logo.png" alt="logo" height="40">
+    </a>
+    <a href="https://www.marica.bg" class="d-none d-md-block btn btn-light ml-2 text-dark rounded-0">Към сайта</a>
+    <div class="btn-group d-none d-md-flex ml-4" role="group">
+      <button id="new-actions" type="button" class="btn btn-primary dropdown-toggle rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        + Нова
+      </button>
+      <div class="dropdown-menu" aria-labelledby="new-actions">
+        <a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/create">Статия</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/jokes">Виц</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/horoscopes/create">Хороскоп</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/polls/create">Анкета</a>
+      </div>
+    </div>
+    <div class="dropdown show  d-md-flex flex-column ml-auto">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <strong class="d-none d-md-inline-block ">Мирослава Атмаджова</strong>
+
+        <span class="d-md-none"><i class="fa fa-user"></i></span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Настройки</a>
+        <a class="dropdown-item" href="https://www.marica.bg/logout" onclick="if (!window.__cfRLUnblockHandlers) return false; event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+          Изход
+        </a>
+        <form id="logout-form" action="https://www.marica.bg/logout" method="POST" style="display: none;">
+          <input type="hidden" name="_token" value="ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC"> </form>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="d-flex" id="wrapper">
+
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <ul class="list-unstyled list-group">
+      <li class="active">
+        <a href="https://www.marica.bg/admin">
+          <i class="material-icons">dashboard</i>
+          <span>Табло</span>
+        </a>
+      </li>
+      <li>
+        <a href="#newsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">library_books</i>
+          <span>Новини</span>
+        </a>
+        <ul class="collapse list-unstyled" id="newsMenu">
+          <li>
+            <a href="https://www.marica.bg/admin/news/articles">Статии</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/news/categories">Категории</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/news/signals">Сигнали</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/news/articles/comments">Коментари</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/pictures">
+              <span>Снимки</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#componentsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">widgets</i>
+          <span>Компоненти</span>
+        </a>
+        <ul class="collapse list-unstyled" id="componentsMenu">
+          <li>
+            <a href="https://www.marica.bg/admin/components/jokes">Вицове</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/components/horoscopes">Хороскопи</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/components/polls">Анкети</a>
+          </li>
+          <li>
+            <a href="https://www.marica.bg/admin/pages">Информационни страници</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#menuObqvi" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">library_books</i>
+          <span>Обяви</span>
+        </a>
+        <ul class="collapse list-unstyled" id="menuObqvi">
+          <li><a href="https://www.marica.bg/admin/announcements/ads">Обяви</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/categories">Категории</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/users">Потребители</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/reports">Съобщения за нередност</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/promotions">Промотиране</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/slides">Слайдър</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/pages">Страници</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/system-messages">Системни съобщения</a></li>
+          <li><a href="https://www.marica.bg/admin/announcements/banners">Банер позиции</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#menuDirectory" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">library_books</i>
+          <span>Справочник</span>
+        </a>
+        <ul class="collapse list-unstyled" id="menuDirectory">
+          <li><a href="https://www.marica.bg/admin/directory/events">Събития</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/objects">Обекти</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/persons">Личности</a></li>
+          <li><a href="/admin/directory/recommendeds">Препоръчани</a></li>
+          <li><a href="/admin/directory/recommendeds-events">Препоръчани събития</a></li>
+          <li><a href="/admin/directory/visits">Посети в Пловдив</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/categories">Категории</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/events/categories">Категории за събития</a></li>
+          <li><a href="/admin/directory/comments">Коментари</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/bans">Блокиране на IP</a></li>
+          <li><a href="/admin/directory/cities">Градове</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/pages">Страници</a></li>
+          <li><a href="https://www.marica.bg/admin/directory/banners">Банер позиции</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#menuSettings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">settings_applications</i>
+          <span>Настройки</span>
+        </a>
+        <ul class="collapse list-unstyled" id="menuSettings">
+          <li>
+            <a href="https://www.marica.bg/admin/settings/topic">Тема в развитие</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://www.marica.bg/admin/blacklist">
+          <i class="material-icons">remove_circle</i>
+          <span>Думи за коментари</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+  <div id="page-content-wrapper">
+    <div class="page-header container-fluid clearfix">
+      <h2 class="h5 d-inline-block mb-0">Нова статия</h2>
+      <div class="float-right" style="margin-top: 6px;">
+        <button class="btn btn-secondary rounded-0 btn-submit-article" data-status="draft">Запази</button>
+        <button class="btn btn-primary rounded-0 btn-submit-article" data-status="public">Публикувай</button>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <form id="form-article" method="POST" action="https://www.marica.bg/admin/news/articles">
+        <input type="hidden" name="_token" value="ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC"> <div class="row mt-3">
+        <div class="col-lg-8 col-md-12">
+          <div class="bg-light p-3 mt-3">
+            <span class="font-weight-bold h5 mb-3 d-block">Статия</span>
+            <div class="form-group">
+              <label for="title" class="text-muted">Заглавие</label>
+              <input type="text" class="form-control rounded-0" id="title" name="title" placeholder="Заглавие на статията">
+              <div id="slug-container" class="mt-3">
+                <small><strong>Permalink:</strong> marica.bg/</small>
+                <div class="d-inline-block">
+                  <small>
+                    <strong><span class="slug-link"></span></strong>
+                  </small>
+                  <span id="edit-slug" class="btn btn-secondary btn-sm rounded-0"> Промени</span>
+                </div>
+                <div class="d-inline-block">
+                  <div id="slug-buttons">
+                    <input type="text" name="slug" id="slug" class="form-control rounded-0 d-inline-block">
+                    <span id="save-slug" class="btn btn-primary btn-sm rounded-0"> Запази</span>
+                    <span id="close-slug" class="btn btn-secondary btn-sm rounded-0"> Oтказ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sub-title" class="text-muted">Подзаглавие</label>
+              <input type="text" class="form-control rounded-0" id="sub-title" name="subtitle" placeholder="Подзаглавие на статията">
+            </div>
+            <div class="form-group">
+              <label for="article-text" class="text-muted">Текст</label>
+              <div class="tinymce-container">
+                <textarea id="article-text" name="text" style="opacity: 0; display: none;" aria-hidden="true"></textarea><div role="application" class="tox tox-tinymce" style="visibility: hidden; height: 500px;"><div class="tox-editor-container"><div role="group" class="tox-toolbar"><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Undo" title="Undo" type="button" tabindex="-1" class="tox-tbtn tox-tbtn--disabled" aria-disabled="true"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M6.4 8H12c3.7 0 6.2 2 6.8 5.1.6 2.7-.4 5.6-2.3 6.8a1 1 0 0 1-1-1.8c1.1-.6 1.8-2.7 1.4-4.6-.5-2.1-2.1-3.5-4.9-3.5H6.4l3.3 3.3a1 1 0 1 1-1.4 1.4l-5-5a1 1 0 0 1 0-1.4l5-5a1 1 0 0 1 1.4 1.4L6.4 8z" fill-rule="nonzero"></path></svg></span></button><button aria-label="Redo" title="Redo" type="button" tabindex="-1" class="tox-tbtn tox-tbtn--disabled" aria-disabled="true"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M17.6 10H12c-2.8 0-4.4 1.4-4.9 3.5-.4 2 .3 4 1.4 4.6a1 1 0 1 1-1 1.8c-2-1.2-2.9-4.1-2.3-6.8.6-3 3-5.1 6.8-5.1h5.6l-3.3-3.3a1 1 0 1 1 1.4-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.4-1.4l3.3-3.3z" fill-rule="nonzero"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Paste" title="Paste" type="button" tabindex="-1" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M18 9V5h-2v1c0 .6-.4 1-1 1H9a1 1 0 0 1-1-1V5H6v13h3V9h9zM9 20H6a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.2A3 3 0 0 1 12 1a3 3 0 0 1 2.8 2H18a2 2 0 0 1 2 2v4h1v12H9v-1zm1.5-9.5v9h9v-9h-9zM12 3a1 1 0 0 0-1 1c0 .5.4 1 1 1s1-.5 1-1-.4-1-1-1z" fill-rule="nonzero"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button title="Formats" aria-label="Formats" aria-haspopup="true" type="button" unselectable="on" tabindex="-1" class="tox-tbtn tox-tbtn--select tox-tbtn--bespoke" style="user-select: none;" aria-expanded="false"><span class="tox-tbtn__select-label">Paragraph</span><div class="tox-tbtn__select-chevron"><svg width="10" height="10"><path d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z" fill-rule="nonzero"></path></svg></div></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Bold" title="Bold" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M7.8 19c-.3 0-.5 0-.6-.2l-.2-.5V5.7c0-.2 0-.4.2-.5l.6-.2h5c1.5 0 2.7.3 3.5 1 .7.6 1.1 1.4 1.1 2.5a3 3 0 0 1-.6 1.9c-.4.6-1 1-1.6 1.2.4.1.9.3 1.3.6s.8.7 1 1.2c.4.4.5 1 .5 1.6 0 1.3-.4 2.3-1.3 3-.8.7-2.1 1-3.8 1H7.8zm5-8.3c.6 0 1.2-.1 1.6-.5.4-.3.6-.7.6-1.3 0-1.1-.8-1.7-2.3-1.7H9.3v3.5h3.4zm.5 6c.7 0 1.3-.1 1.7-.4.4-.4.6-.9.6-1.5s-.2-1-.7-1.4c-.4-.3-1-.4-2-.4H9.4v3.8h4z" fill-rule="evenodd"></path></svg></span></button><button aria-label="Italic" title="Italic" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M16.7 4.7l-.1.9h-.3c-.6 0-1 0-1.4.3-.3.3-.4.6-.5 1.1l-2.1 9.8v.6c0 .5.4.8 1.4.8h.2l-.2.8H8l.2-.8h.2c1.1 0 1.8-.5 2-1.5l2-9.8.1-.5c0-.6-.4-.8-1.4-.8h-.3l.2-.9h5.8z" fill-rule="evenodd"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Blockquote" title="Blockquote" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M7.5 17h.9c.4 0 .7-.2.9-.6L11 13V8c0-.6-.4-1-1-1H6a1 1 0 0 0-1 1v4c0 .6.4 1 1 1h2l-1.3 2.7a1 1 0 0 0 .8 1.3zm8 0h.9c.4 0 .7-.2.9-.6L19 13V8c0-.6-.4-1-1-1h-4a1 1 0 0 0-1 1v4c0 .6.4 1 1 1h2l-1.3 2.7a1 1 0 0 0 .8 1.3z" fill-rule="nonzero"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Underline" title="Underline" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M16 5c.6 0 1 .4 1 1v5.5a4 4 0 0 1-.4 1.8l-1 1.4a5.3 5.3 0 0 1-5.5 1 5 5 0 0 1-1.6-1c-.5-.4-.8-.9-1.1-1.4a4 4 0 0 1-.4-1.8V6c0-.6.4-1 1-1s1 .4 1 1v5.5c0 .3 0 .6.2 1l.6.7a3.3 3.3 0 0 0 2.2.8 3.4 3.4 0 0 0 2.2-.8c.3-.2.4-.5.6-.8l.2-.9V6c0-.6.4-1 1-1zM8 17h8c.6 0 1 .4 1 1s-.4 1-1 1H8a1 1 0 0 1 0-2z" fill-rule="evenodd"></path></svg></span></button><button aria-label="Strikethrough" title="Strikethrough" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><g fill-rule="evenodd"><path d="M15.6 8.5c-.5-.7-1-1.1-1.3-1.3-.6-.4-1.3-.6-2-.6-2.7 0-2.8 1.7-2.8 2.1 0 1.6 1.8 2 3.2 2.3 4.4.9 4.6 2.8 4.6 3.9 0 1.4-.7 4.1-5 4.1A6.2 6.2 0 0 1 7 16.4l1.5-1.1c.4.6 1.6 2 3.7 2 1.6 0 2.5-.4 3-1.2.4-.8.3-2-.8-2.6-.7-.4-1.6-.7-2.9-1-1-.2-3.9-.8-3.9-3.6C7.6 6 10.3 5 12.4 5c2.9 0 4.2 1.6 4.7 2.4l-1.5 1.1z"></path><path d="M5 11h14a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2z" fill-rule="nonzero"></path></g></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button title="Font sizes" aria-label="Font sizes" aria-haspopup="true" type="button" unselectable="on" tabindex="-1" class="tox-tbtn tox-tbtn--select tox-tbtn--bespoke" style="user-select: none;" aria-expanded="false"><span class="tox-tbtn__select-label">12pt</span><div class="tox-tbtn__select-chevron"><svg width="10" height="10"><path d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z" fill-rule="nonzero"></path></svg></div></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><div aria-pressed="false" aria-label="Text color" title="Text color" role="button" aria-haspopup="true" tabindex="-1" class="tox-split-button" aria-expanded="false" aria-describedby="aria_1151860801721638016577229"><span role="presentation" tabindex="-1" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><g fill-rule="evenodd"><path id="tox-icon-text-color__color" d="M3 18h18v3H3z"></path><path d="M8.7 16h-.8a.5.5 0 0 1-.5-.6l2.7-9c.1-.3.3-.4.5-.4h2.8c.2 0 .4.1.5.4l2.7 9a.5.5 0 0 1-.5.6h-.8a.5.5 0 0 1-.4-.4l-.7-2.2c0-.3-.3-.4-.5-.4h-3.4c-.2 0-.4.1-.5.4l-.7 2.2c0 .3-.2.4-.4.4zm2.6-7.6l-.6 2a.5.5 0 0 0 .5.6h1.6a.5.5 0 0 0 .5-.6l-.6-2c0-.3-.3-.4-.5-.4h-.4c-.2 0-.4.1-.5.4z"></path></g></svg></span></span><span role="presentation" tabindex="-1" class="tox-tbtn tox-split-button__chevron"><svg width="10" height="10"><path d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z" fill-rule="nonzero"></path></svg></span><span aria-hidden="true" style="display: none;" id="aria_1151860801721638016577229">To open the popup, press Shift+Enter</span></div></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Bullet list" title="Bullet list" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M11 5h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm0 6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm0 6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zM4.5 6c0-.4.1-.8.4-1 .3-.4.7-.5 1.1-.5.4 0 .8.1 1 .4.4.3.5.7.5 1.1 0 .4-.1.8-.4 1-.3.4-.7.5-1.1.5-.4 0-.8-.1-1-.4-.4-.3-.5-.7-.5-1.1zm0 6c0-.4.1-.8.4-1 .3-.4.7-.5 1.1-.5.4 0 .8.1 1 .4.4.3.5.7.5 1.1 0 .4-.1.8-.4 1-.3.4-.7.5-1.1.5-.4 0-.8-.1-1-.4-.4-.3-.5-.7-.5-1.1zm0 6c0-.4.1-.8.4-1 .3-.4.7-.5 1.1-.5.4 0 .8.1 1 .4.4.3.5.7.5 1.1 0 .4-.1.8-.4 1-.3.4-.7.5-1.1.5-.4 0-.8-.1-1-.4-.4-.3-.5-.7-.5-1.1z" fill-rule="evenodd"></path></svg></span></button><button aria-label="Numbered list" title="Numbered list" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M10 17h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm0-6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm0-6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 1 1 0-2zM6 4v3.5c0 .3-.2.5-.5.5a.5.5 0 0 1-.5-.5V5h-.5a.5.5 0 0 1 0-1H6zm-1 8.8l.2.2h1.3c.3 0 .5.2.5.5s-.2.5-.5.5H4.9a1 1 0 0 1-.9-1V13c0-.4.3-.8.6-1l1.2-.4.2-.3a.2.2 0 0 0-.2-.2H4.5a.5.5 0 0 1-.5-.5c0-.3.2-.5.5-.5h1.6c.5 0 .9.4.9 1v.1c0 .4-.3.8-.6 1l-1.2.4-.2.3zM7 17v2c0 .6-.4 1-1 1H4.5a.5.5 0 0 1 0-1h1.2c.2 0 .3-.1.3-.3 0-.2-.1-.3-.3-.3H4.4a.4.4 0 1 1 0-.8h1.3c.2 0 .3-.1.3-.3 0-.2-.1-.3-.3-.3H4.5a.5.5 0 1 1 0-1H6c.6 0 1 .4 1 1z" fill-rule="evenodd"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Increase indent" title="Increase indent" type="button" tabindex="-1" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M7 5h12c.6 0 1 .4 1 1s-.4 1-1 1H7a1 1 0 1 1 0-2zm5 4h7c.6 0 1 .4 1 1s-.4 1-1 1h-7a1 1 0 0 1 0-2zm0 4h7c.6 0 1 .4 1 1s-.4 1-1 1h-7a1 1 0 0 1 0-2zm-5 4h12a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2zm-2.6-3.8L6.2 12l-1.8-1.2a1 1 0 0 1 1.2-1.6l3 2a1 1 0 0 1 0 1.6l-3 2a1 1 0 1 1-1.2-1.6z" fill-rule="evenodd"></path></svg></span></button><button aria-label="Decrease indent" title="Decrease indent" type="button" tabindex="-1" class="tox-tbtn" aria-disabled="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M7 5h12c.6 0 1 .4 1 1s-.4 1-1 1H7a1 1 0 1 1 0-2zm5 4h7c.6 0 1 .4 1 1s-.4 1-1 1h-7a1 1 0 0 1 0-2zm0 4h7c.6 0 1 .4 1 1s-.4 1-1 1h-7a1 1 0 0 1 0-2zm-5 4h12a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2zm1.6-3.8a1 1 0 0 1-1.2 1.6l-3-2a1 1 0 0 1 0-1.6l3-2a1 1 0 0 1 1.2 1.6L6.8 12l1.8 1.2z" fill-rule="evenodd"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Align left" title="Align left" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 4h8c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 8h8c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2zm0-4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z" fill-rule="evenodd"></path></svg></span></button><button aria-label="Align center" title="Align center" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm3 4h8c.6 0 1 .4 1 1s-.4 1-1 1H8a1 1 0 1 1 0-2zm0 8h8c.6 0 1 .4 1 1s-.4 1-1 1H8a1 1 0 0 1 0-2zm-3-4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z" fill-rule="evenodd"></path></svg></span></button><button aria-label="Align right" title="Align right" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm6 4h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm0 8h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm-6-4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z" fill-rule="evenodd"></path></svg></span></button><button aria-label="Justify" title="Justify" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2zm0 4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z" fill-rule="evenodd"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Insert/edit link" title="Insert/edit link" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M6.2 12.3a1 1 0 0 1 1.4 1.4l-2.1 2a2 2 0 1 0 2.7 2.8l4.8-4.8a1 1 0 0 0 0-1.4 1 1 0 1 1 1.4-1.3 2.9 2.9 0 0 1 0 4L9.6 20a3.9 3.9 0 0 1-5.5-5.5l2-2zm11.6-.6a1 1 0 0 1-1.4-1.4l2-2a2 2 0 1 0-2.6-2.8L11 10.3a1 1 0 0 0 0 1.4A1 1 0 1 1 9.6 13a2.9 2.9 0 0 1 0-4L14.4 4a3.9 3.9 0 0 1 5.5 5.5l-2 2z" fill-rule="nonzero"></path></svg></span></button><button aria-label="Insert/edit image" title="Insert/edit image" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M5 15.7l3.3-3.2c.3-.3.7-.3 1 0L12 15l4.1-4c.3-.4.8-.4 1 0l2 1.9V5H5v10.7zM5 18V19h3l2.8-2.9-2-2L5 17.9zm14-3l-2.5-2.4-6.4 6.5H19v-4zM4 3h16c.6 0 1 .4 1 1v16c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V4c0-.6.4-1 1-1zm6 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" fill-rule="nonzero"></path></svg></span></button><button aria-label="Insert/edit media" title="Insert/edit media" type="button" tabindex="-1" class="tox-tbtn" aria-pressed="false"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><path d="M4 3h16c.6 0 1 .4 1 1v16c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V4c0-.6.4-1 1-1zm1 2v14h14V5H5zm4.8 2.6l5.6 4a.5.5 0 0 1 0 .8l-5.6 4A.5.5 0 0 1 9 16V8a.5.5 0 0 1 .8-.4z" fill-rule="nonzero"></path></svg></span></button></div><div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group"><button aria-label="Source code" title="Source code" type="button" tabindex="-1" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24"><g fill-rule="nonzero"><path d="M9.8 15.7c.3.3.3.8 0 1-.3.4-.9.4-1.2 0l-4.4-4.1a.8.8 0 0 1 0-1.2l4.4-4.2c.3-.3.9-.3 1.2 0 .3.3.3.8 0 1.1L6 12l3.8 3.7zM14.2 15.7c-.3.3-.3.8 0 1 .4.4.9.4 1.2 0l4.4-4.1c.3-.3.3-.9 0-1.2l-4.4-4.2a.8.8 0 0 0-1.2 0c-.3.3-.3.8 0 1.1L18 12l-3.8 3.7z"></path></g></svg></span></button></div></div><div class="tox-anchorbar"></div><div class="tox-sidebar-wrap"><div class="tox-edit-area"><iframe id="article-text_ifr" allowtransparency="true" title="Rich Text Area. Press ALT-0 for help." class="tox-edit-area__iframe" frameborder="0"></iframe></div><div role="complementary" class="tox-sidebar"><div data-alloy-tabstop="true" tabindex="-1" class="tox-sidebar__slider tox-sidebar--sliding-closed" style="width: 0px;"><div class="tox-sidebar__pane-container"></div></div></div></div></div><div class="tox-statusbar"><div class="tox-statusbar__text-container"><div role="navigation" data-alloy-tabstop="true" class="tox-statusbar__path"></div><button type="button" data-alloy-tabstop="true" tabindex="-1" class="tox-statusbar__wordcount">0 words</button><span class="tox-statusbar__branding"><a href="https://www.tiny.cloud/?utm_campaign=editor_referral&amp;utm_medium=poweredby&amp;utm_source=tinymce&amp;utm_content=v5" rel="noopener" target="_blank" tabindex="-1" aria-label="Powered by Tiny">Powered by Tiny</a></span></div><div title="Resize" class="tox-statusbar__resize-handle"><svg width="10" height="10"><g fill-rule="nonzero"><path d="M8.1 1.1A.5.5 0 1 1 9 2l-7 7A.5.5 0 1 1 1 8l7-7zM8.1 5.1A.5.5 0 1 1 9 6l-3 3A.5.5 0 1 1 5 8l3-3z"></path></g></svg></div></div><div aria-hidden="true" class="tox-throbber" style="display: none;"></div></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="article-text" class="text-muted">Видео</label>
+              <textarea class="form-control" name="embed"></textarea>
+            </div>
+            <div class="input-group" id="tags">
+              <label class="control-label text-muted">
+                Тагове
+                <br>
+                <small>Изброяването на тагове става със запетая, трябва да добавите поне 4 тага.</small>
+              </label>
+              <div class="input-group">
+                <input type="text" class="form-control rounded-0" name="tags" value="" placeholder="Добави таг">
+              </div>
+            </div>
+          </div>
+          <div class="bg-light p-3 mt-3">
+            <span class="font-weight-bold h5 mb-3 d-block">Свързани статии</span>
+            <div class="input-group">
+              <input type="text" id="search-article" class="form-control rounded-0" name="search" value="" placeholder="Търсене на статии">
+            </div>
+            <div id="sortable" class="related-list mt-4 ui-sortable">
+            </div>
+          </div>
+          <div class="bg-light p-3 mt-3">
+            <button type="button" class="btn btn-secondary rounded-0 btn-submit-article">Запази</button>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="bg-light p-3 mt-3">
+            <div class="form-group">
+              <label for="prime-image" class="font-weight-bold h5 mb-3 d-block">Заглавна снимка</label>
+              <div id="tinymce-modal" data-toggle="modal" data-target="#picture-modal">
+              </div>
+              <div id="selected-images">
+              </div>
+              <div class="dropzone dz-clickable mt-4" id="prime-image" data-toggle="modal" data-target="#picture-modal">
+                <div class="dz-message d-flex flex-column">
+                  <i class="material-icons text-muted">add_photo_alternate</i>
+                  Изберете снимка
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-light p-3 mt-3">
+            <div class="form-group">
+              <label class="font-weight-bold h5 mb-3 d-block">Категория</label>
+              <select class="form-control selectized" name="category" tabindex="-1" style="display: none;"><option value="0" selected="selected">Изберете категория</option></select><div class="selectize-control form-control single"><div class="selectize-input items full has-options has-items"><div class="item" data-value="0">Изберете категория</div><input type="select-one" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown single form-control" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            </div>
+          </div>
+          <div class="bg-light p-3 mt-3">
+            <div class="form-group">
+              <label class="font-weight-bold h5 mb-3 d-block">Автор</label>
+              <select class="form-control selectized" name="author" tabindex="-1" style="display: none;"><option value="0" selected="selected">Изберете автор</option></select><div class="selectize-control form-control single"><div class="selectize-input items full has-options has-items"><div class="item" data-value="0">Изберете автор</div><input type="select-one" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown single form-control" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            </div>
+          </div>
+          <div class="bg-light p-3 mt-3">
+            <div class="form-group">
+              <label class="text-muted d-block">Статус</label>
+              <select class="form-control article-status" name="status">
+                <option value="approval">За одобрение</option>
+                <option value="draft">Чернова</option>
+                <option value="public">Публикувай</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="text-muted d-block">Дата на публикуване</label>
+              <input type="text" class="form-control datepicker" name="date" value="">
+            </div>
+            <div class="form-group">
+              <label class="text-muted d-block">Забрани коментари</label>
+              <div class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="comments" value="0" id="" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="comments" value="1" id="" autocomplete="off">
+                  Да
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="text-muted d-block">Банер в текста</label>
+              <div class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
+                <label class="btn btn-secondary">
+                  <input type="radio" name="banner" value="0" id="" autocomplete="off">
+                  Не
+                </label>
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="banner" value="1" id="" autocomplete="off" checked="">
+                  Да
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="text-muted d-block">Премахни Google ads</label>
+              <div class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="google_ads" value="0" id="" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="google_ads" value="1" id="" autocomplete="off">
+                  Да
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="text-muted d-block">AMP статия</label>
+              <div class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="amp" value="0" id="" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="amp" value="1" id="" autocomplete="off">
+                  Да
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="text-muted d-block">Изпрати Push нотификация</label>
+              <div class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="push_notification" value="0" id="" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="push_notification" value="1" id="" autocomplete="off">
+                  Да
+                </label>
+              </div>
+              <div>
+                <select class="form-control" name="notification_list">
+                  <option value="all">Целият сайт</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="bg-light p-3 mt-3">
+            <div class="form-group clearfix">
+              <label class="font-weight-bold h5 mb-3 d-block">Управление</label>
+            </div>
+            <div class="form-group mt-4 clearfix">
+              <label class="text-muted d-block">Топ на сайта</label>
+              <div class="btn-group btn-group-custom-toggle show-content" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="top_site" value="0" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="top_site" value="1" autocomplete="off">
+                  Да
+                </label>
+              </div>
+              <div class="btn-group-custom-toggle mt-3 position-content" data-toggle="buttons" style="width: 100%; display:none;">
+                <label class="btn btn-secondary btn-position first active">
+                  <input type="radio" name="top_site_position" value="1" autocomplete="off" checked="">
+                  1
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_site_position" value="2" autocomplete="off">
+                  2
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_site_position" value="3" autocomplete="off">
+                  3
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_site_position" value="4" autocomplete="off">
+                  4
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_site_position" value="5" autocomplete="off">
+                  5
+                </label>
+              </div>
+            </div>
+            <div class="form-group mt-4 clearfix">
+              <label class="text-muted d-block">Топ на главна категория</label>
+              <div class="btn-group btn-group-custom-toggle show-content" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="top_main" value="0" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="top_main" value="1" autocomplete="off">
+                  Да
+                </label>
+              </div>
+              <div class="btn-group-custom-toggle mt-3 position-content" data-toggle="buttons" style="width: 100%; display:none;">
+                <label class="btn btn-secondary btn-position first active">
+                  <input type="radio" name="top_main_position" value="1" autocomplete="off" checked="">
+                  1
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_main_position" value="2" autocomplete="off">
+                  2
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_main_position" value="3" autocomplete="off">
+                  3
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_main_position" value="4" autocomplete="off">
+                  4
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_main_position" value="5" autocomplete="off">
+                  5
+                </label>
+              </div>
+            </div>
+            <div class="form-group mt-4 clearfix">
+              <label class="text-muted d-block">Топ на категория</label>
+              <div class="btn-group btn-group-custom-toggle show-content" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="top_cat" value="0" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="top_cat" value="1" autocomplete="off">
+                  Да
+                </label>
+              </div>
+              <div class="btn-group-custom-toggle mt-3 position-content" data-toggle="buttons" style="width: 100%; display:none;">
+                <label class="btn btn-secondary btn-position first active">
+                  <input type="radio" name="top_cat_position" value="1" autocomplete="off" checked="">
+                  1
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_cat_position" value="2" autocomplete="off">
+                  2
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_cat_position" value="3" autocomplete="off">
+                  3
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_cat_position" value="4" autocomplete="off">
+                  4
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="top_cat_position" value="5" autocomplete="off">
+                  5
+                </label>
+              </div>
+            </div>
+            <div class="form-group mt-4 clearfix">
+              <label class="text-muted d-block">Актуално</label>
+              <div class="btn-group btn-group-custom-toggle show-content" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="exclusive" value="0" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="exclusive" value="1" autocomplete="off">
+                  Да
+                </label>
+              </div>
+              <div class="btn-group-custom-toggle mt-3 position-content two-col clearfix" data-toggle="buttons" style="width: 100%; display:none;">
+                <label class="btn btn-secondary btn-position active" style="width: 100%;">
+                  <input type="radio" name="exclusive_position" value="1" autocomplete="off" checked="">
+                  1
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="exclusive_position" value="2" autocomplete="off">
+                  2
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="exclusive_position" value="3" autocomplete="off">
+                  3
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="exclusive_position" value="4" autocomplete="off">
+                  4
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="exclusive_position" value="5" autocomplete="off">
+                  5
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="exclusive_position" value="6" autocomplete="off">
+                  6
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="exclusive_position" value="7" autocomplete="off">
+                  7
+                </label>
+              </div>
+            </div>
+            <div class="form-group mt-4 clearfix">
+              <label class="text-muted d-block">Препоръчани</label>
+              <div class="btn-group btn-group-custom-toggle show-content" style="width: 100%">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="recommended" value="0" autocomplete="off" checked="">
+                  Не
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="recommended" value="1" autocomplete="off">
+                  Да
+                </label>
+              </div>
+              <div class="btn-group-custom-toggle mt-3 position-content six-col clearfix" data-toggle="buttons" style="width: 100%; display:none;">
+                <label class="btn btn-secondary btn-position active">
+                  <input type="radio" name="recommended_position" value="1" autocomplete="off" checked="">
+                  1
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="recommended_position" value="2" autocomplete="off">
+                  2
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="recommended_position" value="3" autocomplete="off">
+                  3
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="recommended_position" value="4" autocomplete="off">
+                  4
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="recommended_position" value="5" autocomplete="off">
+                  5
+                </label>
+                <label class="btn btn-secondary btn-position">
+                  <input type="radio" name="recommended_position" value="6" autocomplete="off">
+                  6
+                </label>
+              </div>
+            </div>
+            <div class="sport-control">
+              <div class="form-group mt-4 clearfix">
+                <label class="text-muted d-block">Спорт Актуално</label>
+                <div class="btn-group btn-group-custom-toggle show-content" style="width: 100%">
+                  <label class="btn btn-secondary active">
+                    <input type="radio" name="sport_exclusive" value="0" autocomplete="off" checked="">
+                    Не
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="sport_exclusive" value="1" autocomplete="off">
+                    Да
+                  </label>
+                </div>
+                <div class="btn-group-custom-toggle mt-3 position-content two-col clearfix" data-toggle="buttons" style="width: 100%; display:none;">
+                  <label class="btn btn-secondary btn-position active" style="width: 100%;">
+                    <input type="radio" name="sport_exclusive_position" value="1" autocomplete="off" checked="">
+                    1
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_exclusive_position" value="2" autocomplete="off">
+                    2
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_exclusive_position" value="3" autocomplete="off">
+                    3
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_exclusive_position" value="4" autocomplete="off">
+                    4
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_exclusive_position" value="5" autocomplete="off">
+                    5
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_exclusive_position" value="6" autocomplete="off">
+                    6
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_exclusive_position" value="7" autocomplete="off">
+                    7
+                  </label>
+                </div>
+              </div>
+              <div class="form-group mt-4 clearfix">
+                <label class="text-muted d-block">Спорт Препоръчани</label>
+                <div class="btn-group btn-group-custom-toggle show-content" style="width: 100%">
+                  <label class="btn btn-secondary active">
+                    <input type="radio" name="sport_recommended" value="0" autocomplete="off" checked="">
+                    Не
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="sport_recommended" value="1" autocomplete="off">
+                    Да
+                  </label>
+                </div>
+                <div class="btn-group-custom-toggle mt-3 position-content six-col clearfix" data-toggle="buttons" style="width: 100%; display:none;">
+                  <label class="btn btn-secondary btn-position active">
+                    <input type="radio" name="sport_recommended_position" value="1" autocomplete="off" checked="">
+                    1
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_recommended_position" value="2" autocomplete="off">
+                    2
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_recommended_position" value="3" autocomplete="off">
+                    3
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_recommended_position" value="4" autocomplete="off">
+                    4
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_recommended_position" value="5" autocomplete="off">
+                    5
+                  </label>
+                  <label class="btn btn-secondary btn-position">
+                    <input type="radio" name="sport_recommended_position" value="6" autocomplete="off">
+                    6
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+      <div class="modal fade" id="picture-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999">
+        <div class="modal-dialog" role="document" style="max-width: 90%">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Снимки</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body  ui-front">
+              <div class="pic-fade">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#lib" role="tab" data-toggle="tab">Библиотека</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#up" role="tab" data-toggle="tab">Качване на снимки</a>
+                  </li>
+                </ul>
+
+                <div class="container-fluid px-0">
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="lib">
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <div class="p-2 bg-light clearfix">
+                            <div class="form-group has-search ml-3 mr-3 mb-0 float-left">
+                              <select id="change-folder" name="folder" class="form-control float-left select-folder">
+                                <option value="0">Последни снимки</option>
+                                <option value="2">нови снимки</option>
+                                <option value="5">Avtori</option>
+                                <option value="8">Наташа Манева</option>
+                                <option value="11">Атанас Кънев</option>
+                                <option value="12">Други</option>
+                                <option value="13">Външни</option>
+                                <option value="15">Пловдив</option>
+                                <option value="17">Корона Вирус</option>
+                                <option value="19">Свят</option>
+                                <option value="22">Спорт</option>
+                              </select>
+                            </div>
+                            <div class="form-group has-search ml-3 mr-3 mb-0 float-left">
+                              <span class="fa fa-search form-control-feedback"></span>
+                              <input id="search-word" type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button id="more-images" class="btn btn-primary rounded-0 ml-auto more-images">Още снимки</button>
+                            <button id="all_folder" class="btn btn-secondary rounded-0 ml-3 float-right">Всички папка</button>
+                            <button id="new_folder" class="btn btn-secondary rounded-0 ml-auto float-right">Нова папка</button>
+                          </div>
+                          <div class="p-3 mt-2">
+                            <div class="row image-list" style=" max-height: 550px; overflow-y:scroll"><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942703" data-name="lokomotiv-plovdiv-pirin.jpg" data-path="942" data-tags="футбол," data-title="lokomotivpd.com" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_lokomotiv-plovdiv-pirin.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942702" data-name="Nika Paris in action.jpg" data-path="942" data-tags="никол," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_Nika Paris in action.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942700" data-name="sveshti-vino-4.jpg" data-path="942" data-tags="Свещи 22," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_sveshti-vino-4.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942697" data-name="sveshti-vino-2.jpg" data-path="942" data-tags="Багрила," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_sveshti-vino-2.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942695" data-name="sveshti-vino-1.jpg" data-path="942" data-tags="Тихомир Спасов," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_sveshti-vino-1.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942694" data-name="sveshti-vino-3.jpg" data-path="942" data-tags="свещи 1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_sveshti-vino-3.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942693" data-name="orig.jpg" data-path="942" data-tags="катастрофа," data-title="" data-alt="Изоставеният автомобил">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_orig.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942690" data-name="turkey-iran-shopping-tourism-03.jpg" data-path="942" data-tags="турция," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_turkey-iran-shopping-tourism-03.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942687" data-name="turkey-iran-shopping-tourism-02.jpeg" data-path="942" data-tags="турция," data-title="Анадолска агенция" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_turkey-iran-shopping-tourism-02.jpeg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942684" data-name="turkey-iran-shopping-tourism-01.jpg" data-path="942" data-tags="турция," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_turkey-iran-shopping-tourism-01.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942683" data-name="261797598_2741408466151513_6354483421724947813_n.jpg" data-path="942" data-tags="1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_261797598_2741408466151513_6354483421724947813_n.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942680" data-name="261832001_2741408442818182_307376862529195739_n.jpg" data-path="942" data-tags="1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_261832001_2741408442818182_307376862529195739_n.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942677" data-name="261423880_2741408452818181_2187079123930457624_n.jpg" data-path="942" data-tags="1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_261423880_2741408452818181_2187079123930457624_n.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942674" data-name="261802205_2741408546151505_3709944494949639962_n.jpg" data-path="942" data-tags="1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_261802205_2741408546151505_3709944494949639962_n.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942671" data-name="261967637_2741408632818163_786621717912763560_n.jpg" data-path="942" data-tags="1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_261967637_2741408632818163_786621717912763560_n.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942668" data-name="261508849_2741408649484828_4860583219376569207_n.jpg" data-path="942" data-tags="1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_261508849_2741408649484828_4860583219376569207_n.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942665" data-name="261949038_2741408669484826_460476612433552818_n.jpg" data-path="942" data-tags="1," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_261949038_2741408669484826_460476612433552818_n.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942664" data-name="hockey-treva-bulgaria.jpg" data-path="942" data-tags="хокей на трева," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_hockey-treva-bulgaria.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942661" data-name="hockey-treva-bulgaria1.jpg" data-path="942" data-tags="хокей на трева," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_hockey-treva-bulgaria1.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942658" data-name="hockey-treva-bulgaria2.jpg" data-path="942" data-tags="хокей на трева," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_hockey-treva-bulgaria2.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942656" data-name="elizabet-i-morunov.jpg" data-path="942" data-tags="игри на волята," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_elizabet-i-morunov.jpg" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942655" data-name="gradski-transport-plovdiv.JPG" data-path="942" data-tags="градски транспорт," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_gradski-transport-plovdiv.JPG" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942653" data-name="любомир каримански нова тв.png" data-path="942" data-tags="любомир каримански," data-title="" data-alt="">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_любомир каримански нова тв.png" class="img-fluid mb-3">
+                            </div><div class="col-lg-3 pl-0 mt-3 image-cart lib" onmousedown="selectImage(event)" data-id="942652" data-name="turkey-covid19-istanbul-airport.jpg" data-path="942" data-tags="коронавирус," data-title="AFP" data-alt="Пътници, носещи защитни маски на летище Истанбул">
+                              <img src="https://cdn.marica.bg/images/marica.bg/942/350_turkey-covid19-istanbul-airport.jpg" class="img-fluid mb-3">
+                            </div></div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="p-3 bg-light">
+                            <h4>Информация за снимката</h4>
+                            <input type="hidden" id="id" name="id" value="942703">
+                            <input type="hidden" id="path" name="path" value="942">
+                            <label>Име на снимката</label>
+                            <p id="name">lokomotiv-plovdiv-pirin.jpg</p>
+                            <div class="row mb-4">
+                              <div class="col-6">
+                                <img id="img" src="https://cdn.marica.bg/images/marica.bg/942/350_lokomotiv-plovdiv-pirin.jpg" class="img-fluid">
+                              </div>
+                              <div class="col-6">
+                                <button id="pic-edit" class="btn btn-secondary btn-block rounded-0 mb-4">Изрязване</button>
+                                <form method="POST" action="https://www.marica.bg/admin/pictures/images/942703" id="form-delete">
+                                  <input type="hidden" name="_token" value="ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC"> <input type="hidden" name="_method" value="DELETE"> <button type="submit" class="btn btn-secondary btn-block rounded-0">Изтрий</button>
+                                </form>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label>Архив</label>
+                              <input id="tags-img" type="text" name="tags" class="form-control tags-img ui-autocomplete-input" value="" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                              <label>Източник</label>
+                              <input id="title-img" type="text" name="title" class="form-control" value="">
+                            </div>
+                            <div class="form-group">
+                              <label>Описание</label>
+                              <input id="alt" type="text" name="alt" class="form-control" value="">
+                            </div>
+                            <button id="edit" class="btn btn-primary rounded-0">Запази</button>
+                            <small id="success" class="form-text text-success"></small>
+                          </div>
+                        </div>
+                        <div>
+                          <button class="btn btn-primary rounded-0 more-images">Още снимки</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in" id="up">
+                      <div class="row">
+                        <div class="col-12 text-center">
+                          <div class="rounded-circle bg-light content-upload"></div>
+                          <h3 class="mt-4 mb-4">Качване на снимки</h3>
+                          <form id="upload-img-form" method="POST" action="https://www.marica.bg/admin/pictures/images/store" enctype="multipart/form-data">
+                            <input type="hidden" name="_token" value="ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC"> <div class="row justify-content-md-center">
+                            <div class="col col-lg-3">
+                              <label for="folder" class="text-muted float-left">Папка</label>
+                              <select name="folder" class="form-control select-folder mb-4">
+                                <option value="2">нови снимки</option>
+                                <option value="5">Avtori</option>
+                                <option value="8">Наташа Манева</option>
+                                <option value="11">Атанас Кънев</option>
+                                <option value="12">Други</option>
+                                <option value="13">Външни</option>
+                                <option value="15">Пловдив</option>
+                                <option value="17">Корона Вирус</option>
+                                <option value="19">Свят</option>
+                                <option value="22">Спорт</option>
+                              </select>
+                            </div>
+                          </div>
+                            <div class="row justify-content-md-center">
+                              <div class="col col-lg-3">
+                                <label class="text-muted float-left">Архив <span class="info-span">(това поле е задължително)</span></label>
+                                <input id="upload-tags" type="text" name="tags" class="form-control tags-img ui-autocomplete-input" value="" autocomplete="off">
+                              </div>
+                            </div>
+                            <br>
+                            <div class="upload-btns-cont">
+                              <div class="btn btn-secondary rounded-0">
+                                <div class="box">
+                                  <input type="file" name="files[]" id="file" class="inputfile inputfile-1" data-multiple-caption="{count} файла са избрани" multiple="" style="display: none">
+                                  <label for="file">
+                                    <span>Избери снимки</span>
+                                  </label>
+                                </div>
+                              </div>
+                              <span class="hide-block">
+<span class="mx-4">или</span>
+<span id="pic-url" class="btn btn-secondary rounded-0">Добави от URL</span>
+</span>
+                            </div>
+                          </form>
+                          <div class="row justify-content-md-center">
+                            <div class="col col-lg-3">
+                              <div class="pic-url mt-4 hide">
+                                <label for="url" class="text-muted float-left">Линк на снимката</label>
+                                <input type="text" name="url" class="form-control input-url" placeholder="https://example.com/file.jpg">
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <span class="info-span">Файловете трябва да бъдат в някой от следните формати, jpeg, png, jpg, gif и не по голям от 10Mb.</span>
+                          </div>
+                          <br>
+                          <div class="upload-img-btn-group hide">
+                            <button type="button" class="btn btn-primary rounded-0 mt-4 submit-img-form"> Качи снимката </button>
+                            <button type="button" class="btn btn-secondary rounded-0 mt-4 cancel"> Отказ </button>
+                          </div>
+                          <div class="upload-link-btn-group hide">
+                            <button type="button" class="btn btn-primary rounded-0 mt-4 upload-url-image"> Качи снимката </button>
+                            <button type="button" class="btn btn-secondary rounded-0 mt-4 cancel"> Отказ </button>
+                          </div>
+                          <p class="modal-error">Файлът не отговаря на критериите</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pic-edit hide">
+                <div class="border-bottom p-3">
+                  <span>Изрязване</span>
+                  <button type="button" class="close close2" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="p-3">
+                  <img id="image-cropper" src="" height="700">
+                  <button id="crop" class="btn btn-primary rounded-0 mt-4">Изрежи</button>
+                </div>
+              </div>
+              <div class="pic-folder hide">
+                <div class="border-bottom p-3">
+                  <span>Нова папка</span>
+                  <button type="button" class="close close3" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="row justify-content-md-center">
+                  <div class="col col-lg-6">
+                    <div class="input-group mt-4">
+                      <input type="text" class="form-control rounded-0" name="new-folder-name" value="" required="" placeholder="Име на папката">
+                      <div class="input-group-append">
+                        <span id="create-folder" class="input-group-text">Създай папка</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pic-folder-list hide">
+                <div class="border-bottom p-3">
+                  <span>Всички папки</span>
+                  <button type="button" class="close close3" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="row justify-content-md">
+                  <div class="col col-lg-6">
+                    <div class="input-group mt-4">
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="2">нови снимки (139265)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="2" data-name="нови снимки" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="2" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="5">Avtori (36)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="5" data-name="Avtori" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="5" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="8">Наташа Манева (100)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="8" data-name="Наташа Манева" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="8" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="11">Атанас Кънев (6)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="11" data-name="Атанас Кънев" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="11" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="12">Други (59)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="12" data-name="Други" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="12" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="13">Външни (6688)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="13" data-name="Външни" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="13" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="15">Пловдив (3018)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="15" data-name="Пловдив" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="15" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="17">Корона Вирус (58)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="17" data-name="Корона Вирус" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="17" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="19">Свят (440)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="19" data-name="Свят" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="19" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <span class="folder-show" data-id="22">Спорт (3863)</span>
+                          <div class="float-right mr-3">
+                            <a class="dropdown-toggle actions-select btn btn-light ml-2 text-dark rounded-0" href="#" role="button" data-toggle="dropdown">
+                              Действия
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a class="dropdown-item edit-folder" data-toggle="modal" data-target="#edit-modal" data-id="22" data-name="Спорт" href="#">Редактиране</a></li>
+                              <li><a class="dropdown-item delete-folder" data-id="22" href="#">Изтриване</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="edit-category" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="edit-category">Редактиране на категория</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="form-group">
+                            <label class="control-label text-muted">Име на папката</label>
+                            <input id="folder-name" type="text" class="form-control rounded-0" name="name" required="">
+                            <input id="folder-id" type="hidden" class="form-control rounded-0" name="id">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <span id="update-folder" class="btn btn-primary rounded-0 float-left">Редактирай</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <style>
+                .modal-error {
+                  color: red;
+                  margin-top: 10px;
+                  display: none;
+                }
+                .info-span {
+                  color: #ccc;
+                  font-size: 12px;
+                }
+                .hide {
+                  display: none;
+                }
+                .btn-secondary label {
+                  margin: 0;
+                }
+                .has-search {
+                  position: relative;
+                }
+                .has-search .form-control-feedback {
+                  position: absolute;
+                  z-index: 2;
+                  display: block;
+                  width: 2.8rem;
+                  height: 2.8rem;
+                  line-height: 2.375rem;
+                  text-align: center;
+                  pointer-events: none;
+                  color: #aaa;
+                  right: 0;
+                }
+                .lib {
+                  cursor: pointer;
+                }
+                .lib.selected img{
+                  box-shadow: 0 0 0 3px red;
+                }
+              </style>
+              <ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><ul id="ui-id-2" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul></div>
+            <div class="modal-footer">
+              <button id="select-image" type="button" class="btn btn-primary rounded-0">Добави</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-md-none btn-group dropup" style="position: fixed; width:100%; bottom: 0;">
+      <button type="button" class="btn btn-secondary text-right rounded-0">
+        + Нова
+      </button>
+      <button type="button" class="btn btn-primary text-light rounded-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+        <i class="fa fa-plus"></i>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="https://www.marica.bg/admin/news/articles/create">Статия</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/jokes">Виц</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/horoscopes/create">Хороскоп</a>
+        <a class="dropdown-item" href="https://www.marica.bg/admin/components/polls/create">Анкета</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" type="text/javascript"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" type="text/javascript"></script>
+<script src="https://www.marica.bg/js/slug.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  $("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" type="text/javascript"></script>
+<script src="https://cloud.tinymce.com/5.0/tinymce.min.js?apiKey=5ha7ei8hkvbu205kiy30s1og0qz84hrgtyhnlvz4cye5l3js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+<script src="https://www.marica.bg/js/admin-article.js?v=20" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous">
+<script type="text/javascript">
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  $(document).ready(function () {
+    $('[name="author"],[name="category"]').selectize();
+  });
+</script>
+<script src="https://www.marica.bg/assets/admin/js/cropper.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://www.marica.bg/assets/admin/css/cropper.css">
+<script type="text/javascript">
+
+  $('.edit-folder').on('click', function() {
+    let id = $(this).data('id')
+    let name = $(this).data('name')
+    $('#edit-modal #folder-name').val(name)
+    $('#edit-modal #folder-id').val(id)
+    // $('#edit-modal form').attr('action', '/admin/news/folder/'+id)
+  })
+
+  // $('.update-folder').on('click', function() {
+  // 	let id = $(this).data('id')
+  // 	let name = $(this).data('name')
+  // 	$('#edit-modal #folder-name').val(name)
+  // 	$('#edit-modal form').attr('action', '/admin/news/folder/'+id)
+  // })
+
+  // update folder
+  $('#update-folder').on('click', function() {
+    let folderName = $('#edit-modal #folder-name').val();
+    let folderId = $('#edit-modal #folder-id').val();
+    let token = 'ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC';
+    let src = 'https://www.marica.bg/admin/pictures/folders/update';
+    $.ajax({
+      url: src,
+      method: "POST",
+      dataType: "json",
+      data: {
+        _token: token,
+        _method: 'PUT',
+        id: folderId,
+        name: folderName
+      },
+      success: function(data) {
+        $('#success').html('Папката беше успешно редактирана');
+        $('[name="folder"] option[value="'+folderId+'"]').each(function( index, value ) {
+          $(value).text(folderName)
+        })
+        $('.folder-show[data-id="'+folderId+'"]').text(folderName)
+        $('#edit-modal').trigger('click')
+      }
+    });
+  });
+
+  // delete folder
+  $('.delete-folder').on('click', function() {
+    let folderId = $(this).data('id');
+    let token = 'ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC';
+    let src = 'https://www.marica.bg/admin/pictures/folders/destroy';
+    $.ajax({
+      url: src,
+      method: "POST",
+      dataType: "json",
+      data: {
+        _token: token,
+        _method: 'DELETE',
+        id: folderId,
+      },
+      success: function(data) {
+        $('#success').html('Папката беше успешно изтрита');
+        $('[name="folder"] option[value="'+folderId+'"]').each(function( index, value ) {
+          $(value).remove()
+        })
+        $('.folder-show[data-id="'+folderId+'"]').parent().remove()
+      }
+    });
+  });
+
+  var dataX = 0
+  var dataY = 0
+  var dataWidth = 0
+  var dataHeight = 0
+  function prependImage(image,method = 'prepend') {
+    let html = `<div class="col-lg-3 pl-0 mt-3 image-cart lib"
+							onmousedown="selectImage(event)"
+							data-id="${image.id}"
+							data-name="${image.name}"
+							data-path="${image.path}"
+							data-tags="${image.tag?image.tag:''}"
+							data-title="${image.title?image.title:''}"
+							data-alt="${image.alt?image.alt:''}">
+						<img src="https://cdn.marica.bg/images/marica.bg/${image.path}/350_${image.name}" class="img-fluid mb-3">
+					</div>`
+    if(method == 'prepend')
+      $('.image-list').prepend(html)
+    else
+      $('.image-list').append(html)
+  }
+
+  function loadImages(page, folder, search) {
+    let src = 'https://www.marica.bg/admin/pictures/images/load';
+    $.ajax({
+      url: src,
+      method: "GET",
+      dataType: "json",
+      data: {
+        page: page,
+        folder: folder,
+        search: search,
+      },
+      success: function(response) {
+        if (response.status) {
+          if(page == 1)	$('.image-list').html('')
+          for (var key in response.images.data)
+                  // if(page == 1)
+            prependImage(response.images.data[key],'append')
+          // else
+          // 	prependImage(response.images.data[key],'prepend')
+
+          if(page == 1)	$('.image-cart:first-child img').trigger('click')
+        }
+      }
+    })
+  }
+
+  $( document ).ready(function() {
+
+    loadImages(1, 0, '')
+
+    // change folder
+    $('#change-folder').on('change', function() {
+      let folder = $('#change-folder option:selected').val()
+      let search = $('#search-word').val()
+      loadImages(1, folder, search)
+    });
+    $("#search-word").on('keyup', function (e) {
+      event.preventDefault();
+      if (e.keyCode == 13 && $(this).val().trim()){
+        let folder = $('#change-folder option:selected').val()
+        let search = $('#search-word').val()
+        loadImages(1, folder, search)
+      }
+    })
+    // load more images by filter
+    $(".more-images").on('click', function (e) {
+      let folder = $('#change-folder option:selected').val()
+      let search = $('#search-word').val()
+      page = Math.round($('.image-cart').length/24)+1
+      loadImages(page, folder, search)
+    })
+
+
+    // SELECT UPLOAD IMAGES
+    'use strict';
+
+    ;( function ( document, window, index )
+    {
+      var inputs = document.querySelectorAll( '.inputfile' );
+      Array.prototype.forEach.call( inputs, function( input )
+      {
+        var label	 = input.nextElementSibling,
+                labelVal = label.innerHTML;
+
+        input.addEventListener( 'change', function( e )
+        {
+          var fileName = '';
+          if( this.files && this.files.length > 1 ){
+            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+          }else{
+            fileName = e.target.value.split( '\\' ).pop();
+          }
+
+          if( fileName ){
+            label.querySelector( 'span' ).innerHTML = fileName;
+          }else{
+            label.innerHTML = labelVal;
+          }
+
+          if( this.files && this.files.length >= 1 ){
+            $('.hide-block').hide()
+            $('.upload-img-btn-group').show()
+          }else{
+            $('.hide-block').show()
+            $('.upload-img-btn-group').hide()
+          }
+        });
+
+        // Firefox bug fix
+        input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+        input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+      });
+    }( document, window, 0 ));
+
+
+
+
+    // pic upload cancel
+    $('.upload-img-btn-group .cancel').on('click', function () {
+      $('.hide-block').show()
+      $('#file-1').val('');
+      $( ".upload-btns-cont label span" ).text('Избери снимки');
+      $('.upload-img-btn-group').hide();
+    });
+
+
+    // upload url image
+    $('.upload-url-image').on('click', function() {
+      if(!$('#upload-tags').val()) {
+        $('#upload-tags').css('border', '1px solid red')
+        return false
+      }
+      let url = $('.input-url').val();
+      let folder = $('#up [name="folder"] option:selected').val();
+      let tags = $('#upload-tags').val();
+      let token = 'ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC';
+      let src = 'https://www.marica.bg/admin/pictures/images/url';
+      $('#upload-tags').val('')
+      $.ajax({
+        url: src,
+        method: "POST",
+        dataType: "json",
+        data: {
+          _token: token,
+          url: url,
+          folder: folder,
+          tags: tags
+        },
+        success: function(data) {
+          if (data.status) {
+            let img = `<div class="col-lg-3 pl-0 mt-3 image-cart lib"
+								onmousedown="selectImage(event)"
+								data-id="${data.image.id}"
+								data-name="${data.image.name}"
+								data-path="${data.image.path}"
+								data-tags="${data.image.tag?data.image.tag:''}"
+								data-title="${data.image.title?data.image.title:''}"
+								data-alt="${data.image.alt?data.image.alt:''}">
+							<img src="https://cdn.marica.bg/images/marica.bg/${data.image.path}/350_${data.image.name}" class="img-fluid mb-3" >
+						</div>`
+            $('.image-list').prepend(img)
+            $('.upload-link-btn-group .cancel').trigger('click')
+            $('.nav-link').toggleClass('active')
+            $('.tab-pane').toggleClass('active')
+            $('.image-cart:first-child img').trigger('click')
+            $('.modal-error').hide();
+          }else {
+            $('.modal-error').show();
+          }
+        },
+        error: function() {
+          $('.modal-error').show();
+        }
+      });
+    });
+
+    // create folder
+    $('#create-folder').on('click', function() {
+      let folderName = $('[name="new-folder-name"]').val();
+      let token = 'ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC';
+      let src = 'https://www.marica.bg/admin/pictures/folders/create';
+      $.ajax({
+        url: src,
+        method: "POST",
+        dataType: "json",
+        data: {
+          _token: token,
+          name: folderName
+        },
+        success: function(data) {
+          // $('#success').html('Папката беше успешно създадена');
+          $('[name="folder"]').append(`<option value="${data.id}">${data.name}(0)</option>`)
+          $('.close3').trigger('click');
+        }
+      });
+    });
+
+    // image show info
+    $('#lib').on('click', '.lib', function() {
+      // self = $(this);
+      let url = $(this).children('img').attr('src');
+      $('#name').html($(this).attr('data-name'));
+      $('#path').val($(this).attr('data-path'));
+      $('#id').val($(this).attr('data-id'));
+      $('#tags-img').val($(this).attr('data-tags'));
+      $('#title-img').val($(this).attr('data-title'));
+      $('#alt').val($(this).attr('data-alt'));
+      $('#img').attr('src', url);
+      $('#form-delete').attr('action', 'https://www.marica.bg/admin/pictures/images/' + $(this).attr('data-id'));
+      $('#success').html('');
+    });
+
+    // image edit
+    $('#edit').on('click', function() {
+      let id = $('#id').val();
+      let title = $('#title-img').val();
+      let alt = $('#alt').val();
+      let tags = $('#tags-img').val();
+      let token = 'ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC';
+      let src = 'https://www.marica.bg/admin/pictures/images/' + id;
+      $.ajax({
+        url: src,
+        method: "POST",
+        dataType: "json",
+        data: {
+          _token: token,
+          _method: 'PUT',
+          alt : alt,
+          tags : tags,
+          title: title,
+        },
+        success: function(data) {
+        }
+      });
+      $('#success').html('Запазено успешно');
+      $('.lib[data-id="'+ id +'"]').data('title', title).data('alt', alt);
+    });
+
+
+    $('.tab-content').on('click', '#pic-edit', function () {
+      $( ".pic-fade" ).toggle();
+      $( ".pic-edit" ).toggle();
+      // path = 'https://www.marica.bg/storage/' + $('#img').val() + $('#name').html();
+      path = $('#img').attr('src')
+      $('#image-cropper').attr('src', path.replace('/350_', '/'));
+
+      var $cropper = $("#image-cropper"), cropper;
+      $cropper.cropper({
+        aspectRatio: 1.7777777777778,
+        viewMode: 2,
+        autoCrop: false,
+        checkOrientation: false,
+        checkCrossOrigin: false,
+        preview: ".preview",
+        crop: function (event) {
+          dataX 	   = Math.round(event.detail.x);
+          dataY 	   = Math.round(event.detail.y);
+          dataWidth  = Math.round(event.detail.width);
+          dataHeight = Math.round(event.detail.height);
+        },
+      });
+      cropper = $cropper.data("cropper");
+    });
+
+    // crop image
+    $('#crop').on('click', function () {
+      let id = $('#id').val();
+      let token = 'ax0hu4smYk233wTFhb9J3bDbnKT3Dfspo1terelC';
+      let src = 'https://www.marica.bg/admin/pictures/images/crop/' + id;
+      $.ajax({
+        url: src,
+        method: "POST",
+        data: {
+          _token: token,
+          // _method: 'PUT',
+          data_x : dataX,
+          data_y: dataY,
+          data_width : dataWidth,
+          data_height: dataHeight,
+        },
+        success: function(data) {
+          $( ".pic-fade" ).toggle();
+          $( ".pic-edit" ).toggle();
+          let num = Math.random();
+          let newsrc = $('#img').attr('src') + '?v=' + num;
+          $('div[data-id="'+ id +'"] img').attr('src', newsrc);
+          $('#img').attr('src', newsrc);
+          $("#image-cropper").cropper('destroy');
+        },
+      });
+    });
+
+    // pic url
+    $('#pic-url').on('click', function () {
+      $( ".pic-url" ).toggle();
+      $( ".upload-btns-cont" ).hide();
+      $('.upload-link-btn-group').show();
+    });
+
+    // pic url  cancel
+    $('.upload-link-btn-group .cancel').on('click', function () {
+      $( ".pic-url" ).toggle();
+      $( ".upload-btns-cont" ).show();
+      $('.upload-link-btn-group').hide();
+      $('.input-url').val('');
+    });
+
+
+
+    $('.close2').on('click', function () {
+      $( ".pic-fade" ).toggle();
+      $( ".pic-edit" ).toggle();
+      $("#image-cropper").cropper('destroy');
+
+    });
+
+    $('#imguploadbtn').click(function(){ $('#imgupload').trigger('click'); });
+    $('#new_folder').on('click', function () {
+      $( ".pic-fade" ).toggle();
+      $( ".pic-folder" ).toggle();
+
+      $( ".modal-footer" ).toggle();
+      $( ".modal-header" ).toggle();
+    });
+
+    $('#all_folder').on('click', function () {
+      $( ".pic-fade" ).toggle();
+      $( ".pic-folder-list" ).toggle();
+
+      $( ".modal-footer" ).toggle();
+      $( ".modal-header" ).toggle();
+    });
+
+    $('.close3').on('click', function () {
+      $( ".pic-fade" ).show();
+      $( ".pic-folder, .pic-folder-list" ).hide();
+
+      $( ".modal-footer" ).show();
+      $( ".modal-header" ).show();
+    });
+  });
+
+  //STORE IMAGES
+  $('.submit-img-form').on('click', function(event){
+    if(!$('#upload-tags').val()) {
+      $('#upload-tags').css('border', '1px solid red')
+    }else
+      $('#upload-img-form').submit()
+  })
+
+  $('#upload-img-form').on('submit', function(event){
+    event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: $(this).attr('action'),
+      data: new FormData(this),
+      dataType:'JSON',
+      contentType: false,
+      cache: false,
+      async: false,
+      processData: false,
+      success: function(data){
+        if (data.status) {
+          for (var key in data.images) {
+            let html = `<div class="col-lg-3 pl-0 mt-3 image-cart lib"
+											onmousedown="selectImage(event)"
+											data-id="${data.images[key].id}"
+											data-name="${data.images[key].name}"
+											data-path="${data.images[key].path}"
+											data-tags="${data.images[key].tag?data.images[key].tag:''}"
+											data-title="${data.images[key].title?data.images[key].title:''}"
+											data-alt="${data.images[key].alt?data.images[key].alt:''}">
+										<img src="https://cdn.marica.bg/images/marica.bg/${data.images[key].path}/350_${data.images[key].name}"
+											class="img-fluid mb-3">
+									</div>`
+            $('.image-list').prepend(html)
+          }
+
+          $('.upload-img-btn-group .cancel').trigger('click')
+          $('.nav-link').toggleClass('active')
+          $('.tab-pane').toggleClass('active')
+          $('.image-cart:first-child img').trigger('click')
+          $('.modal-error').hide();
+          $('#upload-tags').val('')
+        }
+      },
+      error: function() {
+        $('.modal-error').show();
+      }
+    })
+  })
+
+  // DELETE image
+  $('#form-delete').on('submit', function(event){
+    event.preventDefault();
+    if (confirm('Искатели да изтриете снимката, тя може да бъде закачена към статии!')) {
+      slef = $(this).parents('image-cart')
+      $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: new FormData(this),
+        dataType:'JSON',
+        contentType: false,
+        cache: false,
+        async: false,
+        processData: false,
+        success: function(data){
+          if (data.status) {
+            self.remove()
+            $('.image-cart:first-child').trigger('click')
+          }
+        }
+      })
+    }
+  })
+
+  var sort = 1;
+  function selectImage(event) {
+    if (event.which == 1) {
+      if (event.ctrlKey) {
+        $(event.target).parents('.lib').toggleClass('selected')
+        if($(event.target).parents('.lib').hasClass('selected')){
+          $(event.target).parents('.lib').attr('data-order', sort)
+          sort += 1;
+        }else{
+          $(event.target).parents('.lib').removeAttr('data-order')
+          sort -= 1;
+        }
+      } else {
+        $('.lib').removeClass('selected')
+        $('.lib').removeAttr('data-order')
+        $(event.target).parents('.lib').addClass('selected')
+        sort = 1;
+        $(event.target).parents('.lib').attr('data-order', sort)
+        sort += 1;
+      }
+    }
+  }
+</script>
+<script type="text/javascript">
+  $( function() {
+
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+
+    let src = "/admin/tags/autocomplete";
+    $( ".tags-img" )
+            // don't navigate away from the field on tab when selecting an item
+            .on( "keydown", function( event ) {
+              if ( event.keyCode === $.ui.keyCode.TAB &&
+                      $( this ).autocomplete( "instance" ).menu.active ) {
+                event.preventDefault();
+              }
+            })
+            .autocomplete({
+              minLength: 3,
+              source: function( request, response ) {
+                let term = extractLast(request.term)
+                if (term.length > 2)
+                  $.ajax({
+                    url: src,
+                    dataType: "json",
+                    data: {
+                      term: term
+                    },
+                    success: function (data) {
+                      response(data);
+                    }
+
+                  });
+
+              },
+              focus: function() {
+                // prevent value inserted on focus
+                return false;
+              },
+              select: function( event, ui ) {
+                var terms = split( this.value );
+                // remove the current input
+                terms.pop();
+                // add the selected item
+                terms.push( ui.item.value );
+                // add placeholder to get the comma-and-space at the end
+                terms.push( "" );
+                this.value = terms.join( "," );
+                return false;
+              }
+            });
+  });
+</script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v64f9daad31f64f81be21cbef6184a5e31634941392597" integrity="sha512-gV/bogrUTVP2N3IzTDKzgP0Js1gg4fbwtYB6ftgLbKQu/V8yH2+lrKCfKHelh4SO3DPzKj4/glTO+tNJGDnb0A==" data-cf-beacon="{&quot;rayId&quot;:&quot;6b4b6690facc3248&quot;,&quot;token&quot;:&quot;bf0ad6c6fe6e4bd982330e8bce8464fa&quot;,&quot;version&quot;:&quot;2021.11.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+
+<div class="daterangepicker ltr single opensright"><div class="ranges"></div><div class="drp-calendar left single" style="display: block;"><div class="calendar-table"></div><div class="calendar-time"></div></div><div class="drp-calendar right" style="display: none;"><div class="calendar-table"></div><div class="calendar-time"></div></div><div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled" type="button">Apply</button> </div></div><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><div class="tox tox-silver-sink tox-tinymce-aux" style="position: relative;"></div>
+</body>
+</html>

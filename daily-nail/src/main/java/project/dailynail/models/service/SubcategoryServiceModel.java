@@ -1,11 +1,11 @@
 package project.dailynail.models.service;
 
-import project.dailynail.models.entities.CategoryEntity;
+import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 
 public class SubcategoryServiceModel extends BaseServiceModel {
     private SubcategoryNameEnum subcategoryName;
-    private CategoryEntity category;
+    private CategoryNameEnum categoryCategoryName;
 
     public SubcategoryServiceModel() {
     }
@@ -19,12 +19,12 @@ public class SubcategoryServiceModel extends BaseServiceModel {
         return this;
     }
 
-    public CategoryEntity getCategory() {
-        return category;
+    public CategoryNameEnum getCategoryCategoryName() {
+        return categoryCategoryName;
     }
 
-    public SubcategoryServiceModel setCategory(CategoryEntity category) {
-        this.category = category;
+    public SubcategoryServiceModel setCategoryCategoryName(CategoryNameEnum categoryCategoryName) {
+        this.categoryCategoryName = categoryCategoryName;
         return this;
     }
 }

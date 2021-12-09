@@ -1,5 +1,6 @@
 package project.dailynail.models.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -9,9 +10,10 @@ import java.time.LocalDateTime;
 @Table(name = "articles")
 public class ArticleEntity extends BaseEntity {
     private String title;
-    private String author;
+    private UserEntity author;
+    private String url;
     private String imageUrl;
-    private String content;
+    private String text;
     private LocalDateTime created;
     private LocalDateTime posted;
     private boolean activated;
@@ -22,6 +24,7 @@ public class ArticleEntity extends BaseEntity {
         this.activated = false;
     }
 
+    @Column
     public String getTitle() {
         return title;
     }
@@ -31,15 +34,17 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
-    public String getAuthor() {
+    @ManyToOne
+    public UserEntity getAuthor() {
         return author;
     }
 
-    public ArticleEntity setAuthor(String author) {
+    public ArticleEntity setAuthor(UserEntity author) {
         this.author = author;
         return this;
     }
 
+    @Column
     public String getImageUrl() {
         return imageUrl;
     }
@@ -49,15 +54,17 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
-    public String getContent() {
-        return content;
+    @Column(columnDefinition = "TEXT")
+    public String getText() {
+        return text;
     }
 
-    public ArticleEntity setContent(String content) {
-        this.content = content;
+    public ArticleEntity setText(String text) {
+        this.text = text;
         return this;
     }
 
+    @Column
     public LocalDateTime getCreated() {
         return created;
     }
@@ -67,6 +74,7 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
+    @Column
     public LocalDateTime getPosted() {
         return posted;
     }
@@ -76,6 +84,7 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
+    @Column
     public boolean isActivated() {
         return activated;
     }
@@ -102,6 +111,16 @@ public class ArticleEntity extends BaseEntity {
 
     public ArticleEntity setSubcategory(SubcategoryEntity subcategory) {
         this.subcategory = subcategory;
+        return this;
+    }
+
+    @Column
+    public String getUrl() {
+        return url;
+    }
+
+    public ArticleEntity setUrl(String url) {
+        this.url = url;
         return this;
     }
 }
