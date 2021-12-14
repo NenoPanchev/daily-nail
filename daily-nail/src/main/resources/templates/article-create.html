@@ -9,13 +9,13 @@
     <block th:replace="fragments/commons::adminNav"></block>
 
     <section id="contentSection">
-        <div class="row">
-            <div class="contact_area" style="padding-left: 15px; margin-bottom: 10px">
-                <h2>New Article</h2>
-            </div>
-            <form th:action="@{/articles/create}" class="contact_form"
-                  th:object="${articleCreateBindingModel}"
-                  method="POST">
+        <form th:action="@{/articles/create}" class="contact_form"
+              th:object="${articleCreateBindingModel}"
+              method="POST">
+            <div class="row">
+                <div class="contact_area" style="padding-left: 15px; margin-bottom: 10px">
+                    <h2>New Article</h2>
+                </div>
 
 
                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -29,6 +29,7 @@
                                 <input id="title" type="text" class="form-control " name="title"
                                        th:value="*{title}" th:errorclass="is-invalid"
                                        placeholder="Title" minlength="12" maxlength="150">
+
                             </div>
 
                             <div id="textInput">
@@ -36,8 +37,9 @@
                                      class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
                                 </div>
                                 <label>Text</label>
-                                <textarea class="form-control" cols="30" rows="22" placeholder="Text*"
-                                th:value="*{text}"></textarea>
+                                <textarea class="form-control" cols="30" rows="22" placeholder="Text*" name="text"
+                                          th:value="*{text}" th:errorclass="is-invalid"></textarea>
+
                             </div>
 
                         </div>
@@ -53,13 +55,22 @@
                                 <li role="presentation"><a href="#video" aria-controls="profile" role="tab"
                                                            data-toggle="tab">File</a></li>
                             </ul>
+
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="category">
                                     <div id="urlInput">
+                                        <div th:each="e : ${#fields.errors('imageUrl')}" th:text="${e}"
+                                             id="imageUrlError"
+                                             class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                        </div>
+                                        <div th:if="${no_image}" class=" alert-danger text-center rounded" role="alert">
+                                            You must upload an image.
+                                        </div>
                                         <label for="url">Url</label>
-                                        <input id="url" type="text" class="form-control " name="url"
-                                               th:value="*{imageUrl}"
+                                        <input id="url" type="text" class="form-control " name="imageUrl"
+                                               th:value="*{imageUrl}" th:errorclass="is-invalid"
                                                placeholder="Url" maxlength="150">
+
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="video">
@@ -74,67 +85,91 @@
                                                   Choose an image
                                                 </span>
                                             </label>
-                                            <input type="file" id="file-upload" name="images[]" class="inputfile"
-                                                   th:value="*{imageFile}"
+                                            <input type="file" id="file-upload" name="imageFile" class="inputfile"
+                                                   th:value="*{imageFile}" th:errorclass="is-invalid"
                                                    accept="image/*" style="display: none">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="single_sidebar wow fadeInDown"
-                                th:object="${categories}">
-                                    <h2><span>Category Archive</span></h2>
-                                    <select th:field="${articleCreateBindingModel.categoryName}" th:errorclass="is-invalid" class="catgArchive">
-                                        <option value="">Select Category</option>
-                                        <option th:each="c : ${categories}"
-                                        th:value="${c}" th:text="${c}">Life styles</option>
-                                    </select>
+                            </div>
+                            <div class="single_sidebar wow fadeInDown"
+                                 th:object="${categories}">
+                                <h2><span>Category Archive</span></h2>
+
+                                <select th:field="${articleCreateBindingModel.categoryName}" th:errorclass="is-invalid"
+                                        class="catgArchive">
+                                    <option value="Select Category">Select Category</option>
+                                    <option th:each="c : ${categories}"
+                                            th:value="${c}" th:text="${c}">Life styles
+                                    </option>
+                                </select>
+                                <div th:each="e : ${#fields.errors('categoryName')}" th:text="${e}"
+                                     id="categoryNameError"
+                                     class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
                                 </div>
-                                <div sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" class="single_sidebar wow fadeInDown">
-                                    <h2><span>Editor</span></h2>
-                                    <div class="form-group">
-                                        <label>Publish on</label>
-                                        <input th:field="${articleCreateBindingModel.posted}"
-                                               type="datetime-local" class="form-control datetimepicker" name="date" value="">
-                                    </div>
-                                    <div id="Radio buttons">
-                                        <label>Activate</label>
-                                        <div  class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
-                                            <label class="btn btn-secondary active">
-                                                <input th:field="*{activated}" type="radio" name="comments" value="No" id="" autocomplete="off" checked="">
-                                                No
-                                            </label>
-                                            <label class="btn btn-secondary">
-                                                <input th:field="*{activated}" type="radio" name="comments" value="Yes" id="" autocomplete="off">
-                                                Yes
-                                            </label>
-                                        </div>
-
-                                        <label>Disable comments</label>
-                                        <div  class="btn-group btn-group-custom-toggle" data-toggle="buttons" style="width: 100%">
-                                            <label class="btn btn-secondary active">
-                                                <input th:field="*{disabledComments}" type="radio" name="comments" value="No" id="" autocomplete="off" checked="">
-                                                No
-                                            </label>
-                                            <label class="btn btn-secondary">
-                                                <input th:field="*{disabledComments}" type="radio" name="comments" value="Yes" id="" autocomplete="off">
-                                                Yes
-                                            </label>
-                                        </div>
+                            </div>
+                            <div sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" class="single_sidebar wow fadeInDown">
+                                <h2><span>Activate</span></h2>
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#categoryy" aria-controls="home"
+                                                                              role="tab" data-toggle="tab">No</a></li>
+                                    <li role="presentation"><a href="#videoy" aria-controls="profile" role="tab"
+                                                               data-toggle="tab">Yes</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="categoryy">
 
                                     </div>
+                                    <div role="tabpanel" class="tab-pane" id="videoy">
+                                        <div id="activateInput">
+                                            <div class="form-group">
+                                                <label>Publish on</label>
+                                                <input th:field="*{posted}" th:errorclass="is-invalid"
+                                                       type="datetime-local" class="form-control datetimepicker"
+                                                       name="posted" id="posted">
+                                                <div th:each="e : ${#fields.errors('posted')}" th:text="${e}"
+                                                     id="postedError"
+                                                     class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="Radio buttons">
+                                    <label>Disable comments</label>
+                                    <div class="btn-group btn-group-custom-toggle" data-toggle="buttons"
+                                         style="width: 100%">
+                                        <label class="btn btn-secondary active">
+                                            <input th:field="*{disabledComments}" th:errorclass="is-invalid" type="radio" name="comments"
+                                                   th:value="No" autocomplete="off" checked="">
+                                            No
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input th:field="*{disabledComments}" th:errorclass="is-invalid" type="radio" name="comments"
+                                                   th:value="Yes" autocomplete="off">
+                                            Yes
+                                        </label>
+                                        <div th:each="e : ${#fields.errors('disabledComments')}" th:text="${e}"
+                                             id="disabledCommentsError"
+                                             class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    </aside>
                 </div>
-        </div>
-        <div class="row contact_form">
-            <div class="form-group row text-center submit">
-                <div class="col-md-4">
-                    <input type="submit" value="Create">
+                </aside>
+
+            </div>
+            <div class="row contact_form">
+                <div class="form-group row text-center submit">
+                    <div class="col-md-4">
+                        <input type="submit" value="Create">
+                    </div>
                 </div>
             </div>
-        </div>
         </form>
     </section>
 

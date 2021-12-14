@@ -19,6 +19,7 @@ public class ArticleEntity extends BaseEntity {
     private boolean activated;
     private CategoryEntity category;
     private SubcategoryEntity subcategory;
+    private boolean disabledComments;
 
     public ArticleEntity() {
         this.activated = false;
@@ -121,6 +122,16 @@ public class ArticleEntity extends BaseEntity {
 
     public ArticleEntity setUrl(String url) {
         this.url = url;
+        return this;
+    }
+
+    @Column
+    public boolean isDisabledComments() {
+        return disabledComments;
+    }
+
+    public ArticleEntity setDisabledComments(boolean disabledComments) {
+        this.disabledComments = disabledComments;
         return this;
     }
 }

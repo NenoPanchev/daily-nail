@@ -2,13 +2,9 @@ package project.dailynail.models.binding;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-import project.dailynail.models.entities.enums.CategoryNameEnum;
-import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 public class ArticleCreateBindingModel {
@@ -17,7 +13,6 @@ public class ArticleCreateBindingModel {
     private MultipartFile imageFile;
     private String text;
     private LocalDateTime posted;
-    private String activated;
     private String categoryName;
     private String disabledComments;
 
@@ -34,7 +29,7 @@ public class ArticleCreateBindingModel {
         return this;
     }
 
-    @Pattern(regexp = "^http.*\\.(jpg|png)$", message = "You must enter a valid url address.")
+    @Pattern(regexp = "^http.*\\.(jpg|png)$|^\\s*$", message = "You must enter a valid url address.")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -64,7 +59,7 @@ public class ArticleCreateBindingModel {
     }
 
 
-    @FutureOrPresent
+    @FutureOrPresent(message = "Must be a date/time in the present or in the future.")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     public LocalDateTime getPosted() {
         return posted;
@@ -76,17 +71,6 @@ public class ArticleCreateBindingModel {
     }
 
 
-    public String getActivated() {
-        return activated;
-    }
-
-    public ArticleCreateBindingModel setActivated(String activated) {
-        this.activated = activated;
-        return this;
-    }
-
-
-    @NotNull
     @Pattern(regexp = "^(?!Select Category$).*$", message = "You must select a category")
     public String getCategoryName() {
         return categoryName;
@@ -97,6 +81,7 @@ public class ArticleCreateBindingModel {
         return this;
     }
 
+    @Pattern(regexp = "^Yes|No$", message = "Enter a valid option.")
     public String getDisabledComments() {
         return disabledComments;
     }
