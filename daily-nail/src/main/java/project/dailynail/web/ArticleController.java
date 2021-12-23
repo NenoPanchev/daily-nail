@@ -15,6 +15,7 @@ import project.dailynail.services.CategoryService;
 import project.dailynail.services.SubcategoryService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/articles")
@@ -41,7 +42,7 @@ public class ArticleController {
 
     @PostMapping("/create")
     public String createConfirm(@Valid ArticleCreateBindingModel articleCreateBindingModel,
-            BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+            BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("articleCreateBindingModel", articleCreateBindingModel);

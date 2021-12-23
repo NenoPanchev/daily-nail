@@ -1,9 +1,12 @@
 package project.dailynail.models.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -11,8 +14,8 @@ public class UserEntity extends BaseEntity{
     private String email;
     private String fullName;
     private String password;
-    private List<UserRoleEntity> roles;
-    private List<ArticleEntity> articles;
+    private Set<UserRoleEntity> roles;
+    private Set<ArticleEntity> articles;
 
     public UserEntity() {
     }
@@ -49,21 +52,22 @@ public class UserEntity extends BaseEntity{
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    public List<UserRoleEntity> getRoles() {
+    public Set<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public UserEntity setRoles(List<UserRoleEntity> roles) {
+    public UserEntity setRoles(Set<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }
 
-    @OneToMany(mappedBy = "author")
-    public List<ArticleEntity> getArticles() {
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    public Set<ArticleEntity> getArticles() {
         return articles;
     }
 
-    public UserEntity setArticles(List<ArticleEntity> articles) {
+    public UserEntity setArticles(Set<ArticleEntity> articles) {
         this.articles = articles;
         return this;
     }

@@ -18,6 +18,7 @@ public class ArticleEntity extends BaseEntity {
     private CategoryEntity category;
     private SubcategoryEntity subcategory;
     private boolean disabledComments;
+    private Integer seen;
     private Set<CommentEntity> comments;
 
     public ArticleEntity() {
@@ -141,6 +142,16 @@ public class ArticleEntity extends BaseEntity {
 
     public ArticleEntity setComments(Set<CommentEntity> comments) {
         this.comments = comments;
+        return this;
+    }
+
+    @Column
+    public Integer getSeen() {
+        return seen;
+    }
+
+    public ArticleEntity setSeen(Integer seen) {
+        this.seen = seen;
         return this;
     }
 }

@@ -1,19 +1,17 @@
 package project.dailynail.models.service;
 
 import org.hibernate.validator.constraints.Length;
-import project.dailynail.models.entities.ArticleEntity;
-import project.dailynail.models.entities.UserRoleEntity;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
+import java.util.Set;
 
 public class UserServiceModel extends BaseServiceModel{
     private String email;
     private String fullName;
     private String password;
-    private List<UserRoleEntity> roles;
-    private List<ArticleEntity> articles;
+    private Set<UserRoleServiceModel> roles;
+    private Set<ArticleServiceModel> articles;
 
     public UserServiceModel() {
     }
@@ -49,11 +47,32 @@ public class UserServiceModel extends BaseServiceModel{
         return this;
     }
 
-    public List<UserRoleEntity> getRoles() {
+
+    @Override
+    public String toString() {
+        return "UserServiceModel{" +
+                "email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+
+
+    public Set<ArticleServiceModel> getArticles() {
+        return articles;
+    }
+
+    public UserServiceModel setArticles(Set<ArticleServiceModel> articles) {
+        this.articles = articles;
+        return this;
+    }
+
+    public Set<UserRoleServiceModel> getRoles() {
         return roles;
     }
 
-    public UserServiceModel setRoles(List<UserRoleEntity> roles) {
+    public UserServiceModel setRoles(Set<UserRoleServiceModel> roles) {
         this.roles = roles;
         return this;
     }

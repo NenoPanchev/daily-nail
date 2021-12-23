@@ -21,4 +21,5 @@ public interface UserService {
     boolean passwordMatches(String principalEmail, String oldPassword);
 
     void updatePassword(UserNewPasswordDto userNewPasswordDto, String principalEmail);
+    UserServiceModel getPrincipal();
 }

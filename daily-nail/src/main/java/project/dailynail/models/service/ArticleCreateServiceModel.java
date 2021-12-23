@@ -3,6 +3,7 @@ package project.dailynail.models.service;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import project.dailynail.models.validators.ArticleImage;
+import project.dailynail.models.validators.ArticleImageService;
 import project.dailynail.models.validators.ValidImage;
 
 import javax.validation.constraints.FutureOrPresent;
@@ -10,7 +11,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-@ArticleImage(
+@ArticleImageService(
         first = "imageUrl",
         second = "imageFile"
 )

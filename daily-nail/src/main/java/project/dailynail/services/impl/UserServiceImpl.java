@@ -19,8 +19,8 @@ import project.dailynail.repositories.UserRepository;
 import project.dailynail.services.UserRoleService;
 import project.dailynail.services.UserService;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-import javax.validation.Validator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
                     .setRoles(userRoleService.findAllByRoleIn(Role.ADMIN, Role.EDITOR, Role.REPORTER, Role.USER)
                         .stream()
                         .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toSet()));
 
             UserEntity editor = new UserEntity()
                     .setEmail("editor@editor.bg")
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
                     .setRoles(userRoleService.findAllByRoleIn(Role.EDITOR, Role.USER)
                             .stream()
                             .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
-                            .collect(Collectors.toList()));
+                            .collect(Collectors.toSet()));
 
             UserEntity reporter = new UserEntity()
                     .setEmail("reporter@reporter.bg")
@@ -75,14 +75,14 @@ public class UserServiceImpl implements UserService {
                     .setRoles(userRoleService.findAllByRoleIn(Role.REPORTER, Role.USER)
                             .stream()
                             .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
-                            .collect(Collectors.toList()));
+                            .collect(Collectors.toSet()));
 
             UserEntity user = new UserEntity()
                     .setEmail("user@user.bg")
                     .setFullName("User User")
                     .setPassword(passwordEncoder.encode("1234"))
                     .setRoles(Stream.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRoleEntity.class))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toSet()));
 
             userRepository.saveAll(List.of(admin, editor, reporter, user));
         }
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
                         : userServiceModel.getFullName())
                 .setPassword(passwordEncoder.encode(userServiceModel.getPassword()))
                 .setRoles(Stream.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRoleEntity.class))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toSet()));
 
         userRepository.saveAndFlush(newUser);
 
@@ -152,6 +152,13 @@ public class UserServiceImpl implements UserService {
         String newPassword = userNewPasswordDto.getNewPassword();
         serviceLayerValidationUtil.validate(newPassword);
         userRepository.updatePasswordByEmail(passwordEncoder.encode(newPassword), principalEmail);
+    }
+
+    @Override
+    public UserServiceModel getPrincipal() {
+        String principalEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserServiceModel principal = findByEmail(principalEmail);
+        return principal;
     }
 
     @Transactional
