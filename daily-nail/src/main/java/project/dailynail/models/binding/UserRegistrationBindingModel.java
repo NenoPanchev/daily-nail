@@ -3,6 +3,7 @@ package project.dailynail.models.binding;
 import org.hibernate.validator.constraints.Length;
 import project.dailynail.models.validators.FieldMatch;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -16,6 +17,7 @@ public class UserRegistrationBindingModel {
     private String fullName;
     private String password;
     private String confirmPassword;
+    private boolean acceptedTerms;
 
     public UserRegistrationBindingModel() {
     }
@@ -58,6 +60,16 @@ public class UserRegistrationBindingModel {
 
     public UserRegistrationBindingModel setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+        return this;
+    }
+
+    @AssertTrue(message = "You must accept the terms and conditions")
+    public boolean isAcceptedTerms() {
+        return acceptedTerms;
+    }
+
+    public UserRegistrationBindingModel setAcceptedTerms(boolean acceptedTerms) {
+        this.acceptedTerms = acceptedTerms;
         return this;
     }
 }

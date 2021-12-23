@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.dailynail.models.binding.ArticleCreateBindingModel;
 
+import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.services.ArticleService;
 import project.dailynail.services.CategoryService;
 import project.dailynail.services.SubcategoryService;
@@ -48,16 +49,8 @@ public class ArticleController {
             return "redirect:create";
         }
 
-        if (articleCreateBindingModel.getImageUrl().isEmpty() && articleCreateBindingModel.getImageFile() == null) {
-            redirectAttributes.addFlashAttribute("no_image", true);
-            return "redirect:create";
-        }
 
-        if (articleCreateBindingModel.getCategoryName().equals("Select Category")) {
-            redirectAttributes.addFlashAttribute("no_category", true);
-            return "redirect:create";
-        }
-
+        articleService.createArticle(modelMapper.map(articleCreateBindingModel, ArticleCreateServiceModel.class));
         return "redirect:/";
     }
 

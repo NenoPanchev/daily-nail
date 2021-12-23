@@ -1670,7 +1670,7 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
     margin-bottom: 20px
 }
 
-.contact_form input[type="text"], .contact_form input[type="email"], .contact_form input[type="password"], .contact_form textarea {
+.contact_form input[type="text"], .contact_form input[type="email"], .contact_form input[type="password"], .contact_form input[type="file"], .contact_form textarea {
     border-radius: 0;
     margin-bottom: 30px
 }
@@ -1685,6 +1685,12 @@ figure.effect-layla:hover figcaption::after, figure.effect-layla:hover h2, figur
     transition: all 0.5s;
     width: 100%;
     font-weight: bold;
+}
+
+.contact_form input[type="file"] {
+    width: 100%;
+    border: 1px solid #ced4da;
+    background-color: #f7f8f8;
 }
 
 .contact_form input[type="submit"]:hover {

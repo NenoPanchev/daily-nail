@@ -7,10 +7,8 @@ mvc:
   hiddenmethod:
     filter:
       enabled: true
-servlet:
-  multipart:
-    max-file-size: 1MB
-    max-request-size: 5MB
+
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -25,6 +23,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+      enabled: true
 
 cloudinary:
   cloud-name: dzjgi2c7y

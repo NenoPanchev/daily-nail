@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -13,7 +12,7 @@ public class UserEntity extends BaseEntity{
     private String fullName;
     private String password;
     private List<UserRoleEntity> roles;
-    private Set<ArticleEntity> articles;
+    private List<ArticleEntity> articles;
 
     public UserEntity() {
     }
@@ -60,11 +59,11 @@ public class UserEntity extends BaseEntity{
     }
 
     @OneToMany(mappedBy = "author")
-    public Set<ArticleEntity> getArticles() {
+    public List<ArticleEntity> getArticles() {
         return articles;
     }
 
-    public UserEntity setArticles(Set<ArticleEntity> articles) {
+    public UserEntity setArticles(List<ArticleEntity> articles) {
         this.articles = articles;
         return this;
     }

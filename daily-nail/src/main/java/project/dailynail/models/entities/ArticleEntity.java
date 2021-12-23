@@ -1,10 +1,8 @@
 package project.dailynail.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "articles")
@@ -20,6 +18,7 @@ public class ArticleEntity extends BaseEntity {
     private CategoryEntity category;
     private SubcategoryEntity subcategory;
     private boolean disabledComments;
+    private Set<CommentEntity> comments;
 
     public ArticleEntity() {
         this.activated = false;
@@ -132,6 +131,16 @@ public class ArticleEntity extends BaseEntity {
 
     public ArticleEntity setDisabledComments(boolean disabledComments) {
         this.disabledComments = disabledComments;
+        return this;
+    }
+
+    @OneToMany(mappedBy = "article")
+    public Set<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public ArticleEntity setComments(Set<CommentEntity> comments) {
+        this.comments = comments;
         return this;
     }
 }

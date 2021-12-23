@@ -1,19 +1,20 @@
-package project.dailynail.models.binding;
+package project.dailynail.models.service;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import project.dailynail.models.validators.ArticleImage;
 import project.dailynail.models.validators.ValidImage;
 
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @ArticleImage(
         first = "imageUrl",
         second = "imageFile"
 )
-public class ArticleCreateBindingModel {
+public class ArticleCreateServiceModel {
     private String title;
     private String imageUrl;
     private MultipartFile imageFile;
@@ -22,7 +23,7 @@ public class ArticleCreateBindingModel {
     private String categoryName;
     private String disabledComments;
 
-    public ArticleCreateBindingModel() {
+    public ArticleCreateServiceModel() {
     }
 
     @Size(min = 12, max = 150, message = "Title must be between 12 and 150 characters")
@@ -30,7 +31,7 @@ public class ArticleCreateBindingModel {
         return title;
     }
 
-    public ArticleCreateBindingModel setTitle(String title) {
+    public ArticleCreateServiceModel setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -40,7 +41,7 @@ public class ArticleCreateBindingModel {
         return imageUrl;
     }
 
-    public ArticleCreateBindingModel setImageUrl(String imageUrl) {
+    public ArticleCreateServiceModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -50,7 +51,7 @@ public class ArticleCreateBindingModel {
         return imageFile;
     }
 
-    public ArticleCreateBindingModel setImageFile(MultipartFile imageFile) {
+    public ArticleCreateServiceModel setImageFile(MultipartFile imageFile) {
         this.imageFile = imageFile;
         return this;
     }
@@ -60,11 +61,10 @@ public class ArticleCreateBindingModel {
         return text;
     }
 
-    public ArticleCreateBindingModel setText(String text) {
+    public ArticleCreateServiceModel setText(String text) {
         this.text = text;
         return this;
     }
-
 
     @FutureOrPresent(message = "Must be a date/time in the present or in the future")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
@@ -72,18 +72,17 @@ public class ArticleCreateBindingModel {
         return posted;
     }
 
-    public ArticleCreateBindingModel setPosted(LocalDateTime posted) {
+    public ArticleCreateServiceModel setPosted(LocalDateTime posted) {
         this.posted = posted;
         return this;
     }
-
 
     @Pattern(regexp = "^(?!Select Category$).*$", message = "You must select a category")
     public String getCategoryName() {
         return categoryName;
     }
 
-    public ArticleCreateBindingModel setCategoryName(String categoryName) {
+    public ArticleCreateServiceModel setCategoryName(String categoryName) {
         this.categoryName = categoryName;
         return this;
     }
@@ -93,7 +92,7 @@ public class ArticleCreateBindingModel {
         return disabledComments;
     }
 
-    public ArticleCreateBindingModel setDisabledComments(String disabledComments) {
+    public ArticleCreateServiceModel setDisabledComments(String disabledComments) {
         this.disabledComments = disabledComments;
         return this;
     }

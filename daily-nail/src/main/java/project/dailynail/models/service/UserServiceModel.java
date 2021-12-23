@@ -1,6 +1,7 @@
 package project.dailynail.models.service;
 
 import org.hibernate.validator.constraints.Length;
+import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.UserRoleEntity;
 
 import javax.validation.constraints.Email;
@@ -12,6 +13,7 @@ public class UserServiceModel extends BaseServiceModel{
     private String fullName;
     private String password;
     private List<UserRoleEntity> roles;
+    private List<ArticleEntity> articles;
 
     public UserServiceModel() {
     }

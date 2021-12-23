@@ -11,7 +11,8 @@
     <section id="contentSection">
         <form th:action="@{/articles/create}" class="contact_form"
               th:object="${articleCreateBindingModel}"
-              method="POST">
+              method="POST"
+              enctype="multipart/form-data">
             <div class="row">
                 <div class="contact_area" style="padding-left: 15px; margin-bottom: 10px">
                     <h2>New Article</h2>
@@ -38,7 +39,7 @@
                                 </div>
                                 <label>Text</label>
                                 <textarea class="form-control" cols="30" rows="22" placeholder="Text*" name="text"
-                                          th:value="*{text}" th:errorclass="is-invalid"></textarea>
+                                          th:field="*{text}" th:errorclass="is-invalid"></textarea>
 
                             </div>
 
@@ -55,21 +56,23 @@
                                 <li role="presentation"><a href="#video" aria-controls="profile" role="tab"
                                                            data-toggle="tab">File</a></li>
                             </ul>
+                            <div th:each="e : ${#fields.errors('imageUrl')}" th:text="${e}"
+                                 id="imageUrlError"
+                                 class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                            </div>
+                            <div th:each="e : ${#fields.errors('imageFile')}" th:text="${e}"
+                                 id="imageFileError"
+                                 class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                            </div>
 
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="category">
                                     <div id="urlInput">
-                                        <div th:each="e : ${#fields.errors('imageUrl')}" th:text="${e}"
-                                             id="imageUrlError"
-                                             class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
-                                        </div>
-                                        <div th:if="${no_image}" class=" alert-danger text-center rounded" role="alert">
-                                            You must upload an image.
-                                        </div>
+
                                         <label for="url">Url</label>
                                         <input id="url" type="text" class="form-control " name="imageUrl"
                                                th:value="*{imageUrl}" th:errorclass="is-invalid"
-                                               placeholder="Url" maxlength="150">
+                                               placeholder="Url" maxlength="250">
 
                                     </div>
                                 </div>
@@ -77,36 +80,27 @@
                                     <div id="imageInput">
                                         <label>Image</label>
                                         <div class="inputfile-box" style="position: relative">
-                                            <label for="file-upload" style="display: block">
-                                            <span class="file-box">
-                                              <p class="file-name"></p>
-                                            </span>
-                                                <span class="file-button">
-                                                  Choose an image
-                                                </span>
-                                            </label>
-                                            <input type="file" id="file-upload" name="imageFile" class="inputfile"
-                                                   th:value="*{imageFile}" th:errorclass="is-invalid"
-                                                   accept="image/*" style="display: none">
+                                            <input type="file" id="file-upload" name="imageFile" class="form-control-file"
+                                                   th:field="*{imageFile}" th:errorclass="is-invalid"
+                                                    accept="image/*">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single_sidebar wow fadeInDown"
-                                 th:object="${categories}">
+                            <div class="single_sidebar wow fadeInDown">
                                 <h2><span>Category Archive</span></h2>
 
-                                <select th:field="${articleCreateBindingModel.categoryName}" th:errorclass="is-invalid"
-                                        class="catgArchive">
-                                    <option value="Select Category">Select Category</option>
-                                    <option th:each="c : ${categories}"
-                                            th:value="${c}" th:text="${c}">Life styles
-                                    </option>
-                                </select>
                                 <div th:each="e : ${#fields.errors('categoryName')}" th:text="${e}"
                                      id="categoryNameError"
                                      class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
                                 </div>
+                                <select th:field="${articleCreateBindingModel.categoryName}" th:errorclass="is-invalid"
+                                        class="catgArchive">
+                                    <option value="Select Category">Select Category</option>
+                                    <option th:object="${categories}" th:each="c : ${categories}"
+                                            th:value="${c}" th:text="${c}">Life styles
+                                    </option>
+                                </select>
                             </div>
                             <div sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" class="single_sidebar wow fadeInDown">
                                 <h2><span>Activate</span></h2>

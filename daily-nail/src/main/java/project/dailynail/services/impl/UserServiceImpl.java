@@ -14,17 +14,15 @@ import project.dailynail.models.entities.UserEntity;
 import project.dailynail.models.entities.UserRoleEntity;
 import project.dailynail.models.entities.enums.Role;
 import project.dailynail.models.service.UserServiceModel;
+import project.dailynail.models.validators.ServiceLayerValidationUtil;
 import project.dailynail.repositories.UserRepository;
 import project.dailynail.services.UserRoleService;
 import project.dailynail.services.UserService;
 
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,15 +35,15 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
     private final DailyNailUserService dailyNailUserService;
-    private final Validator validator;
+    private final ServiceLayerValidationUtil serviceLayerValidationUtil;
 
-    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, DailyNailUserService dailyNailUserService, Validator validator) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, DailyNailUserService dailyNailUserService, ServiceLayerValidationUtil serviceLayerValidationUtil) {
         this.userRepository = userRepository;
         this.userRoleService = userRoleService;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.dailyNailUserService = dailyNailUserService;
-        this.validator = validator;
+        this.serviceLayerValidationUtil = serviceLayerValidationUtil;
     }
 
     @Override
@@ -105,7 +103,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerAndLoginUser(UserServiceModel userServiceModel) {
-        validate(userServiceModel);
+        serviceLayerValidationUtil.validate(userServiceModel);
 
         UserEntity newUser = modelMapper.map(userServiceModel, UserEntity.class)
                 .setFullName(userServiceModel.getFullName().isBlank() ? DEFAULT_FULL_NAME
@@ -152,13 +150,13 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updatePassword(UserNewPasswordDto userNewPasswordDto, String principalEmail) {
         String newPassword = userNewPasswordDto.getNewPassword();
-        validate(newPassword);
+        serviceLayerValidationUtil.validate(newPassword);
         userRepository.updatePasswordByEmail(passwordEncoder.encode(newPassword), principalEmail);
     }
 
     @Transactional
     public boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
-        validate(userFullNameAndEmailDto);
+        serviceLayerValidationUtil.validate(userFullNameAndEmailDto);
 
         List<Map<String, String>> principalIdAndFullName = userRepository.getIdAndFullNameByEmail(principalEmail);
 
@@ -179,20 +177,5 @@ public class UserServiceImpl implements UserService {
         }
 
         return updatedFullName || updatedEmail;
-    }
-
-    private <T> void validate(T entity) {
-       Set<ConstraintViolation<T>> violations = validator.validate(entity);
-
-        if (!violations.isEmpty()) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("Error occured: ");
-            violations
-                    .stream()
-                    .map(ConstraintViolation::getMessage)
-                    .forEach(sb::append);
-
-            throw new ConstraintViolationException(sb.toString(), violations);
-        }
     }
 }

@@ -71,7 +71,6 @@ public class UserController {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
-            redirectAttributes.addFlashAttribute("acceptedTerms", true);
             redirectAttributes.addFlashAttribute(
                     "org.springframework.validation.BindingResult.userRegistrationBindingModel", bindingResult);
 
