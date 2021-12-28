@@ -10,6 +10,7 @@ public interface SubcategoryService {
 
     void seedSubcategories();
     SubcategoryServiceModel findBySubcategoryNameEnum(SubcategoryNameEnum subcategoryNameEnum);
+    SubcategoryServiceModel findBySubcategoryNameStr(String  subcategoryName);
     List<SubcategoryServiceModel> findAllBySubcategoryNameIn(SubcategoryNameEnum... subcategoryNameEnums);
     List<SubcategoryServiceModel> findAllByCategoryName(CategoryNameEnum categoryNameEnum);
 }

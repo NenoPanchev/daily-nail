@@ -55,7 +55,7 @@ public class ArticleCreateBindingModel {
         return this;
     }
 
-    @Size(min = 100, max = 1500, message = "Text must be between 100 and 1500 characters")
+    @Size(min = 100, max = 5500, message = "Text must be between 100 and 5500 characters")
     public String getText() {
         return text;
     }

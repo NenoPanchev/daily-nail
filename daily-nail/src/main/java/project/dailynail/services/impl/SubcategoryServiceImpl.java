@@ -65,6 +65,13 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
+    public SubcategoryServiceModel findBySubcategoryNameStr(String subcategoryName) {
+        return subcategoryRepository.findBySubcategoryName(SubcategoryNameEnum.valueOf(subcategoryName))
+                .map(entity -> modelMapper.map(entity, SubcategoryServiceModel.class))
+                .orElseThrow(ObjectNotFoundException::new);
+    }
+
+    @Override
     public List<SubcategoryServiceModel> findAllBySubcategoryNameIn(SubcategoryNameEnum... subcategoryNameEnums) {
         return subcategoryRepository
                 .findAllBySubcategoryNameIn(subcategoryNameEnums)

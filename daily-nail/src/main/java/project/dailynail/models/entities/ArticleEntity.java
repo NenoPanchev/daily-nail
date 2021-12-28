@@ -135,7 +135,7 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "article")
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
     public Set<CommentEntity> getComments() {
         return comments;
     }

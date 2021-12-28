@@ -3,6 +3,9 @@ package project.dailynail.services.impl;
 import com.google.gson.Gson;
 import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +18,7 @@ import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.service.ArticleServiceModel;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
+import project.dailynail.models.view.ArticlesAllViewModel;
 import project.dailynail.repositories.ArticleRepository;
 import project.dailynail.services.*;
 
@@ -24,8 +28,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -66,25 +73,58 @@ public class ArticleServiceImpl implements ArticleService {
                 .setComments(new HashSet<>());
 
         String categoryName = articleCreateServiceModel.getCategoryName();
-        categoryName = categoryName.toUpperCase().replace(" ", "_");
+        categoryName = categoryName.toUpperCase().replace(" 19", "_19");
         if (categoryName.contains(" - ")) {
             categoryName = categoryName.replace(" - ", "");
-            articleServiceModel.setSubcategory(SubcategoryNameEnum.valueOf(categoryName));
+            articleServiceModel.setSubcategory(subcategoryService.findBySubcategoryNameStr(categoryName));
         } else {
-            articleServiceModel.setCategory(CategoryNameEnum.valueOf(categoryName));
+            articleServiceModel.setCategory(categoryService.findByCategoryNameStr(categoryName));
         }
 
         ArticleEntity articleEntity = modelMapper.map(articleServiceModel, ArticleEntity.class);
         if (articleEntity.getCategory() != null) {
-            CategoryEntity categoryEntity = modelMapper.map(categoryService.findByCategoryName(articleServiceModel.getCategory()), CategoryEntity.class);
+            CategoryEntity categoryEntity = modelMapper.map(categoryService.findByCategoryName(articleServiceModel.getCategory().getCategoryName()), CategoryEntity.class);
             articleEntity.setCategory(categoryEntity);
         } else {
-            SubcategoryEntity subcategoryEntity = modelMapper.map(subcategoryService.findBySubcategoryNameEnum(articleServiceModel.getSubcategory()), SubcategoryEntity.class);
+            SubcategoryEntity subcategoryEntity = modelMapper.map(subcategoryService.findBySubcategoryNameEnum(articleServiceModel.getSubcategory().getSubcategoryName()), SubcategoryEntity.class);
             CategoryEntity categoryEntity = modelMapper.map(categoryService.findByCategoryName(subcategoryEntity.getCategory().getCategoryName()), CategoryEntity.class);
             articleEntity.setSubcategory(subcategoryEntity)
                     .setCategory(categoryEntity);
         }
-        System.out.println();
+
+        articleRepository.save(articleEntity);
+    }
+
+    @Override
+    public Page<ArticlesAllViewModel> getAllArticlesForAdminPanel(Integer page, Integer pageSize) {
+        List<ArticlesAllViewModel> articles = articleRepository
+                .findAll(PageRequest.of(page, pageSize))
+                .stream()
+                .map(entity -> modelMapper.map(entity, ArticlesAllViewModel.class)
+                        .setAuthor(entity.getAuthor().getFullName())
+                        .setCategory(getCategoryName(entity.getCategory(), entity.getSubcategory()))
+                        .setCreated(getTimeAsString(entity.getCreated()))
+                        .setPosted(getTimeAsString(entity.getPosted())))
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(articles);
+    }
+
+    @Override
+    public List<String> getTimePeriods() {
+        return List.of("Today", "Yesterday", "Last five days", "Last month", "Last year");
+    }
+
+    @Override
+    public List<String> getArticleStatuses() {
+        return List.of("Activated", "Waiting");
+    }
+
+    private String getCategoryName(CategoryEntity category, SubcategoryEntity subcategory) {
+        if (category == null) {
+            return subcategory.getSubcategoryName().name();
+        }
+        return category.getCategoryName().name();
     }
 
     private String getTitleUrl(String title) {
@@ -114,5 +154,13 @@ public class ArticleServiceImpl implements ArticleService {
         String fileName = RandomString.make() + new Date().getTime() + ".jpg";
         MultipartFile multipartFile = new MockMultipartFile(fileName,fileName, "image/jpg",byteArrayOutputStream.toByteArray());
         return multipartFile;
+    }
+
+    private String getTimeAsString(LocalDateTime localDateTime) {
+        if (localDateTime == null) {
+            return "-";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
+        return localDateTime.format(formatter);
     }
 }

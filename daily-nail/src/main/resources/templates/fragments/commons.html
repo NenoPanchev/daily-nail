@@ -31,8 +31,9 @@
             <div class="header_top_left">
               <ul class="top_nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="pages/contact.html">Contact</a></li>
+                <li ><a href="#">About</a></li>
+                <li ><a href="pages/contact.html">Contact</a></li>
+                <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/all}">Articles</a></li>
                 <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/create}">New Article</a></li>
               </ul>
             </div>
@@ -129,6 +130,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="pages/contact.html">Contact</a></li>
+            <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/all}">Articles</a></li>
             <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/create}">New Article</a></li>
           </ul>
         </div>

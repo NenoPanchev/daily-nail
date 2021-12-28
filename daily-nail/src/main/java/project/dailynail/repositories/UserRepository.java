@@ -6,10 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import project.dailynail.models.entities.UserEntity;
+import project.dailynail.models.entities.UserRoleEntity;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String > {
@@ -44,4 +43,8 @@ public interface UserRepository extends JpaRepository<UserEntity, String > {
             "SET u.password = :newPassword " +
             "WHERE u.email = :email")
     void updatePasswordByEmail(@Param("newPassword") String newPassword, @Param("email") String principalEmail);
+
+    @Query("SELECT u.fullName FROM UserEntity u " +
+            "WHERE u.roles.size > 1")
+    List<String> findAllUserFullNamesByWhoHasMoreThanOneRole();
 }

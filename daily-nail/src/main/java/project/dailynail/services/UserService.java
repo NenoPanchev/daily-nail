@@ -4,6 +4,8 @@ import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.service.UserServiceModel;
 
+import java.util.List;
+
 public interface UserService {
 
     void seedUsers();
@@ -22,4 +24,6 @@ public interface UserService {
 
     void updatePassword(UserNewPasswordDto userNewPasswordDto, String principalEmail);
     UserServiceModel getPrincipal();
+
+    List<String> getAllAuthorNames();
 }

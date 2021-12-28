@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head"></head>
+<body>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+    <block th:replace="fragments/commons::adminNav"></block>
+
+    <section id="contentSection">
+        <div class="d-flex" id="wrapper">
+            <div class="contact_area" style="padding-left: 15px; margin-bottom: 10px">
+                <h2>Articles</h2>
+            </div>
+
+
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <form id="form-filter" th:action="@{/articles/all?keyword=${keyWord}&category=${category}&
+                    author=${authorName}&timePeriod=${timePeriod}&status=${articleStatus}}" method="get">
+                        <div class="row py-2 bg-light">
+                            <div class="col-lg-3 col-md-3 col-sm-12 mt-2 mt-md-0">
+                                <input th:value="${keyWord}" type="search" name="keyWord" class="form-control ds-input" id="search-input"
+                                       placeholder="Search..." autocomplete="off">
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+                                <select th:value="${categories}" class="form-control" name="category">
+                                    <option value="all">All Categories</option>
+                                    <option th:selected="${c == category}" th:each="c : ${categories}" th:value="${c}" th:text="${c}"></option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+                                <select th:value="${authorNames}" class="form-control" name="authorName">
+                                    <option value="all">All Authors</option>
+                                    <option th:selected="${a == authorName}" th:each="a : ${authorNames}" th:value="${a}" th:text="${a}"></option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+                                <select th:value="${timePeriods}" class="form-control" name="timePeriod">
+                                    <option value="all">All Time</option>
+                                    <option th:selected="${t == timePeriod}" th:each="t : ${timePeriods}" th:value="${t}" th:text="${t}"></option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
+                                <select th:value="${articleStatuses}"  class="form-control" name="articleStatus">
+                                    <option value="all">All Statuses</option>
+                                    <option th:selected="${s == articleStatus}" th:each="s : ${articleStatuses}" th:value="${s}" th:text="${s}"></option>
+                                </select>
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-12 mt-2 mt-md-0">
+                                <button type="submit" class="btn btn-secondary rounded-0 float-right">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Comments</th>
+                                <th scope="col">Seen</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="a : ${allArticles}" th:object="${a}">
+                                <td>
+                                    <div class="media-left">
+                                        <img th:src="*{imageUrl}" alt="" width="100%">
+                                    </div>
+                                </td>
+                                <td>
+                                    <a th:text="*{title}"
+                                       href="#"></a>
+                                </td>
+                                <td>
+                                    <span th:if="*{activated}" class="text-success">Activated</span>
+                                    <span th:unless="*{activated}">Waiting</span>
+                                </td>
+                                <td th:text="*{category}"></td>
+                                <td th:text="*{author}"></td>
+                                <td>
+                                    <span th:text="*{created}"></span>
+                                    <br>
+                                    <span th:text="*{posted}"></span>
+                                </td>
+                                <td><span th:text="*{comments}">1</span></td>
+                                <td><span th:text="*{seen}">1</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <ul class="pagination" role="navigation">
+                        <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
+                            <span class="page-link" aria-hidden="true">‹</span>
+                        </li>
+                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                        <li class="page-item"><a class="page-link"
+                                                 th:href="@{/articles/all?page=2}">2</a></li>
+                        <li class="page-item"><a class="page-link"
+                                                 th:href="@{/articles/all?page=3}">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="http://www.marica.bg/admin/news/articles?page=2" rel="next"
+                               aria-label="Next »">›</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer th:replace="fragments/commons::footer"></footer>
+</div>
+<block th:replace="fragments/commons::scripts"></block>
+</body>
+</html>

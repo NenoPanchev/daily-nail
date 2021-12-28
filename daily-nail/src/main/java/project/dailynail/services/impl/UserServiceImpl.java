@@ -161,6 +161,11 @@ public class UserServiceImpl implements UserService {
         return principal;
     }
 
+    @Override
+    public List<String> getAllAuthorNames() {
+        return userRepository.findAllUserFullNamesByWhoHasMoreThanOneRole();
+    }
+
     @Transactional
     public boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
         serviceLayerValidationUtil.validate(userFullNameAndEmailDto);

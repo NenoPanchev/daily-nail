@@ -1,8 +1,5 @@
 package project.dailynail.models.service;
 
-import project.dailynail.models.entities.enums.CategoryNameEnum;
-import project.dailynail.models.entities.enums.SubcategoryNameEnum;
-
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -15,8 +12,8 @@ public class ArticleServiceModel extends BaseServiceModel {
     private LocalDateTime created;
     private LocalDateTime posted;
     private boolean activated;
-    private CategoryNameEnum category;
-    private SubcategoryNameEnum subcategory;
+    private CategoryServiceModel category;
+    private SubcategoryServiceModel subcategory;
     private boolean disabledComments;
     private Integer seen;
     private Set<CommentServiceModel> comments;
@@ -96,23 +93,7 @@ public class ArticleServiceModel extends BaseServiceModel {
         return this;
     }
 
-    public CategoryNameEnum getCategory() {
-        return category;
-    }
 
-    public ArticleServiceModel setCategory(CategoryNameEnum category) {
-        this.category = category;
-        return this;
-    }
-
-    public SubcategoryNameEnum getSubcategory() {
-        return subcategory;
-    }
-
-    public ArticleServiceModel setSubcategory(SubcategoryNameEnum subcategory) {
-        this.subcategory = subcategory;
-        return this;
-    }
 
     public boolean isDisabledComments() {
         return disabledComments;
@@ -154,6 +135,24 @@ public class ArticleServiceModel extends BaseServiceModel {
 
     public ArticleServiceModel setSeen(Integer seen) {
         this.seen = seen;
+        return this;
+    }
+
+    public CategoryServiceModel getCategory() {
+        return category;
+    }
+
+    public ArticleServiceModel setCategory(CategoryServiceModel category) {
+        this.category = category;
+        return this;
+    }
+
+    public SubcategoryServiceModel getSubcategory() {
+        return subcategory;
+    }
+
+    public ArticleServiceModel setSubcategory(SubcategoryServiceModel subcategory) {
+        this.subcategory = subcategory;
         return this;
     }
 }
