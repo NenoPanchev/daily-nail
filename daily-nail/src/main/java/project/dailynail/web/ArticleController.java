@@ -23,7 +23,6 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/articles")
 public class ArticleController {
-    public static final Integer ARTICLES_PER_PAGE = 20;
     private final ArticleService articleService;
     private final CategoryService categoryService;
     private final SubcategoryService subcategoryService;
@@ -40,17 +39,17 @@ public class ArticleController {
 
     @GetMapping("/all")
     public String all(Model model) {
-        model.addAttribute("allArticles", articleService.getAllArticlesForAdminPanel(0, ARTICLES_PER_PAGE));
+        model.addAttribute("allArticles", articleService.getAllArticlesForAdminPanel());
         model.addAttribute("authorNames", userService.getAllAuthorNames());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("timePeriods", articleService.getTimePeriods());
-        model.addAttribute("articleStatus", "All statuses");
+        model.addAttribute("articleStatuses", articleService.getArticleStatuses());
 
         return "all-articles";
     }
 
     @GetMapping(value = "/all", params = {"authorName", "category", "timePeriod", "keyWord", "articleStatus"})
-    public ModelAndView allPageSearch(ModelAndView modelAndView, BindingResult bindingResult, RedirectAttributes redirectAttributes, @RequestParam String authorName, @RequestParam String category,
+    public ModelAndView allPageSearch(ModelAndView modelAndView, @RequestParam String authorName, @RequestParam String category,
                                       @RequestParam String timePeriod, @RequestParam String keyWord, @RequestParam String articleStatus) {
         modelAndView.addObject("keyWord", keyWord);
         modelAndView.addObject("authorName", authorName);
@@ -62,19 +61,21 @@ public class ArticleController {
         modelAndView.addObject("articleStatuses", articleService.getArticleStatuses());
         modelAndView.addObject("articleStatus", articleStatus);
 
-//        redirectAttributes.addAttribute("categories", categoryService.getAllCategories());      redirectAttributes.addAttribute(authorName);
-//        redirectAttributes.addAttribute(category);
-//        redirectAttributes.addAttribute(timePeriod);
-//        redirectAttributes.addAttribute(keyWord);
-//        redirectAttributes.addFlashAttribute("articleStatus", articleStatus);
-//        redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.articleStatus", articleStatus);
         modelAndView.setViewName("all-articles");
+
+        ArticleSearchBindingModel articleSearchBindingModel = new ArticleSearchBindingModel(keyWord, category, authorName, timePeriod, articleStatus, 1);
+
+        modelAndView.addObject("allArticles", articleService.getFilteredArticles(articleSearchBindingModel));
         return modelAndView;
     }
 
     @GetMapping(value = "/all", params = "page")
     public String allPage(@RequestParam Integer page, Model model) {
-        model.addAttribute("allArticles", articleService.getAllArticlesForAdminPanel(page - 1, ARTICLES_PER_PAGE));
+        model.addAttribute("allArticles", articleService.getAllArticlesForAdminPanel(page));
+        model.addAttribute("authorNames", userService.getAllAuthorNames());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("timePeriods", articleService.getTimePeriods());
+        model.addAttribute("articleStatuses", articleService.getArticleStatuses());
         return "all-articles";
     }
 

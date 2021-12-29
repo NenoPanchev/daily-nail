@@ -9,11 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.CategoryEntity;
 import project.dailynail.models.entities.SubcategoryEntity;
-import project.dailynail.models.entities.enums.CategoryNameEnum;
-import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.service.ArticleServiceModel;
 import project.dailynail.models.service.UserServiceModel;
@@ -29,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
+    private static final Integer ARTICLES_PER_PAGE = 3;
     private final ArticleRepository articleRepository;
     private final ModelMapper modelMapper;
     private final ServiceLayerValidationUtil serviceLayerValidationUtil;
@@ -96,9 +97,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<ArticlesAllViewModel> getAllArticlesForAdminPanel(Integer page, Integer pageSize) {
+    public Page<ArticlesAllViewModel> getAllArticlesForAdminPanel() {
+        return getAllArticlesForAdminPanel(1);
+    }
+
+    @Override
+    public Page<ArticlesAllViewModel> getAllArticlesForAdminPanel(Integer page) {
         List<ArticlesAllViewModel> articles = articleRepository
-                .findAll(PageRequest.of(page, pageSize))
+                .findAll(PageRequest.of(page - 1, ARTICLES_PER_PAGE))
                 .stream()
                 .map(entity -> modelMapper.map(entity, ArticlesAllViewModel.class)
                         .setAuthor(entity.getAuthor().getFullName())
@@ -111,8 +117,51 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Page<ArticlesAllViewModel> getFilteredArticles(ArticleSearchBindingModel articleSearchBindingModel) {
+        String category = articleSearchBindingModel.getCategory().toUpperCase().replace(" 19", "_19").replace(" - ", "");
+        String activated = "e";
+        if (articleSearchBindingModel.getArticleStatus().equals("Activated")) {
+            activated = "true";
+        } else if(articleSearchBindingModel.getArticleStatus().equals("Waiting")) {
+            activated = "false";
+        }
+        int days = 1000000;
+
+        switch (articleSearchBindingModel.getTimePeriod()) {
+            case "Today": days = 0; break;
+            case "Last three days": days = 3; break;
+            case "Last week": days = 7; break;
+            case "Last month": days = 30; break;
+            case "Last year": days = 365; break;
+            default:
+        }
+
+        Page<String> articleIds = articleRepository.findAllArticleIdBySearchFilter(articleSearchBindingModel.getKeyWord(), category,
+                articleSearchBindingModel.getAuthorName(), activated, days, PageRequest.of(articleSearchBindingModel.getPage() - 1, ARTICLES_PER_PAGE));
+
+        List<ArticlesAllViewModel> articles = articleIds
+                .stream()
+                .map(articleRepository::findById)
+                .map(opt -> opt.orElse(null))
+                .map(entity -> modelMapper.map(entity, ArticlesAllViewModel.class)
+                        .setAuthor(entity.getAuthor().getFullName())
+                        .setCategory(getCategoryName(entity.getCategory(), entity.getSubcategory()))
+                        .setCreated(getTimeAsString(entity.getCreated()))
+                        .setPosted(getTimeAsString(entity.getPosted())))
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(articles);
+    }
+
+    @Override
+    public void test() {
+        List<String> o = articleRepository.test();
+         System.out.println();
+    }
+
+    @Override
     public List<String> getTimePeriods() {
-        return List.of("Today", "Yesterday", "Last five days", "Last month", "Last year");
+        return List.of("Today", "Last three days", "Last week", "Last month", "Last year");
     }
 
     @Override

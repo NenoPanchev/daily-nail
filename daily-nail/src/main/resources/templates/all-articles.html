@@ -25,26 +25,30 @@
                                        placeholder="Search..." autocomplete="off">
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
-                                <select th:value="${categories}" class="form-control" name="category">
-                                    <option value="all">All Categories</option>
+                                <select onchange="document.getElementById('form-filter').submit();"
+                                        th:value="${categories}" class="form-control" name="category">
+                                    <option value="">All Categories</option>
                                     <option th:selected="${c == category}" th:each="c : ${categories}" th:value="${c}" th:text="${c}"></option>
                                 </select>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
-                                <select th:value="${authorNames}" class="form-control" name="authorName">
-                                    <option value="all">All Authors</option>
+                                <select onchange="document.getElementById('form-filter').submit();"
+                                        th:value="${authorNames}" class="form-control" name="authorName">
+                                    <option value="">All Authors</option>
                                     <option th:selected="${a == authorName}" th:each="a : ${authorNames}" th:value="${a}" th:text="${a}"></option>
                                 </select>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
-                                <select th:value="${timePeriods}" class="form-control" name="timePeriod">
-                                    <option value="all">All Time</option>
+                                <select onchange="document.getElementById('form-filter').submit();"
+                                        th:value="${timePeriods}" class="form-control" name="timePeriod">
+                                    <option value="">All Time</option>
                                     <option th:selected="${t == timePeriod}" th:each="t : ${timePeriods}" th:value="${t}" th:text="${t}"></option>
                                 </select>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
-                                <select th:value="${articleStatuses}"  class="form-control" name="articleStatus">
-                                    <option value="all">All Statuses</option>
+                                <select onchange="document.getElementById('form-filter').submit();"
+                                        th:value="${articleStatuses}"  class="form-control" name="articleStatus">
+                                    <option value="">All Statuses</option>
                                     <option th:selected="${s == articleStatus}" th:each="s : ${articleStatuses}" th:value="${s}" th:text="${s}"></option>
                                 </select>
                             </div>
@@ -102,9 +106,9 @@
                         </li>
                         <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
                         <li class="page-item"><a class="page-link"
-                                                 th:href="@{/articles/all?page=2}">2</a></li>
+                                                 th:href="@{/articles/all?keyword=${keyWord}&category=${category}&author=${authorName}&timePeriod=${timePeriod}&status=${articleStatus}&pageNum=2}">2</a></li>
                         <li class="page-item"><a class="page-link"
-                                                 th:href="@{/articles/all?page=3}">3</a></li>
+                                                 th:href="@{/articles/all?page=2}">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="http://www.marica.bg/admin/news/articles?page=2" rel="next"
                                aria-label="Next »">›</a>

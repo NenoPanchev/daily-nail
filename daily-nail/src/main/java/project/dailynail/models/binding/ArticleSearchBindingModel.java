@@ -3,12 +3,21 @@ package project.dailynail.models.binding;
 public class ArticleSearchBindingModel {
     private String keyWord;
     private String category;
-    private String author;
+    private String authorName;
     private String timePeriod;
-    private String status;
+    private String articleStatus;
     private Integer page;
 
     public ArticleSearchBindingModel() {
+    }
+
+    public ArticleSearchBindingModel(String keyWord, String category, String authorName, String timePeriod, String articleStatus, Integer page) {
+        this.keyWord = keyWord;
+        this.category = category;
+        this.authorName = authorName;
+        this.timePeriod = timePeriod;
+        this.articleStatus = articleStatus;
+        this.page = page;
     }
 
     public String getKeyWord() {
@@ -29,12 +38,12 @@ public class ArticleSearchBindingModel {
         return this;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public ArticleSearchBindingModel setAuthor(String author) {
-        this.author = author;
+    public ArticleSearchBindingModel setAuthorName(String authorName) {
+        this.authorName = authorName;
         return this;
     }
 
@@ -47,12 +56,12 @@ public class ArticleSearchBindingModel {
         return this;
     }
 
-    public String getStatus() {
-        return status;
+    public String getArticleStatus() {
+        return articleStatus;
     }
 
-    public ArticleSearchBindingModel setStatus(String status) {
-        this.status = status;
+    public ArticleSearchBindingModel setArticleStatus(String articleStatus) {
+        this.articleStatus = articleStatus;
         return this;
     }
 
