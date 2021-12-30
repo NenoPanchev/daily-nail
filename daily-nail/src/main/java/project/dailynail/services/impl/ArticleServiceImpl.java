@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +18,7 @@ import project.dailynail.models.service.ArticleServiceModel;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
 import project.dailynail.models.view.ArticlesAllViewModel;
+import project.dailynail.models.view.ArticlesPageViewModel;
 import project.dailynail.repositories.ArticleRepository;
 import project.dailynail.services.*;
 
@@ -28,7 +29,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-    private static final Integer ARTICLES_PER_PAGE = 3;
+    private static final Integer ARTICLES_PER_PAGE = 4;
     private final ArticleRepository articleRepository;
     private final ModelMapper modelMapper;
     private final ServiceLayerValidationUtil serviceLayerValidationUtil;
@@ -97,14 +97,17 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<ArticlesAllViewModel> getAllArticlesForAdminPanel() {
+    public ArticlesPageViewModel getAllArticlesForAdminPanel() {
         return getAllArticlesForAdminPanel(1);
     }
 
     @Override
-    public Page<ArticlesAllViewModel> getAllArticlesForAdminPanel(Integer page) {
-        List<ArticlesAllViewModel> articles = articleRepository
-                .findAll(PageRequest.of(page - 1, ARTICLES_PER_PAGE))
+    public ArticlesPageViewModel getAllArticlesForAdminPanel(Integer page) {
+        Pageable pageable = PageRequest.of(page - 1, ARTICLES_PER_PAGE);
+        Page<ArticleEntity> entities = articleRepository.findAllByOrderByCreatedDesc(pageable);
+
+
+        List<ArticlesAllViewModel> articles = entities
                 .stream()
                 .map(entity -> modelMapper.map(entity, ArticlesAllViewModel.class)
                         .setAuthor(entity.getAuthor().getFullName())
@@ -112,12 +115,16 @@ public class ArticleServiceImpl implements ArticleService {
                         .setCreated(getTimeAsString(entity.getCreated()))
                         .setPosted(getTimeAsString(entity.getPosted())))
                 .collect(Collectors.toList());
+        ArticlesPageViewModel articlesPageViewModel = new ArticlesPageViewModel()
+                .setContent(articles)
+                .setTotalElements(entities.getTotalElements())
+                .setTotalPages(entities.getTotalPages());
 
-        return new PageImpl<>(articles);
+        return articlesPageViewModel;
     }
 
     @Override
-    public Page<ArticlesAllViewModel> getFilteredArticles(ArticleSearchBindingModel articleSearchBindingModel) {
+    public ArticlesPageViewModel getFilteredArticles(ArticleSearchBindingModel articleSearchBindingModel) {
         String category = articleSearchBindingModel.getCategory().toUpperCase().replace(" 19", "_19").replace(" - ", "");
         String activated = "e";
         if (articleSearchBindingModel.getArticleStatus().equals("Activated")) {
@@ -150,13 +157,18 @@ public class ArticleServiceImpl implements ArticleService {
                         .setPosted(getTimeAsString(entity.getPosted())))
                 .collect(Collectors.toList());
 
-        return new PageImpl<>(articles);
+        ArticlesPageViewModel articlesPageViewModel = new ArticlesPageViewModel()
+                .setContent(articles)
+                .setTotalPages(articleIds.getTotalPages())
+                .setTotalElements(articleIds.getTotalElements());
+
+        return articlesPageViewModel;
     }
 
     @Override
-    public void test() {
-        List<String> o = articleRepository.test();
-         System.out.println();
+    public Page<ArticleEntity> test() {
+        Pageable pageable = PageRequest.of(0, ARTICLES_PER_PAGE);
+        return articleRepository.findAll(pageable);
     }
 
     @Override

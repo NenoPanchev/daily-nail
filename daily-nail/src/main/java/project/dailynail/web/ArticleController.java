@@ -2,6 +2,7 @@ package project.dailynail.web;
 
 
 import org.modelmapper.ModelMapper;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import project.dailynail.models.binding.ArticleCreateBindingModel;
 
 import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.service.ArticleCreateServiceModel;
+import project.dailynail.models.view.ArticlesPageViewModel;
 import project.dailynail.services.ArticleService;
 import project.dailynail.services.CategoryService;
 import project.dailynail.services.SubcategoryService;
@@ -44,13 +46,20 @@ public class ArticleController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("timePeriods", articleService.getTimePeriods());
         model.addAttribute("articleStatuses", articleService.getArticleStatuses());
+        ArticlesPageViewModel allArticles = articleService.getAllArticlesForAdminPanel();
+        model.addAttribute("totalElements", allArticles.getTotalElements());
+        model.addAttribute("totalPages", allArticles.getTotalPages());
+        model.addAttribute("page", 1);
+        model.addAttribute("allArticles", allArticles.getContent());
+
 
         return "all-articles";
     }
 
     @GetMapping(value = "/all", params = {"authorName", "category", "timePeriod", "keyWord", "articleStatus"})
     public ModelAndView allPageSearch(ModelAndView modelAndView, @RequestParam String authorName, @RequestParam String category,
-                                      @RequestParam String timePeriod, @RequestParam String keyWord, @RequestParam String articleStatus) {
+                                      @RequestParam String timePeriod, @RequestParam String keyWord, @RequestParam String articleStatus,
+                                      @RequestParam (value = "page", required = false, defaultValue = "1") Integer page) {
         modelAndView.addObject("keyWord", keyWord);
         modelAndView.addObject("authorName", authorName);
         modelAndView.addObject("authorNames", userService.getAllAuthorNames());
@@ -60,12 +69,16 @@ public class ArticleController {
         modelAndView.addObject("categories", categoryService.getAllCategories());
         modelAndView.addObject("articleStatuses", articleService.getArticleStatuses());
         modelAndView.addObject("articleStatus", articleStatus);
+        modelAndView.addObject("page", page);
 
+        ArticleSearchBindingModel articleSearchBindingModel =
+                new ArticleSearchBindingModel(keyWord, category, authorName, timePeriod, articleStatus, page);
+        ArticlesPageViewModel filteredArticles = articleService.getFilteredArticles(articleSearchBindingModel);
+        modelAndView.addObject("totalElements", filteredArticles.getTotalElements());
+        modelAndView.addObject("totalPages", filteredArticles.getTotalPages());
+        modelAndView.addObject("allArticles", filteredArticles.getContent());
         modelAndView.setViewName("all-articles");
 
-        ArticleSearchBindingModel articleSearchBindingModel = new ArticleSearchBindingModel(keyWord, category, authorName, timePeriod, articleStatus, 1);
-
-        modelAndView.addObject("allArticles", articleService.getFilteredArticles(articleSearchBindingModel));
         return modelAndView;
     }
 

@@ -17,103 +17,126 @@
 
             <div id="page-content-wrapper">
                 <div class="container-fluid">
-                    <form id="form-filter" th:action="@{/articles/all?keyword=${keyWord}&category=${category}&
-                    author=${authorName}&timePeriod=${timePeriod}&status=${articleStatus}}" method="get">
+                    <form id="form-filter" th:action="@{/articles/all}" method="get">
                         <div class="row py-2 bg-light">
                             <div class="col-lg-3 col-md-3 col-sm-12 mt-2 mt-md-0">
-                                <input th:value="${keyWord}" type="search" name="keyWord" class="form-control ds-input" id="search-input"
+                                <input th:value="${keyWord}" type="search" name="keyWord" class="form-control ds-input"
+                                       id="search-input"
                                        placeholder="Search..." autocomplete="off">
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
-                                <select onchange="document.getElementById('form-filter').submit();"
-                                        th:value="${categories}" class="form-control" name="category">
+                                <select th:value="${categories}"
+                                        onchange="document.getElementById('form-filter').submit();"
+                                        class="form-control" name="category">
                                     <option value="">All Categories</option>
-                                    <option th:selected="${c == category}" th:each="c : ${categories}" th:value="${c}" th:text="${c}"></option>
+                                    <option th:selected="${c == category}" th:each="c : ${categories}" th:value="${c}"
+                                            th:text="${c}"></option>
                                 </select>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
                                 <select onchange="document.getElementById('form-filter').submit();"
-                                        th:value="${authorNames}" class="form-control" name="authorName">
+                                        class="form-control" name="authorName">
                                     <option value="">All Authors</option>
-                                    <option th:selected="${a == authorName}" th:each="a : ${authorNames}" th:value="${a}" th:text="${a}"></option>
+                                    <option th:selected="${a == authorName}" th:each="a : ${authorNames}"
+                                            th:value="${a}" th:text="${a}"></option>
                                 </select>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
                                 <select onchange="document.getElementById('form-filter').submit();"
-                                        th:value="${timePeriods}" class="form-control" name="timePeriod">
+                                        class="form-control" name="timePeriod">
                                     <option value="">All Time</option>
-                                    <option th:selected="${t == timePeriod}" th:each="t : ${timePeriods}" th:value="${t}" th:text="${t}"></option>
+                                    <option th:selected="${t == timePeriod}" th:each="t : ${timePeriods}"
+                                            th:value="${t}" th:text="${t}"></option>
                                 </select>
                             </div>
                             <div class="col-lg-2 col-md-3 col-sm-12 mt-2 mt-md-0">
                                 <select onchange="document.getElementById('form-filter').submit();"
-                                        th:value="${articleStatuses}"  class="form-control" name="articleStatus">
+                                        class="form-control" name="articleStatus">
                                     <option value="">All Statuses</option>
-                                    <option th:selected="${s == articleStatus}" th:each="s : ${articleStatuses}" th:value="${s}" th:text="${s}"></option>
+                                    <option th:selected="${s == articleStatus}" th:each="s : ${articleStatuses}"
+                                            th:value="${s}" th:text="${s}"></option>
                                 </select>
                             </div>
                             <div class="col-lg-1 col-md-2 col-sm-12 mt-2 mt-md-0">
-                                <button type="submit" class="btn btn-secondary rounded-0 float-right">Search</button>
+                                <button
+                                        type="submit" class="btn btn-secondary rounded-0 float-right">Search
+                                </button>
                             </div>
                         </div>
-                    </form>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Comments</th>
-                                <th scope="col">Seen</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="a : ${allArticles}" th:object="${a}">
-                                <td>
-                                    <div class="media-left">
-                                        <img th:src="*{imageUrl}" alt="" width="100%">
-                                    </div>
-                                </td>
-                                <td>
-                                    <a th:text="*{title}"
-                                       href="#"></a>
-                                </td>
-                                <td>
-                                    <span th:if="*{activated}" class="text-success">Activated</span>
-                                    <span th:unless="*{activated}">Waiting</span>
-                                </td>
-                                <td th:text="*{category}"></td>
-                                <td th:text="*{author}"></td>
-                                <td>
-                                    <span th:text="*{created}"></span>
-                                    <br>
-                                    <span th:text="*{posted}"></span>
-                                </td>
-                                <td><span th:text="*{comments}">1</span></td>
-                                <td><span th:text="*{seen}">1</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
-                    <ul class="pagination" role="navigation">
-                        <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-                            <span class="page-link" aria-hidden="true">‹</span>
-                        </li>
-                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-                        <li class="page-item"><a class="page-link"
-                                                 th:href="@{/articles/all?keyword=${keyWord}&category=${category}&author=${authorName}&timePeriod=${timePeriod}&status=${articleStatus}&pageNum=2}">2</a></li>
-                        <li class="page-item"><a class="page-link"
-                                                 th:href="@{/articles/all?page=2}">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="http://www.marica.bg/admin/news/articles?page=2" rel="next"
-                               aria-label="Next »">›</a>
-                        </li>
-                    </ul>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Comments</th>
+                                    <th scope="col">Seen</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="a : ${allArticles}" th:object="${a}">
+                                    <td>
+                                        <div class="media-left">
+                                            <img th:src="*{imageUrl}" alt="" width="100%">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a th:text="*{title}"
+                                           href="#"></a>
+                                    </td>
+                                    <td>
+                                        <span th:if="*{activated}" class="text-success">Activated</span>
+                                        <span th:unless="*{activated}">Waiting</span>
+                                    </td>
+                                    <td th:text="*{category}"></td>
+                                    <td th:text="*{author}"></td>
+                                    <td>
+                                        <span th:text="*{created}"></span>
+                                        <br>
+                                        <span th:text="*{posted}"></span>
+                                    </td>
+                                    <td><span th:text="*{comments}">1</span></td>
+                                    <td><span th:text="*{seen}">1</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${totalPages} > 1" id="pagination">
+                            Total Items [[${totalElements}]]: Page [[${page}]] of [[${totalPages}]]
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <button th:if="${page} > 1"
+                                           type="submit" class="form-control"
+                                           name="page" th:value="1" ><<</button>
+                                </li>
+                                <li class="page-item">
+                                    <button th:if="${page} > 1"
+                                           type="submit" class="form-control"
+                                           name="page" th:value="${page} - 1"><</button>
+                                </li>
+                                <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+                                        <button th:disabled="${i}==${page}"
+                                               type="submit" class="form-control"
+                                               name="page" th:value="${i}" th:text="${i}"></button>
+                                </li>
+                                <li class="page-item">
+                                    <button th:unless="${page} == ${totalPages}"
+                                           type="submit" class="form-control"
+                                           name="page" th:value="${page} + 1">></button>
+                                </li>
+                                <li class="page-item">
+                                    <button th:unless="${page} == ${totalPages}"
+                                           type="submit" class="form-control"
+                                           name="page" th:value="${totalPages}">>></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
                 </div>
             </div>
 

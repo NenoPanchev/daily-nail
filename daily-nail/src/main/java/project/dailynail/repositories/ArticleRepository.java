@@ -28,16 +28,5 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
                                                 @Param("author") String author, @Param("activated") String activated,
                                                 @Param("days") int days, Pageable pageable);
 
-//    @Query("SELECT CONCAT(a.author.fullName, COALESCE(a.category.categoryName, 'asd') , COALESCE(a.subcategory.subcategoryName, 'asd') , a.title, a.text) " +
-//            "FROM ArticleEntity a " +
-//            "LEFT JOIN CategoryEntity c ON a.category.id = c.id " +
-//            "LEFT JOIN SubcategoryEntity s ON a.subcategory.id = s.id " +
-//            "LEFT JOIN UserEntity u ON a.author.id = u.id")
-
-    @Query(value = "SELECT CONCAT(u.full_name, IF(a.activated, 'true', 'false'), COALESCE(c.category_name, '---'), COALESCE(s.subcategory_name, '---'), a.title, a.text) " +
-            "FROM articles AS a " +
-            "LEFT JOIN categories AS c ON a.category_id = c.id " +
-            "LEFT JOIN subcategories AS s ON a.subcategory_id = s.id " +
-            "LEFT JOIN users AS u ON a.author_id = u.id ", nativeQuery = true)
-    List<String> test();
+    Page<ArticleEntity> findAllByOrderByCreatedDesc(Pageable pageable);
 }
