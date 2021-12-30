@@ -28,6 +28,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
@@ -60,8 +61,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void createArticle(ArticleCreateServiceModel articleCreateServiceModel) throws IOException {
         serviceLayerValidationUtil.validate(articleCreateServiceModel);
+        StringBuilder sb = new StringBuilder();
+        sb.append(LocalTime.now().toString()).append(" - ").append("After service validation").append(System.lineSeparator());
         UserServiceModel principal = userService.getPrincipal();
         String imageUrl = uploadImageAndGetCloudinaryUrl(articleCreateServiceModel.getImageUrl(), articleCreateServiceModel.getImageFile());
+        sb.append(LocalTime.now().toString()).append(" - ").append("After uploading to Cloudinary").append(System.lineSeparator());
         boolean activated = articleCreateServiceModel.getPosted() != null;
         ArticleServiceModel articleServiceModel = modelMapper.map(articleCreateServiceModel, ArticleServiceModel.class)
                 .setAuthor(principal)
@@ -72,6 +76,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .setDisabledComments(articleCreateServiceModel.getDisabledComments() != null)
                 .setSeen(0)
                 .setComments(new HashSet<>());
+        sb.append(LocalTime.now().toString()).append(" - ").append("After creating articleServiceModel").append(System.lineSeparator());
 
         String categoryName = articleCreateServiceModel.getCategoryName();
         categoryName = categoryName.toUpperCase().replace(" 19", "_19");
@@ -92,8 +97,11 @@ public class ArticleServiceImpl implements ArticleService {
             articleEntity.setSubcategory(subcategoryEntity)
                     .setCategory(categoryEntity);
         }
+        sb.append(LocalTime.now().toString()).append(" - ").append("After mapping to entity").append(System.lineSeparator());
 
         articleRepository.save(articleEntity);
+        sb.append(LocalTime.now().toString()).append(" - ").append("After saving").append(System.lineSeparator());
+        System.out.println(sb.toString());
     }
 
     @Override

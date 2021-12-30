@@ -21,6 +21,8 @@ import project.dailynail.services.UserService;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Controller
 @RequestMapping("/articles")
@@ -109,7 +111,6 @@ public class ArticleController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.articleCreateBindingModel", bindingResult);
             return "redirect:create";
         }
-
 
         articleService.createArticle(modelMapper.map(articleCreateBindingModel, ArticleCreateServiceModel.class));
         return "redirect:/";
