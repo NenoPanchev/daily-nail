@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.dailynail.models.binding.ArticleCreateBindingModel;
 
+import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
@@ -39,6 +40,36 @@ public class ArticleController {
         this.subcategoryService = subcategoryService;
         this.modelMapper = modelMapper;
         this.userService = userService;
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String id, Model model) {
+        ArticleEditBindingModel articleEditBindingModel = articleService.getArticleEditBindingModelById(id);
+        model.addAttribute("articleEditBindingModel", articleEditBindingModel);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("id", id);
+        return "article-edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editConfirm(@PathVariable("id") String id, @Valid ArticleEditBindingModel articleEditBindingModel,
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("articleEditBindingModel", articleEditBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.articleEditBindingModel", bindingResult);
+            return "redirect:edit";
+        }
+
+        articleService.editArticle(articleEditBindingModel);
+
+        return "redirect:/articles/all";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable("id") String id) {
+        articleService.deleteArticle(id);
+        return "redirect:/articles/all";
     }
 
     @GetMapping("/all")
@@ -124,5 +155,10 @@ public class ArticleController {
     @ModelAttribute
     public ArticleSearchBindingModel articleSearchBindingModel() {
         return new ArticleSearchBindingModel();
+    }
+
+    @ModelAttribute
+    public ArticleEditBindingModel articleEditBindingModel() {
+        return new ArticleEditBindingModel();
     }
 }

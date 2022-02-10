@@ -87,7 +87,7 @@
                                     </td>
                                     <td>
                                         <a th:text="*{title}"
-                                           href="#"></a>
+                                           th:href="@{/articles/edit/{id}(id = *{id})}"></a>
                                     </td>
                                     <td>
                                         <span th:if="*{activated}" class="text-success">Activated</span>

@@ -1862,6 +1862,28 @@ html body div.container section#contentSection div#wrapper.d-flex div#page-conte
     border-color: #cf0000;
 }
 
+html body.modal-open div.container section#contentSection form.contact_form div#exampleModal.modal.fade.in div.modal-dialog div.modal-content div.modal-footer button.btn.btn-secondary {
+    margin-bottom: 0;
+}
+
+.delete-button {
+    color: white;
+    background-color: #2c2c2c;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: all 0.5s;
+}
+
+.delete-button:hover {
+    background-color: #cf0000;
+    border-color: #cf0000;
+}
+#delete_button:hover {
+    color: white;
+}
+
 @media (max-width: 1199px ) {
     .logo_area {
         width: 34%

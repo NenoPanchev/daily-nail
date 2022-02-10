@@ -9,12 +9,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import project.dailynail.exceptions.ObjectNotFoundException;
+import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.CategoryEntity;
 import project.dailynail.models.entities.SubcategoryEntity;
+import project.dailynail.models.entities.enums.CategoryNameEnum;
+import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.service.ArticleServiceModel;
+import project.dailynail.models.service.CategoryServiceModel;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
 import project.dailynail.models.view.ArticlesAllViewModel;
@@ -33,6 +38,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -121,6 +127,7 @@ public class ArticleServiceImpl implements ArticleService {
                         .setAuthor(entity.getAuthor().getFullName())
                         .setCategory(getCategoryName(entity.getCategory(), entity.getSubcategory()))
                         .setCreated(getTimeAsString(entity.getCreated()))
+                        .setComments(entity.getComments().size())
                         .setPosted(getTimeAsString(entity.getPosted())))
                 .collect(Collectors.toList());
         ArticlesPageViewModel articlesPageViewModel = new ArticlesPageViewModel()
@@ -174,9 +181,100 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<ArticleEntity> test() {
-        Pageable pageable = PageRequest.of(0, ARTICLES_PER_PAGE);
-        return articleRepository.findAll(pageable);
+    public ArticleEditBindingModel getArticleEditBindingModelById(String id) {
+        ArticleEntity articleEntity = articleRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
+        String categoryName = getCategoryName(articleEntity.getCategory(), articleEntity.getSubcategory()).replace("_", " ");
+        categoryName = categoryName.charAt(0) + categoryName.substring(1).toLowerCase() + " ";
+        ArticleEditBindingModel articleEditBindingModel = new ArticleEditBindingModel();
+        articleEditBindingModel
+                .setTitle(articleEntity.getTitle())
+                .setText(articleEntity.getText())
+                .setImageUrl("")
+                .setPosted(articleEntity.getPosted())
+                .setActivated(articleEntity.getPosted() != null)
+                .setCategoryName(categoryName)
+                .setDisabledComments(articleEntity.isDisabledComments() ? "Yes" : "No");
+         return articleEditBindingModel;
+    }
+
+    @Override
+    public void deleteArticle(String id) {
+        articleRepository.deleteById(id);
+    }
+
+    @Override
+    public void editArticle(ArticleEditBindingModel articleEditBindingModel) throws IOException {
+        ArticleEntity articleEntity = articleRepository
+                .findById(articleEditBindingModel.getId()).orElseThrow(ObjectNotFoundException::new);
+
+         if (!articleEditBindingModel.getCategoryName().equals("Select Category")) {
+             String fixedCategoryName = articleEditBindingModel.getCategoryName().replace(" 19", "_19").replace(" - ", "").toUpperCase();
+
+             CategoryEntity tryCategory = null;
+             SubcategoryEntity trySubCategory = null;
+
+             try {
+                 tryCategory = modelMapper
+                         .map(categoryService.findByCategoryNameStr(fixedCategoryName), CategoryEntity.class);
+             } catch (IllegalArgumentException ignored) {}
+
+             try {
+                 trySubCategory = modelMapper
+                         .map(subcategoryService.findBySubcategoryNameStr(fixedCategoryName), SubcategoryEntity.class);
+             } catch (IllegalArgumentException ignored) {}
+
+
+            if (tryCategory != null) {
+                articleEntity.setCategory(tryCategory);
+                if (!tryCategory.getCategoryName().equals(CategoryNameEnum.SPORTS)) {
+                    articleEntity.setSubcategory(null);
+                }
+            }
+            if (trySubCategory != null) {
+                articleEntity.setSubcategory(trySubCategory);
+                if (trySubCategory.getSubcategoryName().equals(SubcategoryNameEnum.FOOTBALL)
+                        || trySubCategory.getSubcategoryName().equals(SubcategoryNameEnum.VOLLEYBALL)
+                        || trySubCategory.getSubcategoryName().equals(SubcategoryNameEnum.TENNIS)
+                        || trySubCategory.getSubcategoryName().equals(SubcategoryNameEnum.OTHER)) {
+                    articleEntity.setCategory(modelMapper.map(categoryService.findByCategoryName(CategoryNameEnum.SPORTS), CategoryEntity.class));
+                }
+            }
+        }
+
+
+
+        if (!articleEntity.getTitle().equals(articleEditBindingModel.getTitle())) {
+            articleEntity.setTitle(articleEditBindingModel.getTitle());
+            articleEntity.setUrl(getTitleUrl(articleEntity.getTitle()));
+        }
+
+        if (!articleEntity.getText().equals(articleEditBindingModel.getText())) {
+            articleEntity.setText(articleEditBindingModel.getText());
+        }
+
+        if (!articleEditBindingModel.getImageUrl().equals("") || !articleEditBindingModel.getImageFile().getContentType().equals("application/octet-stream")) {
+            articleEntity.setImageUrl(uploadImageAndGetCloudinaryUrl(articleEditBindingModel.getImageUrl(), articleEditBindingModel.getImageFile()));
+        }
+
+        if (!articleEntity.isDisabledComments() && articleEditBindingModel.getDisabledComments().equals("Yes")) {
+            articleEntity.setDisabledComments(true);
+        }
+
+        if (articleEntity.isDisabledComments() && articleEditBindingModel.getDisabledComments().equals("No")) {
+            articleEntity.setDisabledComments(false);
+        }
+
+        if (!articleEntity.isActivated() && articleEditBindingModel.isActivated() && articleEditBindingModel.getPosted() != null) {
+            articleEntity.setActivated(true);
+            articleEntity.setPosted(articleEditBindingModel.getPosted());
+        }
+
+        if (articleEntity.isActivated() && !articleEditBindingModel.isActivated()) {
+            articleEntity.setActivated(false);
+            articleEntity.setPosted(null);
+        }
+
+        articleRepository.save(articleEntity);
     }
 
     @Override
@@ -190,10 +288,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     private String getCategoryName(CategoryEntity category, SubcategoryEntity subcategory) {
-        if (category == null) {
-            return subcategory.getSubcategoryName().name();
+        if (subcategory == null) {
+            return category.getCategoryName().name();
         }
-        return category.getCategoryName().name();
+        return subcategory.getSubcategoryName().name();
     }
 
     private String getTitleUrl(String title) {

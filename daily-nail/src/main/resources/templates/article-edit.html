@@ -9,8 +9,8 @@
     <block th:replace="fragments/commons::adminNav"></block>
 
     <section id="contentSection">
-        <form th:action="@{/articles/create}" class="contact_form"
-              th:object="${articleCreateBindingModel}"
+        <form th:action="@{/articles/edit/{id}(id = ${id})}" class="contact_form"
+              th:object="${articleEditBindingModel}"
               method="POST"
               enctype="multipart/form-data">
             <div class="row">
@@ -80,9 +80,10 @@
                                     <div id="imageInput">
                                         <label>Image</label>
                                         <div class="inputfile-box" style="position: relative">
-                                            <input type="file" id="file-upload" name="imageFile" class="form-control-file"
+                                            <input type="file" id="file-upload" name="imageFile"
+                                                   class="form-control-file"
                                                    th:field="*{imageFile}" th:errorclass="is-invalid"
-                                                    accept="image/*">
+                                                   accept="image/*">
                                         </div>
                                     </div>
                                 </div>
@@ -94,53 +95,73 @@
                                      id="categoryNameError"
                                      class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
                                 </div>
-                                <select th:field="${articleCreateBindingModel.categoryName}" th:errorclass="is-invalid"
+                                <select th:field="${articleEditBindingModel.categoryName}" th:errorclass="is-invalid"
                                         class="catgArchive">
-                                    <option value="Select Category">Select Category</option>
+                                    <option value="Select Category" th:text="${articleEditBindingModel.categoryName}">
+                                        Select Category
+                                    </option>
                                     <option th:object="${categories}" th:each="c : ${categories}"
                                             th:value="${c}" th:text="${c}">Life styles
                                     </option>
                                 </select>
                             </div>
                             <div sec:authorize="hasAnyRole('ADMIN', 'EDITOR')" class="single_sidebar wow fadeInDown">
-                                <h2><span>Activate</span></h2>
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#deactivated" aria-controls="home"
-                                                                              role="tab" data-toggle="tab">No</a></li>
-                                    <li role="presentation"><a href="#activated" aria-controls="profile" role="tab"
-                                                               data-toggle="tab">Yes</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="deactivated">
 
+                                <div id="Radio buttons">
+                                    <label>Activate article</label>
+                                    <div class="btn-group btn-group-custom-toggle" data-toggle="buttons"
+                                         style="width: 100%">
+                                        <label class="btn btn-secondary" th:classappend="*{activated} ? '': 'active'"
+                                               id="inactive"
+                                               onclick="document.getElementById('dateTimeInput').style.display='none'">
+                                            <input th:field="*{activated}" th:errorclass="is-invalid" type="radio"
+                                                   name="comments"
+                                                   th:value="No" autocomplete="off" checked=""
+                                            >
+                                            No
+                                        </label>
+                                        <label class="btn btn-secondary" th:classappend="*{activated} ? 'active': ''"
+                                               id="activated"
+                                               onclick="document.getElementById('dateTimeInput').style.display='block'">
+                                            <input th:field="*{activated}" th:errorclass="is-invalid" type="radio"
+                                                   name="comments"
+                                                   th:value="Yes" autocomplete="off"
+                                            >
+                                            Yes
+                                        </label>
+                                        <div th:each="e : ${#fields.errors('activated')}" th:text="${e}"
+                                             id="activateArticleError"
+                                             class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                        </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="activated">
-                                        <div id="activateInput">
-                                            <div class="form-group">
-                                                <label>Publish on</label>
-                                                <input th:field="*{posted}" th:errorclass="is-invalid"
-                                                       type="datetime-local" class="form-control datetimepicker"
-                                                       name="posted" id="posted">
-                                                <div th:each="e : ${#fields.errors('posted')}" th:text="${e}"
-                                                     id="postedError"
-                                                     class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
-                                                </div>
+
+                                    <div id="dateTimeInput" th:style="*{activated} ? '': 'display:none'">
+                                        <div class="form-group">
+                                            <label>Publish on</label>
+                                            <input th:field="*{posted}" th:errorclass="is-invalid"
+                                                   type="datetime-local" class="form-control datetimepicker"
+                                                   name="posted" id="posted">
+                                            <div th:each="e : ${#fields.errors('posted')}" th:text="${e}"
+                                                 id="postedError"
+                                                 class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div id="Radio buttons">
                                     <label>Disable comments</label>
                                     <div class="btn-group btn-group-custom-toggle" data-toggle="buttons"
                                          style="width: 100%">
-                                        <label class="btn btn-secondary active">
-                                            <input th:field="*{disabledComments}" th:errorclass="is-invalid" type="radio" name="comments"
+                                        <label class="btn btn-secondary"
+                                               th:classappend="*{disabledComments} ? '': 'active'">
+                                            <input th:field="*{disabledComments}" th:errorclass="is-invalid"
+                                                   type="radio" name="comments"
                                                    th:value="No" autocomplete="off" checked="">
                                             No
                                         </label>
-                                        <label class="btn btn-secondary">
-                                            <input th:field="*{disabledComments}" th:errorclass="is-invalid" type="radio" name="comments"
+                                        <label class="btn btn-secondary"
+                                               th:classappend="*{disabledComments} ? 'active': ''">
+                                            <input th:field="*{disabledComments}" th:errorclass="is-invalid"
+                                                   type="radio" name="comments"
                                                    th:value="Yes" autocomplete="off">
                                             Yes
                                         </label>
@@ -154,17 +175,51 @@
                             </div>
                         </div>
                 </div>
-                </aside>
+
 
             </div>
             <div class="row contact_form">
                 <div class="form-group row text-center submit">
                     <div class="col-md-4">
-                        <input type="submit" value="Create">
+                        <input type="submit" value="Save">
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary delete-button" data-toggle="modal"
+                                data-target="#exampleModal">
+                            Delete
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Do you really want to delete the
+                                            article?</h5>
+                                    </div>
+                                    <div class="modal-body" th:text="|*{title}|"></div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <a id="delete_button" class="delete-button btn btn-secondary"
+                                           onclick="document.getElementById('delete-form').submit();">
+                                            Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </form>
+        <form id="delete-form" th:action="@{/articles/delete/{id}(id = *{id})}" th:method="DELETE"
+              style="display: none"></form>
+
+
     </section>
 
     <footer th:replace="fragments/commons::footer"></footer>

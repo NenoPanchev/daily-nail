@@ -53,9 +53,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryServiceModel findByCategoryNameStr(String categoryName) {
-        return categoryRepository.findByCategoryName(CategoryNameEnum.valueOf(categoryName))
+        return categoryRepository.findByCategoryName(CategoryNameEnum.valueOf(categoryName.toUpperCase()))
                 .map(entity -> modelMapper.map(entity, CategoryServiceModel.class))
-                .orElseThrow(ObjectNotFoundException::new);
+                .orElse(null);
     }
 
     @Override

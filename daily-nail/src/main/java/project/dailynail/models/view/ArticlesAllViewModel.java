@@ -2,6 +2,7 @@ package project.dailynail.models.view;
 
 
 public class ArticlesAllViewModel {
+    private String id;
     private String title;
     private String author;
     private String imageUrl;
@@ -93,6 +94,15 @@ public class ArticlesAllViewModel {
 
     public ArticlesAllViewModel setSeen(Integer seen) {
         this.seen = seen;
+        return this;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public ArticlesAllViewModel setId(String id) {
+        this.id = id;
         return this;
     }
 }

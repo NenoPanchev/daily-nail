@@ -3,10 +3,7 @@ logging:
     blog: WARN
     org: WARN
     org.hibernate.SQL: DEBUG
-mvc:
-  hiddenmethod:
-    filter:
-      enabled: true
+
 
 
 spring:
@@ -28,6 +25,10 @@ spring:
       max-file-size: 5MB
       max-request-size: 5MB
       enabled: true
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
 
 cloudinary:
   cloud-name: dzjgi2c7y

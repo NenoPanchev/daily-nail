@@ -1,6 +1,7 @@
 package project.dailynail.services;
 
 import org.springframework.data.domain.Page;
+import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.service.ArticleCreateServiceModel;
@@ -23,5 +24,9 @@ public interface ArticleService {
 
     ArticlesPageViewModel getFilteredArticles(ArticleSearchBindingModel articleSearchBindingModel);
 
-    Page<ArticleEntity> test();
+    ArticleEditBindingModel getArticleEditBindingModelById(String id);
+
+    void deleteArticle(String id);
+
+    void editArticle(ArticleEditBindingModel articleEditBindingModel) throws IOException;
 }
