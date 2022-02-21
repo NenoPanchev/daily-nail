@@ -20,6 +20,7 @@ public class ArticleEntity extends BaseEntity {
     private boolean disabledComments;
     private Integer seen;
     private Set<CommentEntity> comments;
+    private boolean top;
 
     public ArticleEntity() {
         this.activated = false;
@@ -152,6 +153,15 @@ public class ArticleEntity extends BaseEntity {
 
     public ArticleEntity setSeen(Integer seen) {
         this.seen = seen;
+        return this;
+    }
+
+    public boolean isTop() {
+        return top;
+    }
+
+    public ArticleEntity setTop(boolean top) {
+        this.top = top;
         return this;
     }
 }
