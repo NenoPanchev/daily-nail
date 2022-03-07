@@ -15,6 +15,7 @@ public class ArticleServiceModel extends BaseServiceModel {
     private CategoryServiceModel category;
     private SubcategoryServiceModel subcategory;
     private boolean disabledComments;
+    private boolean top;
     private Integer seen;
     private Set<CommentServiceModel> comments;
 
@@ -153,6 +154,15 @@ public class ArticleServiceModel extends BaseServiceModel {
 
     public ArticleServiceModel setSubcategory(SubcategoryServiceModel subcategory) {
         this.subcategory = subcategory;
+        return this;
+    }
+
+    public boolean isTop() {
+        return top;
+    }
+
+    public ArticleServiceModel setTop(boolean top) {
+        this.top = top;
         return this;
     }
 }

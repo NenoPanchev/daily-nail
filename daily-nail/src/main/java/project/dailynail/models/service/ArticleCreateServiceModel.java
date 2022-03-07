@@ -23,6 +23,7 @@ public class ArticleCreateServiceModel {
     private LocalDateTime posted;
     private String categoryName;
     private String disabledComments;
+    private String top;
 
     public ArticleCreateServiceModel() {
     }
@@ -95,6 +96,16 @@ public class ArticleCreateServiceModel {
 
     public ArticleCreateServiceModel setDisabledComments(String disabledComments) {
         this.disabledComments = disabledComments;
+        return this;
+    }
+
+    @Pattern(regexp = "^Yes|No$", message = "Enter a valid option")
+    public String getTop() {
+        return top;
+    }
+
+    public ArticleCreateServiceModel setTop(String top) {
+        this.top = top;
         return this;
     }
 }

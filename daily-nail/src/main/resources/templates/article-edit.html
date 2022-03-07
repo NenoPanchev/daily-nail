@@ -148,6 +148,31 @@
                                         </div>
                                     </div>
 
+
+                                    <label>Top Article</label>
+                                    <div class="btn-group btn-group-custom-toggle" data-toggle="buttons"
+                                         style="width: 100%">
+                                        <label class="btn btn-secondary"
+                                               th:classappend="*{top} ? '': 'active'">
+                                            <input th:field="*{top}" th:errorclass="is-invalid"
+                                                   type="radio" name="comments"
+                                                   th:value="No" autocomplete="off" checked="">
+                                            No
+                                        </label>
+                                        <label class="btn btn-secondary"
+                                               th:classappend="*{top} ? 'active': ''">
+                                            <input th:field="*{top}" th:errorclass="is-invalid"
+                                                   type="radio" name="comments"
+                                                   th:value="Yes" autocomplete="off">
+                                            Yes
+                                        </label>
+                                        <div th:each="e : ${#fields.errors('top')}" th:text="${e}"
+                                             id="topError"
+                                             class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                        </div>
+                                    </div>
+
+
                                     <label>Disable comments</label>
                                     <div class="btn-group btn-group-custom-toggle" data-toggle="buttons"
                                          style="width: 100%">
@@ -170,6 +195,7 @@
                                              class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
                                         </div>
                                     </div>
+
 
                                 </div>
                             </div>

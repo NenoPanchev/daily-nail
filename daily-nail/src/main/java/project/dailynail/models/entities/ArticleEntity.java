@@ -156,6 +156,7 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
+    @Column
     public boolean isTop() {
         return top;
     }

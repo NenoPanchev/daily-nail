@@ -13,6 +13,7 @@ import project.dailynail.models.binding.UserUpdatePasswordBindingModel;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.service.UserServiceModel;
+import project.dailynail.services.ArticleService;
 import project.dailynail.services.UserService;
 
 import javax.validation.Valid;
@@ -23,11 +24,13 @@ import java.security.Principal;
 public class UserController {
     private final UserService userService;
     private final ModelMapper modelMapper;
+    private final ArticleService articleService;
 
     @Autowired
-    public UserController(UserService userService, ModelMapper modelMapper) {
+    public UserController(UserService userService, ModelMapper modelMapper, ArticleService articleService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
+        this.articleService = articleService;
     }
 
     @ModelAttribute("userRegistrationBindingModel")
@@ -46,7 +49,8 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("latestNine", articleService.getLatestNineArticles());
         return "login";
     }
 
@@ -60,7 +64,8 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("latestNine", articleService.getLatestNineArticles());
         return "register";
     }
 
@@ -90,7 +95,8 @@ public class UserController {
     }
 
     @GetMapping("/terms-and-conditions")
-    public String terms() {
+    public String terms(Model model) {
+        model.addAttribute("latestNine", articleService.getLatestNineArticles());
         return "terms-and-conditions";
     }
 
@@ -99,6 +105,7 @@ public class UserController {
 
         model.addAttribute("principalName", userService.getUserNameByEmail(principal.getName()));
         model.addAttribute("principalEmail", principal.getName());
+        model.addAttribute("latestNine", articleService.getLatestNineArticles());
         return "profile-settings";
     }
 
@@ -140,6 +147,7 @@ public class UserController {
 
         model.addAttribute("principalName", userService.getUserNameByEmail(principal.getName()));
         model.addAttribute("principalEmail", principal.getName());
+        model.addAttribute("latestNine", articleService.getLatestNineArticles());
         return "change-password";
     }
 

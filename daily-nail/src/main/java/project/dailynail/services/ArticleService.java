@@ -1,11 +1,10 @@
 package project.dailynail.services;
 
-import org.springframework.data.domain.Page;
 import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
-import project.dailynail.models.entities.ArticleEntity;
+import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
-import project.dailynail.models.view.ArticlesAllViewModel;
+import project.dailynail.models.view.ArticlePreViewModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 
 import java.io.IOException;
@@ -29,4 +28,12 @@ public interface ArticleService {
     void deleteArticle(String id);
 
     void editArticle(ArticleEditBindingModel articleEditBindingModel) throws IOException;
+
+    ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum);
+
+    List<ArticlePreViewModel> getFourArticlesByCategoryName(CategoryNameEnum categoryNameEnum);
+
+    List<ArticlePreViewModel> getLatestFiveArticles();
+
+    List<ArticlePreViewModel> getLatestNineArticles();
 }

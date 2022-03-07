@@ -81,7 +81,7 @@ function display_dt() {
     var x = new Date()
     var date = x.getDate()
     var month = x.getMonth()
-    let months = ['January', 'February', 'Mart', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     var dayOfWeek = x.getDay()
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     var string = date + " " + months[month] + ", " + days[dayOfWeek];

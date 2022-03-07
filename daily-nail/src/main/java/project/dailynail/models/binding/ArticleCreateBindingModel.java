@@ -21,6 +21,7 @@ public class ArticleCreateBindingModel {
     private LocalDateTime posted;
     private String categoryName;
     private String disabledComments;
+    private String top;
 
     public ArticleCreateBindingModel() {
     }
@@ -95,6 +96,16 @@ public class ArticleCreateBindingModel {
 
     public ArticleCreateBindingModel setDisabledComments(String disabledComments) {
         this.disabledComments = disabledComments;
+        return this;
+    }
+
+    @Pattern(regexp = "^Yes|No$", message = "Enter a valid option")
+    public String getTop() {
+        return top;
+    }
+
+    public ArticleCreateBindingModel setTop(String top) {
+        this.top = top;
         return this;
     }
 }

@@ -19,9 +19,9 @@ import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.service.ArticleServiceModel;
-import project.dailynail.models.service.CategoryServiceModel;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
+import project.dailynail.models.view.ArticlePreViewModel;
 import project.dailynail.models.view.ArticlesAllViewModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 import project.dailynail.repositories.ArticleRepository;
@@ -80,6 +80,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .setCreated(LocalDateTime.now())
                 .setActivated(activated)
                 .setDisabledComments(articleCreateServiceModel.getDisabledComments() != null)
+                .setTop(articleCreateServiceModel.getTop().equals("Yes"))
                 .setSeen(0)
                 .setComments(new HashSet<>());
         sb.append(LocalTime.now().toString()).append(" - ").append("After creating articleServiceModel").append(System.lineSeparator());
@@ -275,6 +276,43 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
         articleRepository.save(articleEntity);
+    }
+
+    @Override
+    public ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum) {
+        ArticlePreViewModel articlePreViewModel = modelMapper.map(articleRepository.findById(articleRepository.findFirstByCategoryNameOrderByPostedDesc(categoryNameEnum)).orElseThrow(), ArticlePreViewModel.class);
+        articlePreViewModel.setText(articlePreViewModel.getText().substring(0, 128) + "...");
+        return articlePreViewModel;
+
+
+    }
+
+    @Override
+    public List<ArticlePreViewModel> getFourArticlesByCategoryName(CategoryNameEnum categoryNameEnum) {
+        return articleRepository
+                .findFourByCategoryNameOrderByPostedDesc(categoryNameEnum)
+                .stream()
+                .map(str -> articleRepository.findById(str).orElseThrow())
+                .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArticlePreViewModel> getLatestFiveArticles() {
+        return articleRepository.findLatestArticles(5)
+                .stream()
+                .map(str -> articleRepository.findById(str).orElseThrow())
+                .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArticlePreViewModel> getLatestNineArticles() {
+        return articleRepository.findLatestArticles(9)
+                .stream()
+                .map(str -> articleRepository.findById(str).orElseThrow())
+                .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
+                .collect(Collectors.toList());
     }
 
     @Override

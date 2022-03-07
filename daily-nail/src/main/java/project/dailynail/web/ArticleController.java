@@ -22,8 +22,6 @@ import project.dailynail.services.UserService;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Controller
 @RequestMapping("/articles")
@@ -40,6 +38,13 @@ public class ArticleController {
         this.subcategoryService = subcategoryService;
         this.modelMapper = modelMapper;
         this.userService = userService;
+    }
+
+    @GetMapping("/{url}")
+    public String viewArticle(@PathVariable("url") String url) {
+
+
+        return "article";
     }
 
     @GetMapping("/edit/{id}")

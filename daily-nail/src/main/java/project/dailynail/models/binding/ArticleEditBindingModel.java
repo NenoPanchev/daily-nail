@@ -19,6 +19,7 @@ public class ArticleEditBindingModel {
     private LocalDateTime posted;
     private String categoryName;
     private String disabledComments;
+    private String top;
 
     public ArticleEditBindingModel() {
     }
@@ -109,6 +110,16 @@ public class ArticleEditBindingModel {
 
     public ArticleEditBindingModel setId(String id) {
         this.id = id;
+        return this;
+    }
+
+    @Pattern(regexp = "^Yes|No$", message = "Enter a valid option")
+    public String getTop() {
+        return top;
+    }
+
+    public ArticleEditBindingModel setTop(String top) {
+        this.top = top;
         return this;
     }
 }

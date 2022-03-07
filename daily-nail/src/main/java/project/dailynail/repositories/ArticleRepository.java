@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import project.dailynail.models.entities.ArticleEntity;
+import project.dailynail.models.entities.enums.CategoryNameEnum;
 
 import java.util.List;
 
@@ -30,4 +31,23 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
                                                 @Param("days") int days, Pageable pageable);
 
     Page<ArticleEntity> findAllByOrderByCreatedDesc(Pageable pageable);
+
+    @Query(value = "SELECT a.id FROM articles AS a " +
+            "LEFT JOIN categories AS c ON a.category_id = c.id " +
+            "WHERE c.category_name LIKE %:categoryNameEnum% " +
+            "ORDER BY a.posted DESC " +
+            "LIMIT 1", nativeQuery = true)
+    String findFirstByCategoryNameOrderByPostedDesc(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum);
+
+    @Query(value = "SELECT a.id FROM articles AS a " +
+            "LEFT JOIN categories AS c ON a.category_id = c.id " +
+            "WHERE c.category_name LIKE %:categoryNameEnum% " +
+            "ORDER BY a.posted DESC " +
+            "LIMIT 1, 4", nativeQuery = true)
+    List<String> findFourByCategoryNameOrderByPostedDesc(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum);
+
+    @Query(value = "SELECT a.id FROM articles AS a " +
+            "ORDER BY a.posted DESC " +
+            "LIMIT :limit", nativeQuery = true)
+    List<String> findLatestArticles(@Param("limit") Integer limit);
 }
