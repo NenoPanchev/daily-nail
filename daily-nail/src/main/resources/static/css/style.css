@@ -603,7 +603,8 @@ img:hover {
 
 .single_iteam img {
     width: 100%;
-    height: 100%
+    height: 100%;
+    object-fit: cover;
 }
 
 .single_iteam img:hover {
@@ -1983,7 +1984,9 @@ html body.modal-open div.container section#contentSection form.contact_form div#
         }
 
         .single_iteam a > img {
-            height: 100%
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
         }
 
         .error_page > a {

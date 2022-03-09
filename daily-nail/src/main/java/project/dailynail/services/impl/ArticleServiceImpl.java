@@ -3,6 +3,7 @@ package project.dailynail.services.impl;
 import com.google.gson.Gson;
 import net.bytebuddy.utility.RandomString;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,7 @@ import project.dailynail.repositories.ArticleRepository;
 import project.dailynail.services.*;
 
 import javax.imageio.ImageIO;
+import javax.transaction.Transactional;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,7 +40,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,8 +53,9 @@ public class ArticleServiceImpl implements ArticleService {
     private final CloudinaryService cloudinaryService;
     private final CategoryService categoryService;
     private final SubcategoryService subcategoryService;
+    private final TopArticlesServiceImpl topArticlesService;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, ModelMapper modelMapper, ServiceLayerValidationUtil serviceLayerValidationUtil, Gson gson, UserService userService, CloudinaryService cloudinaryService, CategoryService categoryService, SubcategoryService subcategoryService) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, ModelMapper modelMapper, ServiceLayerValidationUtil serviceLayerValidationUtil, Gson gson, UserService userService, CloudinaryService cloudinaryService, CategoryService categoryService, SubcategoryService subcategoryService, @Lazy TopArticlesServiceImpl topArticlesService) {
         this.articleRepository = articleRepository;
         this.modelMapper = modelMapper;
         this.serviceLayerValidationUtil = serviceLayerValidationUtil;
@@ -62,6 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
         this.cloudinaryService = cloudinaryService;
         this.categoryService = categoryService;
         this.subcategoryService = subcategoryService;
+        this.topArticlesService = topArticlesService;
     }
 
     @Override
@@ -105,6 +108,10 @@ public class ArticleServiceImpl implements ArticleService {
                     .setCategory(categoryEntity);
         }
         sb.append(LocalTime.now().toString()).append(" - ").append("After mapping to entity").append(System.lineSeparator());
+
+        if (articleServiceModel.isTop()) {
+            topArticlesService.add(articleServiceModel.getId());
+        }
 
         articleRepository.save(articleEntity);
         sb.append(LocalTime.now().toString()).append(" - ").append("After saving").append(System.lineSeparator());
@@ -194,6 +201,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .setPosted(articleEntity.getPosted())
                 .setActivated(articleEntity.getPosted() != null)
                 .setCategoryName(categoryName)
+                .setTop(articleEntity.isTop() ? "Yes" : "No")
                 .setDisabledComments(articleEntity.isDisabledComments() ? "Yes" : "No");
          return articleEditBindingModel;
     }
@@ -275,6 +283,16 @@ public class ArticleServiceImpl implements ArticleService {
             articleEntity.setPosted(null);
         }
 
+        if (articleEntity.isTop() && !articleEditBindingModel.getTop().equals("Yes")) {
+            topArticlesService.remove(articleEntity.getId());
+            articleEntity.setTop(false);
+        }
+
+        if (!articleEntity.isTop() && articleEditBindingModel.getTop().equals("Yes")) {
+            topArticlesService.add(articleEntity.getId());
+            articleEntity.setTop(true);
+        }
+
         articleRepository.save(articleEntity);
     }
 
@@ -314,6 +332,39 @@ public class ArticleServiceImpl implements ArticleService {
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    @Transactional
+    public void setTopFalse(String poppedOutId) {
+//        ArticleEntity articleEntity = articleRepository.findById(poppedOutId).orElseThrow();
+//                articleEntity.setTop(false);
+//        articleRepository.saveAndFlush(articleEntity);
+        articleRepository.updateTop(poppedOutId, false);
+    }
+
+    @Override
+    @Transactional
+    public void setTopTrue(String id) {
+//        ArticleEntity articleEntity = articleRepository.findById(id).orElseThrow();
+//                articleEntity.setTop(true);
+//        articleRepository.saveAndFlush(articleEntity);
+        articleRepository.updateTop(id, true);
+    }
+
+    @Override
+    public List<ArticlePreViewModel> getTopArticles() {
+        return articleRepository.findAllById(topArticlesService.getTopArticlesIds())
+        .stream()
+                .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class)
+                        .setText(entity.getText().substring(0, 128) + "..."))
+        .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getAllTopArticlesIds() {
+        return articleRepository.findAllByTopIsTrue();
+    }
+
 
     @Override
     public List<String> getTimePeriods() {

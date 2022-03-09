@@ -36,4 +36,12 @@ public interface ArticleService {
     List<ArticlePreViewModel> getLatestFiveArticles();
 
     List<ArticlePreViewModel> getLatestNineArticles();
+
+    void setTopFalse(String poppedOutId);
+
+    void setTopTrue(String id);
+
+    List<ArticlePreViewModel> getTopArticles();
+
+    List<String> getAllTopArticlesIds();
 }

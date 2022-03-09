@@ -26,6 +26,7 @@ public class HomeController {
 //        model.addAttribute("covid", articleService.getFourArticlesByCategoryName(CategoryNameEnum.COVID_19));
         model.addAttribute("latestFive", articleService.getLatestFiveArticles());
         model.addAttribute("latestNine", articleService.getLatestNineArticles());
+        model.addAttribute("topArticles", articleService.getTopArticles());
 
         return "index";
     }

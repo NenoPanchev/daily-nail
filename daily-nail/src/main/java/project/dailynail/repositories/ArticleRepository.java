@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -50,4 +51,15 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "ORDER BY a.posted DESC " +
             "LIMIT :limit", nativeQuery = true)
     List<String> findLatestArticles(@Param("limit") Integer limit);
+
+    @Modifying
+    @Query("UPDATE ArticleEntity a " +
+            "SET a.top = :condition " +
+            "WHERE a.id = :id")
+    void updateTop(@Param("id") String id, @Param("condition") boolean condition);
+
+    @Query(value = "SELECT a.id FROM ArticleEntity a " +
+            "WHERE a.top = true " +
+            "ORDER BY a.posted DESC ")
+    List<String> findAllByTopIsTrue();
 }
