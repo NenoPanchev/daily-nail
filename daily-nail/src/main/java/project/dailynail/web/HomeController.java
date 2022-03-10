@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.services.ArticleService;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class HomeController {
     private final ArticleService articleService;
@@ -16,17 +18,18 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("topSport", articleService.getNewestArticleByCategoryName(CategoryNameEnum.SPORTS));
-        model.addAttribute("sports", articleService.getFourArticlesByCategoryName(CategoryNameEnum.SPORTS));
-        model.addAttribute("topEntertainment", articleService.getNewestArticleByCategoryName(CategoryNameEnum.ENTERTAINMENT));
-        model.addAttribute("entertainments", articleService.getFourArticlesByCategoryName(CategoryNameEnum.ENTERTAINMENT));
-//        model.addAttribute("topWorld", articleService.getNewestArticleByCategoryName(CategoryNameEnum.WORLD));
-//        model.addAttribute("world", articleService.getFourArticlesByCategoryName(CategoryNameEnum.WORLD));
-//        model.addAttribute("topCovid", articleService.getNewestArticleByCategoryName(CategoryNameEnum.COVID_19));
-//        model.addAttribute("covid", articleService.getFourArticlesByCategoryName(CategoryNameEnum.COVID_19));
-        model.addAttribute("latestFive", articleService.getLatestFiveArticles());
-        model.addAttribute("latestNine", articleService.getLatestNineArticles());
-        model.addAttribute("topArticles", articleService.getTopArticles());
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("topSport", articleService.getNewestArticleByCategoryName(CategoryNameEnum.SPORTS, now));
+        model.addAttribute("sports", articleService.getFourArticlesByCategoryName(CategoryNameEnum.SPORTS, now));
+        model.addAttribute("topEntertainment", articleService.getNewestArticleByCategoryName(CategoryNameEnum.ENTERTAINMENT, now));
+        model.addAttribute("entertainments", articleService.getFourArticlesByCategoryName(CategoryNameEnum.ENTERTAINMENT, now));
+        model.addAttribute("topWorld", articleService.getNewestArticleByCategoryName(CategoryNameEnum.WORLD, now));
+        model.addAttribute("world", articleService.getFourArticlesByCategoryName(CategoryNameEnum.WORLD, now));
+        model.addAttribute("topCovid", articleService.getNewestArticleByCategoryName(CategoryNameEnum.COVID_19, now));
+        model.addAttribute("covid", articleService.getFourArticlesByCategoryName(CategoryNameEnum.COVID_19, now));
+        model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("topArticles", articleService.getTopArticles(now));
 
         return "index";
     }

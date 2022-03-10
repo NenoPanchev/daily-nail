@@ -83,9 +83,14 @@ public class ArticleServiceImpl implements ArticleService {
                 .setCreated(LocalDateTime.now())
                 .setActivated(activated)
                 .setDisabledComments(articleCreateServiceModel.getDisabledComments() != null)
-                .setTop(articleCreateServiceModel.getTop().equals("Yes"))
                 .setSeen(0)
                 .setComments(new HashSet<>());
+
+        if (articleCreateServiceModel.getTop() == null || articleCreateServiceModel.getTop().equals("No")) {
+            articleServiceModel.setTop(false);
+        } else {
+            articleServiceModel.setTop(true);
+        }
         sb.append(LocalTime.now().toString()).append(" - ").append("After creating articleServiceModel").append(System.lineSeparator());
 
         String categoryName = articleCreateServiceModel.getCategoryName();
@@ -109,11 +114,15 @@ public class ArticleServiceImpl implements ArticleService {
         }
         sb.append(LocalTime.now().toString()).append(" - ").append("After mapping to entity").append(System.lineSeparator());
 
-        if (articleServiceModel.isTop()) {
-            topArticlesService.add(articleServiceModel.getId());
-        }
+
 
         articleRepository.save(articleEntity);
+        String createdArticleId = getIdOfLastCreatedArticle();
+
+        if (articleServiceModel.isTop()) {
+            topArticlesService.add(createdArticleId);
+        }
+
         sb.append(LocalTime.now().toString()).append(" - ").append("After saving").append(System.lineSeparator());
         System.out.println(sb.toString());
     }
@@ -209,6 +218,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void deleteArticle(String id) {
         articleRepository.deleteById(id);
+        topArticlesService.remove(id);
     }
 
     @Override
@@ -297,8 +307,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum) {
-        ArticlePreViewModel articlePreViewModel = modelMapper.map(articleRepository.findById(articleRepository.findFirstByCategoryNameOrderByPostedDesc(categoryNameEnum)).orElseThrow(), ArticlePreViewModel.class);
+    public ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum, LocalDateTime now) {
+        ArticlePreViewModel articlePreViewModel = modelMapper.map(articleRepository.findById(articleRepository.findFirstByCategoryNameOrderByPostedDesc(categoryNameEnum, now)).orElseThrow(), ArticlePreViewModel.class);
         articlePreViewModel.setText(articlePreViewModel.getText().substring(0, 128) + "...");
         return articlePreViewModel;
 
@@ -306,9 +316,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticlePreViewModel> getFourArticlesByCategoryName(CategoryNameEnum categoryNameEnum) {
+    public List<ArticlePreViewModel> getFourArticlesByCategoryName(CategoryNameEnum categoryNameEnum, LocalDateTime now) {
         return articleRepository
-                .findFourByCategoryNameOrderByPostedDesc(categoryNameEnum)
+                .findFourByCategoryNameOrderByPostedDesc(categoryNameEnum, now)
                 .stream()
                 .map(str -> articleRepository.findById(str).orElseThrow())
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
@@ -316,8 +326,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticlePreViewModel> getLatestFiveArticles() {
-        return articleRepository.findLatestArticles(5)
+    public List<ArticlePreViewModel> getLatestFiveArticles(LocalDateTime now) {
+        return articleRepository.findLatestArticles(5, now)
                 .stream()
                 .map(str -> articleRepository.findById(str).orElseThrow())
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
@@ -325,8 +335,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticlePreViewModel> getLatestNineArticles() {
-        return articleRepository.findLatestArticles(9)
+    public List<ArticlePreViewModel> getLatestNineArticles(LocalDateTime now) {
+        return articleRepository.findLatestArticles(9, now)
                 .stream()
                 .map(str -> articleRepository.findById(str).orElseThrow())
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
@@ -352,7 +362,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticlePreViewModel> getTopArticles() {
+    public List<ArticlePreViewModel> getTopArticles(LocalDateTime now) {
         return articleRepository.findAllById(topArticlesService.getTopArticlesIds())
         .stream()
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class)
@@ -361,8 +371,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<String> getAllTopArticlesIds() {
-        return articleRepository.findAllByTopIsTrue();
+    public List<String> getAllTopArticlesIds(LocalDateTime now) {
+        return articleRepository.findAllByTopIsTrue(now);
     }
 
 
@@ -418,5 +428,9 @@ public class ArticleServiceImpl implements ArticleService {
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         return localDateTime.format(formatter);
+    }
+
+    private String getIdOfLastCreatedArticle() {
+        return articleRepository.getIdOfLastCreatedArticle();
     }
 }

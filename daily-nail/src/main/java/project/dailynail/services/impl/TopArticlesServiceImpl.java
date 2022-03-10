@@ -3,6 +3,7 @@ package project.dailynail.services.impl;
 import org.springframework.stereotype.Service;
 import project.dailynail.services.ArticleService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayDeque;
 
 
@@ -14,7 +15,8 @@ public class TopArticlesServiceImpl {
     public TopArticlesServiceImpl(ArticleService articleService) {
         this.articleService = articleService;
         topArticlesIds = new ArrayDeque<>();
-        topArticlesIds.addAll(articleService.getAllTopArticlesIds());
+        articleService.getAllTopArticlesIds(LocalDateTime.now())
+                .forEach(id -> topArticlesIds.push(id));
     }
 
     public ArrayDeque<String> getTopArticlesIds() {

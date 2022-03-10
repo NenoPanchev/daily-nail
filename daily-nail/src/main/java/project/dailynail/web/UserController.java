@@ -18,6 +18,7 @@ import project.dailynail.services.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/users")
@@ -50,7 +51,8 @@ public class UserController {
 
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("latestNine", articleService.getLatestNineArticles());
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         return "login";
     }
 
@@ -65,7 +67,8 @@ public class UserController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute("latestNine", articleService.getLatestNineArticles());
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         return "register";
     }
 
@@ -96,7 +99,8 @@ public class UserController {
 
     @GetMapping("/terms-and-conditions")
     public String terms(Model model) {
-        model.addAttribute("latestNine", articleService.getLatestNineArticles());
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         return "terms-and-conditions";
     }
 
@@ -105,7 +109,8 @@ public class UserController {
 
         model.addAttribute("principalName", userService.getUserNameByEmail(principal.getName()));
         model.addAttribute("principalEmail", principal.getName());
-        model.addAttribute("latestNine", articleService.getLatestNineArticles());
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         return "profile-settings";
     }
 
@@ -147,7 +152,8 @@ public class UserController {
 
         model.addAttribute("principalName", userService.getUserNameByEmail(principal.getName()));
         model.addAttribute("principalEmail", principal.getName());
-        model.addAttribute("latestNine", articleService.getLatestNineArticles());
+        LocalDateTime now = LocalDateTime.now();
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         return "change-password";
     }
 

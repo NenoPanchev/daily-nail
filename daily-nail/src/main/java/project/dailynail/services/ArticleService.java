@@ -8,6 +8,7 @@ import project.dailynail.models.view.ArticlePreViewModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ArticleService {
@@ -29,19 +30,19 @@ public interface ArticleService {
 
     void editArticle(ArticleEditBindingModel articleEditBindingModel) throws IOException;
 
-    ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum);
+    ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum, LocalDateTime now);
 
-    List<ArticlePreViewModel> getFourArticlesByCategoryName(CategoryNameEnum categoryNameEnum);
+    List<ArticlePreViewModel> getFourArticlesByCategoryName(CategoryNameEnum categoryNameEnum, LocalDateTime now);
 
-    List<ArticlePreViewModel> getLatestFiveArticles();
+    List<ArticlePreViewModel> getLatestFiveArticles(LocalDateTime now);
 
-    List<ArticlePreViewModel> getLatestNineArticles();
+    List<ArticlePreViewModel> getLatestNineArticles(LocalDateTime now);
 
     void setTopFalse(String poppedOutId);
 
     void setTopTrue(String id);
 
-    List<ArticlePreViewModel> getTopArticles();
+    List<ArticlePreViewModel> getTopArticles(LocalDateTime now);
 
-    List<String> getAllTopArticlesIds();
+    List<String> getAllTopArticlesIds(LocalDateTime now);
 }

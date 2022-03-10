@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<ArticleEntity, String> {
@@ -36,21 +38,24 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
     @Query(value = "SELECT a.id FROM articles AS a " +
             "LEFT JOIN categories AS c ON a.category_id = c.id " +
             "WHERE c.category_name LIKE %:categoryNameEnum% " +
+            "AND a.posted <= :now " +
             "ORDER BY a.posted DESC " +
             "LIMIT 1", nativeQuery = true)
-    String findFirstByCategoryNameOrderByPostedDesc(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum);
+    String findFirstByCategoryNameOrderByPostedDesc(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum, @Param("now")LocalDateTime now);
 
     @Query(value = "SELECT a.id FROM articles AS a " +
             "LEFT JOIN categories AS c ON a.category_id = c.id " +
             "WHERE c.category_name LIKE %:categoryNameEnum% " +
+            "AND a.posted <= :now " +
             "ORDER BY a.posted DESC " +
             "LIMIT 1, 4", nativeQuery = true)
-    List<String> findFourByCategoryNameOrderByPostedDesc(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum);
+    List<String> findFourByCategoryNameOrderByPostedDesc(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum, @Param("now") LocalDateTime now);
 
     @Query(value = "SELECT a.id FROM articles AS a " +
+            "WHERE a.posted <= :now " +
             "ORDER BY a.posted DESC " +
             "LIMIT :limit", nativeQuery = true)
-    List<String> findLatestArticles(@Param("limit") Integer limit);
+    List<String> findLatestArticles(@Param("limit") Integer limit, @Param("now") LocalDateTime now);
 
     @Modifying
     @Query("UPDATE ArticleEntity a " +
@@ -60,6 +65,12 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
 
     @Query(value = "SELECT a.id FROM ArticleEntity a " +
             "WHERE a.top = true " +
+            "AND a.posted <= :now " +
             "ORDER BY a.posted DESC ")
-    List<String> findAllByTopIsTrue();
+    List<String> findAllByTopIsTrue(@Param("now") LocalDateTime now);
+
+    @Query(value = "SELECT a.id FROM articles a " +
+            "ORDER BY a.created DESC " +
+            "LIMIT 1", nativeQuery = true)
+    String getIdOfLastCreatedArticle();
 }

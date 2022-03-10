@@ -21,22 +21,25 @@
               <p th:text="${topArticles.get(0).text}"></p>
             </div>
           </div>
-          <div class="single_iteam"> <a href="#"> <img th:src="${topArticles.get(1).imageUrl}" alt=""></a>
+          <div th:if="${topArticles.size() > 1}"
+                  class="single_iteam"> <a href="#"> <img th:src="${topArticles.get(1).imageUrl}" alt=""></a>
             <div class="slider_article">
               <h2><a class="slider_tittle" href="#" th:text="${topArticles.get(1).title}"></a></h2>
               <p th:text="${topArticles.get(1).text}"></p>
             </div>
           </div>
-          <div class="single_iteam"> <a href="pages/single_page.html"> <img src="images/slider_img3.jpg" alt=""></a>
+          <div th:if="${topArticles.size() > 2}"
+                  class="single_iteam"> <a href="#"> <img th:src="${topArticles.get(2).imageUrl}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" href="pages/single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
-              <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
+              <h2><a class="slider_tittle" href="#" th:text="${topArticles.get(2).title}"></a></h2>
+              <p th:text="${topArticles.get(2).text}"></p>
             </div>
           </div>
-          <div class="single_iteam"> <a href="pages/single_page.html"> <img src="images/slider_img1.jpg" alt=""></a>
+          <div th:if="${topArticles.size() > 3}"
+               class="single_iteam"> <a href="#"> <img th:src="${topArticles.get(3).imageUrl}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" href="pages/single_page.html">Fusce eu nulla semper porttitor felis sit amet</a></h2>
-              <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra urna. Morbi dui...</p>
+              <h2><a class="slider_tittle" href="#" th:text="${topArticles.get(3).title}"></a></h2>
+              <p th:text="${topArticles.get(3).text}"></p>
             </div>
           </div>
         </div>
@@ -67,34 +70,19 @@
             <h2><span>World</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
-                <li>
-                  <figure class="bsbig_fig"> <a href="pages/single_page.html" class="featured_img"> <img alt="" th:src="@{/images/featured_img1.jpg}"> <span class="overlay"></span> </a>
-                    <figcaption> <a href="pages/single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                <li th:object="${topWorld}">
+                  <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                    <figcaption> <a href="#" th:text="*{title}"></a> </figcaption>
+                    <p th:text="*{text}"></p>
                   </figure>
                 </li>
               </ul>
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                <li th:each="a : ${world}" th:object="${a}">
+                  <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                    <div class="media-body"> <a href="#" class="catg_title" th:text="*{title}"></a> </div>
                   </div>
                 </li>
               </ul>
@@ -178,37 +166,22 @@
             </ul>
           </div>
           <div class="single_post_content">
-            <h2><span>Games</span></h2>
+            <h2><span>Covid 19</span></h2>
             <div class="single_post_content_left">
               <ul class="business_catgnav">
-                <li>
-                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="pages/single_page.html"> <img src="images/featured_img1.jpg" alt=""> <span class="overlay"></span> </a>
-                    <figcaption> <a href="pages/single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                <li th:object="${topCovid}">
+                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" href="#"> <img th:src="*{imageUrl}" alt=""> <span class="overlay"></span> </a>
+                    <figcaption> <a href="#" th:text="*{title}"></a> </figcaption>
+                    <p th:text="*{text}"></p>
                   </figure>
                 </li>
               </ul>
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+                <li th:each="a : ${covid}" th:object="${a}">
+                  <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                    <div class="media-body"> <a href="#" class="catg_title" th:text="*{title}"></a> </div>
                   </div>
                 </li>
               </ul>
