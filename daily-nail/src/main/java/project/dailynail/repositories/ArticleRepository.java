@@ -73,4 +73,6 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "ORDER BY a.created DESC " +
             "LIMIT 1", nativeQuery = true)
     String getIdOfLastCreatedArticle();
+
+    ArticleEntity findFirstByUrlOrderByCreatedDesc(String url);
 }

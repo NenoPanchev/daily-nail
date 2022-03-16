@@ -20,11 +20,10 @@ import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.service.ArticleServiceModel;
+import project.dailynail.models.service.CommentServiceModel;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
-import project.dailynail.models.view.ArticlePreViewModel;
-import project.dailynail.models.view.ArticlesAllViewModel;
-import project.dailynail.models.view.ArticlesPageViewModel;
+import project.dailynail.models.view.*;
 import project.dailynail.repositories.ArticleRepository;
 import project.dailynail.services.*;
 
@@ -375,6 +374,25 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAllByTopIsTrue(now);
     }
 
+    @Override
+    public ArticleViewModel getArticleViewModelByUrl(String url) {
+        ArticleEntity articleEntity = articleRepository.findFirstByUrlOrderByCreatedDesc(url);
+        ArticleServiceModel articleServiceModel = modelMapper.map(articleEntity, ArticleServiceModel.class);
+        articleServiceModel.setComments(articleEntity
+                .getComments()
+                .stream()
+                .map(entity -> modelMapper.map(entity, CommentServiceModel.class))
+                .collect(Collectors.toSet()));
+        ArticleViewModel articleViewModel = modelMapper.map(articleServiceModel, ArticleViewModel.class)
+                .setPosted(getTimeAsStringForView(articleEntity.getPosted()));
+        articleViewModel.setComments(articleServiceModel
+                .getComments()
+        .stream()
+        .map(csm -> modelMapper.map(csm, CommentViewModel.class))
+        .collect(Collectors.toList()));
+        return articleViewModel;
+    }
+
 
     @Override
     public List<String> getTimePeriods() {
@@ -427,6 +445,14 @@ public class ArticleServiceImpl implements ArticleService {
             return "-";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
+        return localDateTime.format(formatter);
+    }
+
+    private String getTimeAsStringForView(LocalDateTime localDateTime) {
+        if (localDateTime == null) {
+            return "-";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy | HH:mm");
         return localDateTime.format(formatter);
     }
 

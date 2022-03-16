@@ -1,8 +1,5 @@
 package project.dailynail.models.service;
 
-import project.dailynail.models.entities.ArticleEntity;
-import project.dailynail.models.entities.UserEntity;
-
 import java.time.LocalDateTime;
 
 public class CommentServiceModel extends BaseServiceModel{

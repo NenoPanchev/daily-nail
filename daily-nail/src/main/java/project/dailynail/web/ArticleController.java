@@ -41,8 +41,8 @@ public class ArticleController {
     }
 
     @GetMapping("/{url}")
-    public String viewArticle(@PathVariable("url") String url) {
-
+    public String viewArticle(Model model, @PathVariable("url") String url) {
+        model.addAttribute("article", articleService.getArticleViewModelByUrl(url));
 
         return "article";
     }

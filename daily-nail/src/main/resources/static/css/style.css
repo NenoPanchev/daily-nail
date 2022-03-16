@@ -1886,7 +1886,31 @@ html body.modal-open div.container section#contentSection form.contact_form div#
     color: white;
 }
 
+.article-info {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    background-color: #f7f7f8
+}
 
+.article-info ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    padding: 8px 12px;
+    padding-bottom: 0;
+    float: left
+}
+
+.article-info ul li {
+    margin-right: 17px;
+    margin-bottom: 6px;
+    font-size: 16px;
+    float: left;
+}
+
+.article-info ul li .icon {
+    margin-right: 3px;
+}
 
 @media (max-width: 1199px ) {
     .logo_area {

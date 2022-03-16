@@ -5,6 +5,7 @@ import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.view.ArticlePreViewModel;
+import project.dailynail.models.view.ArticleViewModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 
 import java.io.IOException;
@@ -45,4 +46,6 @@ public interface ArticleService {
     List<ArticlePreViewModel> getTopArticles(LocalDateTime now);
 
     List<String> getAllTopArticlesIds(LocalDateTime now);
+
+    ArticleViewModel getArticleViewModelByUrl(String url);
 }
