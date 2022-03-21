@@ -308,7 +308,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum, LocalDateTime now) {
         ArticlePreViewModel articlePreViewModel = modelMapper.map(articleRepository.findById(articleRepository.findFirstByCategoryNameOrderByPostedDesc(categoryNameEnum, now)).orElseThrow(), ArticlePreViewModel.class);
-        articlePreViewModel.setText(articlePreViewModel.getText().substring(0, 128) + "...");
+        articlePreViewModel.setText(articlePreViewModel.getText().replaceAll("<[^>]*>", "").substring(0, 128) + "...");
         return articlePreViewModel;
 
 
@@ -365,7 +365,7 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAllById(topArticlesService.getTopArticlesIds())
         .stream()
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class)
-                        .setText(entity.getText().substring(0, 128) + "..."))
+                        .setText(entity.getText().replaceAll("<[^>]*>", "").substring(0, 128) + "..."))
         .collect(Collectors.toList());
     }
 

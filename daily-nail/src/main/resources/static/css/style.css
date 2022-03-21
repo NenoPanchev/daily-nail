@@ -1912,6 +1912,108 @@ html body.modal-open div.container section#contentSection form.contact_form div#
     margin-right: 3px;
 }
 
+.section-header {
+    position: relative;
+}
+
+.section-title.article-name {
+    color: #737373;
+}
+
+.section-title::after {
+    content: "";
+    width: 100%;
+    height: 18px;
+    display: block;
+    position: absolute;
+    top: 7px;
+    background-image: linear-gradient(to bottom,transparent 50%,#fff 50%),linear-gradient(to right,#cccfd3 50%,transparent 50%);
+    background-size: 2px 2px,2px 2px;
+}
+
+.section-title span {
+    padding-right: 15px;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header .comment-icon {
+    padding-left: 15px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    background-color: #fff;
+}
+
+.form-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("/img/chevron-down.png") 96%/14% no-repeat;
+    background-size: 14%;
+    background-size: 20px;
+    border: 2px solid #e6e6e6;
+    border-radius: 2px;
+}
+
+.form-select:hover {
+    border-color: #d9d9d9;
+}
+.comment-block {
+    background-color: #f8f8f8;
+    margin-bottom: 7px;
+}
+
+.comment-select {
+    padding: 3px 10px;
+    min-width: 120px;
+}
+
+.comment-cont {
+    padding: 20px;
+}
+
+.comment-avatar {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    text-align: center;
+    float: left;
+    overflow: hidden;
+    background-color: #eaeaea;
+}
+
+.comment-avatar .icon {
+    font-size: 42px;
+    color: #737373;
+    padding: 10px;
+}
+
+.comment-author-info {
+    text-align: left;
+    margin-right: 10px;
+    float: left;
+}
+
+.comment-author-title {
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.comment-author-subtitle {
+    font-size: 15px;
+    color: #919191;
+    font-weight: 400;
+}
+
+.comment-author-text {
+    color: #565656;
+    font-size: 16px;
+    word-break: break-all;
+}
+
 @media (max-width: 1199px ) {
     .logo_area {
         width: 34%

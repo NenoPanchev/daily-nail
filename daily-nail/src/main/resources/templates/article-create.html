@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments/commons::head"></head>
+
 <body>
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 <div class="container">
@@ -38,8 +39,18 @@
                                      class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
                                 </div>
                                 <label>Text</label>
-                                <textarea class="form-control" cols="30" rows="22" placeholder="Text*" name="text"
+                                <textarea  class="form-control" cols="30" rows="22" placeholder="Text*" name="text"
                                           th:field="*{text}" th:errorclass="is-invalid"></textarea>
+                                <script>
+                                    tinymce.init({
+                                        selector: '#text',
+                                        plugins: 'link lists media code',
+                                        toolbar: 'alignleft aligncenter alignright alignjustify | formatselect | bullist numlist | outdent indent | link code',
+                                        toolbar_mode: 'floating',
+                                        tinycomments_mode: 'embedded',
+                                        tinycomments_author: 'Author name',
+                                    });
+                                </script>
 
                             </div>
 
