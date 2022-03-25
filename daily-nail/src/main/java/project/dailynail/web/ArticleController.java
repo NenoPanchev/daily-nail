@@ -40,7 +40,7 @@ public class ArticleController {
         this.userService = userService;
     }
 
-    @GetMapping("/{url}")
+    @GetMapping("/a/{url}")
     public String viewArticle(Model model, @PathVariable("url") String url) {
         model.addAttribute("article", articleService.getArticleViewModelByUrl(url));
 

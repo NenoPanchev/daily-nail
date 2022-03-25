@@ -15,30 +15,30 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="slick_slider" th:object="${topArticles}">
-          <div class="single_iteam"> <a th:href="@{/articles/{url}(url = ${topArticles.get(0).url})}"> <img th:src="${topArticles.get(0).imageUrl}" alt=""></a>
+          <div class="single_iteam"> <a th:href="@{/articles/a/{url}(url = ${topArticles.get(0).url})}"> <img th:src="${topArticles.get(0).imageUrl}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" th:href="@{/articles/{url}(url = ${topArticles.get(0).url})}" th:text="${topArticles.get(0).title}"></a></h2>
+              <h2><a class="slider_tittle" th:href="@{/articles/a/{url}(url = ${topArticles.get(0).url})}" th:text="${topArticles.get(0).title}"></a></h2>
               <p th:text="${topArticles.get(0).text}"></p>
             </div>
           </div>
           <div th:if="${topArticles.size() > 1}"
-                  class="single_iteam"> <a th:href="@{/articles/{url}(url = ${topArticles.get(1).url})}"> <img th:src="${topArticles.get(1).imageUrl}" alt=""></a>
+                  class="single_iteam"> <a th:href="@{/articles/a/{url}(url = ${topArticles.get(1).url})}"> <img th:src="${topArticles.get(1).imageUrl}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" th:href="@{/articles/{url}(url = ${topArticles.get(1).url})}" th:text="${topArticles.get(1).title}"></a></h2>
+              <h2><a class="slider_tittle" th:href="@{/articles/a/{url}(url = ${topArticles.get(1).url})}" th:text="${topArticles.get(1).title}"></a></h2>
               <p th:text="${topArticles.get(1).text}"></p>
             </div>
           </div>
           <div th:if="${topArticles.size() > 2}"
-                  class="single_iteam"> <a th:href="@{/articles/{url}(url = ${topArticles.get(2).url})}"> <img th:src="${topArticles.get(2).imageUrl}" alt=""></a>
+                  class="single_iteam"> <a th:href="@{/articles/a/{url}(url = ${topArticles.get(2).url})}"> <img th:src="${topArticles.get(2).imageUrl}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" th:href="@{/articles/{url}(url = ${topArticles.get(2).url})}" th:text="${topArticles.get(2).title}"></a></h2>
+              <h2><a class="slider_tittle" th:href="@{/articles/a/{url}(url = ${topArticles.get(2).url})}" th:text="${topArticles.get(2).title}"></a></h2>
               <p th:text="${topArticles.get(2).text}"></p>
             </div>
           </div>
           <div th:if="${topArticles.size() > 3}"
-               class="single_iteam"> <a th:href="@{/articles/{url}(url = ${topArticles.get(3).url})}"> <img th:src="${topArticles.get(3).imageUrl}" alt=""></a>
+               class="single_iteam"> <a th:href="@{/articles/a/{url}(url = ${topArticles.get(3).url})}"> <img th:src="${topArticles.get(3).imageUrl}" alt=""></a>
             <div class="slider_article">
-              <h2><a class="slider_tittle" th:href="@{/articles/{url}(url = ${topArticles.get(3).url})}" th:text="${topArticles.get(3).title}"></a></h2>
+              <h2><a class="slider_tittle" th:href="@{/articles/a/{url}(url = ${topArticles.get(3).url})}" th:text="${topArticles.get(3).title}"></a></h2>
               <p th:text="${topArticles.get(3).text}"></p>
             </div>
           </div>
@@ -51,8 +51,8 @@
             <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
             <ul class="latest_postnav">
               <li th:each="a : ${latestFive}" th:object="${a}">
-                <div class="media"> <a th:href="@{/articles/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
-                  <div class="media-body"> <a th:href="@{/articles/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+                <div class="media"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                  <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                 </div>
               </li>
             </ul>
@@ -71,8 +71,8 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 <li th:object="${topWorld}">
-                  <figure class="bsbig_fig"> <a th:href="@{/articles/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
-                    <figcaption> <a th:href="@{/articles/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
+                  <figure class="bsbig_fig"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                    <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                     <p th:text="*{text}"></p>
                   </figure>
                 </li>
@@ -81,8 +81,8 @@
             <div class="single_post_content_right">
               <ul class="spost_nav">
                 <li th:each="a : ${world}" th:object="${a}">
-                  <div class="media wow fadeInDown"> <a th:href="@{/articles/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
-                    <div class="media-body"> <a th:href="@{/articles/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+                  <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                    <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                   </div>
                 </li>
               </ul>
@@ -94,16 +94,16 @@
                 <h2><span>Sports</span></h2>
                 <ul class="business_catgnav wow fadeInDown">
                   <li th:object="${topSport}">
-                    <figure class="bsbig_fig"> <a th:href="@{/articles/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
-                      <figcaption> <a th:href="@{/articles/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
+                    <figure class="bsbig_fig"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                      <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                       <p th:text="*{text}"></p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
                   <li th:each="a : ${sports}" th:object="${a}">
-                    <div class="media wow fadeInDown"> <a th:href="@{/articles/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
-                      <div class="media-body"> <a th:href="@{/articles/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                      <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                     </div>
                   </li>
                 </ul>
@@ -114,16 +114,16 @@
                 <h2><span>Entertainment</span></h2>
                 <ul class="business_catgnav">
                   <li th:object="${topEntertainment}">
-                    <figure class="bsbig_fig wow fadeInDown"> <a th:href="@{/articles/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
-                      <figcaption> <a th:href="@{/articles/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
+                    <figure class="bsbig_fig wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                      <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                       <p th:text="*{text}"></p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
                   <li th:each="a : ${entertainments}" th:object="${a}">
-                    <div class="media wow fadeInDown"> <a th:href="@{/articles/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
-                      <div class="media-body"> <a th:href="@{/articles/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                      <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                     </div>
                   </li>
                 </ul>
@@ -170,8 +170,8 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav">
                 <li th:object="${topCovid}">
-                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" th:href="@{/articles/{url}(url = *{url})}"> <img th:src="*{imageUrl}" alt=""> <span class="overlay"></span> </a>
-                    <figcaption> <a th:href="@{/articles/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
+                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" th:href="@{/articles/a/{url}(url = *{url})}"> <img th:src="*{imageUrl}" alt=""> <span class="overlay"></span> </a>
+                    <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                     <p th:text="*{text}"></p>
                   </figure>
                 </li>
@@ -180,8 +180,8 @@
             <div class="single_post_content_right">
               <ul class="spost_nav">
                 <li th:each="a : ${covid}" th:object="${a}">
-                  <div class="media wow fadeInDown"> <a th:href="@{/articles/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
-                    <div class="media-body"> <a th:href="@{/articles/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+                  <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                    <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                   </div>
                 </li>
               </ul>

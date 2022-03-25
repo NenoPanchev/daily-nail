@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/img/**", "/fonts/**").permitAll()
                 // allow access to index, user login and reg to anyone
                 .antMatchers("/", "/users/terms-and-conditions", "/users/login", "/users/register", "/articles/a/**").permitAll()
-                .antMatchers("/articles/create").hasAnyRole("ADMIN", "EDITOR", "REPORTER")
+                .antMatchers("/articles/create/**", "/articles/edit/**", "/articles/all").hasAnyRole("ADMIN", "EDITOR", "REPORTER")
                 // protect all other pages
                 .antMatchers("/**").authenticated()
 //                .anyRequest().authenticated()

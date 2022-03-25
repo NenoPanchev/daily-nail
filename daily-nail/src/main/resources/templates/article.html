@@ -59,9 +59,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="comments-list">
+                                <div class="comments-list" th:each="c : ${article.comments}"  th:object="${c}">
                                     <div class="comment-block">
-                                        <div class="comment-cont">
+                                        <div class="comment-cont" >
                                             <div class="comment-avatar">
                                                 <i class="icon mdi mdi-account"></i>
                                             </div>
@@ -69,7 +69,12 @@
                                             <div class="comment-author-info" >
                                                 <h3 class="comment-author-title" style="margin-top: 5px">Фанфан Лалето</h3>
                                                 <span class="comment-author-subtitle"><span>17.03.2022 | 14:29</span></span>
-                                                <span class="btn btn-blue icon-right send-signal delete-comment">Delete</span>
+                                                <span sec:authorize="hasAnyRole('ADMIN', 'EDITOR')"
+                                                        class="btn btn-blue icon-right send-signal delete-comment">Delete</span>
+                                                <a sec:authorize="hasAnyRole('ADMIN', 'EDITOR')"
+                                                   th:href="@{/comments/delete/{id}(id = *{articleId})}" class="btn btn-primary delete-button">
+                                                    <span>Delete</span>
+                                                </a>
                                             </div>
                                             <div style="clear:both"></div>
                                             <div class="comment-author-text">
@@ -77,10 +82,9 @@
                                                     министър</p>
                                             </div>
                                             <div class="m-top-10 clearfix">
-<span class="btn btn-blue reply-comment icon-left left" data-name="Фанфан Лалето" data-commentid="1767976">
-<i class="icon mdi mdi-reply"></i>
-Отговори
-</span>
+                                                <span class="btn btn-blue reply-comment icon-left left" data-name="Фанфан Лалето" data-commentid="1767976">
+                                                    <i class="icon mdi mdi-reply"></i>Отговори
+                                                </span>
                                                 <div class="comment-button" data-commentid="1767976">
                                                     <span class="btn btn-green" data-vote="1"><i
                                                             class="icon mdi mdi-thumb-up-outline"></i> <span
@@ -92,12 +96,43 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="section-header">
 
-                                    <style>
-                                        .sub-comment {
-                                            margin-left: 50px;
-                                        }
-                                    </style>
+                                    <h3 class="section-title article-name"><span>
+                                        <i class="icon mdi mdi-comment-text-multiple-outline"></i>
+                                        Comment
+                                    </span></h3>
+
+                                </div>
+
+                                <div class="comment-card">
+
+                                    <div class="comment-cont">
+                                        <div class="comment-body">
+                                            <p class="comment-reply">
+                                                Отговор на коментара написан от <b></b>
+                                                <span class="btn">
+Премахни
+</span>
+                                                <input type="hidden" name="reply" value="0">
+                                            </p>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control com-fields" name="comment_name" value="Мирослава Атмаджова" placeholder="Име" maxlength="70">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea name="comment_text" class="form-control com-fields" rows="3" placeholder="Вашият коментар ..."></textarea>
+                                            </div>
+                                            <label class="form-check-label remember">Съгласен съм с <a href="https://www.marica.bg/usloviya-za-polzvane" target="_blank" class="link">Условията за ползване</a>
+                                                <input type="checkbox" name="remember" value="1">
+                                                <span class="checkmark">
+</span></label>
+                                            <input type="hidden" name="recaptcha_response" id="recaptchaResponse" value="03AGdBq2460lH5iaL54O-erZ_Cby3116X8xE7RumboDc-rycYGqSDbv7CNKqsjp638veBbfDe1CLH3fsXDwXSOUXz0BrPZBWNKewDTHZMENWhFS977C2qm1ZTdZRbKG4Q-181hBYjAAys34e-Xx6me8H3YW5NIsoa_ZpkELI0UsL-MeGbUnvzd2EW9bEEzDmUjUKzdxsxbNzYJiZsAREZ2ca6ucQ6Ni9eQLEm3lQbBR3YyVypmMzShm3zemLoGhG3nnvb72zN_4_1SU7jH0WXIN1_UHCemZRUat23qEqlDhMcIqcXMwJoxPWvwz8UUS7nyrwGbA9YWtHwyte6TwSl4bx4tb2gkfxeiovAXGuqErryAYCb-1BJIDFKMeDHkTfowOe4ZeshTDumWfhlErF3ejPG6DacmEymjPwPgkhrg2jHSatFa1QKD9L-VAK8Ba1SCbA2uMuIP-qHN">
+                                            <span id="publish-comment" class="btn primary-btn publish">Публикувай</span>
+                                            <div id="page-comments"></div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
