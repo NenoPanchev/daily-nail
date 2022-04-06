@@ -75,4 +75,10 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
     String getIdOfLastCreatedArticle();
 
     ArticleEntity findFirstByUrlOrderByCreatedDesc(String url);
+
+    @Query(value = "SELECT a.url FROM articles AS a " +
+            "WHERE a.id = " +
+            "(SELECT c.article_id FROM comments AS c " +
+            "WHERE c.id = :id)", nativeQuery = true)
+    String findArticleEntityUrlByCommentId(@Param("id") String id);
 }

@@ -1961,7 +1961,6 @@ html body.modal-open div.container section#contentSection form.contact_form div#
     border-color: #d9d9d9;
 }
 .comment-block {
-    background-color: #f8f8f8;
     margin-bottom: 7px;
 }
 
@@ -1972,6 +1971,8 @@ html body.modal-open div.container section#contentSection form.contact_form div#
 
 .comment-cont {
     padding: 20px;
+    border: 1px solid #d8d8d8;
+    border-radius: 6px;
 }
 
 .comment-avatar {
@@ -2023,6 +2024,46 @@ h3.section-title.article-name span i {
     box-shadow: 0 1px 10px rgba(0,0,0,.1);
     margin: 20px 0 40px;
     padding: 10px;
+}
+
+.comment-group {
+    padding: 10px 0;
+}
+
+
+
+.avatar-subtitle {
+    margin-bottom: 0;
+    font-size: 17px;
+    color: #919191;
+    font-weight: normal;
+}
+
+.comment-button .btn {
+    background-color: white;
+    line-height: 34px;
+    padding: 0 12px;
+    border-radius: 40px;
+    border: 1px solid #CED4DA;
+    color: #212529;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.comment-button .btn:hover {
+    box-shadow: 0 1px 10px rgba(0,0,0,.1);
+}
+
+.comment-button .btn-green i {
+    color: green;
+}
+
+.comment-button .btn-red i {
+    color: red;
+}
+
+.comment-button {
+    float: right;
 }
 
 @media (max-width: 1199px ) {

@@ -1,14 +1,13 @@
 package project.dailynail.models.view;
 
-import java.time.LocalDateTime;
-
 public class CommentViewModel {
+    private String id;
     private String text;
-    private String author;
+    private String authorFullName;
     private Integer likes;
     private Integer dislikes;
     private String articleId;
-    private LocalDateTime timePosted;
+    private String timePosted;
 
     public CommentViewModel() {
     }
@@ -22,12 +21,12 @@ public class CommentViewModel {
         return this;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorFullName() {
+        return authorFullName;
     }
 
-    public CommentViewModel setAuthor(String author) {
-        this.author = author;
+    public CommentViewModel setAuthorFullName(String authorFullName) {
+        this.authorFullName = authorFullName;
         return this;
     }
 
@@ -58,12 +57,21 @@ public class CommentViewModel {
         return this;
     }
 
-    public LocalDateTime getTimePosted() {
+    public String getTimePosted() {
         return timePosted;
     }
 
-    public CommentViewModel setTimePosted(LocalDateTime timePosted) {
+    public CommentViewModel setTimePosted(String timePosted) {
         this.timePosted = timePosted;
+        return this;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public CommentViewModel setId(String id) {
+        this.id = id;
         return this;
     }
 }

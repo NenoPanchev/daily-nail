@@ -13,6 +13,7 @@ import project.dailynail.models.binding.ArticleCreateBindingModel;
 
 import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
+import project.dailynail.models.binding.CommentCreateBindingModel;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 import project.dailynail.services.ArticleService;
@@ -43,7 +44,7 @@ public class ArticleController {
     @GetMapping("/a/{url}")
     public String viewArticle(Model model, @PathVariable("url") String url) {
         model.addAttribute("article", articleService.getArticleViewModelByUrl(url));
-
+        model.addAttribute("principal_name", userService.getPrincipal() == null ? "" : userService.getPrincipal().getFullName());
         return "article";
     }
 
@@ -165,5 +166,10 @@ public class ArticleController {
     @ModelAttribute
     public ArticleEditBindingModel articleEditBindingModel() {
         return new ArticleEditBindingModel();
+    }
+
+    @ModelAttribute
+    public CommentCreateBindingModel commentCreateBindingModel() {
+        return new CommentCreateBindingModel();
     }
 }

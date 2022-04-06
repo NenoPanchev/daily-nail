@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceModel findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .map(entityOpt -> modelMapper.map(entityOpt, UserServiceModel.class))
-                .orElseThrow(ObjectNotFoundException::new);
+                .orElse(null);
     }
 
     @Override

@@ -388,9 +388,27 @@ public class ArticleServiceImpl implements ArticleService {
         articleViewModel.setComments(articleServiceModel
                 .getComments()
         .stream()
-        .map(csm -> modelMapper.map(csm, CommentViewModel.class))
+        .map(csm -> modelMapper.map(csm, CommentViewModel.class)
+                    .setTimePosted(getTimeAsStringForView(csm.getTimePosted())))
         .collect(Collectors.toList()));
         return articleViewModel;
+    }
+
+    @Override
+    public ArticleServiceModel getArticleById(String id) {
+        return articleRepository.findById(id)
+                .map(e -> modelMapper.map(e, ArticleServiceModel.class))
+                .orElseThrow();
+    }
+
+    @Override
+    public String getArticleUrlById(String id) {
+        return articleRepository.findById(id).map(ArticleEntity::getUrl).orElse(null);
+    }
+
+    @Override
+    public String getArticleUrlByCommentId(String id) {
+        return articleRepository.findArticleEntityUrlByCommentId(id);
     }
 
 

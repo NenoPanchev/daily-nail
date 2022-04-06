@@ -3,6 +3,7 @@ package project.dailynail.models.service;
 import java.time.LocalDateTime;
 
 public class CommentServiceModel extends BaseServiceModel{
+    private String id;
     private String text;
     private UserServiceModel author;
     private Integer likes;
@@ -75,5 +76,16 @@ public class CommentServiceModel extends BaseServiceModel{
                 ", dislikes=" + dislikes +
                 ", timePosted=" + timePosted +
                 '}';
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public CommentServiceModel setId(String id) {
+        this.id = id;
+        return this;
     }
 }
