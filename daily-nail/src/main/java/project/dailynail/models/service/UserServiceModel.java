@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 public class UserServiceModel extends BaseServiceModel{
+    private String id;
     private String email;
     private String fullName;
     private String password;
@@ -74,6 +75,17 @@ public class UserServiceModel extends BaseServiceModel{
 
     public UserServiceModel setRoles(Set<UserRoleServiceModel> roles) {
         this.roles = roles;
+        return this;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public UserServiceModel setId(String id) {
+        this.id = id;
         return this;
     }
 }

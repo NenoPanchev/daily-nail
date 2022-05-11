@@ -15,6 +15,7 @@ import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.binding.CommentCreateBindingModel;
 import project.dailynail.models.service.ArticleCreateServiceModel;
+import project.dailynail.models.view.ArticlePageVModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 import project.dailynail.services.ArticleService;
 import project.dailynail.services.CategoryService;
@@ -23,6 +24,7 @@ import project.dailynail.services.UserService;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/articles")
@@ -41,9 +43,44 @@ public class ArticleController {
         this.userService = userService;
     }
 
+    @GetMapping("/categories/{category}")
+    public String viewArticlesByCategory(Model model, @PathVariable("category") String category) {
+        LocalDateTime now = LocalDateTime.now();
+        String categoryName = category;
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
+        ArticlePageVModel allArticlesByCategory = articleService.getAllArticlesByCategory(category, now);
+        model.addAttribute("articles", allArticlesByCategory.getContent());
+        model.addAttribute("category", category);
+        model.addAttribute("page", 1);
+        model.addAttribute("totalPages", allArticlesByCategory.getTotalPages());
+        model.addAttribute("totalElements", allArticlesByCategory.getTotalElements());
+
+
+        return "articles-by-category";
+    }
+    @GetMapping(value = "/categories/{category}/", params = {"page"})
+    public String viewArticlesByCategoryPage(Model model, @PathVariable("category") String category, @RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+        LocalDateTime now = LocalDateTime.now();
+        String categoryName = category;
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
+        ArticlePageVModel allArticlesByCategory = articleService.getAllArticlesByCategory(category, now, page);
+        model.addAttribute("articles", allArticlesByCategory.getContent());
+        model.addAttribute("category", category);
+        model.addAttribute("page", page);
+        model.addAttribute("totalPages", allArticlesByCategory.getTotalPages());
+        model.addAttribute("totalElements", allArticlesByCategory.getTotalElements());
+
+        return "articles-by-category";
+    }
+
     @GetMapping("/a/{url}")
     public String viewArticle(Model model, @PathVariable("url") String url) {
+        LocalDateTime now = LocalDateTime.now();
         model.addAttribute("article", articleService.getArticleViewModelByUrl(url));
+        model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
         model.addAttribute("principal_name", userService.getPrincipal() == null ? "" : userService.getPrincipal().getFullName());
         return "article";
     }
@@ -80,12 +117,12 @@ public class ArticleController {
 
     @GetMapping("/all")
     public String all(Model model) {
-        model.addAttribute("allArticles", articleService.getAllArticlesForAdminPanel());
+        ArticlesPageViewModel allArticles = articleService.getAllArticlesForAdminPanel();
+        model.addAttribute("allArticles", allArticles);
         model.addAttribute("authorNames", userService.getAllAuthorNames());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("timePeriods", articleService.getTimePeriods());
         model.addAttribute("articleStatuses", articleService.getArticleStatuses());
-        ArticlesPageViewModel allArticles = articleService.getAllArticlesForAdminPanel();
         model.addAttribute("totalElements", allArticles.getTotalElements());
         model.addAttribute("totalPages", allArticles.getTotalPages());
         model.addAttribute("page", 1);

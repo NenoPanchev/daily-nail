@@ -38,7 +38,7 @@ public class ArticleCreateServiceModel {
         return this;
     }
 
-    @Pattern(regexp = "^http.*\\.(jpg|png)$|^\\s*$", message = "You must enter a valid url address")
+    @Pattern(regexp = "^http.*\\.(jpg|png|jpeg)$|^\\s*$", message = "You must enter a valid url address")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -58,7 +58,7 @@ public class ArticleCreateServiceModel {
         return this;
     }
 
-    @Size(min = 100, max = 5500, message = "Text must be between 100 and 5500 characters")
+    @Size(min = 100, max = 10500, message = "Text must be between 100 and 10500 characters")
     public String getText() {
         return text;
     }

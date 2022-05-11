@@ -13,7 +13,7 @@ public class ImageValidator implements ConstraintValidator<ValidImage, Multipart
         if (!isSupportedContentType(contentType)) {
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext
-                    .buildConstraintViolationWithTemplate("Only JPG and PNG images are allowed")
+                    .buildConstraintViolationWithTemplate("Only JPG, JPEG, PNG images are allowed")
                     .addConstraintViolation();
             return false;
         }

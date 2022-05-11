@@ -10,18 +10,20 @@ import org.springframework.stereotype.Service;
 import project.dailynail.exceptions.ObjectNotFoundException;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.dtos.UserNewPasswordDto;
+import project.dailynail.models.dtos.UserRoleDto;
 import project.dailynail.models.entities.UserEntity;
 import project.dailynail.models.entities.UserRoleEntity;
 import project.dailynail.models.entities.enums.Role;
+import project.dailynail.models.service.UserRoleServiceModel;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
+import project.dailynail.models.view.UserViewModel;
 import project.dailynail.repositories.UserRepository;
 import project.dailynail.services.UserRoleService;
 import project.dailynail.services.UserService;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -165,6 +167,65 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllUserFullNamesByWhoHasMoreThanOneRole();
     }
 
+    @Override
+    public List<UserViewModel> getAllUsersOrderedByRoles() {
+        List<UserViewModel> userViewModels = userRepository.findAllUsersOrderByRolesDesc()
+                .stream()
+                .map(entity -> {
+                    UserViewModel userViewModel = modelMapper.map(entity, UserViewModel.class);
+                    userViewModel.setRole(getUserRoleName(entity));
+                    return userViewModel;
+                }).collect(Collectors.toList());
+
+        return userViewModels;
+    }
+
+    @Override
+    public UserViewModel getUserViewModelById(String id) {
+        UserEntity userEntity = userRepository.findById(id)
+                .orElseThrow();
+        return modelMapper.map(userEntity, UserViewModel.class)
+                .setRole(getUserRoleName(userEntity));
+    }
+
+    @Override
+    @Transactional
+    public void updateRole(UserRoleDto userRoleDto) {
+        serviceLayerValidationUtil.validate(userRoleDto);
+
+        UserEntity userEntity = userRepository.findByEmail(userRoleDto.getEmail()).orElseThrow();
+        if (getUserRoleName(userEntity).equals(userRoleDto.getRole().toUpperCase())) {
+            return;
+        }
+        userEntity.setRoles(getSetOfRoles(userRoleDto.getRole()));
+        userRepository.saveAndFlush(userEntity);
+    }
+
+    private Set<UserRoleEntity> getSetOfRoles(String role) {
+
+         Role[] roles = new Role[0];
+        switch (role) {
+            case "editor":
+                roles = new Role[]{Role.EDITOR, Role.USER};
+                break;
+            case "reporter":
+                roles = new Role[]{Role.REPORTER, Role.USER};
+                break;
+            case "user":
+                roles = new Role[]{Role.USER};
+                break;
+            default:
+                break;
+        }
+        List<UserRoleServiceModel> userRoleServiceModels = userRoleService.findAllByRoleIn(roles);
+        Set<UserRoleEntity> userRoleEntities = userRoleServiceModels
+                .stream()
+                .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
+                .collect(Collectors.toSet());
+
+        return userRoleEntities;
+    }
+
     @Transactional
     public boolean updateFullNameAndEmailIfNeeded(UserFullNameAndEmailDto userFullNameAndEmailDto, String principalEmail) {
         serviceLayerValidationUtil.validate(userFullNameAndEmailDto);
@@ -188,5 +249,18 @@ public class UserServiceImpl implements UserService {
         }
 
         return updatedFullName || updatedEmail;
+    }
+
+    private String getUserRoleName(UserEntity userEntity) {
+        List<String> roles = userEntity.getRoles().stream().map(re -> re.getRole().name()).collect(Collectors.toList());
+        if (roles.contains("ADMIN")) {
+            return "ADMIN";
+        } else if (roles.contains("EDITOR")) {
+           return "EDITOR";
+        } else if (roles.contains("REPORTER")) {
+            return "REPORTER";
+        } else {
+            return "USER";
+        }
     }
 }

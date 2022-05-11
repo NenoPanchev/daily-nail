@@ -2,7 +2,9 @@ package project.dailynail.services;
 
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.dtos.UserNewPasswordDto;
+import project.dailynail.models.dtos.UserRoleDto;
 import project.dailynail.models.service.UserServiceModel;
+import project.dailynail.models.view.UserViewModel;
 
 import java.util.List;
 
@@ -26,4 +28,10 @@ public interface UserService {
     UserServiceModel getPrincipal();
 
     List<String> getAllAuthorNames();
+
+    List<UserViewModel> getAllUsersOrderedByRoles();
+
+    UserViewModel getUserViewModelById(String id);
+
+    void updateRole(UserRoleDto userRoleDto);
 }

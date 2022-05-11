@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head">
+</head>
+<body>
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+    <block th:replace="fragments/commons::completeHeader"></block>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.marica.bg/css/marica.bg/materialdesignicons/3.8.95/css/materialdesignicons.min.css">
+
+    <section id="contentSection" style="padding-left: 0">
+        <h1 class="page-title" style="padding-left: 20px" th:text="${category.toUpperCase().replace('_', ' ')}"></h1>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="left_content">
+                    <div class="contact_area">
+                        <article class="article-block list-article special-style" th:each="a : ${articles}"
+                                 th:object="${a}">
+                            <a th:href="@{/articles/a/{url}(url = *{url})}">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <figure class="article-image">
+                                            <img th:src="*{imageUrl}"
+                                                 alt="image" loading="lazy">
+                                        </figure>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <div class="article-body">
+                                            <h3 class="article-title" style="margin-top: 0" th:text="*{title}"></h3>
+                                            <div class="article-text" th:text="*{text}"></div>
+                                            <div class="article-footer">
+                                                <div class="left">
+                                                    <div class="article-time">
+                                                        <span class="article-hour"
+                                                              th:text="*{posted.substring(0, 5)}"></span>
+                                                        <span class="article-date"
+                                                              th:text="*{posted.substring(5)}"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="news-stats right">
+                                                    <span class="views-count"><i
+                                                            class="icon mdi mdi-eye-outline"></i><span
+                                                            th:text="*{seen}"></span></span>
+                                                    <span class="comments-count"><i
+                                                            class="icon mdi mdi-comment-text-multiple-outline"></i><span
+                                                            th:text="*{comments.size()}"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </article>
+
+                        <form th:action="@{/articles/categories/{category}/(category = ${category})}" method="get">
+                            <div th:if="${totalPages} > 1" id="pagination">
+                                Total Items [[${totalElements}]]: Page [[${page}]] of [[${totalPages}]]
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <button th:if="${page} > 1"
+                                                type="submit" class="form-control"
+                                                name="page" th:value="1"><<
+                                        </button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button th:if="${page} > 1"
+                                                type="submit" class="form-control"
+                                                name="page" th:value="${page} - 1"><
+                                        </button>
+                                    </li>
+                                    <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+                                        <button th:disabled="${i}==${page}"
+                                                type="submit" class="form-control"
+                                                name="page" th:value="${i}" th:text="${i}"></button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button th:unless="${page} == ${totalPages}"
+                                                type="submit" class="form-control"
+                                                name="page" th:value="${page} + 1">>
+                                        </button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button th:unless="${page} == ${totalPages}"
+                                                type="submit" class="form-control"
+                                                name="page" th:value="${totalPages}">>>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <aside class="right_content">
+                    <div th:replace="fragments/commons::latest"></div>
+                    <div th:replace="fragments/commons::pop"></div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="fragments/commons::footer"></footer>
+</div>
+<block th:replace="fragments/commons::scripts"></block>
+</body>
+</html>

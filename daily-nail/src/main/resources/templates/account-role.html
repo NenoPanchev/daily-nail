@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head"></head>
+<body>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+    <block th:replace="fragments/commons::adminNav"></block>
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.marica.bg/css/marica.bg/materialdesignicons/3.8.95/css/materialdesignicons.min.css">
+
+    <section id="contentSection">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="left_content">
+                    <div class="contact_area">
+                        <h2>ADMIN PANEL</h2>
+                        <div class="row section profile-cont">
+                            <block th:replace="fragments/commons::admin_options"></block>
+                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                <div class="profile-form">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="profile-header">
+                                                <div class="profile-header-title">
+                                                    <h3>Account</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile-body" th:object="${user}">
+                                        <form th:action="@{/admin/accounts/edit}" method="POST"
+                                        th:object="${userUpdateRoleBindingModel}">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="left-sidebar-header">
+                                                        <div class="sidebar-avatar">
+                                                            <i class="icon mdi mdi-account"></i>
+                                                        </div>
+                                                        <div class="sidebar-avatar-info">
+                                                            <h3 th:text="${user.fullName}"></h3>
+                                                            <h3 class="avatar-subtitle"><span th:text="${user.email}">email</span></h3>
+                                                            <input type="text" name="email" th:value="${user.email}" style="display: none">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                                    <h4><span>Assign Role</span></h4>
+                                                    <div th:each="e : ${#fields.errors('role')}" th:text="${e}"
+                                                         id="roleError"
+                                                         class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                                    </div>
+                                                    <select th:field="*{role}" th:errorclass="is-invalid"
+                                                            class="catgArchive">
+                                                        <option value="Select Role">Select Role</option>
+                                                        <option value="editor">Editor</option>
+                                                        <option value="reporter">Reporter</option>
+                                                        <option value="user">User</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="submit" value="Save">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer th:replace="fragments/commons::footer"></footer>
+</div>
+<block th:replace="fragments/commons::scripts"></block>
+</body>
+</html>

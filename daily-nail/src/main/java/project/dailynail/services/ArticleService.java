@@ -1,10 +1,12 @@
 package project.dailynail.services;
 
+import org.apache.tomcat.jni.Local;
 import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.service.ArticleServiceModel;
+import project.dailynail.models.view.ArticlePageVModel;
 import project.dailynail.models.view.ArticlePreViewModel;
 import project.dailynail.models.view.ArticleViewModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
@@ -19,6 +21,8 @@ public interface ArticleService {
 
     ArticlesPageViewModel getAllArticlesForAdminPanel();
     ArticlesPageViewModel getAllArticlesForAdminPanel(Integer page);
+    ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now);
+    ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now, Integer page);
 
     List<String> getTimePeriods();
 

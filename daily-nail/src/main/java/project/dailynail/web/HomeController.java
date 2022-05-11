@@ -30,6 +30,10 @@ public class HomeController {
         model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         model.addAttribute("topArticles", articleService.getTopArticles(now));
+        model.addAttribute("topBusiness", articleService.getNewestArticleByCategoryName(CategoryNameEnum.BUSINESS, now));
+        model.addAttribute("business", articleService.getFourArticlesByCategoryName(CategoryNameEnum.BUSINESS, now));
+        model.addAttribute("topTechnology", articleService.getNewestArticleByCategoryName(CategoryNameEnum.TECHNOLOGY, now));
+        model.addAttribute("technology", articleService.getFourArticlesByCategoryName(CategoryNameEnum.TECHNOLOGY, now));
 
         return "index";
     }

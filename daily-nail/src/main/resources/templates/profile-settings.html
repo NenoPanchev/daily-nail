@@ -5,6 +5,9 @@
 <head th:replace="fragments/commons::head"></head>
 
 <body>
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
 <div class="container">
 <block th:replace="fragments/commons::completeHeader"></block>
@@ -47,14 +50,7 @@
                                                 <span class="icon-text"> Change password</span>
                                             </a>
                                         </div>
-                                        <div class="account-options">
-                                            <a href="https://www.marica.bg/profile/ads">
-<span class="special-icon">
-<i class="icon mdi mdi-bullhorn-outline"></i>
-</span>
-                                                <span class="icon-text"> My ads</span>
-                                            </a>
-                                        </div>
+
                                         <div class="account-options">
                                             <a onclick="document.getElementById('logout-form').submit();">
 <span class="special-icon">

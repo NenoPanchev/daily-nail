@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
+import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -81,4 +82,19 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "(SELECT c.article_id FROM comments AS c " +
             "WHERE c.id = :id)", nativeQuery = true)
     String findArticleEntityUrlByCommentId(@Param("id") String id);
+
+    Page<ArticleEntity> findAllByCategory_CategoryNameOrderByPostedDesc(CategoryNameEnum categoryNameEnum, Pageable pageable);
+    Page<ArticleEntity> findAllBySubcategory_SubcategoryNameOrderByPostedDesc(SubcategoryNameEnum subcategoryNameEnum, Pageable pageable);
+    @Query("SELECT a FROM ArticleEntity a " +
+            "WHERE a.category.categoryName = :categoryNameEnum " +
+            "AND a.posted <= :now " +
+            "ORDER BY a.posted DESC ")
+    Page<ArticleEntity> findAllByCategoryNameOrderByPostedDesc(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum, @Param("now") LocalDateTime now, Pageable pageable);
+
+    @Query("SELECT a FROM ArticleEntity a " +
+            "WHERE a.subcategory.subcategoryName = :subcategoryNameEnum " +
+            "AND a.posted <= :now " +
+            "ORDER BY a.posted DESC ")
+    Page<ArticleEntity> findAllBySubcategoryNameOrderByPostedDesc(@Param("subcategoryNameEnum") SubcategoryNameEnum subcategoryNameEnum, @Param("now") LocalDateTime now, Pageable pageable);
+
 }

@@ -60,11 +60,12 @@
                 <li sec:authorize="!hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a href="#">About</a></li>
                 <li sec:authorize="!hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a href="#">Contact</a></li>
                 <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/all}">Articles</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/articles/all}">Admin panel</a></li>
                 <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/create}">New Article</a></li>
               </ul>
             </div>
             <div class="header_top_right">
-              <p id="dt">Friday, December 05, 2045</p>
+              <p id="dt"></p>
             </div>
           </div>
         </div>
@@ -84,25 +85,23 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav main_nav">
           <li class="active"><a href="/"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-          <li><a href="#">Technology</a></li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile<span class="fa fa-chevron-down"></span></a>
+          <li><a th:href="@{/articles/categories/world}">World</a></li>
+          <li class="dropdown"> <a th:href="@{/articles/categories/sports}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sports<span class="fa fa-chevron-down"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Android</a></li>
-              <li><a href="#">Samsung</a></li>
-              <li><a href="#">Nokia</a></li>
-              <li><a href="#">Walton Mobile</a></li>
-              <li><a href="#">Sympony</a></li>
+              <li><a th:href="@{/articles/categories/football}">Football</a></li>
+              <li><a th:href="@{/articles/categories/tennis}">Tennis</a></li>
+              <li><a th:href="@{/articles/categories/volleyball}">Volleyball</a></li>
+              <li><a th:href="@{/articles/categories/other}">Others</a></li>
             </ul>
           </li>
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Tablets</a></li>
-          <li><a href="pages/contact.html">Contact Us</a></li>
+          <li><a th:href="@{/articles/categories/entertainment}">Entertainment</a></li>
+          <li><a th:href="@{/articles/categories/covid_19}">Covid 19</a></li>
+          <li><a th:href="@{/articles/categories/technology}">Technology</a></li>
           <li class="dropdown active"><a th:href="@{/users/login}"><span>Profile</span><span sec:authorize="isAuthenticated()" class="fa fa-chevron-down"></span></a>
             <ul sec:authorize="isAuthenticated()" class="dropdown-menu" role="menu">
+              <li><a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">Admin panel</a></li>
               <li><a th:href="@{/users/profile/settings}">Settings</a></li>
               <li><a th:href="@{/users/profile/change-password}">Change Password</a></li>
-              <li><a href="#">Nokia</a></li>
-              <li><a href="#">Walton Mobile</a></li>
               <li><a class="logout" onclick="document.getElementById('logout-form').submit();" >Logout</a>
                 <form id="logout-form" th:action="@{/logout}" method="POST" style="display: none">
 
@@ -117,9 +116,13 @@
   <section id="newsSection">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <div class="latest_newsarea"> <span>Latest News</span>
-          <ul id="ticker01" class="news_sticker">
-            <li th:each="a : ${latestNine}" th:object="${a}"><a href="#"><img th:src="*{imageUrl}" alt="" th:text="*{title}"></a></li>
+        <div class="latest_newsarea" > <span>Latest News</span>
+          <ul id="ticker01" class="news_sticker" >
+            <li th:each="a : ${latestNine}" th:object="${a}" >
+              <a th:href="@{/articles/a/{url}(url = *{url})}" >
+                <img class="nine_images" th:src="*{imageUrl}" alt="" loading="lazy" th:text="*{title}" >
+              </a>
+            </li>
           </ul>
           <div class="social_area">
             <ul class="social_nav">
@@ -162,6 +165,89 @@
 </block>
 <body>
 
+<div th:fragment="latest_and_popular" class="col-lg-4 col-md-4 col-sm-4">
+  <aside class="right_content">
+    <div class="latest_post">
+      <h2><span>Latest post</span></h2>
+      <div class="latest_post_container">
+        <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+        <ul class="latest_postnav">
+          <li th:each="a : ${latestFive}" th:object="${a}">
+            <div class="media"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+              <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+            </div>
+          </li>
+        </ul>
+        <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+      </div>
+    </div>
+    <div class="single_sidebar">
+      <h2><span>Popular Post</span></h2>
+      <ul class="spost_nav">
+        <li>
+          <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img1.jpg"> </a>
+            <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+          </div>
+        </li>
+        <li>
+          <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img2.jpg"> </a>
+            <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+          </div>
+        </li>
+        <li>
+          <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img1.jpg"> </a>
+            <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+          </div>
+        </li>
+        <li>
+          <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img2.jpg"> </a>
+            <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </aside>
+</div>
+<div th:fragment="latest" class="latest_post">
+  <h2><span>Latest post</span></h2>
+  <div class="latest_post_container">
+    <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
+    <ul class="latest_postnav">
+      <li th:each="a : ${latestFive}" th:object="${a}">
+        <div class="media"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+          <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+        </div>
+      </li>
+    </ul>
+    <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
+  </div>
+</div>
+<div th:fragment="pop" class="single_sidebar">
+  <h2><span>Popular Post</span></h2>
+  <ul class="spost_nav">
+    <li>
+      <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img1.jpg"> </a>
+        <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+      </div>
+    </li>
+    <li>
+      <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img2.jpg"> </a>
+        <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
+      </div>
+    </li>
+    <li>
+      <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img1.jpg"> </a>
+        <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
+      </div>
+    </li>
+    <li>
+      <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="/images/post_img2.jpg"> </a>
+        <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
 <div th:fragment="popular" class="col-lg-4 col-md-4 col-sm-4">
   <aside class="right_content">
     <div class="single_sidebar">
@@ -191,6 +277,38 @@
     </div>
   </aside>
 </div>
+<div th:fragment="admin_options" class="col-lg-3 col-md-3 col-sm-3">
+  <div class="left-sidebar">
+    <div class="left-sidebar-body">
+      <div class="account-options">
+        <a href="/admin/accounts">
+<span class="special-icon">
+<i class="icon mdi mdi-account-settings"></i>
+</span>
+          <span class="icon-text"> Manage Accounts</span>
+        </a>
+      </div>
+      <div class="account-options">
+        <a th:href="@{/users/profile/change-password}">
+<span class="special-icon">
+<i class="icon mdi mdi-lock-outline"></i>
+</span>
+          <span class="icon-text"> Change password</span>
+        </a>
+      </div>
+
+      <div class="account-options">
+        <a onclick="document.getElementById('logout-form').submit();">
+<span class="special-icon">
+<i class="icon mdi mdi-exit-to-app"></i>
+</span>
+          <span class="icon-text"> Logout</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <footer th:fragment="footer" id="footer">
   <div class="footer_top">

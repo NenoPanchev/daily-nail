@@ -16,6 +16,7 @@ import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.services.ArticleService;
 import project.dailynail.services.UserService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDateTime;
@@ -50,7 +51,8 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, HttpSession httpSession) {
+
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         return "login";

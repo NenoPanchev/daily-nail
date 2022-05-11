@@ -47,4 +47,9 @@ public interface UserRepository extends JpaRepository<UserEntity, String > {
     @Query("SELECT u.fullName FROM UserEntity u " +
             "WHERE u.roles.size > 1")
     List<String> findAllUserFullNamesByWhoHasMoreThanOneRole();
+
+    @Query("SELECT u FROM UserEntity u " +
+            "WHERE u.email NOT LIKE 'admin@admin.bg' " +
+            "ORDER BY u.roles.size DESC ")
+    List<UserEntity> findAllUsersOrderByRolesDesc();
 }

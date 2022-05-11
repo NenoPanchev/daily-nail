@@ -45,20 +45,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
-        <div class="latest_post">
-          <h2><span>Latest post</span></h2>
-          <div class="latest_post_container">
-            <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
-            <ul class="latest_postnav">
-              <li th:each="a : ${latestFive}" th:object="${a}">
-                <div class="media"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
-                  <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
-                </div>
-              </li>
-            </ul>
-            <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
-          </div>
-        </div>
+        <div th:replace="fragments/commons::latest"></div>
       </div>
     </div>
   </section>
@@ -71,7 +58,7 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav  wow fadeInDown">
                 <li th:object="${topWorld}">
-                  <figure class="bsbig_fig"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                  <figure class="bsbig_fig"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}" loading="lazy"> <span class="overlay"></span> </a>
                     <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                     <p th:text="*{text}"></p>
                   </figure>
@@ -81,20 +68,20 @@
             <div class="single_post_content_right">
               <ul class="spost_nav">
                 <li th:each="a : ${world}" th:object="${a}">
-                  <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                  <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}" loading="lazy"> </a>
                     <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-          <div class="fashion_technology_area">
-            <div class="fashion">
+          <div class="sports_entertainment_area">
+            <div class="sports">
               <div class="single_post_content">
                 <h2><span>Sports</span></h2>
                 <ul class="business_catgnav wow fadeInDown">
                   <li th:object="${topSport}">
-                    <figure class="bsbig_fig"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                    <figure class="bsbig_fig"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}" loading="lazy"> <span class="overlay"></span> </a>
                       <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                       <p th:text="*{text}"></p>
                     </figure>
@@ -102,19 +89,19 @@
                 </ul>
                 <ul class="spost_nav">
                   <li th:each="a : ${sports}" th:object="${a}">
-                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}" loading="lazy"> </a>
                       <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="technology">
+            <div class="entertainment">
               <div class="single_post_content">
                 <h2><span>Entertainment</span></h2>
                 <ul class="business_catgnav">
                   <li th:object="${topEntertainment}">
-                    <figure class="bsbig_fig wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                    <figure class="bsbig_fig wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}" loading="lazy"> <span class="overlay"></span> </a>
                       <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                       <p th:text="*{text}"></p>
                     </figure>
@@ -122,7 +109,7 @@
                 </ul>
                 <ul class="spost_nav">
                   <li th:each="a : ${entertainments}" th:object="${a}">
-                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}" loading="lazy"> </a>
                       <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                     </div>
                   </li>
@@ -170,7 +157,7 @@
             <div class="single_post_content_left">
               <ul class="business_catgnav">
                 <li th:object="${topCovid}">
-                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" th:href="@{/articles/a/{url}(url = *{url})}"> <img th:src="*{imageUrl}" alt=""> <span class="overlay"></span> </a>
+                  <figure class="bsbig_fig  wow fadeInDown"> <a class="featured_img" th:href="@{/articles/a/{url}(url = *{url})}"> <img th:src="*{imageUrl}" alt="" loading="lazy"> <span class="overlay"></span> </a>
                     <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
                     <p th:text="*{text}"></p>
                   </figure>
@@ -180,42 +167,60 @@
             <div class="single_post_content_right">
               <ul class="spost_nav">
                 <li th:each="a : ${covid}" th:object="${a}">
-                  <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                  <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}" loading="lazy"> </a>
                     <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
+          <div class="business_technology_area">
+            <div class="business">
+              <div class="single_post_content">
+                <h2><span>Business</span></h2>
+                <ul class="business_catgnav wow fadeInDown">
+                  <li th:object="${topBusiness}">
+                    <figure class="bsbig_fig"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}"> <span class="overlay"></span> </a>
+                      <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
+                      <p th:text="*{text}"></p>
+                    </figure>
+                  </li>
+                </ul>
+                <ul class="spost_nav">
+                  <li th:each="a : ${business}" th:object="${a}">
+                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}"> </a>
+                      <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="technology">
+              <div class="single_post_content">
+                <h2><span>Technology</span></h2>
+                <ul class="business_catgnav">
+                  <li th:object="${topTechnology}">
+                    <figure class="bsbig_fig wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="featured_img"> <img alt="" th:src="*{imageUrl}" loading="lazy"> <span class="overlay"></span> </a>
+                      <figcaption> <a th:href="@{/articles/a/{url}(url = *{url})}" th:text="*{title}"></a> </figcaption>
+                      <p th:text="*{text}"></p>
+                    </figure>
+                  </li>
+                </ul>
+                <ul class="spost_nav">
+                  <li th:each="a : ${technology}" th:object="${a}">
+                    <div class="media wow fadeInDown"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="media-left"> <img alt="" th:src="*{imageUrl}" loading="lazy"> </a>
+                      <div class="media-body"> <a th:href="@{/articles/a/{url}(url = *{url})}" class="catg_title" th:text="*{title}"></a> </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4">
         <aside class="right_content">
-          <div class="single_sidebar">
-            <h2><span>Popular Post</span></h2>
-            <ul class="spost_nav">
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img2.jpg"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <div th:replace="fragments/commons::pop"></div>
           <div class="single_sidebar">
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>

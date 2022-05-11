@@ -8,6 +8,7 @@ import project.dailynail.models.entities.CategoryEntity;
 import project.dailynail.models.entities.SubcategoryEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 
+import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 import project.dailynail.models.service.CategoryServiceModel;
 import project.dailynail.models.service.CategoryServiceSeedModel;
 import project.dailynail.repositories.CategoryRepository;
@@ -53,6 +54,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryServiceModel findByCategoryNameStr(String categoryName) {
+        if (!Arrays.stream(CategoryNameEnum.values())
+                .map(Enum::name)
+                .collect(Collectors.toList())
+                .contains(categoryName)) {
+            return null;
+        }
+
         return categoryRepository.findByCategoryName(CategoryNameEnum.valueOf(categoryName.toUpperCase()))
                 .map(entity -> modelMapper.map(entity, CategoryServiceModel.class))
                 .orElse(null);

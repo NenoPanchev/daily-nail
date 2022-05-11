@@ -18,10 +18,7 @@ import project.dailynail.models.entities.CategoryEntity;
 import project.dailynail.models.entities.SubcategoryEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
-import project.dailynail.models.service.ArticleCreateServiceModel;
-import project.dailynail.models.service.ArticleServiceModel;
-import project.dailynail.models.service.CommentServiceModel;
-import project.dailynail.models.service.UserServiceModel;
+import project.dailynail.models.service.*;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
 import project.dailynail.models.view.*;
 import project.dailynail.repositories.ArticleRepository;
@@ -43,7 +40,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-    private static final Integer ARTICLES_PER_PAGE = 4;
+    private static final Integer ARTICLES_PER_PAGE = 6;
     private final ArticleRepository articleRepository;
     private final ModelMapper modelMapper;
     private final ServiceLayerValidationUtil serviceLayerValidationUtil;
@@ -155,6 +152,47 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now) {
+        return getAllArticlesByCategory(category, now,1);
+    }
+
+    @Override
+    public ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now, Integer page) {
+        Pageable pageable = PageRequest.of(page - 1, ARTICLES_PER_PAGE);
+        CategoryServiceModel categoryServiceModel = categoryService.findByCategoryNameStr(category.toUpperCase());
+        SubcategoryServiceModel subcategoryServiceModel = subcategoryService.findBySubcategoryNameStr(category.toUpperCase());
+        SubcategoryEntity subcategoryEntity = null;
+        CategoryEntity categoryEntity = null;
+
+        if (subcategoryServiceModel != null) {
+           subcategoryEntity = modelMapper.map(subcategoryServiceModel, SubcategoryEntity.class);
+        }
+        if (categoryServiceModel != null) {
+            categoryEntity = modelMapper.map(categoryServiceModel, CategoryEntity.class);
+        }
+        Page<ArticleEntity> entities;
+        if (subcategoryEntity == null) {
+            entities = articleRepository.findAllByCategoryNameOrderByPostedDesc(categoryEntity.getCategoryName(), now, pageable);
+        } else {
+            entities = articleRepository.findAllBySubcategoryNameOrderByPostedDesc(subcategoryEntity.getSubcategoryName(), now, pageable);
+        }
+
+        List<ArticleViewModel> articleViewModels = entities
+                .stream()
+                .map(entity -> modelMapper.map(entity, ArticleViewModel.class)
+                .setText(entity.getText().replaceAll("&[^;]*;", "").replaceAll("<[^>]*>", "").substring(0, 128) + "...")
+                .setPosted(getTimeAsStringForCategoryArticles(entity.getPosted())))
+                .collect(Collectors.toList());
+
+        ArticlePageVModel articlePageVModel = new ArticlePageVModel()
+                .setContent(articleViewModels)
+                .setTotalElements(entities.getTotalElements())
+                .setTotalPages(entities.getTotalPages());
+
+        return articlePageVModel;
+    }
+
+    @Override
     public ArticlesPageViewModel getFilteredArticles(ArticleSearchBindingModel articleSearchBindingModel) {
         String category = articleSearchBindingModel.getCategory().toUpperCase().replace(" 19", "_19").replace(" - ", "");
         String activated = "e";
@@ -185,7 +223,8 @@ public class ArticleServiceImpl implements ArticleService {
                         .setAuthor(entity.getAuthor().getFullName())
                         .setCategory(getCategoryName(entity.getCategory(), entity.getSubcategory()))
                         .setCreated(getTimeAsString(entity.getCreated()))
-                        .setPosted(getTimeAsString(entity.getPosted())))
+                        .setPosted(getTimeAsString(entity.getPosted()))
+                        .setComments(entity.getComments().size()))
                 .collect(Collectors.toList());
 
         ArticlesPageViewModel articlesPageViewModel = new ArticlesPageViewModel()
@@ -308,7 +347,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticlePreViewModel getNewestArticleByCategoryName(CategoryNameEnum categoryNameEnum, LocalDateTime now) {
         ArticlePreViewModel articlePreViewModel = modelMapper.map(articleRepository.findById(articleRepository.findFirstByCategoryNameOrderByPostedDesc(categoryNameEnum, now)).orElseThrow(), ArticlePreViewModel.class);
-        articlePreViewModel.setText(articlePreViewModel.getText().replaceAll("<[^>]*>", "").substring(0, 128) + "...");
+        articlePreViewModel.setText(articlePreViewModel.getText().replaceAll("&[^;]*;", "").replaceAll("<[^>]*>", "").substring(0, 128) + "...");
         return articlePreViewModel;
 
 
@@ -338,7 +377,8 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findLatestArticles(9, now)
                 .stream()
                 .map(str -> articleRepository.findById(str).orElseThrow())
-                .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
+                .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class)
+                .setImageUrl(entity.getImageUrl().replaceAll("upload/", "upload/" + "c_scale,h_20,w_25/")))
                 .collect(Collectors.toList());
     }
 
@@ -471,6 +511,11 @@ public class ArticleServiceImpl implements ArticleService {
             return "-";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy | HH:mm");
+        return localDateTime.format(formatter);
+    }
+
+    private String getTimeAsStringForCategoryArticles(LocalDateTime localDateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm | dd.MM.yyyy");
         return localDateTime.format(formatter);
     }
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head"></head>
+<body>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+  <block th:replace="fragments/commons::adminNav"></block>
+  <link rel="stylesheet" type="text/css" href="/css/profile.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.marica.bg/css/marica.bg/materialdesignicons/3.8.95/css/materialdesignicons.min.css">
+
+  <section id="contentSection">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="left_content">
+          <div class="contact_area">
+            <h2>ADMIN PANEL</h2>
+            <div class="row section profile-cont">
+              <block th:replace="fragments/commons::admin_options"></block>
+              <div class="col-lg-9 col-md-9 col-sm-9">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Role</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="u : ${users}" th:object="${u}">
+                      <td th:text="*{fullName}"></td>
+                      <td th:text="*{email}"></td>
+                      <td th:text="*{role}"></td>
+                      <td>
+                        <a th:href="@{/admin/accounts/{id}(id = *{id})}"> Edit</a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer th:replace="fragments/commons::footer"></footer>
+</div>
+<block th:replace="fragments/commons::scripts"></block>
+</body>
+</html>

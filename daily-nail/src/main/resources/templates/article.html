@@ -32,7 +32,7 @@
                                     </li>
                                     <li><i class="icon mdi mdi-eye-outline"></i><span th:text="*{seen}"></span></li>
                                     <li><i class="icon mdi mdi-comment-text-multiple-outline"></i><a
-                                            href="#anchor-comments"><span th:text="*{comments.size()}"></span></a></li>
+                                            href="#comments-section"><span th:text="*{comments.size()}"></span></a></li>
                                 </ul>
 
                             </div>
@@ -147,7 +147,12 @@
                     </div>
                 </div>
             </div>
-            <div th:replace="fragments/commons::popular"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <aside class="right_content">
+                    <div th:replace="fragments/commons::latest"></div>
+                    <div th:replace="fragments/commons::pop"></div>
+                </aside>
+            </div>
         </div>
     </section>
 
