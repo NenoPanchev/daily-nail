@@ -2278,6 +2278,11 @@ h3.section-title.article-name span i {
     background-color: black;
 }
 
+#contentSection .d-flex .contact_area a {
+    float: right;
+    margin-top: 20px;
+}
+
 
 @media (max-width: 1199px ) {
     .logo_area {

@@ -61,7 +61,7 @@
                 <li sec:authorize="!hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a href="#">Contact</a></li>
                 <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/all}">Articles</a></li>
                 <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/articles/all}">Admin panel</a></li>
-                <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/create}">New Article</a></li>
+                <li sec:authorize="hasAnyRole('EDITOR', 'REPORTER') && !hasRole('ADMIN')"><a th:href="@{/articles/create}">New Article</a></li>
               </ul>
             </div>
             <div class="header_top_right">
@@ -153,7 +153,8 @@
             <li sec:authorize="!hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a href="#">About</a></li>
             <li sec:authorize="!hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a href="#">Contact</a></li>
             <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/all}">Articles</a></li>
-            <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/create}">New Article</a></li>
+            <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/articles/all}">Admin panel</a></li>
+            <li sec:authorize="hasAnyRole('EDITOR', 'REPORTER') && !hasRole('ADMIN')"><a th:href="@{/articles/create}">New Article</a></li>
           </ul>
         </div>
         <div class="header_top_right">
@@ -285,7 +286,15 @@
 <span class="special-icon">
 <i class="icon mdi mdi-account-settings"></i>
 </span>
-          <span class="icon-text"> Manage Accounts</span>
+          <span class="icon-text">Manage Accounts</span>
+        </a>
+      </div>
+      <div class="account-options">
+        <a href="/admin/data">
+<span class="special-icon">
+<i class="icon mdi mdi-database"></i>
+</span>
+          <span class="icon-text">Data management</span>
         </a>
       </div>
       <div class="account-options">
