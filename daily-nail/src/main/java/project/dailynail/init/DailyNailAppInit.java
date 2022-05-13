@@ -44,6 +44,6 @@ public class DailyNailAppInit implements CommandLineRunner {
         // Update data from backups
 //        userService.seedNonInitialUsers();
 //        articleService.seedArticles();
-        commentService.seedComments();
+//        commentService.seedComments();
     }
 }
