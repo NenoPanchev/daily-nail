@@ -97,4 +97,5 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "ORDER BY a.posted DESC ")
     Page<ArticleEntity> findAllBySubcategoryNameOrderByPostedDesc(@Param("subcategoryNameEnum") SubcategoryNameEnum subcategoryNameEnum, @Param("now") LocalDateTime now, Pageable pageable);
 
+    Optional<ArticleEntity> findByUrl(String url);
 }

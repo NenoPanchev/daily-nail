@@ -52,4 +52,10 @@ public interface UserRepository extends JpaRepository<UserEntity, String > {
             "WHERE u.email NOT LIKE 'admin@admin.bg' " +
             "ORDER BY u.roles.size DESC ")
     List<UserEntity> findAllUsersOrderByRolesDesc();
+
+
+    @Query("SELECT u FROM UserEntity u " +
+            "WHERE u.email NOT IN ('admin@admin.bg', 'editor@editor.bg', 'reporter@reporter.bg', 'user@user.bg') " +
+            "ORDER BY u.roles.size DESC ")
+    List<UserEntity> findAllUsersExceptInitials();
 }

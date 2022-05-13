@@ -3,9 +3,11 @@ package project.dailynail.services;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.dtos.UserRoleDto;
+import project.dailynail.models.dtos.json.UserEntityExportDto;
 import project.dailynail.models.service.UserServiceModel;
 import project.dailynail.models.view.UserViewModel;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface UserService {
@@ -34,4 +36,7 @@ public interface UserService {
     UserViewModel getUserViewModelById(String id);
 
     void updateRole(UserRoleDto userRoleDto);
+    List<UserEntityExportDto> exportUsers();
+
+    void seedNonInitialUsers() throws FileNotFoundException;
 }

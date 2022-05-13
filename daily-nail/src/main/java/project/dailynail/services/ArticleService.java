@@ -1,8 +1,8 @@
 package project.dailynail.services;
 
-import org.apache.tomcat.jni.Local;
 import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
+import project.dailynail.models.dtos.json.ArticleEntityExportDto;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.service.ArticleServiceModel;
@@ -11,6 +11,7 @@ import project.dailynail.models.view.ArticlePreViewModel;
 import project.dailynail.models.view.ArticleViewModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -58,4 +59,9 @@ public interface ArticleService {
     String getArticleUrlById(String id);
 
     String getArticleUrlByCommentId(String id);
+
+    List<ArticleEntityExportDto> exportArticles();
+    void seedArticles() throws FileNotFoundException;
+    ArticleServiceModel getArticleByUrl(String url);
+    LocalDateTime getLocalDateTimeFromString(String time);
 }

@@ -10,12 +10,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import project.dailynail.constants.GlobalConstants;
 import project.dailynail.exceptions.ObjectNotFoundException;
 import project.dailynail.models.binding.ArticleEditBindingModel;
 import project.dailynail.models.binding.ArticleSearchBindingModel;
+import project.dailynail.models.dtos.json.ArticleEntityExportDto;
 import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.CategoryEntity;
 import project.dailynail.models.entities.SubcategoryEntity;
+import project.dailynail.models.entities.UserEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 import project.dailynail.models.service.*;
@@ -28,11 +31,14 @@ import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -451,6 +457,46 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findArticleEntityUrlByCommentId(id);
     }
 
+    @Override
+    public List<ArticleEntityExportDto> exportArticles() {
+        List<ArticleEntityExportDto> articleEntityExportDtos = articleRepository.findAll()
+                .stream()
+                .map(entity -> modelMapper.map(entity, ArticleEntityExportDto.class)
+                .setCreated(entity.getCreated().toString().substring(0, 16)))
+                .collect(Collectors.toList());
+
+        return articleEntityExportDtos;
+
+    }
+
+    @Override
+    public void seedArticles() throws FileNotFoundException {
+        ArticleEntityExportDto[] articleEntityExportDtos = gson
+                .fromJson(new FileReader(GlobalConstants.ARTICLES_FILE_PATH), ArticleEntityExportDto[].class);
+
+
+        List<ArticleEntity> articleEntities = Arrays.stream(articleEntityExportDtos)
+
+                .map(dto -> modelMapper.map(dto, ArticleEntity.class)
+                        .setAuthor(modelMapper.map(userService.findByEmail(dto.getAuthorEmail()), UserEntity.class))
+                        .setCategory(categoryService.findByCategoryNameStr(dto.getCategoryName()) == null ? null
+                                : modelMapper.map(categoryService.findByCategoryNameStr(dto.getCategoryName()), CategoryEntity.class))
+                        .setSubcategory(subcategoryService.findBySubcategoryNameStr(dto.getSubcategoryName()) == null ? null
+                                : modelMapper.map(subcategoryService.findBySubcategoryNameStr(dto.getSubcategoryName()), SubcategoryEntity.class))
+                .setCreated(getLocalDateTimeFromString(dto.getCreated()))
+                .setPosted(getLocalDateTimeFromString(dto.getPosted())))
+                .collect(Collectors.toList());
+
+            articleRepository.saveAllAndFlush(articleEntities);
+    }
+
+    @Override
+    public ArticleServiceModel getArticleByUrl(String url) {
+        return articleRepository.findByUrl(url)
+                .map(entity -> modelMapper.map(entity, ArticleServiceModel.class))
+                .orElseThrow();
+    }
+
 
     @Override
     public List<String> getTimePeriods() {
@@ -517,6 +563,15 @@ public class ArticleServiceImpl implements ArticleService {
     private String getTimeAsStringForCategoryArticles(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm | dd.MM.yyyy");
         return localDateTime.format(formatter);
+    }
+
+    @Override
+    public LocalDateTime getLocalDateTimeFromString(String time) {
+        if (time == null) {
+            return null;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        return LocalDateTime.parse(time, formatter);
     }
 
     private String getIdOfLastCreatedArticle() {

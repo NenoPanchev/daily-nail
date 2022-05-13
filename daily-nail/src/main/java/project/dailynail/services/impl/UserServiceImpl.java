@@ -1,5 +1,6 @@
 package project.dailynail.services.impl;
 
+import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -7,10 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import project.dailynail.constants.GlobalConstants;
 import project.dailynail.exceptions.ObjectNotFoundException;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.dtos.UserRoleDto;
+import project.dailynail.models.dtos.json.ArticleEntityExportDto;
+import project.dailynail.models.dtos.json.UserEntityExportDto;
 import project.dailynail.models.entities.UserEntity;
 import project.dailynail.models.entities.UserRoleEntity;
 import project.dailynail.models.entities.enums.Role;
@@ -23,6 +27,8 @@ import project.dailynail.services.UserRoleService;
 import project.dailynail.services.UserService;
 
 import javax.transaction.Transactional;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -37,14 +43,16 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
     private final DailyNailUserService dailyNailUserService;
     private final ServiceLayerValidationUtil serviceLayerValidationUtil;
+    private final Gson gson;
 
-    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, DailyNailUserService dailyNailUserService, ServiceLayerValidationUtil serviceLayerValidationUtil) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper, DailyNailUserService dailyNailUserService, ServiceLayerValidationUtil serviceLayerValidationUtil, Gson gson) {
         this.userRepository = userRepository;
         this.userRoleService = userRoleService;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
         this.dailyNailUserService = dailyNailUserService;
         this.serviceLayerValidationUtil = serviceLayerValidationUtil;
+        this.gson = gson;
     }
 
     @Override
@@ -204,7 +212,7 @@ public class UserServiceImpl implements UserService {
     private Set<UserRoleEntity> getSetOfRoles(String role) {
 
          Role[] roles = new Role[0];
-        switch (role) {
+        switch (role.toLowerCase()) {
             case "editor":
                 roles = new Role[]{Role.EDITOR, Role.USER};
                 break;
@@ -262,5 +270,27 @@ public class UserServiceImpl implements UserService {
         } else {
             return "USER";
         }
+    }
+
+    @Override
+    public List<UserEntityExportDto> exportUsers() {
+         return userRepository.findAllUsersExceptInitials()
+                .stream()
+                .map(entity -> modelMapper.map(entity, UserEntityExportDto.class)
+                .setRole(getUserRoleName(entity)))
+                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void seedNonInitialUsers() throws FileNotFoundException {
+        UserEntityExportDto[] userEntityExportDtos = gson
+                .fromJson(new FileReader(GlobalConstants.USERS_FILE_PATH), UserEntityExportDto[].class);
+
+        List<UserEntity> userEntities = Arrays.stream(userEntityExportDtos)
+                .map(dto -> modelMapper.map(dto, UserEntity.class)
+                .setRoles(getSetOfRoles(dto.getRole())))
+                .collect(Collectors.toList());
+
+        userRepository.saveAllAndFlush(userEntities);
     }
 }
