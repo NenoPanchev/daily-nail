@@ -64,4 +64,5 @@ public interface ArticleService {
     void seedArticles() throws FileNotFoundException;
     ArticleServiceModel getArticleByUrl(String url);
     LocalDateTime getLocalDateTimeFromString(String time);
+    boolean hasArticles();
 }

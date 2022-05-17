@@ -574,6 +574,11 @@ public class ArticleServiceImpl implements ArticleService {
         return LocalDateTime.parse(time, formatter);
     }
 
+    @Override
+    public boolean hasArticles() {
+        return articleRepository.count() > 0;
+    }
+
     private String getIdOfLastCreatedArticle() {
         return articleRepository.getIdOfLastCreatedArticle();
     }

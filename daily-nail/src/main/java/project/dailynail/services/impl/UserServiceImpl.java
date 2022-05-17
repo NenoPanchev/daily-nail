@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void seedUsers() {
+    public void seedUsers() throws FileNotFoundException {
         if (userRepository.count() == 0) {
 
             UserEntity admin = new UserEntity()
@@ -94,6 +94,7 @@ public class UserServiceImpl implements UserService {
                         .collect(Collectors.toSet()));
 
             userRepository.saveAll(List.of(admin, editor, reporter, user));
+            seedNonInitialUsers();
         }
     }
 

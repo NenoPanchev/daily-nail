@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void seedUsers();
+    void seedUsers() throws FileNotFoundException;
     UserServiceModel findByEmail(String email);
     boolean existsByEmail(String email);
 
