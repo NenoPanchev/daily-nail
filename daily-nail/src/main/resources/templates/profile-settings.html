@@ -12,7 +12,6 @@
 <div class="container">
 <block th:replace="fragments/commons::completeHeader"></block>
     <link rel="stylesheet" type="text/css" href="/css/profile.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.marica.bg/css/marica.bg/materialdesignicons/3.8.95/css/materialdesignicons.min.css">
 
     <section id="contentSection">
         <div class="row">
@@ -37,7 +36,7 @@
                                         <div class="account-options">
                                             <a href="/users/profile/settings">
 <span class="special-icon">
-<i class="icon mdi mdi-account-settings"></i>
+<i class="icon fa fa-solid fa-user"></i>
 </span>
                                                 <span class="icon-text"> Settings</span>
                                             </a>
@@ -45,7 +44,7 @@
                                         <div class="account-options">
                                             <a th:href="@{/users/profile/change-password}">
 <span class="special-icon">
-<i class="icon mdi mdi-lock-outline"></i>
+<i class=" icon fa fa-solid fa-lock"></i>
 </span>
                                                 <span class="icon-text"> Change password</span>
                                             </a>
@@ -54,7 +53,7 @@
                                         <div class="account-options">
                                             <a onclick="document.getElementById('logout-form').submit();">
 <span class="special-icon">
-<i class="icon mdi mdi-exit-to-app"></i>
+<i class="icon fa fa-solid fa-sign-out"></i>
 </span>
                                                 <span class="icon-text"> Logout</span>
                                             </a>

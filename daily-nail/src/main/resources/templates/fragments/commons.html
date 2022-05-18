@@ -283,15 +283,14 @@
       <div class="account-options">
         <a href="/admin/accounts">
 <span class="special-icon">
-<i class="icon mdi mdi-account-settings"></i>
-</span>
+<i class="icon fa fa-solid fa-user"></i></span>
           <span class="icon-text">Manage Accounts</span>
         </a>
       </div>
       <div class="account-options">
         <a href="/admin/data">
 <span class="special-icon">
-<i class="icon mdi mdi-database"></i>
+<i class="icon fa fa-solid fa-database"></i>
 </span>
           <span class="icon-text">Data management</span>
         </a>
@@ -299,8 +298,7 @@
       <div class="account-options">
         <a th:href="@{/users/profile/change-password}">
 <span class="special-icon">
-<i class="icon mdi mdi-lock-outline"></i>
-</span>
+<i class=" icon fa fa-solid fa-lock"></i></span>
           <span class="icon-text"> Change password</span>
         </a>
       </div>
@@ -308,7 +306,8 @@
       <div class="account-options">
         <a onclick="document.getElementById('logout-form').submit();">
 <span class="special-icon">
-<i class="icon mdi mdi-exit-to-app"></i>
+<i class="icon fa fa-solid fa-sign-out"></i>
+
 </span>
           <span class="icon-text"> Logout</span>
         </a>
@@ -330,14 +329,14 @@
         <div class="footer_widget wow fadeInDown">
           <h2>Tag</h2>
           <ul class="tag_nav">
-            <li><a href="#">Games</a></li>
-            <li><a href="#">Sports</a></li>
-            <li><a href="#">Fashion</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Life &amp; Style</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Photo</a></li>
-            <li><a href="#">Slider</a></li>
+            <li><a th:href="@{/articles/categories/world}">World</a></li>
+            <li><a th:href="@{/articles/categories/entertainment}">Entertainment</a></li>
+            <li><a th:href="@{/articles/categories/sports}">Sports</a></li>
+            <li><a th:href="@{/articles/categories/football}">Football</a></li>
+            <li><a th:href="@{/articles/categories/tennis}">Tennis</a></li>
+            <li><a th:href="@{/articles/categories/business}">Business</a></li>
+            <li><a th:href="@{/articles/categories/technology}">Technology</a></li>
+            <li><a th:href="@{/articles/categories/covid_19}">Covid 19</a></li>
           </ul>
         </div>
       </div>
