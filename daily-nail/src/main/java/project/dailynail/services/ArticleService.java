@@ -21,6 +21,7 @@ public interface ArticleService {
     void createArticle(ArticleCreateServiceModel articleCreateServiceModel) throws IOException;
 
     ArticlesPageViewModel getAllArticlesForAdminPanel();
+
     ArticlesPageViewModel getAllArticlesForAdminPanel(Integer page);
     ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now);
     ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now, Integer page);

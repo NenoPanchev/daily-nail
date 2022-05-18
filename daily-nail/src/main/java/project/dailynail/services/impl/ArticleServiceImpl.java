@@ -200,6 +200,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticlesPageViewModel getFilteredArticles(ArticleSearchBindingModel articleSearchBindingModel) {
+
+
         String category = articleSearchBindingModel.getCategory().toUpperCase().replace(" 19", "_19").replace(" - ", "");
         String activated = "e";
         if (articleSearchBindingModel.getArticleStatus().equals("Activated")) {
@@ -488,6 +490,9 @@ public class ArticleServiceImpl implements ArticleService {
                 .collect(Collectors.toList());
 
             articleRepository.saveAllAndFlush(articleEntities);
+
+            getAllTopArticlesIds(LocalDateTime.now())
+                    .forEach(topArticlesService::add);
     }
 
     @Override
