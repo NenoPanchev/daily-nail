@@ -31,9 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // allow access to index, user login and reg to anyone
                 .antMatchers("/", "/users/terms-and-conditions", "/users/login", "/users/register", "/articles/a/**", "/articles/categories/**").permitAll()
                 .antMatchers("/articles/create/**", "/articles/edit/**", "/articles/all", "/comments/delete/**").hasAnyRole("ADMIN", "EDITOR", "REPORTER")
+                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
                 // protect all other pages
                 .antMatchers("/**").authenticated()
 //                .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().accessDeniedPage("/error-denied")
                 .and()
                 // configure login with HTML form
                 .formLogin()

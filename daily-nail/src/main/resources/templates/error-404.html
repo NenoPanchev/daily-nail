@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head"></head>
+<body>
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+    <block th:replace="fragments/commons::completeHeader"></block>
+
+    <section id="contentSection">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="left_content">
+                    <div class="contact_area">
+                        <h2>404</h2>
+                        <p style="text-decoration-style: solid">The resource is not found</p>
+                    </div>
+                </div>
+            </div>
+            <div th:replace="fragments/commons::popular"></div>
+        </div>
+    </section>
+
+    <footer th:replace="fragments/commons::footer" ></footer>
+</div>
+<block th:replace="fragments/commons::scripts"></block>
+</body>
+</html>
