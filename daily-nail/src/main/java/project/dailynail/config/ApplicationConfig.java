@@ -9,6 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import project.dailynail.handlers.CustomAccessDeniedHandler;
 import project.dailynail.models.validators.ServiceLayerValidationUtil;
 import project.dailynail.models.validators.ServiceLayerValidationUtilImpl;
 import project.dailynail.utils.FileIOUtil;
@@ -18,7 +22,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Configuration
-public class ApplicationConfig {
+public class ApplicationConfig implements WebMvcConfigurer {
 
     @Bean
     public ModelMapper modelMapper() {
@@ -48,4 +52,10 @@ public class ApplicationConfig {
     public FileIOUtil fileIOUtil() {
         return new FileIOUtilImpl();
     }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new CustomAccessDeniedHandler();
+    }
+
 }

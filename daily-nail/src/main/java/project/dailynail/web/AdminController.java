@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import project.dailynail.constants.GlobalConstants;
 import project.dailynail.models.binding.UserUpdateRoleBindingModel;
 import project.dailynail.models.dtos.UserRoleDto;
+import project.dailynail.services.AdminService;
 import project.dailynail.services.ArticleService;
 import project.dailynail.services.CommentService;
 import project.dailynail.services.UserService;
@@ -27,20 +27,14 @@ import static project.dailynail.constants.GlobalConstants.USERS_FILE_PATH;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    private final ArticleService articleService;
     private final UserService userService;
     private final ModelMapper modelMapper;
-    private final FileIOUtil fileIOUtil;
-    private final Gson gson;
-    private final CommentService commentService;
+    private final AdminService adminService;
 
-    public AdminController(ArticleService articleService, UserService userService, ModelMapper modelMapper, FileIOUtil fileIOUtil, Gson gson, CommentService commentService) {
-        this.articleService = articleService;
+    public AdminController(UserService userService, ModelMapper modelMapper, AdminService adminService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
-        this.fileIOUtil = fileIOUtil;
-        this.gson = gson;
-        this.commentService = commentService;
+        this.adminService = adminService;
     }
 
 
@@ -82,18 +76,13 @@ public class AdminController {
 
     @GetMapping("/data/backup")
     public String backup() throws IOException {
-        fileIOUtil.write(gson.toJson(userService.exportUsers()), USERS_FILE_PATH);
-        fileIOUtil.write(gson.toJson(articleService.exportArticles()), ARTICLES_FILE_PATH);
-        fileIOUtil.write(gson.toJson(commentService.exportComments()), COMMENTS_FILE_PATH);
-
+        adminService.exportData();
         return "redirect:/admin";
     }
 
     @PostMapping("/data/import")
     public String importConfirm() throws FileNotFoundException {
-        userService.seedNonInitialUsers();
-        articleService.seedArticles();
-        commentService.seedComments();
+        adminService.importData();
         return "redirect:/admin";
     }
 

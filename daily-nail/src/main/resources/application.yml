@@ -29,6 +29,10 @@ spring:
       filter:
         enabled: true
     throw-exception-if-no-handler-found: true
+    static-path-pattern: /static/**
+    resources:
+      static-locations: "classpath:/static/"
+
 
 
 cloudinary:

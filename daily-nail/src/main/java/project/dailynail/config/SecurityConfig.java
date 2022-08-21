@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import project.dailynail.services.impl.DailyNailUserService;
 
@@ -15,10 +16,12 @@ import project.dailynail.services.impl.DailyNailUserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final DailyNailUserService dailyNailUserService;
     private final PasswordEncoder passwordEncoder;
+    private final AccessDeniedHandler accessDeniedHandler;
 
-    public SecurityConfig(DailyNailUserService dailyNailUserService, PasswordEncoder passwordEncoder) {
+    public SecurityConfig(DailyNailUserService dailyNailUserService, PasswordEncoder passwordEncoder, AccessDeniedHandler accessDeniedHandler) {
         this.dailyNailUserService = dailyNailUserService;
         this.passwordEncoder = passwordEncoder;
+        this.accessDeniedHandler = accessDeniedHandler;
     }
 
     @Override
@@ -36,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").authenticated()
 //                .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().accessDeniedPage("/error-denied")
+//                .exceptionHandling().accessDeniedPage("/403")
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 .and()
                 // configure login with HTML form
                 .formLogin()
