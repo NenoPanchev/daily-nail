@@ -2280,6 +2280,14 @@ h3.section-title.article-name span i {
     margin-top: 20px;
 }
 
+.error_img {
+    width: 100%;
+}
+
+.error_img:hover {
+    opacity: 1;
+}
+
 
 @media (max-width: 1199px ) {
     .logo_area {

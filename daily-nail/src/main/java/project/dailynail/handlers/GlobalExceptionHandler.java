@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({ObjectNotFoundException.class, NoHandlerFoundException.class})
     public String notFound(Exception e, HttpServletRequest httpServletRequest) {
         System.out.println(e.getMessage());
-        return "404";
+        return "redirect:/404";
     }
 
     @ExceptionHandler({CustomAccessDeniedHandler.class})

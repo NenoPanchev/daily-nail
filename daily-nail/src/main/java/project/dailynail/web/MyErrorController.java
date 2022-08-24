@@ -26,4 +26,9 @@ public class MyErrorController implements ErrorController {
     public String throwing() {
         throw new ObjectNotFoundException();
     }
+
+    @RequestMapping("/throw-err")
+    public String throwingErr() {
+        throw new RuntimeException();
+    }
 }
