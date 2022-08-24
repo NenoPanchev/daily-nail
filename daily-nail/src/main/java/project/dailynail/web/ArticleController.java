@@ -16,6 +16,7 @@ import project.dailynail.models.binding.ArticleSearchBindingModel;
 import project.dailynail.models.binding.CommentCreateBindingModel;
 import project.dailynail.models.service.ArticleCreateServiceModel;
 import project.dailynail.models.view.ArticlePageVModel;
+import project.dailynail.models.view.ArticleViewModel;
 import project.dailynail.models.view.ArticlesPageViewModel;
 import project.dailynail.services.ArticleService;
 import project.dailynail.services.CategoryService;
@@ -78,10 +79,12 @@ public class ArticleController {
     @GetMapping("/a/{url}")
     public String viewArticle(Model model, @PathVariable("url") String url) {
         LocalDateTime now = LocalDateTime.now();
-        model.addAttribute("article", articleService.getArticleViewModelByUrl(url));
+        ArticleViewModel articleViewModel = articleService.getArticleViewModelByUrl(url);
+        model.addAttribute("article", articleViewModel);
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
         model.addAttribute("principal_name", userService.getPrincipal() == null ? "" : userService.getPrincipal().getFullName());
+        articleService.increaseSeenByOne(articleViewModel.getId(), articleViewModel.getSeen());
         return "article";
     }
 

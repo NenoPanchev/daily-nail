@@ -98,4 +98,10 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
     Page<ArticleEntity> findAllBySubcategoryNameOrderByPostedDesc(@Param("subcategoryNameEnum") SubcategoryNameEnum subcategoryNameEnum, @Param("now") LocalDateTime now, Pageable pageable);
 
     Optional<ArticleEntity> findByUrl(String url);
+
+    @Modifying
+    @Query("UPDATE ArticleEntity a " +
+            "SET a.seen = :seen " +
+            "WHERE a.id = :id")
+    void increaseSeen(@Param("id") String id, @Param("seen") Integer seen);
 }

@@ -66,4 +66,5 @@ public interface ArticleService {
     ArticleServiceModel getArticleByUrl(String url);
     LocalDateTime getLocalDateTimeFromString(String time);
     boolean hasArticles();
+    void increaseSeenByOne(String id, Integer seen);
 }

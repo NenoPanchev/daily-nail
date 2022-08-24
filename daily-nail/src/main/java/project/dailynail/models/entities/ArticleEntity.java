@@ -165,4 +165,8 @@ public class ArticleEntity extends BaseEntity {
         this.top = top;
         return this;
     }
+
+    public void increaseSeenByOne() {
+        setSeen(getSeen() + 1);
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import project.dailynail.constants.GlobalConstants;
@@ -582,6 +583,13 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean hasArticles() {
         return articleRepository.count() > 0;
+    }
+
+    @Transactional
+    @Async
+    @Override
+    public void increaseSeenByOne(String id, Integer seen) {
+        articleRepository.increaseSeen(id, seen + 1);
     }
 
     private String getIdOfLastCreatedArticle() {

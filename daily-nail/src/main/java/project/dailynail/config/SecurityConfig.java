@@ -32,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/img/**", "/fonts/**").permitAll()
                 // allow access to index, user login and reg to anyone
-                .antMatchers("/", "/users/terms-and-conditions", "/users/login", "/users/register", "/articles/a/**", "/articles/categories/**").permitAll()
+                .antMatchers("/", "/users/terms-and-conditions", "/users/login", "/users/register", "/articles/a/**", "/articles/categories/**",
+                        "access-denied", "403", "404").permitAll()
                 .antMatchers("/articles/create/**", "/articles/edit/**", "/articles/all", "/comments/delete/**").hasAnyRole("ADMIN", "EDITOR", "REPORTER")
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
                 // protect all other pages

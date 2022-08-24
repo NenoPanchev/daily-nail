@@ -31,7 +31,7 @@
                                         <i class="icon mdi mdi-account-outline"></i>
                                         <a href="#" th:text="*{authorFullName}"></a>
                                     </li>
-                                    <li><i class="icon mdi mdi-eye-outline"></i><span th:text="*{seen}"></span></li>
+                                    <li><i class="icon mdi mdi-eye-outline"></i><span th:text="*{seen + 1}"></span></li>
                                     <li><i class="icon mdi mdi-comment-text-multiple-outline"></i><a
                                             href="#comments-section"><span th:text="*{comments.size()}"></span></a></li>
                                 </ul>
