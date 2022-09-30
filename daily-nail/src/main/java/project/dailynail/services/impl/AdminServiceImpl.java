@@ -1,11 +1,10 @@
 package project.dailynail.services.impl;
 
 import com.google.gson.Gson;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import project.dailynail.services.AdminService;
-import project.dailynail.services.ArticleService;
-import project.dailynail.services.CommentService;
-import project.dailynail.services.UserService;
+import project.dailynail.services.*;
 import project.dailynail.utils.FileIOUtil;
 
 import java.io.FileNotFoundException;
@@ -20,13 +19,19 @@ public class AdminServiceImpl implements AdminService {
     private final CommentService commentService;
     private final Gson gson;
     private final FileIOUtil fileIOUtil;
+    private final UserRoleService userRoleService;
+    private final SubcategoryService subcategoryService;
+    private final CategoryService categoryService;
 
-    public AdminServiceImpl(ArticleService articleService, UserService userService, CommentService commentService, Gson gson, FileIOUtil fileIOUtil) {
+    public AdminServiceImpl(ArticleService articleService, UserService userService, CommentService commentService, Gson gson, FileIOUtil fileIOUtil, UserRoleService userRoleService, SubcategoryService subcategoryService, CategoryService categoryService) {
         this.articleService = articleService;
         this.userService = userService;
         this.commentService = commentService;
         this.gson = gson;
         this.fileIOUtil = fileIOUtil;
+        this.userRoleService = userRoleService;
+        this.subcategoryService = subcategoryService;
+        this.categoryService = categoryService;
     }
 
     public void exportData() throws IOException {
@@ -39,5 +44,17 @@ public class AdminServiceImpl implements AdminService {
         userService.seedNonInitialUsers();
         articleService.seedArticles();
         commentService.seedComments();
+    }
+
+    @EventListener(ApplicationStartedEvent.class)
+    public void onStartInit() throws FileNotFoundException {
+        this.userRoleService.seedUserRoles();
+        this.userService.seedUsers();
+        this.categoryService.seedCategories();
+        this.subcategoryService.seedSubcategories();
+        if (!articleService.hasArticles()) {
+            this.articleService.seedArticles();
+            this.commentService.seedComments();
+        }
     }
 }

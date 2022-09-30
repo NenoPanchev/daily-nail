@@ -27,13 +27,14 @@ public class DailyNailAppInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws FileNotFoundException {
-        this.userRoleService.seedUserRoles();
-        this.userService.seedUsers();
-        this.categoryService.seedCategories();
-        this.subcategoryService.seedSubcategories();
-        if (!articleService.hasArticles()) {
-            this.articleService.seedArticles();
-            this.commentService.seedComments();
-        }
+//         Transferred to EventListener
+//        this.userRoleService.seedUserRoles();
+//        this.userService.seedUsers();
+//        this.categoryService.seedCategories();
+//        this.subcategoryService.seedSubcategories();
+//        if (!articleService.hasArticles()) {
+//            this.articleService.seedArticles();
+//            this.commentService.seedComments();
+//        }
             }
 }
