@@ -85,6 +85,12 @@ public class StaticWebContentController {
         return responseEntity;
     }
 
+    @RequestMapping(value = "/images/weather-icons/{file}", method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getWeatherImageFile(@PathVariable("file") String name){
+        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\images\\weather-icons\\"+name,"image/svg+xml");
+        return responseEntity;
+    }
+
     @RequestMapping(value = "/img/{file}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImgFile(@PathVariable("file") String name){
         ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\img\\"+name,"image/svg+xml");

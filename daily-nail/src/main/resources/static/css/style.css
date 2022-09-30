@@ -2288,6 +2288,23 @@ h3.section-title.article-name span i {
     opacity: 1;
 }
 
+.top-box-a h4 {
+    text-align: center;
+}
+
+.top-box-a .row {
+    display: block ruby;
+}
+
+.top-box-a span {
+    font-size: 28px;
+}
+
+#box-a-img {
+    width: 150px;
+    height: 150px;
+}
+
 
 @media (max-width: 1199px ) {
     .logo_area {
