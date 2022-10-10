@@ -39,10 +39,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -590,6 +587,20 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void increaseSeenByOne(String id, Integer seen) {
         articleRepository.increaseSeen(id, seen + 1);
+    }
+
+    @Override
+    public List<CategoryViewsCountModel> getCategoryViews() {
+        List<CategoryViewsCountModel> categoryViews = new ArrayList<>();
+        int totalViews = articleRepository.getTotalArticleViews();
+        for (CategoryNameEnum categoryNameEnum : CategoryNameEnum.values()) {
+            CategoryViewsCountModel countModel = new CategoryViewsCountModel()
+                    .setCategoryNameEnum(categoryNameEnum.name())
+                    .setViews(articleRepository.getTotalViewsByCategoryNameEnum(categoryNameEnum) == null ? 0 : articleRepository.getTotalViewsByCategoryNameEnum(categoryNameEnum))
+                    .setTotalViews(totalViews);
+            categoryViews.add(countModel);
+        }
+        return categoryViews;
     }
 
     private String getIdOfLastCreatedArticle() {

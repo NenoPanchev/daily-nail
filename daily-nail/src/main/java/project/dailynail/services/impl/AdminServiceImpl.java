@@ -22,8 +22,9 @@ public class AdminServiceImpl implements AdminService {
     private final UserRoleService userRoleService;
     private final SubcategoryService subcategoryService;
     private final CategoryService categoryService;
+    private final StatsService statsService;
 
-    public AdminServiceImpl(ArticleService articleService, UserService userService, CommentService commentService, Gson gson, FileIOUtil fileIOUtil, UserRoleService userRoleService, SubcategoryService subcategoryService, CategoryService categoryService) {
+    public AdminServiceImpl(ArticleService articleService, UserService userService, CommentService commentService, Gson gson, FileIOUtil fileIOUtil, UserRoleService userRoleService, SubcategoryService subcategoryService, CategoryService categoryService, StatsService statsService) {
         this.articleService = articleService;
         this.userService = userService;
         this.commentService = commentService;
@@ -32,6 +33,7 @@ public class AdminServiceImpl implements AdminService {
         this.userRoleService = userRoleService;
         this.subcategoryService = subcategoryService;
         this.categoryService = categoryService;
+        this.statsService = statsService;
     }
 
     public void exportData() throws IOException {
@@ -52,6 +54,8 @@ public class AdminServiceImpl implements AdminService {
         this.userService.seedUsers();
         this.categoryService.seedCategories();
         this.subcategoryService.seedSubcategories();
+        this.statsService.seedInitialStatsByCategory();
+
         if (!articleService.hasArticles()) {
             this.articleService.seedArticles();
             this.commentService.seedComments();

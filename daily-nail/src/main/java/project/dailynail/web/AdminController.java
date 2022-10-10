@@ -1,6 +1,5 @@
 package project.dailynail.web;
 
-import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,20 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import project.dailynail.models.binding.UserUpdateRoleBindingModel;
 import project.dailynail.models.dtos.UserRoleDto;
-import project.dailynail.services.AdminService;
-import project.dailynail.services.ArticleService;
-import project.dailynail.services.CommentService;
-import project.dailynail.services.UserService;
-import project.dailynail.utils.FileIOUtil;
+import project.dailynail.services.*;
 
 import javax.validation.Valid;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import static project.dailynail.constants.GlobalConstants.*;
-import static project.dailynail.constants.GlobalConstants.ARTICLES_FILE_PATH;
-import static project.dailynail.constants.GlobalConstants.USERS_FILE_PATH;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,11 +21,15 @@ public class AdminController {
     private final UserService userService;
     private final ModelMapper modelMapper;
     private final AdminService adminService;
+    private final StatsService statsService;
+    private final ArticleService articleService;
 
-    public AdminController(UserService userService, ModelMapper modelMapper, AdminService adminService) {
+    public AdminController(UserService userService, ModelMapper modelMapper, AdminService adminService, StatsService statsService, ArticleService articleService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
         this.adminService = adminService;
+        this.statsService = statsService;
+        this.articleService = articleService;
     }
 
 
@@ -84,6 +79,13 @@ public class AdminController {
     public String importConfirm() throws FileNotFoundException {
         adminService.importData();
         return "redirect:/admin";
+    }
+
+    @GetMapping("/stats")
+    public String stats(Model model) {
+        model.addAttribute("authorized", statsService.getStatsViewModel());
+        model.addAttribute("categoryViews", articleService.getCategoryViews());
+        return "stats";
     }
 
     @ModelAttribute("userUpdateRoleBindingModel")

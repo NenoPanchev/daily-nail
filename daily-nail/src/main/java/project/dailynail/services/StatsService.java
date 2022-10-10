@@ -1,5 +1,9 @@
 package project.dailynail.services;
 
+import project.dailynail.models.view.StatsViewModel;
+
 public interface StatsService {
-    void seedStatsByCategory();
+    void seedInitialStatsByCategory();
+    void onRequest();
+    StatsViewModel getStatsViewModel();
 }

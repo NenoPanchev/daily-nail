@@ -104,4 +104,11 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "SET a.seen = :seen " +
             "WHERE a.id = :id")
     void increaseSeen(@Param("id") String id, @Param("seen") Integer seen);
+
+    @Query("SELECT SUM(a.seen) FROM ArticleEntity a " +
+            "WHERE a.category.categoryName = :categoryNameEnum")
+    Integer getTotalViewsByCategoryNameEnum(@Param("categoryNameEnum") CategoryNameEnum categoryNameEnum);
+
+    @Query("SELECT SUM(a.seen) FROM ArticleEntity a ")
+    Integer getTotalArticleViews();
 }

@@ -152,7 +152,7 @@
               <li sec:authorize="!hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a href="#">About</a></li>
               <li sec:authorize="!hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a href="#">Contact</a></li>
               <li sec:authorize="hasAnyRole('ADMIN', 'EDITOR', 'REPORTER')"><a th:href="@{/articles/all}">Articles</a></li>
-              <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/articles/all}">Admin panel</a></li>
+              <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin}">Admin panel</a></li>
               <li sec:authorize="hasAnyRole('EDITOR', 'REPORTER') && !hasRole('ADMIN')"><a th:href="@{/articles/create}">New Article</a></li>
             </ul>
           </div>
@@ -296,10 +296,10 @@
         </a>
       </div>
       <div class="account-options">
-        <a th:href="@{/users/profile/change-password}">
+        <a th:href="@{/admin/stats}">
 <span class="special-icon">
-<i class=" icon fa fa-solid fa-lock"></i></span>
-          <span class="icon-text"> Change password</span>
+<i class=" icon fa fa-solid fa-bar-chart"></i></span>
+          <span class="icon-text"> Stats</span>
         </a>
       </div>
 

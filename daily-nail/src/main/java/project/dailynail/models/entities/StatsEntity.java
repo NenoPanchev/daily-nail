@@ -1,20 +1,18 @@
 package project.dailynail.models.entities;
 
-
 import javax.persistence.*;
-import java.util.Map;
+
 
 @Entity
 @Table(name = "stats")
 public class StatsEntity extends BaseEntity{
     private int authorizedRequests;
     private int unauthorizedRequests;
-    private Map<CategoryEntity, Integer> categoryCounts;
 
     public StatsEntity() {
     }
 
-    @Column
+    @Column(nullable = false)
     public int getAuthorizedRequests() {
         return authorizedRequests;
     }
@@ -24,7 +22,7 @@ public class StatsEntity extends BaseEntity{
         return this;
     }
 
-    @Column
+    @Column(nullable = false)
     public int getUnauthorizedRequests() {
         return unauthorizedRequests;
     }
@@ -34,14 +32,4 @@ public class StatsEntity extends BaseEntity{
         return this;
     }
 
-    @ElementCollection
-    @MapKeyColumn
-    public Map<CategoryEntity, Integer> getCategoryCounts() {
-        return categoryCounts;
-    }
-
-    public StatsEntity setCategoryCounts(Map<CategoryEntity, Integer> categoryCounts) {
-        this.categoryCounts = categoryCounts;
-        return this;
-    }
 }
