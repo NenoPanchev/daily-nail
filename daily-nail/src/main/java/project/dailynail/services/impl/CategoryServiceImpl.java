@@ -15,6 +15,7 @@ import project.dailynail.repositories.CategoryRepository;
 import project.dailynail.services.CategoryService;
 
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,6 +67,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElse(null);
     }
 
+    @Transactional
     @Override
     public List<String> getAllCategories() {
         List<String> categories = new ArrayList<>();

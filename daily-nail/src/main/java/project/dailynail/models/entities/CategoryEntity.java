@@ -24,7 +24,7 @@ public class CategoryEntity extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     public Set<SubcategoryEntity> getSubcategories() {
         return subcategories;
     }
