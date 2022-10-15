@@ -14,8 +14,8 @@ public class UserEntity extends BaseEntity{
     private String email;
     private String fullName;
     private String password;
-    private Set<UserRoleEntity> roles;
-    private Set<ArticleEntity> articles;
+    private List<UserRoleEntity> roles;
+    private List<ArticleEntity> articles;
 
     public UserEntity() {
     }
@@ -51,23 +51,23 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    public Set<UserRoleEntity> getRoles() {
+    @ManyToMany(fetch = FetchType.LAZY)
+    public List<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public UserEntity setRoles(Set<UserRoleEntity> roles) {
+    public UserEntity setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
-    public Set<ArticleEntity> getArticles() {
+    public List<ArticleEntity> getArticles() {
         return articles;
     }
 
-    public UserEntity setArticles(Set<ArticleEntity> articles) {
+    public UserEntity setArticles(List<ArticleEntity> articles) {
         this.articles = articles;
         return this;
     }

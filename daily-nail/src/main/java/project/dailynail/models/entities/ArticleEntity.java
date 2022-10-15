@@ -2,6 +2,7 @@ package project.dailynail.models.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,7 +20,7 @@ public class ArticleEntity extends BaseEntity {
     private SubcategoryEntity subcategory;
     private boolean disabledComments;
     private Integer seen;
-    private Set<CommentEntity> comments;
+    private List<CommentEntity> comments;
     private boolean top;
 
     public ArticleEntity() {
@@ -136,12 +137,12 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
-    public Set<CommentEntity> getComments() {
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
+    public List<CommentEntity> getComments() {
         return comments;
     }
 
-    public ArticleEntity setComments(Set<CommentEntity> comments) {
+    public ArticleEntity setComments(List<CommentEntity> comments) {
         this.comments = comments;
         return this;
     }

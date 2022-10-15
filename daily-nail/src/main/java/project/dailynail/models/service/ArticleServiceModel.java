@@ -1,6 +1,7 @@
 package project.dailynail.models.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 public class ArticleServiceModel extends BaseServiceModel {
@@ -17,7 +18,7 @@ public class ArticleServiceModel extends BaseServiceModel {
     private boolean disabledComments;
     private boolean top;
     private Integer seen;
-    private Set<CommentServiceModel> comments;
+    private List<CommentServiceModel> comments;
 
     public ArticleServiceModel() {
     }
@@ -105,11 +106,11 @@ public class ArticleServiceModel extends BaseServiceModel {
         return this;
     }
 
-    public Set<CommentServiceModel> getComments() {
+    public List<CommentServiceModel> getComments() {
         return comments;
     }
 
-    public ArticleServiceModel setComments(Set<CommentServiceModel> comments) {
+    public ArticleServiceModel setComments(List<CommentServiceModel> comments) {
         this.comments = comments;
         return this;
     }

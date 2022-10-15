@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import project.dailynail.models.entities.UserEntity;
 import project.dailynail.repositories.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,7 @@ public class DailyNailUserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository

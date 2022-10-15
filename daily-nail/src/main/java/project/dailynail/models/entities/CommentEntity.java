@@ -69,7 +69,7 @@ public class CommentEntity extends BaseEntity{
         return this;
     }
 
-    @Column
+    @Column(nullable = false)
     public LocalDateTime getTimePosted() {
         return timePosted;
     }

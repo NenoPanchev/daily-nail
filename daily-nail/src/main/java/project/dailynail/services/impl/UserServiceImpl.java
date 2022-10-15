@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
                     .setRoles(userRoleService.findAllByRoleIn(Role.ADMIN, Role.EDITOR, Role.REPORTER, Role.USER)
                         .stream()
                         .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
-                        .collect(Collectors.toSet()));
+                        .collect(Collectors.toList()));
 
             UserEntity editor = new UserEntity()
                     .setEmail("editor@editor.bg")
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
                     .setRoles(userRoleService.findAllByRoleIn(Role.EDITOR, Role.USER)
                             .stream()
                             .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
-                            .collect(Collectors.toSet()));
+                            .collect(Collectors.toList()));
 
             UserEntity reporter = new UserEntity()
                     .setEmail("reporter@reporter.bg")
@@ -84,14 +84,14 @@ public class UserServiceImpl implements UserService {
                     .setRoles(userRoleService.findAllByRoleIn(Role.REPORTER, Role.USER)
                             .stream()
                             .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
-                            .collect(Collectors.toSet()));
+                            .collect(Collectors.toList()));
 
             UserEntity user = new UserEntity()
                     .setEmail("user@user.bg")
                     .setFullName("User User")
                     .setPassword(passwordEncoder.encode("1234"))
                     .setRoles(Stream.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRoleEntity.class))
-                        .collect(Collectors.toSet()));
+                        .collect(Collectors.toList()));
 
             userRepository.saveAll(List.of(admin, editor, reporter, user));
             seedNonInitialUsers();
@@ -99,10 +99,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserServiceModel findByEmail(String email) {
-        return userRepository.findByEmail(email)
+        UserServiceModel userServiceModel = userRepository.findByEmail(email)
                 .map(entityOpt -> modelMapper.map(entityOpt, UserServiceModel.class))
                 .orElse(null);
+        return userServiceModel;
     }
 
     @Override
@@ -120,7 +122,7 @@ public class UserServiceImpl implements UserService {
                         : userServiceModel.getFullName())
                 .setPassword(passwordEncoder.encode(userServiceModel.getPassword()))
                 .setRoles(Stream.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRoleEntity.class))
-                        .collect(Collectors.toSet()));
+                        .collect(Collectors.toList()));
 
         userRepository.saveAndFlush(newUser);
 
@@ -165,6 +167,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserServiceModel getPrincipal() {
         String principalEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         UserServiceModel principal = findByEmail(principalEmail);
@@ -177,6 +180,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<UserViewModel> getAllUsersOrderedByRoles() {
         List<UserViewModel> userViewModels = userRepository.findAllUsersOrderByRolesDesc()
                 .stream()
@@ -190,6 +194,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserViewModel getUserViewModelById(String id) {
         UserEntity userEntity = userRepository.findById(id)
                 .orElseThrow();
@@ -210,7 +215,7 @@ public class UserServiceImpl implements UserService {
         userRepository.saveAndFlush(userEntity);
     }
 
-    private Set<UserRoleEntity> getSetOfRoles(String role) {
+    private List<UserRoleEntity> getSetOfRoles(String role) {
 
          Role[] roles = new Role[0];
         switch (role.toLowerCase()) {
@@ -227,10 +232,10 @@ public class UserServiceImpl implements UserService {
                 break;
         }
         List<UserRoleServiceModel> userRoleServiceModels = userRoleService.findAllByRoleIn(roles);
-        Set<UserRoleEntity> userRoleEntities = userRoleServiceModels
+        List<UserRoleEntity> userRoleEntities = userRoleServiceModels
                 .stream()
                 .map(serviceModel -> modelMapper.map(serviceModel, UserRoleEntity.class))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
 
         return userRoleEntities;
     }
@@ -260,6 +265,7 @@ public class UserServiceImpl implements UserService {
         return updatedFullName || updatedEmail;
     }
 
+
     private String getUserRoleName(UserEntity userEntity) {
         List<String> roles = userEntity.getRoles().stream().map(re -> re.getRole().name()).collect(Collectors.toList());
         if (roles.contains("ADMIN")) {
@@ -274,6 +280,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<UserEntityExportDto> exportUsers() {
          return userRepository.findAllUsersExceptInitials()
                 .stream()

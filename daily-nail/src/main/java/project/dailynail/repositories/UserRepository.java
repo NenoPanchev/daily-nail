@@ -13,6 +13,7 @@ import java.util.*;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String > {
     Optional<UserEntity> findByEmail(String email);
+
     boolean existsByEmail(String email);
     @Query("SELECT u.fullName FROM UserEntity u " +
             "WHERE u.email = :email")

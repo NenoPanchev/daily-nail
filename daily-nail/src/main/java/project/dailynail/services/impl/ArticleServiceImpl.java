@@ -84,7 +84,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .setActivated(activated)
                 .setDisabledComments(articleCreateServiceModel.getDisabledComments() != null)
                 .setSeen(0)
-                .setComments(new HashSet<>());
+                .setComments(new ArrayList<>());
 
         if (articleCreateServiceModel.getTop() == null || articleCreateServiceModel.getTop().equals("No")) {
             articleServiceModel.setTop(false);
@@ -133,6 +133,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticlesPageViewModel getAllArticlesForAdminPanel(Integer page) {
         Pageable pageable = PageRequest.of(page - 1, ARTICLES_PER_PAGE);
         Page<ArticleEntity> entities = articleRepository.findAllByOrderByCreatedDesc(pageable);
@@ -156,11 +157,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now) {
         return getAllArticlesByCategory(category, now,1);
     }
 
     @Override
+    @Transactional
     public ArticlePageVModel getAllArticlesByCategory(String category, LocalDateTime now, Integer page) {
         Pageable pageable = PageRequest.of(page - 1, ARTICLES_PER_PAGE);
         CategoryServiceModel categoryServiceModel = categoryService.findByCategoryNameStr(category.toUpperCase());
@@ -197,6 +200,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticlesPageViewModel getFilteredArticles(ArticleSearchBindingModel articleSearchBindingModel) {
 
 
@@ -242,6 +246,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticleEditBindingModel getArticleEditBindingModelById(String id) {
         ArticleEntity articleEntity = articleRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
         String categoryName = getCategoryName(articleEntity.getCategory(), articleEntity.getSubcategory()).replace("_", " ");
@@ -361,19 +366,19 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticlePreViewModel> getFourArticlesByCategoryName(CategoryNameEnum categoryNameEnum, LocalDateTime now) {
-        return articleRepository
-                .findFourByCategoryNameOrderByPostedDesc(categoryNameEnum, now)
+        List<String> articleIds = articleRepository.findFourByCategoryNameOrderByPostedDesc(categoryNameEnum, now);
+        List<ArticlePreViewModel> articlePreViewModels = articleRepository.findAllByIdIn(articleIds)
                 .stream()
-                .map(str -> articleRepository.findById(str).orElseThrow())
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
                 .collect(Collectors.toList());
+
+        return articlePreViewModels;
     }
 
     @Override
     public List<ArticlePreViewModel> getLatestFiveArticles(LocalDateTime now) {
-        return articleRepository.findLatestArticles(5, now)
+        return articleRepository.findAllByIdIn(articleRepository.findLatestArticles(5, now))
                 .stream()
-                .map(str -> articleRepository.findById(str).orElseThrow())
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
                 .collect(Collectors.toList());
     }
@@ -407,6 +412,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public List<ArticlePreViewModel> getTopArticles(LocalDateTime now) {
         return articleRepository.findAllById(topArticlesService.getTopArticlesIds())
         .stream()
@@ -421,6 +427,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticleViewModel getArticleViewModelByUrl(String url) {
         ArticleEntity articleEntity = articleRepository.findFirstByUrlOrderByCreatedDesc(url);
         ArticleServiceModel articleServiceModel = modelMapper.map(articleEntity, ArticleServiceModel.class);
@@ -428,7 +435,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .getComments()
                 .stream()
                 .map(entity -> modelMapper.map(entity, CommentServiceModel.class))
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
         ArticleViewModel articleViewModel = modelMapper.map(articleServiceModel, ArticleViewModel.class)
                 .setPosted(getTimeAsStringForView(articleEntity.getPosted()));
         articleViewModel.setComments(articleServiceModel
@@ -441,6 +448,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticleServiceModel getArticleById(String id) {
         return articleRepository.findById(id)
                 .map(e -> modelMapper.map(e, ArticleServiceModel.class))
@@ -458,6 +466,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public List<ArticleEntityExportDto> exportArticles() {
         List<ArticleEntityExportDto> articleEntityExportDtos = articleRepository.findAll()
                 .stream()
@@ -494,6 +503,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public ArticleServiceModel getArticleByUrl(String url) {
         return articleRepository.findByUrl(url)
                 .map(entity -> modelMapper.map(entity, ArticleServiceModel.class))

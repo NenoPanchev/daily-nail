@@ -47,6 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryServiceSeedModel findByCategoryName(CategoryNameEnum categoryNameEnum) {
         return categoryRepository.findByCategoryName(categoryNameEnum)
                 .map(entity -> modelMapper.map(entity, CategoryServiceSeedModel.class))
@@ -54,6 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryServiceModel findByCategoryNameStr(String categoryName) {
         if (!Arrays.stream(CategoryNameEnum.values())
                 .map(Enum::name)
@@ -67,12 +69,12 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElse(null);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public List<String> getAllCategories() {
         List<String> categories = new ArrayList<>();
-         categoryRepository
-                .findAll()
+        List<CategoryEntity> entities = categoryRepository.findAllJoinSubcategories();
+            entities
                 .stream()
                 .forEach(categoryEntity -> {
                     categories.add(makePascalCase(categoryEntity.getCategoryName().name().replace('_', ' ')));

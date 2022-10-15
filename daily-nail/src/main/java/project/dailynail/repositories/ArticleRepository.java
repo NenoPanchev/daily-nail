@@ -12,6 +12,7 @@ import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.models.entities.enums.SubcategoryNameEnum;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,13 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
     Page<String> findAllArticleIdBySearchFilter(@Param("keyWord") String keyword, @Param("category") String category,
                                                 @Param("author") String author, @Param("activated") String activated,
                                                 @Param("days") int days, Pageable pageable);
-
+    @Query(value = "SELECT a FROM ArticleEntity a " +
+            "LEFT JOIN FETCH a.comments " +
+            "LEFT JOIN FETCH a.author " +
+            "LEFT JOIN FETCH a.category " +
+            "LEFT JOIN FETCH a.subcategory " +
+            "ORDER BY a.created DESC ",
+    countQuery = "SELECT COUNT(a) FROM ArticleEntity a LEFT JOIN a.comments ")
     Page<ArticleEntity> findAllByOrderByCreatedDesc(Pageable pageable);
 
     @Query(value = "SELECT a.id FROM articles AS a " +
@@ -111,4 +118,11 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
 
     @Query("SELECT SUM(a.seen) FROM ArticleEntity a ")
     Integer getTotalArticleViews();
+
+    @Query("SELECT a FROM ArticleEntity a " +
+            "LEFT JOIN FETCH a.author " +
+            "LEFT JOIN FETCH a.category " +
+            "LEFT JOIN FETCH a.subcategory " +
+            "WHERE a.id IN(:ids)")
+    List<ArticleEntity> findAllByIdIn(@Param("ids") List<String> articleIds);
 }
