@@ -225,10 +225,8 @@ public class ArticleServiceImpl implements ArticleService {
         Page<String> articleIds = articleRepository.findAllArticleIdBySearchFilter(articleSearchBindingModel.getKeyWord(), category,
                 articleSearchBindingModel.getAuthorName(), activated, days, PageRequest.of(articleSearchBindingModel.getPage() - 1, ARTICLES_PER_PAGE));
 
-        List<ArticlesAllViewModel> articles = articleIds
+        List<ArticlesAllViewModel> articles = articleRepository.findAllByIdInJoinWithComments(articleIds.getContent())
                 .stream()
-                .map(articleRepository::findById)
-                .map(opt -> opt.orElse(null))
                 .map(entity -> modelMapper.map(entity, ArticlesAllViewModel.class)
                         .setAuthor(entity.getAuthor().getFullName())
                         .setCategory(getCategoryName(entity.getCategory(), entity.getSubcategory()))
@@ -377,7 +375,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticlePreViewModel> getLatestFiveArticles(LocalDateTime now) {
-        return articleRepository.findAllByIdIn(articleRepository.findLatestArticles(5, now))
+        Pageable pageable = PageRequest.of(0, 5);
+        List<ArticleEntity> entities = articleRepository.findLatestArticles(now, pageable).getContent();
+        return entities
                 .stream()
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
                 .collect(Collectors.toList());
@@ -385,9 +385,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticlePreViewModel> getLatestNineArticles(LocalDateTime now) {
-        return articleRepository.findLatestArticles(9, now)
+        Pageable pageable = PageRequest.of(0, 9);
+        List<ArticleEntity> entities = articleRepository.findLatestArticles(now, pageable).getContent();
+        return entities
                 .stream()
-                .map(str -> articleRepository.findById(str).orElseThrow())
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class)
                 .setImageUrl(entity.getImageUrl().replaceAll("upload/", "upload/" + "c_scale,h_20,w_25/")))
                 .collect(Collectors.toList());
@@ -414,7 +415,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional
     public List<ArticlePreViewModel> getTopArticles(LocalDateTime now) {
-        return articleRepository.findAllById(topArticlesService.getTopArticlesIds())
+        List<String> topArticlesIds = topArticlesService.getTopArticlesIds().stream().toList();
+        return articleRepository.findAllByIdIn(topArticlesIds)
         .stream()
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class)
                         .setText(entity.getText().replaceAll("<[^>]*>", "").substring(0, 128) + "..."))

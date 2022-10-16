@@ -3,6 +3,7 @@ package project.dailynail.repositories;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -63,7 +64,13 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "WHERE a.posted <= :now " +
             "ORDER BY a.posted DESC " +
             "LIMIT :limit", nativeQuery = true)
-    List<String> findLatestArticles(@Param("limit") Integer limit, @Param("now") LocalDateTime now);
+    List<String> findLatestArticlesIds(@Param("limit") Integer limit, @Param("now") LocalDateTime now);
+
+    @EntityGraph(value = "articles-author-category-subcategory")
+    @Query(value = "SELECT a FROM ArticleEntity a " +
+            "WHERE a.posted <= :now " +
+            "ORDER BY a.posted DESC ")
+    Page<ArticleEntity> findLatestArticles(@Param("now") LocalDateTime now, Pageable pageable);
 
     @Modifying
     @Query("UPDATE ArticleEntity a " +
@@ -82,6 +89,7 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "LIMIT 1", nativeQuery = true)
     String getIdOfLastCreatedArticle();
 
+    @EntityGraph(value = "articles-full")
     ArticleEntity findFirstByUrlOrderByCreatedDesc(String url);
 
     @Query(value = "SELECT a.url FROM articles AS a " +
@@ -123,6 +131,16 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "LEFT JOIN FETCH a.author " +
             "LEFT JOIN FETCH a.category " +
             "LEFT JOIN FETCH a.subcategory " +
-            "WHERE a.id IN(:ids)")
+            "WHERE a.id IN(:ids) " +
+            "ORDER BY a.posted DESC ")
     List<ArticleEntity> findAllByIdIn(@Param("ids") List<String> articleIds);
+
+    @EntityGraph(value = "articles-full")
+    @Query("SELECT a FROM ArticleEntity a " +
+            "LEFT JOIN FETCH a.author " +
+            "LEFT JOIN FETCH a.category " +
+            "LEFT JOIN FETCH a.subcategory " +
+            "WHERE a.id IN(:ids) " +
+            "ORDER BY a.posted DESC ")
+    List<ArticleEntity> findAllByIdInJoinWithComments(@Param("ids") List<String> articleIds);
 }

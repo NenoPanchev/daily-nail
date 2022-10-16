@@ -5,6 +5,23 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
+@NamedEntityGraph(
+        name = "articles-author-category-subcategory",
+        attributeNodes = {
+                @NamedAttributeNode("author"),
+                @NamedAttributeNode("category"),
+                @NamedAttributeNode("subcategory")
+        }
+)
+@NamedEntityGraph(
+        name = "articles-full",
+        attributeNodes = {
+                @NamedAttributeNode("comments"),
+                @NamedAttributeNode("author"),
+                @NamedAttributeNode("category"),
+                @NamedAttributeNode("subcategory")
+        }
+)
 @Entity
 @Table(name = "articles")
 public class ArticleEntity extends BaseEntity {

@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 public class UserServiceModel extends BaseServiceModel{
@@ -11,8 +12,8 @@ public class UserServiceModel extends BaseServiceModel{
     private String email;
     private String fullName;
     private String password;
-    private Set<UserRoleServiceModel> roles;
-    private Set<ArticleServiceModel> articles;
+    private List<UserRoleServiceModel> roles;
+    private List<ArticleServiceModel> articles;
 
     public UserServiceModel() {
     }
@@ -60,20 +61,20 @@ public class UserServiceModel extends BaseServiceModel{
 
 
 
-    public Set<ArticleServiceModel> getArticles() {
+    public List<ArticleServiceModel> getArticles() {
         return articles;
     }
 
-    public UserServiceModel setArticles(Set<ArticleServiceModel> articles) {
+    public UserServiceModel setArticles(List<ArticleServiceModel> articles) {
         this.articles = articles;
         return this;
     }
 
-    public Set<UserRoleServiceModel> getRoles() {
+    public List<UserRoleServiceModel> getRoles() {
         return roles;
     }
 
-    public UserServiceModel setRoles(Set<UserRoleServiceModel> roles) {
+    public UserServiceModel setRoles(List<UserRoleServiceModel> roles) {
         this.roles = roles;
         return this;
     }

@@ -8,6 +8,13 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+@NamedEntityGraph(
+        name = "user-full",
+        attributeNodes = {
+                @NamedAttributeNode("roles"),
+                @NamedAttributeNode("articles"),
+        }
+)
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity{
@@ -52,6 +59,7 @@ public class UserEntity extends BaseEntity{
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<UserRoleEntity> getRoles() {
         return roles;
     }
