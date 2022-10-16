@@ -25,14 +25,14 @@
                             <h1 class="title" itemprop="headline" th:text="*{title}"></h1>
                             <div class="article-info clearfix">
                                 <ul class="clearfix">
-                                    <li><i class="icon mdi mdi-calendar-month"></i><span th:text="*{posted}"></span>
+                                    <li><i class="icon fa fa-calendar"></i><span th:text="*{posted}"></span>
                                     </li>
                                     <li class="author">
-                                        <i class="fa fa-user"></i>
+                                        <i class="icon fa fa-user"></i>
                                         <a href="#" th:text="*{authorFullName}"></a>
                                     </li>
-                                    <li><i class="fa fa-eye"></i><span th:text="*{seen + 1}"></span></li>
-                                    <li><i class="fa fa-comments"></i><a
+                                    <li><i class="icon fa fa-eye"></i><span th:text="*{seen + 1}"></span></li>
+                                    <li><i class="icon fa fa-comments"></i><a
                                             href="#comments-section"><span th:text="*{comments.size()}"></span></a></li>
                                 </ul>
 
