@@ -446,6 +446,7 @@ public class ArticleServiceImpl implements ArticleService {
         articleServiceModel.setComments(articleEntity
                 .getComments()
                 .stream()
+                .sorted((a, b) -> b.getTimePosted().compareTo(a.getTimePosted()))
                 .map(entity -> modelMapper.map(entity, CommentServiceModel.class))
                 .collect(Collectors.toList()));
         ArticleViewModel articleViewModel = modelMapper.map(articleServiceModel, ArticleViewModel.class)
