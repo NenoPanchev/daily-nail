@@ -43,6 +43,7 @@ public interface ArticleService {
     List<ArticlePreViewModel> getLatestFiveArticles(LocalDateTime now);
 
     List<ArticlePreViewModel> getLatestNineArticles(LocalDateTime now);
+    List<ArticlePreViewModel> getFiveMostPopular();
 
     void setTopFalse(String poppedOutId);
 

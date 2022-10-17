@@ -50,6 +50,7 @@ public class ArticleController {
         String categoryName = category;
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
+        model.addAttribute("popular", articleService.getFiveMostPopular());
         ArticlePageVModel allArticlesByCategory = articleService.getAllArticlesByCategory(category, now);
         model.addAttribute("articles", allArticlesByCategory.getContent());
         model.addAttribute("category", category);
@@ -66,6 +67,7 @@ public class ArticleController {
         String categoryName = category;
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
+        model.addAttribute("popular", articleService.getFiveMostPopular());
         ArticlePageVModel allArticlesByCategory = articleService.getAllArticlesByCategory(category, now, page);
         model.addAttribute("articles", allArticlesByCategory.getContent());
         model.addAttribute("category", category);
@@ -83,6 +85,7 @@ public class ArticleController {
         model.addAttribute("article", articleViewModel);
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
         model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
+        model.addAttribute("popular", articleService.getFiveMostPopular());
         model.addAttribute("principal_name", userService.getPrincipal() == null ? "" : userService.getPrincipal().getFullName());
         articleService.increaseSeenByOne(articleViewModel.getId(), articleViewModel.getSeen());
         return "article";

@@ -55,6 +55,7 @@ public class UserController {
 
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("popular", articleService.getFiveMostPopular());
         return "login";
     }
 
@@ -71,6 +72,7 @@ public class UserController {
     public String register(Model model) {
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("popular", articleService.getFiveMostPopular());
         return "register";
     }
 
@@ -103,6 +105,7 @@ public class UserController {
     public String terms(Model model) {
         LocalDateTime now = LocalDateTime.now();
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("popular", articleService.getFiveMostPopular());
         return "terms-and-conditions";
     }
 

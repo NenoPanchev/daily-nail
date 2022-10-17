@@ -395,6 +395,16 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<ArticlePreViewModel> getFiveMostPopular() {
+        Pageable pageable = PageRequest.of(0, 5);
+        List<ArticleEntity> entities = articleRepository.getFiveMostPopular(pageable);
+        return entities
+                .stream()
+                .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public void setTopFalse(String poppedOutId) {
 //        ArticleEntity articleEntity = articleRepository.findById(poppedOutId).orElseThrow();

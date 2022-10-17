@@ -143,4 +143,9 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity, String> 
             "WHERE a.id IN(:ids) " +
             "ORDER BY a.posted DESC ")
     List<ArticleEntity> findAllByIdInJoinWithComments(@Param("ids") List<String> articleIds);
+
+    @EntityGraph(value = "articles-full")
+    @Query("SELECT a FROM ArticleEntity a " +
+            "ORDER BY (a.seen + size(a.comments)) DESC ")
+    List<ArticleEntity> getFiveMostPopular(Pageable pageable);
 }

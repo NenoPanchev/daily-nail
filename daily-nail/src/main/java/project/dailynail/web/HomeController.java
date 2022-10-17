@@ -29,6 +29,7 @@ public class HomeController {
         model.addAttribute("covid", articleService.getFourArticlesByCategoryName(CategoryNameEnum.COVID_19, now));
         model.addAttribute("latestFive", articleService.getLatestFiveArticles(now));
         model.addAttribute("latestNine", articleService.getLatestNineArticles(now));
+        model.addAttribute("popular", articleService.getFiveMostPopular());
         model.addAttribute("topArticles", articleService.getTopArticles(now));
         model.addAttribute("topBusiness", articleService.getNewestArticleByCategoryName(CategoryNameEnum.BUSINESS, now));
         model.addAttribute("business", articleService.getFourArticlesByCategoryName(CategoryNameEnum.BUSINESS, now));
