@@ -25,7 +25,7 @@
     "activated": true,
     "categoryName": "WORLD",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 2,
     "top": false
   },
   {
@@ -84,7 +84,7 @@
     "categoryName": "SPORTS",
     "subcategoryName": "OTHER",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 8,
     "top": true
   },
   {
@@ -112,7 +112,7 @@
     "activated": true,
     "categoryName": "TECHNOLOGY",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 21,
     "top": false
   },
   {
@@ -127,7 +127,7 @@
     "categoryName": "SPORTS",
     "subcategoryName": "FOOTBALL",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 1,
     "top": false
   },
   {
@@ -141,7 +141,7 @@
     "activated": true,
     "categoryName": "WORLD",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 3,
     "top": false
   },
   {
@@ -240,7 +240,7 @@
     "activated": true,
     "categoryName": "BUSINESS",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 2,
     "top": false
   },
   {
@@ -270,7 +270,7 @@
     "categoryName": "SPORTS",
     "subcategoryName": "FOOTBALL",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 8,
     "top": false
   },
   {
@@ -429,7 +429,7 @@
     "categoryName": "SPORTS",
     "subcategoryName": "OTHER",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 1,
     "top": true
   },
   {
@@ -473,7 +473,7 @@
     "activated": true,
     "categoryName": "COVID_19",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 1,
     "top": false
   },
   {
@@ -502,7 +502,7 @@
     "activated": true,
     "categoryName": "WORLD",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 4,
     "top": false
   },
   {
@@ -516,7 +516,7 @@
     "activated": true,
     "categoryName": "TECHNOLOGY",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 2,
     "top": true
   },
   {
@@ -558,7 +558,7 @@
     "activated": true,
     "categoryName": "ENTERTAINMENT",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 11,
     "top": true
   },
   {
@@ -586,7 +586,7 @@
     "activated": true,
     "categoryName": "ENTERTAINMENT",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 1,
     "top": false
   },
   {
@@ -641,7 +641,7 @@
     "activated": true,
     "categoryName": "WORLD",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 17,
     "top": false
   },
   {
@@ -656,7 +656,7 @@
     "categoryName": "SPORTS",
     "subcategoryName": "TENNIS",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 1,
     "top": false
   },
   {
@@ -684,7 +684,7 @@
     "activated": true,
     "categoryName": "BUSINESS",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 1,
     "top": false
   },
   {
@@ -728,7 +728,7 @@
     "categoryName": "SPORTS",
     "subcategoryName": "VOLLEYBALL",
     "disabledComments": false,
-    "seen": 0,
+    "seen": 2,
     "top": false
   },
   {

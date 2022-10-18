@@ -1,14 +1,20 @@
 [
   {
-    "email": "aaaaaaaaa@aa.a",
-    "fullName": "Anonymous",
-    "password": "$2a$10$wfLCZDYxJ364zhUfnaoVmO2/SzThJ1SnnRAJUIFC8IRr..yH4qHtO",
+    "email": "c@c.bg",
+    "fullName": "Ceco Cecov",
+    "password": "$2a$10$Xw4olM8extHYomOM5VBXrOSEeuzQClq5Eks6x.YGTs9IfZXXicOy.",
     "role": "USER"
   },
   {
     "email": "b@b.b",
     "fullName": "b b",
     "password": "$2a$10$GoUkN4GFAMfIWiWEDU1DTuekLNB44vHGTy1LwHq/qVs3e2On028gu",
+    "role": "USER"
+  },
+  {
+    "email": "aaaaaaaaa@aa.a",
+    "fullName": "Anonymous",
+    "password": "$2a$10$wfLCZDYxJ364zhUfnaoVmO2/SzThJ1SnnRAJUIFC8IRr..yH4qHtO",
     "role": "USER"
   }
 ]

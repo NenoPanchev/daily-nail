@@ -47,17 +47,17 @@ public interface UserRepository extends JpaRepository<UserEntity, String > {
     void updatePasswordByEmail(@Param("newPassword") String newPassword, @Param("email") String principalEmail);
 
     @Query("SELECT u.fullName FROM UserEntity u " +
-            "WHERE u.roles.size > 1")
+            "WHERE size(u.roles) > 1")
     List<String> findAllUserFullNamesByWhoHasMoreThanOneRole();
 
     @Query("SELECT u FROM UserEntity u " +
             "WHERE u.email NOT LIKE 'admin@admin.bg' " +
-            "ORDER BY u.roles.size DESC ")
+            "ORDER BY size(u.roles) DESC ")
     List<UserEntity> findAllUsersOrderByRolesDesc();
 
 
     @Query("SELECT u FROM UserEntity u " +
             "WHERE u.email NOT IN ('admin@admin.bg', 'editor@editor.bg', 'reporter@reporter.bg', 'user@user.bg') " +
-            "ORDER BY u.roles.size DESC ")
+            "ORDER BY size(u.roles) DESC ")
     List<UserEntity> findAllUsersExceptInitials();
 }

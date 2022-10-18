@@ -40,12 +40,14 @@ public class AdminServiceImpl implements AdminService {
         fileIOUtil.write(gson.toJson(userService.exportUsers()), USERS_FILE_PATH);
         fileIOUtil.write(gson.toJson(articleService.exportArticles()), ARTICLES_FILE_PATH);
         fileIOUtil.write(gson.toJson(commentService.exportComments()), COMMENTS_FILE_PATH);
+        fileIOUtil.write(gson.toJson(statsService.exportStats()), STATS_FILE_PATH);
     }
 
     public void importData() throws FileNotFoundException {
         userService.seedNonInitialUsers();
         articleService.seedArticles();
         commentService.seedComments();
+        statsService.seedStats();
     }
 
     @EventListener(ApplicationStartedEvent.class)

@@ -2326,7 +2326,17 @@ h3.section-title.article-name span i {
     width: 70%;
 }
 
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.sidebar-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (max-width: 1199px ) {
     .logo_area {
