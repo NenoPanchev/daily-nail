@@ -1,0 +1,11 @@
+spring:
+  url: jdbc:hsqldb:mem:testdb;
+  sql:
+    init:
+      mode: never
+  jpa:
+    hibernate:
+      ddl-auto: create
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      sql:
+        syntax_mys=true:
