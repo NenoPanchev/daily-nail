@@ -18,10 +18,13 @@ import project.dailynail.repositories.StatsRepository;
 import project.dailynail.services.StatsService;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static project.dailynail.constants.GlobalConstants.USERS_FILE_PATH;
 
 @ExtendWith(MockitoExtension.class)
 class StatsServiceImplTest {
@@ -30,6 +33,7 @@ class StatsServiceImplTest {
 
     @Mock
     private StatsRepository mockStatsRepository;
+
 
     @BeforeEach
     void setUp() {
@@ -44,6 +48,7 @@ class StatsServiceImplTest {
         when(mockStatsRepository.save(statsEntity))
                 .thenReturn(statsEntity);
         StatsEntity expected = mockStatsRepository.save(statsEntity);
+        serviceToTest.seedInitialStatsByCategory();
 
         assertEquals(expected.getAuthorizedRequests(), statsEntity.getAuthorizedRequests());
     }
@@ -79,4 +84,16 @@ class StatsServiceImplTest {
         assertEquals(expected.getUnauthorizedRequests(), actual.getUnauthorizedRequests());
     }
 
+    @Test
+    void seedStatsTest() throws FileNotFoundException {
+        StatsEntityExportDto statsEntityExportDto = new StatsEntityExportDto()
+                .setAuthorizedRequests(0)
+                .setUnauthorizedRequests(0);
+        StatsEntityExportDto[] statsEntityExportDtos = new StatsEntityExportDto[]{statsEntityExportDto};
+        serviceToTest.seedStats();
+        when(mockStatsRepository.save(statsEntity))
+                .thenReturn(statsEntity);
+        StatsEntity statsEntity = mockStatsRepository.save(this.statsEntity);
+        assertEquals(statsEntityExportDto.getAuthorizedRequests(), statsEntity.getAuthorizedRequests());
+    }
 }
