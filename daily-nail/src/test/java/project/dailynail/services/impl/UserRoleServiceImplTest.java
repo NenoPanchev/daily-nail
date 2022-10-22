@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserRoleServiceImplTest {
@@ -41,20 +42,21 @@ class UserRoleServiceImplTest {
 
     @Test
     void seedUserRolesTest() {
-        Mockito.when(mockUserRoleRepository.count())
+        when(mockUserRoleRepository.count())
                 .thenReturn(4L);
-        Mockito.when(mockUserRoleRepository.saveAll(List.of(admin, editor, reporter, user)))
+        when(mockUserRoleRepository.saveAll(List.of(admin, editor, reporter, user)))
                 .thenReturn(List.of(admin, editor, reporter, user));
         serviceToTest.seedUserRoles();
         List<UserRoleEntity> expected = List.of(admin, editor, reporter, user);
         Long expectedCount = mockUserRoleRepository.count();
         Assertions.assertEquals(expectedCount, 4L);
         assertEquals(expected, mockUserRoleRepository.saveAll(expected));
+        verify(mockUserRoleRepository, times(1)).saveAll(List.of(admin, editor, reporter, user));
     }
 
     @Test
     void findByRoleTest() {
-        Mockito.when(mockUserRoleRepository.findByRole(Role.ADMIN))
+        when(mockUserRoleRepository.findByRole(Role.ADMIN))
                 .thenReturn(Optional.of(admin));
 
         UserRoleServiceModel userRoleServiceModel = serviceToTest.findByRole(Role.ADMIN);
@@ -71,7 +73,7 @@ class UserRoleServiceImplTest {
     @Test
     void findAllByRoleInTest() {
         Role[] roles = new  Role[]{Role.EDITOR, Role.USER};
-        Mockito.when(mockUserRoleRepository.findAllByRoleIn(roles))
+        when(mockUserRoleRepository.findAllByRoleIn(roles))
                 .thenReturn(List.of(editor, user));
 
         List<UserRoleServiceModel> actual = serviceToTest.findAllByRoleIn(roles);
