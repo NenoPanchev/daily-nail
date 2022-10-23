@@ -16,9 +16,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
+import project.dailynail.constants.GlobalConstants;
 import project.dailynail.models.dtos.UserFullNameAndEmailDto;
 import project.dailynail.models.dtos.UserNewPasswordDto;
 import project.dailynail.models.dtos.UserRoleDto;
+import project.dailynail.models.dtos.json.UserEntityExportDto;
 import project.dailynail.models.entities.UserEntity;
 import project.dailynail.models.entities.UserRoleEntity;
 import project.dailynail.models.entities.enums.Role;
@@ -30,7 +32,9 @@ import project.dailynail.repositories.UserRepository;
 import project.dailynail.services.UserRoleService;
 import project.dailynail.services.UserService;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -242,8 +246,24 @@ class UserServiceImplTest {
         assertTrue(serviceToTest.updateFullNameAndEmailIfNeeded(newDto, editor.getEmail()));
         assertFalse(serviceToTest.updateFullNameAndEmailIfNeeded(dto, editor.getEmail()));
         verify(mockServiceLayerValidationUtil, times(1)).validate(dto);
+    }
+
+    @Test
+    void exportUsersTest() {
+        when(mockUserRepository.findAllUsersExceptInitials())
+                .thenReturn(new ArrayList<>());
+        assertEquals(0, serviceToTest.exportUsers().size());
+    }
+
+    @Test
+    void seedNonInitialUsers() throws FileNotFoundException {
+        List<UserEntity> entities = new ArrayList<>();
+        when(mockUserRepository.saveAllAndFlush(entities))
+                .thenReturn(entities);
+        assertEquals(0, mockUserRepository.saveAllAndFlush(entities).size());
 
     }
+
 
 //    @Test
 //    void registerAndLoginUserTest() {
