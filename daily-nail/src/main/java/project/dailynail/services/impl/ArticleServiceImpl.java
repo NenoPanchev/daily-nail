@@ -425,7 +425,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional
     public List<ArticlePreViewModel> getTopArticles(LocalDateTime now) {
-        List<String> topArticlesIds = topArticlesService.getTopArticlesIds().stream().toList();
+        List<String> topArticlesIds = topArticlesService.getTopArticlesIds()
+                .stream()
+                .toList();
         return articleRepository.findAllByIdIn(topArticlesIds)
         .stream()
                 .map(entity -> modelMapper.map(entity, ArticlePreViewModel.class)
