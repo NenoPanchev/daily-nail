@@ -225,19 +225,18 @@
           <div class="single_sidebar">
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
-              <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a></li>
+              <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Weather</a></li>
               <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a></li>
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="category">
                 <ul>
-                  <li class="cat-item"><a href="#">Sports</a></li>
-                  <li class="cat-item"><a href="#">Fashion</a></li>
-                  <li class="cat-item"><a href="#">Business</a></li>
-                  <li class="cat-item"><a href="#">Technology</a></li>
-                  <li class="cat-item"><a href="#">Games</a></li>
-                  <li class="cat-item"><a href="#">Life &amp; Style</a></li>
-                  <li class="cat-item"><a href="#">Photography</a></li>
+                  <li class="cat-item"><a th:href="@{/articles/categories/sports}">Sports</a></li>
+                  <li class="cat-item"><a th:href="@{/articles/categories/world}">World</a></li>
+                  <li class="cat-item"><a th:href="@{/articles/categories/entertainment}">Entertainment</a></li>
+                  <li class="cat-item"><a th:href="@{/articles/categories/technology}">Technology</a></li>
+                  <li class="cat-item"><a th:href="@{/articles/categories/covid_19}">Covid 19</a></li>
+                  <li class="cat-item"><a th:href="@{/articles/categories/business}">Business</a></li>
                 </ul>
               </div>
               <div role="tabpanel" class="tab-pane" id="video">

@@ -13,7 +13,6 @@ import java.util.Optional;
 public interface CategoryRepository extends JpaRepository<CategoryEntity, String> {
     Optional<CategoryEntity> findByCategoryName(CategoryNameEnum categoryNameEnum);
 
-    @Query("SELECT c FROM CategoryEntity c " +
-            "LEFT JOIN FETCH c.subcategories ")
+    @Query("SELECT c FROM CategoryEntity c ")
     List<CategoryEntity> findAllJoinSubcategories();
 }
