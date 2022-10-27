@@ -39,4 +39,4 @@ spring:
 cloudinary:
   cloud-name: dzjgi2c7y
   api-key: 459312976342331
-  api-secret: "${CLOUDINARY_SECRET}"
+  api-secret: ${CLOUDINARY_SECRET}

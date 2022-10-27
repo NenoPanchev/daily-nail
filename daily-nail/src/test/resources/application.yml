@@ -1,27 +1,15 @@
 spring:
-  datasource:
-    url: jdbc:hsqldb:mem:testdb; sql.syntax_mys=true
-  sql:
-    init:
-      mode: never
+    datasource:
+        url: jdbc:hsqldb:mem:testdb; sql.syntax_mys=true
+    sql:
+        init:
+            mode: never
 
-  jpa:
-    hibernate:
-      ddl-auto: create
+    jpa:
+        hibernate:
+            ddl-auto: create
 
 cloudinary:
-  cloud-name: dzjgi2c7y
-  api-key: 459312976342331
-  api-secret: hw0bRl5GpsqtLjVkPBF1fP299ag
-
-logging:
-   level:
-     springframework:
-       boot:
-         autoconfigure:
-           logging: INFO
-     org.hibernate.SQL: DEBUG
-
-
-#logging: level: ROOT: INFO you/package/path: INFO
-
+    cloud-name: dzjgi2c7y
+    api-key: 459312976342331
+    api-secret: hw0bRl5GpsqtLjVkPBF1fP299ag
