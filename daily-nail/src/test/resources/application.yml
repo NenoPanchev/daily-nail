@@ -9,6 +9,7 @@ spring:
         hibernate:
             ddl-auto: create
 
+
 cloudinary:
     cloud-name: dzjgi2c7y
     api-key: 459312976342331
