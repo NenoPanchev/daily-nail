@@ -56,4 +56,11 @@ class TopArticlesServiceImplTest {
         assertEquals(serviceToTest.getTopArticlesIds().peekFirst(), "2");
         assertEquals(serviceToTest.getTopArticlesIds().peekLast(), "3");
     }
+
+    @Test
+    void testToString() {
+        String expected = "TopArticlesServiceImpl{}";
+        String actual = serviceToTest.toString();
+        assertEquals(expected, actual);
+    }
 }

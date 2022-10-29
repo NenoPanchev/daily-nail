@@ -264,6 +264,12 @@ class UserServiceImplTest {
 
     }
 
+    @Test
+    void testToString() {
+        String expected = "UserServiceImpl{}";
+        String actual = serviceToTest.toString();
+        assertEquals(expected, actual);
+    }
 
 //    @Test
 //    void registerAndLoginUserTest() {

@@ -564,4 +564,11 @@ class ArticleServiceImplTest {
         assertEquals(expected.get(1).getViews(), 1);
         assertEquals(expected.get(2).getTotalViews(), 66);
     }
+
+    @Test
+    void testToString() {
+        String expected = "ArticleServiceImpl{}";
+        String actual = serviceToTest.toString();
+        assertEquals(expected, actual);
+    }
 }

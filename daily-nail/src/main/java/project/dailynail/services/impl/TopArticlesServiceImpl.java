@@ -34,4 +34,9 @@ public class TopArticlesServiceImpl {
     public void remove(String id) {
         topArticlesIds.remove(id);
     }
+
+    @Override
+    public String toString() {
+        return "TopArticlesServiceImpl{}";
+    }
 }

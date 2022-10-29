@@ -631,4 +631,9 @@ public class ArticleServiceImpl implements ArticleService {
     private String getIdOfLastCreatedArticle() {
         return articleRepository.getIdOfLastCreatedArticle();
     }
+
+    @Override
+    public String toString() {
+        return "ArticleServiceImpl{}";
+    }
 }

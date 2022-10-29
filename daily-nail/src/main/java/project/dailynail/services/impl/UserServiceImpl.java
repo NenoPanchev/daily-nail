@@ -301,4 +301,9 @@ public class UserServiceImpl implements UserService {
 
         userRepository.saveAllAndFlush(userEntities);
     }
+
+    @Override
+    public String toString() {
+        return "UserServiceImpl{}";
+    }
 }
