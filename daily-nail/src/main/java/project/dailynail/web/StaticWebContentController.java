@@ -97,11 +97,11 @@ public class StaticWebContentController {
         return responseEntity;
     }
 
-    @RequestMapping(value = "/jsons/{file}", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getJsonFile(@PathVariable("file") String name){
-        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\jsons\\"+name,"application/json");
-        return responseEntity;
-    }
+//    @RequestMapping(value = "/jsons/{file}", method = RequestMethod.GET)
+//    public ResponseEntity<byte[]> getJsonFile(@PathVariable("file") String name){
+//        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\jsons\\"+name,"application/json");
+//        return responseEntity;
+//    }
 
     private ResponseEntity<byte[]> loadResource(String path, String contentType){
         HttpHeaders responseHeaders = new HttpHeaders();
