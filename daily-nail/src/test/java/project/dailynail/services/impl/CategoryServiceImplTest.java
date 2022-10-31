@@ -81,4 +81,11 @@ class CategoryServiceImplTest {
         assertEquals(expected.get(0), actual.get(0));
         assertEquals(expected.get(1), actual.get(1));
     }
+
+    @Test
+    void testToString() {
+        String expected = "CategoryServiceImpl{}";
+        String actual = serviceToTest.toString();
+        assertEquals(expected, actual);
+    }
 }

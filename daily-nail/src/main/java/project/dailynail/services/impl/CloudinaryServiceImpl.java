@@ -32,4 +32,9 @@ public class CloudinaryServiceImpl implements CloudinaryService {
         .get(URL)
         .toString();
   }
+
+  @Override
+  public String toString() {
+    return "CloudinaryServiceImpl{}";
+  }
 }

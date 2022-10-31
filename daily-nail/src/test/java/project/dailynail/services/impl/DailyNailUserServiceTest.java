@@ -74,4 +74,11 @@ class DailyNailUserServiceTest {
                 () -> serviceToTest.loadUserByUsername("invalid_user_email@not-exist.com")
         );
     }
+
+    @Test
+    void testToString() {
+        String expected = "DailyNailUserService{}";
+        String actual = serviceToTest.toString();
+        assertEquals(expected, actual);
+    }
 }

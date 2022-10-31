@@ -88,4 +88,9 @@ public class CategoryServiceImpl implements CategoryService {
     private String makePascalCase(String name) {
         return name.charAt(0) + name.substring(1).toLowerCase();
     }
+
+    @Override
+    public String toString() {
+        return "CategoryServiceImpl{}";
+    }
 }

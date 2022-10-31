@@ -12,10 +12,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
+import project.dailynail.models.entities.ArticleEntity;
 import project.dailynail.models.entities.UserEntity;
 import project.dailynail.models.entities.UserRoleEntity;
 import project.dailynail.models.entities.enums.Role;
 import project.dailynail.repositories.*;
+import project.dailynail.services.AdminService;
 import project.dailynail.services.CloudinaryService;
 import project.dailynail.services.impl.AdminServiceImpl;
 
@@ -42,25 +44,29 @@ public class AdminControllerTest {
     private ArticleRepository articleRepository;
     @Autowired
     private CommentRepository commentRepository;
-    @Autowired
-    private StatsRepository statsRepository;
 
     @BeforeEach
     void setUp() {
         UserRoleEntity userRole = userRoleRepository.findByRole(Role.USER).orElseThrow();
+        UserRoleEntity adminRole = userRoleRepository.findByRole(Role.ADMIN).orElseThrow();
         testUser = new UserEntity()
                 .setEmail("test@user.com")
                 .setFullName("User User")
                 .setPassword("1234")
                 .setArticles(new ArrayList<>())
                 .setRoles(List.of(userRole));
+        UserEntity admin = new UserEntity()
+                .setEmail("admin@admin.com")
+                .setFullName("Admin Admin")
+                .setPassword("1234")
+                .setArticles(new ArrayList<>())
+                .setRoles(List.of(adminRole, userRole));
         userRepository.save(testUser);
+        userRepository.save(admin);
     }
 
     @AfterEach
     void cleanUp() {
-//        long userCount = userRepository.count();
-//        long roleCount = userRoleRepository.count();
         commentRepository.deleteAll();
         articleRepository.deleteAll();
         userRepository.deleteAll();
@@ -136,6 +142,8 @@ public class AdminControllerTest {
     @Test
     @WithMockUser(roles = "ADMIN")
     void testStatsPage() throws Exception {
+        articleRepository.save(new ArticleEntity()
+        .setSeen(11));
         mockMvc.perform(get(ADMIN_CONTROLLER_PREFIX + "/stats"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("authorized"))

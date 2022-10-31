@@ -117,12 +117,16 @@ public class UserServiceImpl implements UserService {
     public void registerAndLoginUser(UserServiceModel userServiceModel) {
         serviceLayerValidationUtil.validate(userServiceModel);
 
+        List<UserRoleEntity> userRoles = userRoleService.findAllByRoleIn(Role.USER)
+                .stream()
+                .map(userRoleServiceModel -> modelMapper.map(userRoleServiceModel, UserRoleEntity.class))
+                .collect(Collectors.toList());
+
         UserEntity newUser = modelMapper.map(userServiceModel, UserEntity.class)
                 .setFullName(userServiceModel.getFullName().isBlank() ? DEFAULT_FULL_NAME
                         : userServiceModel.getFullName())
                 .setPassword(passwordEncoder.encode(userServiceModel.getPassword()))
-                .setRoles(Stream.of(modelMapper.map(userRoleService.findByRole(Role.USER), UserRoleEntity.class))
-                        .collect(Collectors.toList()));
+                .setRoles(userRoles);
 
         userRepository.saveAndFlush(newUser);
 
@@ -152,10 +156,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean passwordMatches(String principalEmail, String oldPassword) {
-
+        String principalPassword = userRepository.getPasswordByEmail(principalEmail).orElseThrow(ObjectNotFoundException::new);
         return passwordEncoder.matches(
                 oldPassword,
-                userRepository.getPasswordByEmail(principalEmail).orElseThrow(ObjectNotFoundException::new));
+                principalPassword);
     }
 
     @Override

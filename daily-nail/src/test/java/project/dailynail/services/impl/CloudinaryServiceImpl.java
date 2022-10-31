@@ -10,6 +10,7 @@ import project.dailynail.services.CloudinaryService;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,4 +30,5 @@ public class CloudinaryServiceImpl {
         String expected = serviceToTest.uploadImage(file);
         Assertions.assertEquals(expected, "123");
     }
+
 }

@@ -98,4 +98,11 @@ class SubcategoryServiceImplTest {
         assertEquals(football.getSubcategoryName(), actual.get(0).getSubcategoryName());
         assertEquals(tennis.getSubcategoryName(), actual.get(2).getSubcategoryName());
     }
+
+    @Test
+    void testToString() {
+        String expected = "SubcategoryServiceImpl{}";
+        String actual = serviceToTest.toString();
+        assertEquals(expected, actual);
+    }
 }

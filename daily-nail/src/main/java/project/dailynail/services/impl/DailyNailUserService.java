@@ -44,4 +44,9 @@ public class DailyNailUserService implements UserDetailsService {
                 authorities
         );
     }
+
+    @Override
+    public String toString() {
+        return "DailyNailUserService{}";
+    }
 }

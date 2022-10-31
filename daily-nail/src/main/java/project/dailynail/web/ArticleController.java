@@ -166,11 +166,15 @@ public class ArticleController {
 
     @GetMapping(value = "/all", params = "page")
     public String allPage(@RequestParam Integer page, Model model) {
-        model.addAttribute("allArticles", articleService.getAllArticlesForAdminPanel(page));
+        ArticlesPageViewModel allArticles = articleService.getAllArticlesForAdminPanel(page);
+        model.addAttribute("allArticles", allArticles);
         model.addAttribute("authorNames", userService.getAllAuthorNames());
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("timePeriods", articleService.getTimePeriods());
         model.addAttribute("articleStatuses", articleService.getArticleStatuses());
+        model.addAttribute("totalElements", allArticles.getTotalElements());
+        model.addAttribute("totalPages", allArticles.getTotalPages());
+        model.addAttribute("allArticles", allArticles.getContent());
         return "all-articles";
     }
 
