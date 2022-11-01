@@ -44,7 +44,7 @@ public class ArticleEntity extends BaseEntity {
         this.activated = false;
     }
 
-    @Column
+    @Column(length = 150)
     public String getTitle() {
         return title;
     }

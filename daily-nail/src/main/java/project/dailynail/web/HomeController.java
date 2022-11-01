@@ -5,15 +5,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import project.dailynail.models.entities.enums.CategoryNameEnum;
 import project.dailynail.services.ArticleService;
+import project.dailynail.services.JokeService;
 
 import java.time.LocalDateTime;
 
 @Controller
 public class HomeController {
     private final ArticleService articleService;
+    private final JokeService jokeService;
 
-    public HomeController(ArticleService articleService) {
+    public HomeController(ArticleService articleService, JokeService jokeService) {
         this.articleService = articleService;
+        this.jokeService = jokeService;
     }
 
     @GetMapping("/")
@@ -35,6 +38,7 @@ public class HomeController {
         model.addAttribute("business", articleService.getFourArticlesByCategoryName(CategoryNameEnum.BUSINESS, now));
         model.addAttribute("topTechnology", articleService.getNewestArticleByCategoryName(CategoryNameEnum.TECHNOLOGY, now));
         model.addAttribute("technology", articleService.getFourArticlesByCategoryName(CategoryNameEnum.TECHNOLOGY, now));
+        model.addAttribute("joke", jokeService.getLatestJoke());
 
         return "index";
     }

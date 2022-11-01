@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<div class="container">
+    <block th:replace="fragments/commons::adminNav"></block>
+
+    <section id="contentSection">
+        <form th:action="@{/jokes/create}" class="contact_form"
+              th:object="${jokeCreateBindingModel}"
+              method="POST">
+            <div class="row">
+                <div class="contact_area" style="padding-left: 15px; margin-bottom: 10px">
+                    <h2>New Joke</h2>
+                </div>
+
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <div class="left_content">
+                        <div class="contact_area">
+
+                            <div id="textInput">
+                                <div th:each="e : ${#fields.errors('text')}" th:text="${e}" id="textError"
+                                     class="invalid-feedback text-light text-center form-text bg-danger rounded alert-danger">
+                                </div>
+                                <label>Text</label>
+                                <textarea  class="form-control" cols="30" rows="22" placeholder="Text*" name="text"
+                                           th:field="*{text}" th:errorclass="is-invalid"></textarea>
+                                <script>
+                                    tinymce.init({
+                                        selector: '#text',
+                                        plugins: 'link lists media code',
+                                        toolbar: 'alignleft aligncenter alignright alignjustify | formatselect | bullist numlist | outdent indent | link code',
+                                        toolbar_mode: 'floating',
+                                        tinycomments_mode: 'embedded',
+                                        tinycomments_author: 'Author name',
+                                    });
+                                </script>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row contact_form">
+                <div class="form-group row text-center submit">
+                    <div class="col-md-4">
+                        <input type="submit" value="Create">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <footer th:replace="fragments/commons::footer"></footer>
+</div>
+<block th:replace="fragments/commons::scripts"></block>
+</body>
+</html>
