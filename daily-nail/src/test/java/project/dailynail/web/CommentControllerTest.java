@@ -39,7 +39,7 @@ public class CommentControllerTest {
     private ArticleEntity sportArticle;
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
     @Autowired
     private ArticleRepository articleRepository;
     @Autowired

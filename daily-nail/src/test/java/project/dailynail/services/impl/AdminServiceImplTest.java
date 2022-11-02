@@ -5,9 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
 import project.dailynail.DailyNailApplication;
 import project.dailynail.services.*;
 import project.dailynail.utils.FileIOUtil;
@@ -39,12 +37,14 @@ public class AdminServiceImplTest {
     private FileIOUtil mockFileIOUtil;
     @Mock
     private DailyNailApplication mockApp;
+    @Mock
+    private JokeService mockJokesService;
 
     @BeforeEach
     void setUp() {
         serviceToTest = new AdminServiceImpl(mockArticleService, mockUserService, mockCommentService,
                 new Gson(), mockFileIOUtil, mockUserRoleService, mockSubcategoryService,
-                mockCategoryService, mockStatsService);
+                mockCategoryService, mockStatsService, mockJokesService);
     }
 
     @Test
@@ -61,6 +61,7 @@ public class AdminServiceImplTest {
         verify(mockArticleService, times(1)).seedArticles();
         verify(mockCommentService, times(1)).seedComments();
         verify(mockStatsService, times(1)).seedStats();
+        verify(mockJokesService, times(1)).seedJokes();
     }
 
 }

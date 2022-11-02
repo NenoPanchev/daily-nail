@@ -23,8 +23,9 @@ public class AdminServiceImpl implements AdminService {
     private final SubcategoryService subcategoryService;
     private final CategoryService categoryService;
     private final StatsService statsService;
+    private final JokeService jokeService;
 
-    public AdminServiceImpl(ArticleService articleService, UserService userService, CommentService commentService, Gson gson, FileIOUtil fileIOUtil, UserRoleService userRoleService, SubcategoryService subcategoryService, CategoryService categoryService, StatsService statsService) {
+    public AdminServiceImpl(ArticleService articleService, UserService userService, CommentService commentService, Gson gson, FileIOUtil fileIOUtil, UserRoleService userRoleService, SubcategoryService subcategoryService, CategoryService categoryService, StatsService statsService, JokeService jokeService) {
         this.articleService = articleService;
         this.userService = userService;
         this.commentService = commentService;
@@ -34,6 +35,7 @@ public class AdminServiceImpl implements AdminService {
         this.subcategoryService = subcategoryService;
         this.categoryService = categoryService;
         this.statsService = statsService;
+        this.jokeService = jokeService;
     }
 
     public void exportData() throws IOException {
@@ -41,13 +43,15 @@ public class AdminServiceImpl implements AdminService {
         fileIOUtil.write(gson.toJson(articleService.exportArticles()), ARTICLES_FILE_PATH);
         fileIOUtil.write(gson.toJson(commentService.exportComments()), COMMENTS_FILE_PATH);
         fileIOUtil.write(gson.toJson(statsService.exportStats()), STATS_FILE_PATH);
+        fileIOUtil.write(gson.toJson(jokeService.exportJokes()), JOKES_FILE_PATH);
     }
 
     public void importData() throws FileNotFoundException {
-        userService.seedNonInitialUsers();
-        articleService.seedArticles();
-        commentService.seedComments();
-        statsService.seedStats();
+        this.userService.seedNonInitialUsers();
+        this.articleService.seedArticles();
+        this.commentService.seedComments();
+        this.statsService.seedStats();
+        this.jokeService.seedJokes();
     }
 
     @EventListener(ApplicationStartedEvent.class)
@@ -57,6 +61,7 @@ public class AdminServiceImpl implements AdminService {
         this.categoryService.seedCategories();
         this.subcategoryService.seedSubcategories();
         this.statsService.seedInitialStatsByCategory();
+        this.jokeService.seedJokes();
 
         if (!articleService.hasArticles()) {
             this.articleService.seedArticles();

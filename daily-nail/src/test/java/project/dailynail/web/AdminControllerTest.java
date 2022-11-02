@@ -44,6 +44,8 @@ public class AdminControllerTest {
     private ArticleRepository articleRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private JokeRepository jokeRepository;
 
     @BeforeEach
     void setUp() {
@@ -67,6 +69,7 @@ public class AdminControllerTest {
 
     @AfterEach
     void cleanUp() {
+        jokeRepository.deleteAll();
         commentRepository.deleteAll();
         articleRepository.deleteAll();
         userRepository.deleteAll();
