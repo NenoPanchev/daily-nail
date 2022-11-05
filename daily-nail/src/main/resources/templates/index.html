@@ -224,12 +224,27 @@
           <div th:replace="fragments/commons::pop"></div>
           <div class="single_sidebar">
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
-              <li role="presentation"><a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Weather</a></li>
-              <li role="presentation"><a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a></li>
+              <li role="presentation" class="active"><a href="#joke" aria-controls="home" role="tab" data-toggle="tab">Joke</a></li>
+              <li role="presentation"><a href="#weather" aria-controls="profile" role="tab" data-toggle="tab">Weather</a></li>
+              <li role="presentation"><a href="#categories" aria-controls="messages" role="tab" data-toggle="tab">Categories</a></li>
             </ul>
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="category">
+              <div role="tabpanel" class="tab-pane active" id="joke"
+                   th:object="${joke}">
+                <div class="text-information" style="margin-top: 20px">
+                  <div id="mytextarea" th:utext="${joke}"></div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="weather">
+                <div class="top-box top-box-a">
+                  <h4>Weather in  Plovdiv</h4>
+                  <div class="row">
+                    <img id="box-a-img" src="/images/weather-icons/01d.png" height="150px" width="150px" alt="">
+                    <div><h4><span id="box-a-temp">15</span><span>&#8451;</span></h4></div>
+                  </div>
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="categories">
                 <ul>
                   <li class="cat-item"><a th:href="@{/articles/categories/sports}">Sports</a></li>
                   <li class="cat-item"><a th:href="@{/articles/categories/world}">World</a></li>
@@ -239,44 +254,27 @@
                   <li class="cat-item"><a th:href="@{/articles/categories/business}">Business</a></li>
                 </ul>
               </div>
-              <div role="tabpanel" class="tab-pane" id="video">
-                <div class="top-box top-box-a">
-                  <h4>Weather in  Plovdiv</h4>
-                  <div class="row">
-                    <img id="box-a-img" src="/images/weather-icons/01d.png" height="150px" width="150px" alt="">
-                    <div><h4><span id="box-a-temp">15</span><span>&#8451;</span></h4></div>
-                  </div>
-                </div>
-              </div>
-
-              <div role="tabpanel" class="tab-pane" id="comments"
-              th:object="${joke}">
-                <div class="text-information" style="margin-top: 20px">
-                  <div id="mytextarea" th:utext="${joke}"></div>
-                </div>
-              </div>
             </div>
           </div>
           <div class="single_sidebar wow fadeInDown">
             <h2><span>Sponsor</span></h2>
             <a class="sideAdd" href="#"><img src="images/add_img.jpg" alt=""></a> </div>
-          <div class="single_sidebar wow fadeInDown">
-            <h2><span>Category Archive</span></h2>
-            <select class="catgArchive">
-              <option>Select Category</option>
-              <option>Life styles</option>
-              <option>Sports</option>
-              <option>Technology</option>
-              <option>Treads</option>
-            </select>
-          </div>
+<!--          <div class="single_sidebar wow fadeInDown">-->
+<!--            <h2><span>Category Archive</span></h2>-->
+<!--            <select class="catgArchive">-->
+<!--              <option>Select Category</option>-->
+<!--              <option>Life styles</option>-->
+<!--              <option>Sports</option>-->
+<!--              <option>Technology</option>-->
+<!--              <option>Treads</option>-->
+<!--            </select>-->
+<!--          </div>-->
           <div class="single_sidebar wow fadeInDown">
             <h2><span>Links</span></h2>
             <ul>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Rss Feed</a></li>
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Life &amp; Style</a></li>
+              <li><a th:href="@{/users/login}">Login</a></li>
+              <li><a th:href="@{/users/register}">Register</a></li>
+              <li><a href="#">Contacts</a></li>
             </ul>
           </div>
         </aside>

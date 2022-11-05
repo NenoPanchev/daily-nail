@@ -29,13 +29,13 @@ public class StaticWebContentController {
 
     @RequestMapping(value = "/css/images/{file}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getCssImageFile(@PathVariable("file") String name){
-        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\css\\images\\"+name,"image/svg+xml");
+        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\css\\images\\"+name,"image/jpeg");
         return responseEntity;
     }
 
     @RequestMapping(value = "/img/bootstrap-icons-1.1.0/{file}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getimgFile(@PathVariable("file") String name){
-        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\img\\bootstrap-icons-1.1.0\\"+name,"image/svg+xml");
+        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\img\\bootstrap-icons-1.1.0\\"+name,"image/jpeg");
         return responseEntity;
     }
 
@@ -50,7 +50,7 @@ public class StaticWebContentController {
         ResponseEntity<byte[]> responseEntity = null;
 
         try {
-            responseEntity = loadResource(".\\static\\fonts\\"+name,"image/svg+xml");
+            responseEntity = loadResource(".\\static\\fonts\\"+name,"image/jpeg");
             return responseEntity;
         } catch (ResponseStatusException ignored) {
 
@@ -81,19 +81,19 @@ public class StaticWebContentController {
 
     @RequestMapping(value = "/images/{file}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImageFile(@PathVariable("file") String name){
-        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\images\\"+name,"image/svg+xml");
+        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\images\\"+name,"image/jpeg");
         return responseEntity;
     }
 
     @RequestMapping(value = "/images/weather-icons/{file}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getWeatherImageFile(@PathVariable("file") String name){
-        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\images\\weather-icons\\"+name,"image/svg+xml");
+        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\images\\weather-icons\\"+name,"image/jpeg");
         return responseEntity;
     }
 
     @RequestMapping(value = "/img/{file}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImgFile(@PathVariable("file") String name){
-        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\img\\"+name,"image/svg+xml");
+        ResponseEntity<byte[]> responseEntity = loadResource(".\\static\\img\\"+name,"image/jpeg");
         return responseEntity;
     }
 
