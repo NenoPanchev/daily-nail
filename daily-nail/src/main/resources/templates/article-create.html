@@ -50,6 +50,11 @@
                                         tinycomments_mode: 'embedded',
                                         tinycomments_author: 'Author name',
                                     });
+                                    tinymce.init({
+                                        selector: 'textarea',
+                                        content_style: '#mytextarea figure { max-width: 100%; } ' +
+                                            '#mytextarea img { max-width: 100%; object-fit: contain; } '
+                                    });
                                 </script>
 
                             </div>

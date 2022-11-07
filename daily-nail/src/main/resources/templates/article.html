@@ -49,7 +49,7 @@
                             <div class="text-information" style="margin-top: 20px">
                                 <div id="mytextarea" th:utext="*{text}"></div>
                             </div>
-                            <div id="comments-section">
+                            <div th:unless="*{disabledComments}" id="comments-section">
 
                                 <div class="section-header">
                                     <h3 class="section-title article-name"><span
