@@ -4,12 +4,12 @@
 This is my final project for the Spring Advanced course in SoftUni. 
 It is based on MVC structure. Using Spring Framework, MySQL as database, Thymeleaf template engine, Responsive Web Page Design based on Bootstrap, Cloudinary to store images, TinyMCE: "What you see is what you get" HTML Editor.
 The project is also based on a list of requirements that are detailly described below with some examples of how they're implemented.
-The same project without the Unit/Integration tests is deployed on Heroku with populated data where you can get an idea of the application.
+The same project without the Unit/Integration tests is deployed on Heroku with imported data where you can get an idea of the application.
 
 
 ## Features
-DailyNail is a news website populated with articles spread over different categories and subcategories.
-It offers different sets of views and fully implemented management functionality. The main functionality is centered around creation, editing and posting of articles, daily jokes, setting of date and time when the drafted articles should appear on the website, if they should be in the top panel, should their comments be disabled and other options, regulating comments etc. The application also gathers data of the users preferences by view count of different categories of articles. It offers accounts role management by the admin. The entities data can and is regurarly exported in json files and can be imported in case of need.
+DailyNail is a news website with articles spread over different categories and subcategories.
+It offers different sets of views and fully implemented management functionality. The main functionality is centered around creation, editing and posting of articles, daily jokes, setting of date and time when the drafted articles should appear on the website, if they should be in the top panel, should their comments be disabled and other options, regulating comments etc. The application also gathers data of the users' preferences by view count of different categories of articles. It offers accounts role management by the admin. The entity data can and is regurarly exported to json files and can be imported in case of need or on empty database.
 
 [![HdpXTj1.md.png](https://iili.io/HdpXTj1.md.png)](https://freeimage.host/i/HdpXTj1)
 [![H239TTF.md.png](https://iili.io/H239TTF.md.png)](https://freeimage.host/i/H239TTF)  
@@ -54,7 +54,7 @@ Your Web application should use the following technologies, frameworks, and deve
 •	The application must have at least 5 independent entity models.                             ✓  
 •	The application must have at least 5 controllers.                                           ✓  
 •	The application must have at least 5 services.                                              ✓  
-•	The application must have at least 5 repositories.                                          ✓  
+•	The application must have at least 5 repositories. ✓ [Go to Project Structure](#structure) 
 
 •	Use **Thymeleaf** template engine or make the Front-End using JavaScript, 			
 consuming REST services from a Web API.                                                         ✓  
@@ -67,7 +67,7 @@ consuming REST services from a Web API.                                         
 •	Implement Responsive Web Page Design based on Bootstrap / Google Material Design.           ✓  
 •	Use the standard Spring Security for managing users and roles.                              ✓  
 •	Your registered users should have at least these roles: user and administrator.             ✓  
-•	User roles should be manageable from the application.                                       ✓  
+•	User roles should be manageable from the application. ✓ [Go to Roles Management](#roles)                          
 •	Make sure the role management is secured and error safe.                                    ✓  
 •	Users and administrators should be able to edit their usernames.                            ✓  
 
@@ -139,7 +139,13 @@ Bonuses – up to 15 %
 [![H23zXn4.md.png](https://iili.io/H23zXn4.md.png)](https://freeimage.host/i/H23zXn4)
 [![H23R1hg.md.png](https://iili.io/H23R1hg.md.png)](https://freeimage.host/i/H23R1hg)
 [![H2fgrb4.md.png](https://iili.io/H2fgrb4.md.png)](https://freeimage.host/i/H2fgrb4)
-[![H2BF429.md.png](https://iili.io/H2BF429.md.png)](https://freeimage.host/i/H2BF429)
+
+
+#### Structure
+[![H2BF429.md.png](https://iili.io/H2BF429.md.png)](https://freeimage.host/i/H2BF429)  
+[![H2okpbj.png](https://iili.io/H2okpbj.png)](https://freeimage.host/bg)
+[![H2o8Hps.png](https://iili.io/H2o8Hps.png)](https://freeimage.host/bg)
+[![H2oSxKN.png](https://iili.io/H2oSxKN.png)](https://freeimage.host/bg)  
 
 #### Weather
 [![H298Dxf.png](https://iili.io/H298Dxf.png)](https://freeimage.host/bg)  
@@ -173,6 +179,10 @@ The server side validation is done once in the binding models coming from the in
 [![H22EidJ.png](https://iili.io/H22EidJ.png)](https://freeimage.host/bg)
 [![H220hQ9.png](https://iili.io/H220hQ9.png)](https://freeimage.host/bg)  
 [Go back to requirements](#general-requirements) 
+
+#### Roles
+[![H2nDKKu.md.png](https://iili.io/H2nDKKu.md.png)](https://freeimage.host/i/H2nDKKu)  
+[Go back to requirements](#general-requirements)   
 ## Demo
 
 You can check the project deployed on Heroku: https://daily-nail-heroku.herokuapp.com/
