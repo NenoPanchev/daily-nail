@@ -60,7 +60,7 @@ public class AdminServiceImpl implements AdminService {
         this.userService.seedUsers();
         this.categoryService.seedCategories();
         this.subcategoryService.seedSubcategories();
-        this.statsService.seedInitialStatsByCategory();
+        this.statsService.seedStats();
         this.jokeService.seedJokes();
 
         if (!articleService.hasArticles()) {
