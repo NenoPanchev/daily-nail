@@ -146,8 +146,9 @@ Bonuses – up to 15 %
 [Go back to requirements](#general-requirements)
 
 #### Tests
-Unit testing of services and Integration tests  
-[![H2H3uxs.png](https://iili.io/H2H3uxs.png)](https://freeimage.host/bg)
+Unit testing of services  
+[![H2H3uxs.png](https://iili.io/H2H3uxs.png)](https://freeimage.host/bg)  
+Controller Integration tests plus service Unit tests  
 [![H2HFnBj.md.png](https://iili.io/H2HFnBj.md.png)](https://freeimage.host/i/H2HFnBj)  
 [Go back to requirements](#general-requirements)  
 
