@@ -12,8 +12,9 @@ DailyNail is a news website populated with articles spread over different catego
 It offers different sets of views and fully implemented management functionality. The main functionality is centered around creation, editing and posting of articles, daily jokes, setting of date and time when the drafted articles should appear on the website, if they should be in the top panel, should their comments be disabled and other options, regulating comments etc. The application also gathers data of the users preferences by view count of different categories of articles. It offers accounts role management by the admin. The entities data can and is regurarly exported in json files and can be imported in case of need.
 
 [![HdpXTj1.md.png](https://iili.io/HdpXTj1.md.png)](https://freeimage.host/i/HdpXTj1)
+[![H239TTF.md.png](https://iili.io/H239TTF.md.png)](https://freeimage.host/i/H239TTF)  
+Phone view  
 [![H2FfaAx.png](https://iili.io/H2FfaAx.png)](https://freeimage.host/bg)
-[![H239TTF.md.png](https://iili.io/H239TTF.md.png)](https://freeimage.host/i/H239TTF)
 
 Brief description of user roles
 
