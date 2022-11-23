@@ -13,6 +13,7 @@ It offers different sets of views and fully implemented management functionality
 
 [![HdpXTj1.md.png](https://iili.io/HdpXTj1.md.png)](https://freeimage.host/i/HdpXTj1)
 [![H2FfaAx.png](https://iili.io/H2FfaAx.png)](https://freeimage.host/bg)
+Phone view  
 [![H239TTF.md.png](https://iili.io/H239TTF.md.png)](https://freeimage.host/i/H239TTF)
 
 Brief description of user roles
