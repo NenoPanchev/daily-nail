@@ -72,6 +72,9 @@ public class StatsServiceImpl implements StatsService {
 
     @Override
     public void seedStats() throws FileNotFoundException {
+        if (statsRepository.count() > 0) {
+            return;
+        }
         StatsEntityExportDto statsEntityExportDto = gson
                 .fromJson(new FileReader(STATS_FILE_PATH), StatsEntityExportDto.class);
 
