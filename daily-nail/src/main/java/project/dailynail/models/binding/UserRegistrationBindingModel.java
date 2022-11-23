@@ -63,7 +63,7 @@ public class UserRegistrationBindingModel {
         return this;
     }
 
-    @AssertTrue(message = "You must accept the terms and conditions")
+    @AssertTrue(message = "You must accept the terms and conditions in order to make a registration")
     public boolean isAcceptedTerms() {
         return acceptedTerms;
     }
