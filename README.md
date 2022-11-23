@@ -20,7 +20,7 @@ Brief description of user roles
 
 Guests can:
 
-    - View all kind of articles and read comments
+    - View all kinds of articles and read comments
 Logged Users can do what guests can including:
 
     - Write comments under articles
@@ -43,6 +43,14 @@ Admin can do all of the above including:
     - Can backup and import data on demand from and to json files
     - Has access to statistics page about what are the most read categories of articles 
 
+
+## Demo
+
+You can check the project deployed on Heroku: https://daily-nail-heroku.herokuapp.com/
+
+User credentials: 
+e-mail: `user@user.bg` 
+password: 1234
 
 ## General Requirements
 
@@ -69,10 +77,10 @@ consuming REST services from a Web API.                                         
 •	Your registered users should have at least these roles: user and administrator.             ✓  
 •	User roles should be manageable from the application. ✓ [Go to Roles Management](#roles)                          
 •	Make sure the role management is secured and error safe.                                    ✓  
-•	Users and administrators should be able to edit their usernames.                            ✓  
+•	Users and administrators should be able to edit their usernames. ✓ [Go to Profile Edit](#profile)
 
 •	Use Fetch to asynchronously load and display data somewhere in your application.            ✓  
-&nbsp;&nbsp;&nbsp;- Fetching some weather data from `https://api.openweathermap.org` [Go to image](#weather)  
+&nbsp;&nbsp;&nbsp;- **Fetching some weather data from `https://api.openweathermap.org`** [Go to Weather](#weather)  
 •	Write tests (Unit & Integration) for your logic, services, repository query methods, helpers, etc.  
 o	You should have at least 70% coverage on your business logic (Line Coverage). ✓ [Go to Coverage](#tests)       
 
@@ -81,10 +89,10 @@ o	You should have at least 70% coverage on your business logic (Line Coverage). 
 o	When validation data, show appropriate messages to user. ✓  [Go to Validation](#validation)
 
 •	Use at least 2 Interceptors.										                ✓  
-&nbsp;&nbsp;&nbsp;- Using one to count articles views from authorized vs unauthorized users.  
-&nbsp;&nbsp;&nbsp;- And another one for redirecting users to a maintenance page during a specific time /of the backup/.  
+&nbsp;&nbsp;&nbsp;- **Using one to count articles views from authorized vs unauthorized users.**  
+&nbsp;&nbsp;&nbsp;- **And another one for redirecting users to a maintenance page during a specific time /of the backup/.**  
 •	Schedule jobs that impact the whole application running e.g., once/twice a day.		✓  
-&nbsp;- Once a day backs up entities data in json files.  
+&nbsp;&nbsp;&nbsp;- **Once a day backs up entities data in json files.**  
 •	Use ModelМapper or another mapping library.								            ✓  
 
 
@@ -121,17 +129,17 @@ Answer questions about potential functionality outside the scope of the project.
 
 Bonuses – up to 15 %  
 •	Use Spring Event somewhere in your application.	  						            ✓  
-&nbsp;&nbsp;&nbsp;- Using ApplicationStartedEvent that checks and populates prepared data from json files on an empty db.  
+&nbsp;&nbsp;&nbsp;- **Using ApplicationStartedEvent that checks and populates prepared data from json files on an empty db.**  
 •	Implement one or more Advice (AOP).					  				                ✓  
-&nbsp;&nbsp;&nbsp;- *Handling different kinds of errors.*  
+&nbsp;&nbsp;&nbsp;- **Handling different kinds of errors.**  
 •	Implement HATEOAS.  
 •	Using Spring WebFlux.  
 •	Using Angular/React/Vue for Front-End  
 •	Host the application in a cloud environment.								        ✓  
-&nbsp;&nbsp;&nbsp;- Demo on Heroku: https://daily-nail-heroku.herokuapp.com/  
+&nbsp;&nbsp;&nbsp;- **Demo on Heroku:** https://daily-nail-heroku.herokuapp.com/  
 •	Use a file storage cloud API, e.g., Cloudinary, Dropbox,   
         Google Drive or other for storing the files.	                                ✓  
-&nbsp;&nbsp;&nbsp;- Using Cloudinary to store images.  
+&nbsp;&nbsp;&nbsp;- **Using Cloudinary to store images.**  
 •	Implement Microservice architecture in your application.  
 •	Anything that is not described in the assignment is a bonus if it has some practical use.   
 
@@ -146,10 +154,11 @@ Bonuses – up to 15 %
 [![H2okpbj.png](https://iili.io/H2okpbj.png)](https://freeimage.host/bg)
 [![H2o8Hps.png](https://iili.io/H2o8Hps.png)](https://freeimage.host/bg)
 [![H2oSxKN.png](https://iili.io/H2oSxKN.png)](https://freeimage.host/bg)  
+[Go back to requirements](#general-requirements)  
 
 #### Weather
 [![H298Dxf.png](https://iili.io/H298Dxf.png)](https://freeimage.host/bg)  
-[Go back to requirements](#general-requirements)
+[Go back to requirements](#general-requirements)  
 
 #### Tests
 Unit testing of services  
@@ -183,11 +192,9 @@ The server side validation is done once in the binding models coming from the in
 #### Roles
 [![H2nDKKu.md.png](https://iili.io/H2nDKKu.md.png)](https://freeimage.host/i/H2nDKKu)  
 [Go back to requirements](#general-requirements)   
-## Demo
 
-You can check the project deployed on Heroku: https://daily-nail-heroku.herokuapp.com/
+#### Profile
+[![H2omEge.md.png](https://iili.io/H2omEge.md.png)](https://freeimage.host/i/H2omEge)  
+[Go back to requirements](#general-requirements) 
 
-User credentials: 
-e-mail: `user@user.bg` 
-password: 1234
 
