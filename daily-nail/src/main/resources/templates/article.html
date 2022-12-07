@@ -160,5 +160,12 @@
     <footer th:replace="fragments/commons::footer"></footer>
 </div>
 <block th:replace="fragments/commons::scripts"></block>
+<script>
+    $(document).ready(function(){
+        var img = $('#mytextarea img');
+        img.addClass("img-responsive");
+    })
+</script>
+
 </body>
 </html>
