@@ -1,5 +1,5 @@
 
-![HdpBLp1.jpg](https://iili.io/HdpBLp1.jpg)
+![HdpBLp1.jpg](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675243502/logo_qmzthc.jpg)
 
 This is my final project for the Spring Advanced course in SoftUni. 
 It is based on MVC structure. Using Spring Framework, MySQL as database, Thymeleaf template engine, Responsive Web Page Design based on Bootstrap, Cloudinary to store images, TinyMCE: "What you see is what you get" HTML Editor.
@@ -11,10 +11,10 @@ The same project without the Unit/Integration tests is deployed on Heroku with i
 DailyNail is a news website with articles spread over different categories and subcategories.
 It offers different sets of views and fully implemented management functionality. The main functionality is centered around creation, editing and posting of articles, daily jokes, setting of date and time when the drafted articles should appear on the website, if they should be in the top panel, should their comments be disabled and other options, regulating comments etc. The application also gathers data of the users' preferences by view count of different categories of articles. It offers accounts role management by the admin. The entity data can and is regurarly exported to json files and can be imported in case of need or on empty database.
 
-[![HdpXTj1.md.png](https://iili.io/HdpXTj1.md.png)](https://freeimage.host/i/HdpXTj1)
-[![H239TTF.md.png](https://iili.io/H239TTF.md.png)](https://freeimage.host/i/H239TTF)  
+[![HdpXTj1.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675243703/home_page_ns4727.png)](https://freeimage.host/i/HdpXTj1)
+[![H239TTF.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675243909/football_vrgjer.png)](https://freeimage.host/i/H239TTF)  
 Phone view  
-[![H2FfaAx.png](https://iili.io/H2FfaAx.png)](https://freeimage.host/bg)
+[![H2FfaAx.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675244049/phone_view_ulnef5.png)](https://freeimage.host/bg)
 
 Brief description of user roles
 
@@ -144,57 +144,51 @@ Bonuses – up to 15 %
 •	Anything that is not described in the assignment is a bonus if it has some practical use.   
 
 ## Screenshots
-[![H23zXn4.md.png](https://iili.io/H23zXn4.md.png)](https://freeimage.host/i/H23zXn4)
-[![H23R1hg.md.png](https://iili.io/H23R1hg.md.png)](https://freeimage.host/i/H23R1hg)
-[![H2fgrb4.md.png](https://iili.io/H2fgrb4.md.png)](https://freeimage.host/i/H2fgrb4)
+[![H23zXn4.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675244261/articles_bvfndd.png)](https://freeimage.host/i/H23zXn4)
+[![H23R1hg.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675244330/create_xyzzem.png)](https://freeimage.host/i/H23R1hg)
+[![H23R1hg.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675250998/stats_bsdncc.png)](https://freeimage.host/i/H23R1hg)
 
 
 #### Structure
-[![H2BF429.md.png](https://iili.io/H2BF429.md.png)](https://freeimage.host/i/H2BF429)  
-[![H2okpbj.png](https://iili.io/H2okpbj.png)](https://freeimage.host/bg)
-[![H2o8Hps.png](https://iili.io/H2o8Hps.png)](https://freeimage.host/bg)
-[![H2oSxKN.png](https://iili.io/H2oSxKN.png)](https://freeimage.host/bg)  
+[![H2BF429.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675244537/diagram_v0pvdr.png)](https://freeimage.host/i/H2BF429)  
+[![H2okpbj.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675245369/structure_ikumwx.png)](https://freeimage.host/bg)
 [Go back to requirements](#general-requirements)  
 
 #### Weather
-[![H298Dxf.png](https://iili.io/H298Dxf.png)](https://freeimage.host/bg)  
+[![H298Dxf.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675245435/weather_mrhuod.png)](https://freeimage.host/bg)  
 [Go back to requirements](#general-requirements)  
 
 #### Tests
 Unit testing of services  
-[![H2H3uxs.png](https://iili.io/H2H3uxs.png)](https://freeimage.host/bg)  
+[![H2H3uxs.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675251740/service_tests_coverage_tdlhef.png)](https://freeimage.host/bg)  
 Controller Integration tests plus service Unit tests  
-[![H2HFnBj.md.png](https://iili.io/H2HFnBj.md.png)](https://freeimage.host/i/H2HFnBj)  
+[![H2HFnBj.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675252089/all_tests_coverage_alzp5q.png)](https://freeimage.host/i/H2HFnBj)  
 [Go back to requirements](#general-requirements)  
 
 #### Errors
-[![H2Hi0sn.md.png](https://iili.io/H2Hi0sn.md.png)](https://freeimage.host/i/H2Hi0sn)
-[![H2HsIh7.md.png](https://iili.io/H2HsIh7.md.png)](https://freeimage.host/i/H2HsIh7)
-[![H2HLAwN.md.png](https://iili.io/H2HLAwN.md.png)](https://freeimage.host/i/H2HLAwN)
-[![H2HDt1t.md.png](https://iili.io/H2HDt1t.md.png)](https://freeimage.host/i/H2HDt1t)  
+[![H2Hi0sn.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675245838/403_jsye82.png)](https://freeimage.host/i/H2Hi0sn)
+[![H2HsIh7.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675245604/404_fzycec.png)](https://freeimage.host/i/H2HsIh7)
+[![H2HLAwN.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675245687/error_dbdw7x.png)](https://freeimage.host/i/H2HLAwN)
+[![H2HDt1t.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675245749/maintenance_ini1do.png)](https://freeimage.host/i/H2HDt1t)  
 [Go back to requirements](#general-requirements) 
 
 #### Validation
 There is client side validation  
-[![H2J7pcB.md.png](https://iili.io/H2J7pcB.md.png)](https://freeimage.host/i/H2J7pcB)
-[![H2JY6fR.md.png](https://iili.io/H2JY6fR.md.png)](https://freeimage.host/i/H2JY6fR)  
+[![H2J7pcB.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675246167/client_side_validation_wcy61l.png)](https://freeimage.host/i/H2J7pcB)  
 The server side validation is done once in the binding models coming from the input another time in the service layer in case the input comes in a different way and in the entities themselves if there are any specific requirements.  
-[![H2dePpe.md.png](https://iili.io/H2dePpe.md.png)](https://freeimage.host/i/H2dePpe)
-[![H2d8p3l.md.png](https://iili.io/H2d8p3l.md.png)](https://freeimage.host/i/H2d8p3l)
-[![H2deq79.md.png](https://iili.io/H2deq79.md.png)](https://freeimage.host/i/H2deq79)
-[![H22KiQt.md.png](https://iili.io/H22KiQt.md.png)](https://freeimage.host/i/H22KiQt)
-[![H22oXyJ.md.png](https://iili.io/H22oXyJ.md.png)](https://freeimage.host/i/H22oXyJ)
-[![H22YQb1.md.png](https://iili.io/H22YQb1.md.png)](https://freeimage.host/i/H22YQb1)
-[![H22EidJ.png](https://iili.io/H22EidJ.png)](https://freeimage.host/bg)
-[![H220hQ9.png](https://iili.io/H220hQ9.png)](https://freeimage.host/bg)  
+[![H2dePpe.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675246419/register_cjtsbm.png)](https://freeimage.host/i/H2dePpe)
+[![H2d8p3l.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675246544/change_password_xuryb2.png)](https://freeimage.host/i/H2d8p3l)
+[![H2deq79.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675246655/create_article_lw73nt.png)](https://freeimage.host/i/H2deq79)
+[![H22KiQt.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675246784/main_image_v5kp6v.png)](https://freeimage.host/i/H22KiQt)
+[![H22oXyJ.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675250283/acc_exists_xzbrni.png)](https://freeimage.host/i/H22oXyJ)  
 [Go back to requirements](#general-requirements) 
 
 #### Roles
-[![H2nDKKu.md.png](https://iili.io/H2nDKKu.md.png)](https://freeimage.host/i/H2nDKKu)  
+[![H2nDKKu.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675250916/manage_acc_lvxop1.png)](https://freeimage.host/i/H2nDKKu)  
 [Go back to requirements](#general-requirements)   
 
 #### Profile
-[![H2omEge.md.png](https://iili.io/H2omEge.md.png)](https://freeimage.host/i/H2omEge)  
+[![H2omEge.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675251506/profile_oiwddi.png)](https://freeimage.host/i/H2omEge)  
 [Go back to requirements](#general-requirements) 
 
 
