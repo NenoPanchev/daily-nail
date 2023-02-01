@@ -260,11 +260,11 @@
 
       <div class="account-options">
         <a onclick="document.getElementById('logout-form').submit();">
-<span class="special-icon">
-<i class="icon fa fa-solid fa-sign-out"></i>
-
-</span>
+          <span class="special-icon">
+            <i class="icon fa fa-solid fa-sign-out"></i>
+          </span>
           <span class="icon-text"> Logout</span>
+          <form id="logout-form" th:action="@{/logout}" method="POST" style="display: none"></form>
         </a>
       </div>
     </div>
