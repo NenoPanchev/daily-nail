@@ -51,7 +51,7 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @Fetch(value = FetchMode.SUBSELECT)
     public List<UserRoleEntity> getRoles() {
         return roles;
@@ -62,7 +62,7 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author")
     @Fetch(value = FetchMode.SUBSELECT)
     public List<ArticleEntity> getArticles() {
         return articles;

@@ -8,7 +8,7 @@ logging:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: 12345
+    password: 1234
     url: jdbc:mysql://localhost:3306/daily_nail_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
     username: root
   jpa:
@@ -39,4 +39,4 @@ spring:
 cloudinary:
   cloud-name: dzjgi2c7y
   api-key: 459312976342331
-  api-secret: ${CLOUDINARY_SECRET}
+  api-secret: hw0bRl5GpsqtLjVkPBF1fP299ag

@@ -154,7 +154,7 @@ public class ArticleEntity extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "article", orphanRemoval = true)
     public List<CommentEntity> getComments() {
         return comments;
     }
