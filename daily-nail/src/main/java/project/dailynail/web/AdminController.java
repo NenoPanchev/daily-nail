@@ -23,13 +23,15 @@ public class AdminController {
     private final AdminService adminService;
     private final StatsService statsService;
     private final ArticleService articleService;
+    private final LogService logService;
 
-    public AdminController(UserService userService, ModelMapper modelMapper, AdminService adminService, StatsService statsService, ArticleService articleService) {
+    public AdminController(UserService userService, ModelMapper modelMapper, AdminService adminService, StatsService statsService, ArticleService articleService, LogService logService) {
         this.userService = userService;
         this.modelMapper = modelMapper;
         this.adminService = adminService;
         this.statsService = statsService;
         this.articleService = articleService;
+        this.logService = logService;
     }
 
 
@@ -86,6 +88,11 @@ public class AdminController {
         model.addAttribute("authorized", statsService.getStatsViewModel());
         model.addAttribute("categoryViews", articleService.getCategoryViews());
         return "stats";
+    }
+    @GetMapping("/logs")
+    public String logs(Model model) {
+        model.addAttribute("logs", logService.getLogs());
+        return "logs";
     }
 
     @ModelAttribute("userUpdateRoleBindingModel")
