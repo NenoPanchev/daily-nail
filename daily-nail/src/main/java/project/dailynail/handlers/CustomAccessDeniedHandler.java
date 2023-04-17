@@ -6,22 +6,33 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.stereotype.Component;
+import project.dailynail.services.LogService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Component
 public class CustomAccessDeniedHandler extends Throwable implements AccessDeniedHandler {
+    private final LogService logService;
     private static final Logger LOG = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
+
+    public CustomAccessDeniedHandler(LogService logService) {
+        this.logService = logService;
+    }
+
     @Override
-    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
+    public void handle(HttpServletRequest request, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (authentication!=null) {
             LOG.info("User '" + authentication.getName()
             + "' attempted to access the URL: "
-            + httpServletRequest.getRequestURI());
+            + request.getRequestURI());
         }
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+ "/access-denied");
+        logService.createLog(request, e.getMessage());
+        httpServletResponse.sendRedirect(request.getContextPath()+ "/access-denied");
     }
 }
