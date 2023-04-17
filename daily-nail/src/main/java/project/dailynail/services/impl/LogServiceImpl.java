@@ -37,7 +37,7 @@ public class LogServiceImpl implements LogService {
     @Override
     public List<LogViewModel> getLogs() {
         return logRepository
-                .findAll()
+                .findAllOrderByTimeDesc()
                 .stream()
                 .map(entity -> {
                     LogViewModel view = modelMapper.map(entity, LogViewModel.class);
