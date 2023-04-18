@@ -42,6 +42,7 @@ Admin can do all of the above including:
     - Manage the user roles of everyone else
     - Can backup and import data on demand from and to json files
     - Has access to statistics page about what are the most read categories of articles 
+    - Has access to logs page
 
 
 ## Demo
@@ -147,10 +148,11 @@ Bonuses – up to 15 %
 [![H23zXn4.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675244261/articles_bvfndd.png)](https://freeimage.host/i/H23zXn4)
 [![H23R1hg.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675244330/create_xyzzem.png)](https://freeimage.host/i/H23R1hg)
 [![H23R1hg.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675250998/stats_bsdncc.png)](https://freeimage.host/i/H23R1hg)
+[![H23R1hg.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1681843608/logs_zet1cs.png)](https://freeimage.host/i/H23R1hg)
 
 
 #### Structure
-[![H2BF429.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675244537/diagram_v0pvdr.png)](https://freeimage.host/i/H2BF429)  
+[![H2BF429.md.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1681843028/diagram_chqvue.png)](https://freeimage.host/i/H2BF429)  
 [![H2okpbj.png](https://res.cloudinary.com/dzjgi2c7y/image/upload/v1675245369/structure_ikumwx.png)](https://freeimage.host/bg)
 [Go back to requirements](#general-requirements)  
 
